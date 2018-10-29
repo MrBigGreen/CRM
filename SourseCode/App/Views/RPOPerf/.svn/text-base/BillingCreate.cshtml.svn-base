@@ -1,0 +1,105 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_Billing
+
+@{
+    ViewBag.Title = "开票";
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<style>
+    textarea {
+        height: 160px;
+        width: 480px;
+    }
+
+    input {
+        width: 100px;
+    }
+
+    .display-field {
+        height: auto;
+        width: 500px;
+    }
+</style>
+
+<div class="bigdiv">
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.TheMonth)：
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.TheMonth, new { @class = "Wdate", style = "width:160px", onchange = "getMonthWeek()", onfocus = "WdatePicker({dateFmt: 'yyyy-MM-dd' })" })
+        @Html.ValidationMessageFor(model => model.TheMonth)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.TheWeek)：
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.TheWeek, Models.SysFieldModels.GetSysFieldValueByParentID("1607191358552092906af3a4986f2"), "--请选择--")
+        @Html.ValidationMessageFor(model => model.TheWeek)
+    </div>
+
+    <br style="clear: both;" />
+    <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+        <input class="a2 f2" type="button" id="submit" onclick="getSave()" value="提  交" />
+    </div>
+</div>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script type="text/javascript">
+    var getMonthWeek = function () {
+        var myDate = new Date($("#TheMonth").val());
+        var w = myDate.getDay(), d = myDate.getDate();
+        var week = Math.ceil((d + 6 - w) / 7);
+        if (week > 4) {
+            $("#TheWeek").val(4);
+        }
+        else {
+            $("#TheWeek").val(week);
+        }
+
+    }
+
+    var getSave = function () {
+
+        var TheMonth = $("#TheMonth").val();
+        if (TheMonth == "")
+        {
+            $.messager.alert("操作提示", "月份不能为空", "info");
+        }
+        var TheWeek = $("#TheWeek").val();
+        if (TheWeek == "")
+        {
+            $.messager.alert("操作提示", "周次不能为空", "info");
+        }
+        var parm = { "TheMonth": TheMonth, "TheWeek": TheWeek }
+        $.ajax({
+            url: "/RPOPerf/GetBillingCreate",
+            type: "Post",
+            data: parm,
+            dataType: "json",
+            success: function (data) {
+                if (data.Result == 1) {
+                    $.messager.alert("操作提示", "添加成功", "info", function () {
+                        location.href = "../RPOPerf/BillingEdit?id=" + data.BillingID;
+                    });
+                }
+
+                else {
+                    $.messager.alert("操作提示", data.Msg, "info");
+
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+                console.log(XMLHttpRequest.readyState);
+                console.log(textStatus);
+            }
+        });
+
+
+    }
+
+</script>

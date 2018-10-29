@@ -1,0 +1,166 @@
+﻿@{;
+    ViewBag.Title = "欧孚合同-表单页面";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<link href="~/Content/styles/learun-ckbox-radio.css" rel="stylesheet" />
+<script>
+    var keyValue = request('keyValue');
+    var contractType = request('contractType');
+    $(function () {
+        initControl();
+    });
+    function CustomerSelect() {
+        dialogOpen({
+            id: "Selected",
+            title: '选择客户',
+            url: '../../CustomerManage/Customer/Selected',
+            width: "800px",
+            height: "520px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].AcceptClick(function (dataJson) {
+                    $("#CustomerId").val(dataJson.customerid);
+                    $("#CustomerName").val(dataJson.fullname);
+                });
+            }
+        });
+    }
+    //初始化控件
+    function initControl() {
+        //签约公司
+        $("#SignSubjectId").ComboBox({
+            url: "../../BaseManage/Company/GetListJson?enCode=Offer",
+            id: "CompanyId",
+            text: "FullName",
+            description: "==请选择==",
+            height: "260px",
+            allowSearch: true
+        });
+        initFrmCotent();
+        //获取表单
+        if (!!keyValue) {
+            $.SetForm({
+                url: "../../CustomerManage/Contract/GetFormJson",
+                param: { keyValue: keyValue },
+                success: function (data) {
+                    $("#form1").SetWebControls(data);
+                    $("#EffectiveDate").val(formatDate(data.EffectiveDate, "yyyy-MM-dd"));
+                    $("#Deadline").val(formatDate(data.Deadline, "yyyy-MM-dd"));
+                }
+            })
+        }
+    }
+    function initFrmCotent() {
+        var ckName = "ServiceType";
+        $.ajax({
+            url: "../../SystemManage/DataItemDetail/GetDataItemListJson",
+            data: { EnCode: "Client_ProductInfo" },
+            type: "get",
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                var rowdata = '';
+                $.each(data, function (i, item) {
+                    if (item.ItemCode == "Offer") {
+                        rowdata += '<div class="ckbox ckbox-color_a">';
+                        rowdata += '<input id="' + item.ItemDetailId + '" data-value="' + item.ItemName + '" name="' + ckName + '" value="' + item.ItemDetailId + '" type="checkbox"><label for="' + item.ItemDetailId + '">' + item.ItemName + '</label>';
+                        rowdata += '</div>';
+                    }
+                });
+                $('#tdServiceType').html(rowdata);
+            }
+        });
+    }
+
+    //保存表单;
+    function AcceptClick() {
+        if (!$('#form1').Validform()) {
+            return false;
+        }
+        var postData = $("#form1").GetWebControls(keyValue);        
+        postData["SignSubject"] = $("#SignSubjectId").attr('data-text');
+        var _SignType = $("input[name=SignType]:checked").val();
+        delete postData["SignType1"];
+        delete postData["SignType2"];
+        postData["SignType"] = _SignType;
+        postData["ContractType"] = contractType;
+        var _ServiceType = "";
+        var _ServiceTypeId = "";
+        $("input[type='checkbox'][name='ServiceType']").each(function () {
+            var id = $(this).attr('id');
+            delete postData[id];
+            if ($("#" + id).is(":checked")) {;
+                _ServiceType += $("#" + id).attr("data-value") + ",";
+                _ServiceTypeId += id + ",";
+            }
+        });
+        postData["ServiceType"] = _ServiceType;
+        postData["ServiceTypeId"] = _ServiceTypeId;
+        $.SaveForm({
+            url: "../../CustomerManage/Contract/AddForm?keyValue=" + keyValue,
+            param: postData,
+            loading: "正在保存数据...",
+            success: function () {
+                $.currentIframe().$("#gridTable").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+<div style="margin-top: 20px; margin-right: 30px;">
+    <table class="form">
+        <tr>
+            <td class="formTitle">客户名称<font face="宋体">*</font></td>
+            <td class="formValue" colspan="3">
+                <input id="CustomerName" type="text" class="form-control" isvalid="yes" checkexpession="NotNull" disabled="disabled" style="width:90%;float: left;" />
+                <input id="CustomerId" type="hidden" />
+                <div style="float: left;width:8%">
+                    <button id="bntSelected" type="button" class="pn_getcode" style="width:50px;" onclick="CustomerSelect()">选择</button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">签约公司<font face="宋体">*</font></td>
+            <td class="formValue" colspan="3">
+                <div id="SignSubjectId" type="select" class="ui-select" isvalid="yes" checkexpession="NotNull"></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">签约类型<font face="宋体">*</font></td>
+            <td class="formValue" colspan="3">
+                <div class="rdio rdio-color_a"><input name="SignType" id="SignType1" value="1" type="radio" checked="checked" /><label for="SignType1">新签</label></div>
+                <div class="rdio rdio-color_b"><input name="SignType" id="SignType2" value="2" type="radio" /><label for="SignType2">续签</label></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">服务类型<font face="宋体">*</font></td>
+            <td class="formValue" colspan="3" id="tdServiceType"></td>
+
+        </tr>
+        <tr>
+            <td class="formTitle">合同金额<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input id="ContractMoney" type="text" class="form-control" />
+            </td>
+            <td class="formTitle">付款方式<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input id="PaymentMethod" type="text" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">生效日期<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input id="EffectiveDate" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker()" />
+            </td>
+            <td class="formTitle">截止日期<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input id="Deadline" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker()" />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">备注</td>
+            <td class="formValue" colspan="3">
+                <textarea id="Description" class="form-control" style="height: 70px;"></textarea>
+            </td>
+        </tr>
+
+    </table>
+</div>

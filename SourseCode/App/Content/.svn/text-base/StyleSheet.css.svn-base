@@ -1,0 +1,367 @@
+﻿
+body {
+    margin: 0;
+    padding: 0;
+    font: normal 14px/20px "微软雅黑";
+}
+
+h2 {
+    padding-left: 5px;
+}
+
+input {
+    font: normal 12px/20px "微软雅黑";
+    color: #444;
+}
+
+.mbx {
+    height: 23px;
+    font-weight: bold;
+    color: #9b6835;
+    border-bottom: 1px #999 dotted;
+    padding: 12px 19px 3px 19px;
+    margin: 4px;
+    background: url(../Images/direction.gif) 0 center no-repeat;
+}
+
+.a2 {
+    width: 90px;
+    height: 23px;
+    line-height: 23px;
+    _line-height: 21px;
+    background: url('../Images/line_n2.gif') repeat-x;
+    border: 1px solid #b8bcbf;
+    cursor: pointer;
+}
+
+.f2 {
+    /*padding: 0 22px;     margin-right: 6px;*/
+    font: bold 12px/23px "微软雅黑";
+    color: #333;
+}
+
+.a3 {
+    width: 78px;
+    height: 28px;
+}
+
+    .a3 span a {
+        font: bold 14px/28px;
+        text-decoration: none;
+        border: 1px solid #720101;
+        display: block;
+        color: #fff;
+        background-color: #830000;
+        text-align: center;
+    }
+
+        .a3 span a:hover {
+            border: 1px solid #710404;
+            background-color: #710404;
+        }
+
+.indexcss a {
+    color: #444;
+    border-bottom: 2px solid #b41826;
+    text-decoration: none;
+}
+
+.datagrid-header-row {
+    font-weight: bold;
+}
+
+.editor-ckeditor {
+    height: 300px;
+    width: 690px;
+    float: left;
+    margin: 11px 0 11px 6px;
+    display: inline;
+}
+
+
+/* Styles for Search
+----------------------------------------------------------*/
+
+.pagination-info {
+    float: left;
+}
+
+.icon-details {
+    background: url('../Images/view.png') no-repeat;
+}
+
+.icon-site {
+    background: url('../Images/direction.gif') no-repeat;
+}
+
+.icon-excel {
+    background: url('../Images/excelcss.jpg') no-repeat;
+}
+
+#divQuery {
+    width: 100%;
+    height: 100%;
+    clear: both;
+}
+
+.input_search {
+    height: 34px;
+    float: left;
+}
+
+.input_search-label {
+    width: 80px;
+    float: left;
+    text-align: right;
+    margin: 13px 0 9px;
+    _margin: 13px 0 9px;
+    line-height: 24px;
+    display: inline;
+}
+
+    .input_search-label label {
+        margin-top: 5px;
+    }
+
+.input_search-field {
+    width: 210px;
+    float: left;
+    margin: 11px 0 11px 6px;
+    display: inline;
+}
+
+    .input_search-field input {
+        width: 196px;
+    }
+
+.input_search-field-time {
+    width: 210px;
+    float: left;
+    margin: 11px 0 11px 6px;
+    display: inline;
+}
+
+    .input_search-field-time input {
+        width: 85px;
+    }
+
+.input_search-field select {
+    font-family: 微软雅黑;
+    height: 23px;
+    width: 210px;
+    border: 1px solid #CCC;
+    float: left;
+    margin-top: 3px;
+    _margin-left: 5px;
+    display: inline;
+}
+
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+
+.editor-label {
+    width: 120px;
+    height: 20px;
+    float: left;
+    text-align: right;
+    margin: 8px 0 7px;
+    _margin: 8px 0 7px;
+    line-height: 20px;
+    display: inline;
+}
+
+    .editor-label span {
+        float: right;
+        color: Red;
+    }
+
+    .editor-label label {
+        width: 120px;
+        margin-top: 4px;
+    }
+
+.editor-field {
+    width: 301px;
+    height: 20px;
+    float: left;
+    margin: 8px 0 8px 6px;
+    display: inline;
+}
+
+    .editor-field select {
+        font-family: 微软雅黑;
+        height: 20px;
+        width: 242px;
+        border: 1px solid #CCC;
+        float: left;
+        margin-top: 3px;
+        _margin-left: 5px;
+        display: inline;
+    }
+
+/****/
+
+
+.td-label {
+    width: 120px;
+    height: 24px;
+    text-align: right;
+    margin: 13px 0 9px;
+    _margin: 13px 0 9px;
+    line-height: 34px;
+}
+
+    .td-label span {
+        float: right;
+        color: Red;
+    }
+
+    .td-label label {
+        width: 120px;
+        margin-top: 5px;
+    }
+
+.td-field {
+    width: 299px;
+    height: 24px;
+    margin: 11px 0 11px 6px;
+}
+
+    .td-field select {
+        font-family: 微软雅黑;
+        height: 23px;
+        width: 242px;
+        border: 1px solid #CCC;
+        float: left;
+        margin-top: 3px;
+        _margin-left: 5px;
+    }
+/* */
+.bigdiv {
+    width: 100%;
+    padding-bottom: 32px;
+}
+
+.text-box {
+    font-family: 微软雅黑;
+    height: 19px;
+    width: 240px;
+    border: 1px solid #CCC;
+    margin-top: 5px;
+}
+
+.textarea-box {
+}
+
+.anUnderLine {
+    border-bottom: 1px solid #1c49b9;
+    text-decoration: none;
+    color: #1c49b9;
+    cursor: pointer;
+}
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+fieldset {
+    width: 854px;
+    margin-left: 4px;
+    padding: 1em;
+    border: 1px solid #CCC;
+}
+
+legend {
+    padding: 2px 8px 8px 12px;
+}
+
+input[type="password"] {
+    font-family: 微软雅黑;
+    height: 19px;
+    width: 240px;
+    border: 1px solid #CCC;
+}
+
+textarea {
+    font: normal 12px/20px "微软雅黑";
+    color: #444;
+    height: 106px;
+    width: 667px;
+    border: 1px solid #CCC;
+    margin: 11px 0 11px 6px;
+}
+
+/* select
+{
+    font-family: 微软雅黑,新宋体;
+    height: 23px;
+    width: 182px;
+    border: 1px solid #CCC;
+	float:left;
+	 margin-top:3px;
+	_margin-left:5px;
+	display:inline;
+}Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    font-family: 微软雅黑;
+    color: #ff0000;
+}
+
+.field-validation-valid {
+    font-size: 16px;
+    font-family: 微软雅黑;
+    display: none;
+}
+
+.input-validation-error {
+    font-family: 微软雅黑;
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.search {
+    float: left;
+    margin-bottom: 5px;
+    padding-left: 0px;
+}
+
+.search_lable {
+    float: left;
+    margin-left: 0px;
+    width: 80px;
+    text-align: right;
+}
+
+.search_text {
+    float: left;
+}
+
+.searchButton {
+    width: 60px;
+    height: 22px;
+    cursor: pointer;
+    padding: 0 10 0 5;
+    margin-left: 15px;
+    float: left;
+    display: inline;
+    background-color: #860101;
+    font: bold 14px "微软雅黑";
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    border: 0 none;
+    display: inline;
+}
+
+.deleteStyle {
+    padding-right: 10px;
+}
+
+.Square {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-color: #E0FFFF;
+    border: 1px solid #C6E2FF;
+    vertical-align: text-bottom;
+    margin-right: 2px;
+}

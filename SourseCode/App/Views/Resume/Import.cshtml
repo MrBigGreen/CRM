@@ -1,0 +1,344 @@
+﻿@using Common
+@using Models
+@model Offer.DAL.TB_ImportResume
+@{
+    Layout = "~/Views/Shared/Resume.cshtml";
+}
+
+@section CurentPlace {
+    简历导入
+}
+
+
+<style>
+    fieldset {
+        padding: 0px;
+        width: 98%;
+    }
+
+    legend {
+        font: 15px Verdana;
+        color: #07519a;
+        font-weight: bold;
+    }
+
+    select {
+        width: 132px;
+    }
+
+    .tdClass {
+        font: 12px Verdana;
+    }
+
+    .divStyle {
+        width: 100%;
+        padding-bottom: 10px;
+    }
+    /*loadingDiv Style*/
+    .loadingDiv {
+        font-family: Tahoma,Verdana, "Microsoft Yahei",微软雅黑,新宋体,arial;
+        font-size: 12px;
+        position: absolute;
+        width: 160px;
+        height: 34px;
+        left: 50%;
+        top: 120px;
+        margin-left: -60px;
+        background-color: #eeeeee;
+        border: 1px solid #cccccc;
+        vertical-align: middle;
+        padding-top: 6px;
+    }
+
+        .loadingDiv img {
+            vertical-align: -5px;
+        }
+</style>
+<table>
+    <tr>
+        <td align="left" valign="bottom">
+            <input type="radio" name="rdoResumeType" checked="checked" value="1" />前程无忧
+            <input type="radio" name="rdoResumeType" value="2" />智联招聘
+        </td>
+
+        <td align="left" valign="bottom">
+            文件 <input type="text" id="txtFile" name="txtFile" value="" readonly="readonly" style="width: 252px;  " />
+            <input type="file" id="multifile" multiple size="3" style="width:56px; " />
+            <input type="hidden" id="hidFile" name="hidFile" />
+        </td>
+        <td align="left" valign="bottom">
+            第<input type="text" id="txtIndex" name="txtIndex" value="" readonly="readonly" style="width:20px" />
+            共<label id="lblTotal">0</label>条&nbsp;&nbsp;
+        </td>
+        <td align="left" valign="bottom">
+            <input type="button" id="btnPrevious" name="btnPrevious" value="上一条" onclick="getPrevious()" style="width: 85px; height: 33px;" />
+            <input type="button" id="btnNext" name="btnNext" value="下一条" onclick="getNext()" style="width: 85px; height: 33px;" />
+        </td>
+        <td align="left" valign="bottom">
+            <input type="submit" name="" onclick="return submitChaek();" value="保 存" style="width: 85px; height: 33px;" />
+            <input type="submit" name="" onclick="return submitChaek();" value="创 建" style="width: 85px; height: 33px;" />
+            <div class="loadingDiv" style=" display:none">&nbsp;<img src="../images/loading.gif" alt="Loading" />&nbsp;加载中...</div>
+        </td>
+    </tr>
+</table>
+<!-- 简历内容-->
+<div id="resumeDetail">
+    @Html.Partial("Details", Model);
+</div>
+@*<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.watermark.min.js"></script>
+    <script src="~/Scripts/jquery.bpopup-0.7.0.min.js"></script>
+    <script src="~/Scripts/Base64.js"></script>
+    <script src="~/Scripts/type-bpopup_fuc.js" type="text/javascript"></script>*@
+
+<script type="text/javascript" language="javascript">
+    //文件选择
+    var inputElement = document.getElementById("multifile");
+    inputElement.addEventListener("change", handleFiles, false);
+    var fileList = this.files;
+    var index = 0;
+    function handleFiles() {
+        index = 0;
+        fileList = this.files;
+        $("#txtIndex").val(index + 1);
+        $("#lblTotal").html(fileList.length);
+        for (var i = 0 ; i < fileList.length ; i++) {
+            console.log(fileList[i]);
+        }
+        if (fileList.length > 0) {
+            readAsText(index);
+        }
+    }
+    //上一条
+    function getPrevious() {
+        if (index <= 0) {
+            $.messager.defaults.ok = '确定';
+            $.messager.alert('操作提示', '已经是第一条了!', 'warning');
+            return false;
+        }
+        index = index - 1;
+        readAsText(index);
+        $("#txtIndex").val(index + 1);
+
+    }
+    //下一条
+    function getNext() {
+        if (index >= fileList.length - 1) {
+            $.messager.defaults.ok = '确定';
+            $.messager.alert('操作提示', '已经是最后一条了!', 'warning');
+            return false;
+        }
+        index = index + 1;
+        readAsText(index);
+        $("#txtIndex").val(index + 1);
+    }
+    ////解析简历
+    //$("#btnParseResume").click(function () {
+    //    var aa = $('#divOldResume').html();
+    //    //  alert(aa);
+    //    var data = " { resumeInfo:'" + aa + "' }";
+
+
+    //    $.ajax({
+    //        url: '/Resume/GetParseResume',
+    //        contentType: "application/json; charset=utf-8",
+    //        type: "POST",
+    //        data: JSON.stringify({ "data": data }),
+    //        traditional: true,
+    //        dataType: "json",
+    //        cache: false,
+    //        success: function (result) {
+    //            $("#resumeDetail").html(result);
+    //        }
+    //    });
+    //});
+     
+    //读取文件并解析
+    function readAsText(index) {
+        //var demo = "";
+        var reader = new FileReader();
+        $("#txtFile").val(fileList[index].name);
+        //将文件以文本形式读入页面
+        //reader.readAsText(fileList[index], 'gb2312');
+        reader.readAsText(fileList[index], 'utf-8');
+        reader.onloadend = function (f) {
+
+            $("#bpopupIndustry").remove();
+            $("#bpopupPost").remove();
+            $("#bpopupCity").remove();
+            $("#bpopupDomain").remove();
+            $("#bpopupLocal").remove();
+
+            var result = document.getElementById("divOldResume");
+            //前程无忧简历解析
+            if ($('input[name="rdoResumeType"]:checked').val() == 1) {
+                var str = this.result;
+                var strStart = "Content-Transfer-Encoding:base64";
+                var strEnd = "----boundary";
+
+                str = str.substring(str.indexOf(strStart) + strStart.length);
+                if (str.indexOf(strEnd) < 1) {
+                    return "读取简历失败";
+                }
+                var index = str.indexOf(strEnd);
+                str = str.substring(0, index).trim();
+                var data = " { resumeInfo:'" + str + "' }";
+                $.ajax({
+                    url: '/Resume/GetParse51JobResume',
+                    contentType: "application/json; charset=utf-8",
+                    type: "POST",
+                    data: JSON.stringify({ "data": data }),
+                    cache: false,
+                    beforeSend: function () { $(".loadingDiv").show(); }, //执行ajax前执行loading函数.直到success
+                    success: function (resumeData) {
+                        $(".loadingDiv").hide();
+                        $("#resumeDetail").html(resumeData);
+                    }
+                });
+
+            }
+                //智联招聘
+            else {
+                var data = " { resumeInfo:'" + this.result + "' }";
+                $.ajax({
+                    url: '/Resume/GetParseZhiLianResume',
+                    contentType: "application/json; charset=utf-8",
+                    type: "POST",
+                    data: JSON.stringify({ "data": data }),
+                    cache: false,
+                    beforeSend: function () { $(".loadingDiv").show(); }, //执行ajax前执行loading函数.直到success
+                    success: function (result) {
+                        $(".loadingDiv").hide();
+                        $("#resumeDetail").html(result);
+                    }
+                });
+            }
+
+        }
+    }
+
+    function submitChaek() {
+        //教育经历
+        var flag = true;
+        var eduJson = "";
+        
+        $("#divEdu").find("tbody tr").each(function (i) {
+          
+            eduJson = eduJson + JSON.stringify({
+                "ShoolName": $(this).find("input[name='item.ShoolName']").val(),
+                "MajorCode": $(this).find("input[name='btnMajorCode']").val(),
+                "MajorName": $(this).find("input[name='btnMajor']").val(),
+                "Degree": $(this).find("select[name='item.Degree']").val(),
+                "FromYear": $(this).find("select[name='item.FromYear']").val(),
+                "FromMonth": $(this).find("select[name='item.FromMonth']").val(),
+                "ToYear": $(this).find("select[name='item.ToYear']").val(),
+                "ToMonth": $(this).find("select[name='item.ToMonth']").val()
+            }) + ',';
+
+        })
+        if (eduJson.length > 1) {
+            eduJson = eduJson.substring(0, eduJson.length - 1);
+            $("#EduJson").val(" [  " + eduJson + "   ] ");
+        }
+
+
+        //工作经验
+        var workJson = "";
+        $("#divWorkExperience").find("table").each(function (i) {
+            var FromYear = $(this).find("input[name='item.FromYear']").val();
+            if (FromYear.length < 1 || isNaN(FromYear)) {
+                $.messager.alert('操作提示', '工作经验开始年份不能为空或非数字', 'error');
+                flag = false;
+            }
+            var FromMonth = $(this).find("input[name='item.FromMonth']").val();
+            if (FromMonth.length < 1 || isNaN(FromMonth)) {
+                $.messager.alert('操作提示', '工作经验开始月份不能为空或非数字', 'error');
+                flag = false;
+            }
+            var ToYear = $(this).find("input[name='item.ToYear']").val()
+            if (ToYear.length > 0 && isNaN(ToYear)) {
+                $.messager.alert('操作提示', '工作经验结束年份不正确', 'error');
+                flag = false;
+            }
+            var ToMonth = $(this).find("input[name='item.ToMonth']").val()
+            if (ToMonth.length > 0 && isNaN(ToMonth)) {
+                $.messager.alert('操作提示', '工作经验结束月份不正确', 'error');
+                flag = false;
+            }
+
+            var CompanyName = $(this).find("input[name='item.CompanyName']").val()
+            if (CompanyName.length < 1 || CompanyName.length > 100) {
+                $.messager.alert('操作提示', '公司名称不能为空或长度大于100', 'error');
+                flag = false;
+            }
+
+            workJson = workJson + JSON.stringify(
+                {
+                    "FromYear": FromYear,
+                    "FromMonth": FromMonth,
+                    "ToYear": ToYear,
+                    "ToMonth": ToMonth,
+                    "CompanyName": CompanyName,
+                    "WorkDescription": $(this).find("textarea[name='item.WorkDescription']").val()
+                }
+                ) + ",";
+
+        })
+        if (workJson.length > 1) {
+            $("#WorkExperienceJosn").val(" [" + workJson.substring(0, workJson.length - 1) + "]");
+        }
+
+        //项目经验
+        var prjJson = "";
+        $("#divPrjExperience").find("table").each(function (i) {
+            var FromYear = $(this).find("input[name='item.FromYear']").val();
+            if (FromYear.length < 1 || isNaN(FromYear)) {
+                $.messager.alert('操作提示', '项目经验开始年份不能为空或非数字', 'error');
+                flag = false;
+            }
+            var FromMonth = $(this).find("input[name='item.FromMonth']").val();
+            if (FromMonth.length < 1 || isNaN(FromMonth)) {
+                $.messager.alert('操作提示', '项目经验开始月份不能为空或非数字', 'error');
+                flag = false;
+            }
+            var ToYear = $(this).find("input[name='item.ToYear']").val()
+            if (ToYear.length > 0 && isNaN(ToYear)) {
+                $.messager.alert('操作提示', '项目经验结束年份不正确', 'error');
+                flag = false;
+            }
+            var ToMonth = $(this).find("input[name='item.ToMonth']").val()
+            if (ToMonth.length > 0 && isNaN(ToMonth)) {
+                $.messager.alert('操作提示', '项目经验结束月份不正确', 'error');
+                flag = false;
+            }
+
+            var ProjectName = $(this).find("input[name='item.ProjectName']").val()
+            if (ProjectName.length < 1 || ProjectName.length > 100) {
+                $.messager.alert('操作提示', '职位名称不能为空或长度大于100', 'error');
+                flag = false;
+            }
+            prjJson = prjJson + JSON.stringify(
+                {
+                    "FromYear": FromYear,
+                    "FromMonth": FromMonth,
+                    "ToYear": ToYear,
+                    "ToMonth": ToMonth,
+                    "ProjectName": ProjectName,
+                    "ProjectDescription": $(this).find("textarea[name='item.ProjectDescription']").val()
+                }
+
+                ) + ",";
+
+        })
+        if (prjJson.length > 1) {
+            $("#ProjectExperienceJosn").val("[" + prjJson.substring(0, prjJson.length - 1) + "]");
+        }
+        return flag;
+    }
+
+    /*****************************************/
+
+
+
+
+</script>

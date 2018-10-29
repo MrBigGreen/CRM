@@ -1,0 +1,107 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_SalesPerformance
+
+@{
+    ViewBag.Title = "添加销售业绩";
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<style>
+    textarea {
+        height: 160px;
+        width: 480px;
+    }
+
+    input {
+        width: 100px;
+    }
+
+    .display-field {
+        height: auto;
+        width: 500px;
+    }
+
+    .editor-field select {
+        width: 120px;
+    }
+</style>
+
+<div class="bigdiv">
+    @if (Model.Category == 1)
+    {
+        <h2 style="text-align:center">预计</h2>
+    }
+    else
+    {
+        <h2 style="text-align:center">实际</h2>
+    }
+    @Html.HiddenFor(model => model.SalesPerformanceID)
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.TheMonth)：
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.TheMonth, new { @disabled = "disabled" })
+        @Html.ValidationMessageFor(model => model.TheMonth)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.TheWeek)：
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.TheWeek, Models.SysFieldModels.GetSysFieldValueByParentID("1607191358552092906af3a4986f2"), "--请选择--", new { @disabled = "disabled" })
+        @Html.ValidationMessageFor(model => model.TheWeek)
+
+
+       
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.FollowUpQty)：
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.FollowUpQty)
+        @Html.ValidationMessageFor(model => model.FollowUpQty)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.ContractQty)：
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.ContractQty)
+        @Html.ValidationMessageFor(model => model.ContractQty)
+    </div>
+   
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.KeyCustomerQty)：
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.KeyCustomerQty)
+        @Html.ValidationMessageFor(model => model.KeyCustomerQty)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.BillingAmount)：
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.BillingAmount)（元）
+        @Html.ValidationMessageFor(model => model.BillingAmount)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.BudgetAmount)：
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.BudgetAmount)（元）
+        @Html.ValidationMessageFor(model => model.BudgetAmount)
+    </div>
+
+    <br style="clear: both;" />
+    <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+        <input class="a2 f2" type="submit" id="submit" value="提  交" />
+    </div>
+</div>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />

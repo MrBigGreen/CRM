@@ -1,0 +1,137 @@
+﻿@{
+    ViewBag.Title = "客户拜访";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+
+<div id="divQuery">
+    <div class="easyui-panel" title="查询栏" iconcls="icon-search" collapsible="true" data-options="collapsed:false" style="height:auto;width:auto">
+        <table id="ttSearch" class="record" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <th style="width:120px; text-align:right; padding-right:10px;height:26px">
+                        <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="margin-left:30px">
+                            查 询
+                        </a>
+                    </th> 
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+</div> 
+<table id="flexigridData"></table>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $('#flexigridData').datagrid({
+            title: '客户拜访', //列表的标题
+            iconCls: 'icon-site',
+            width: '99%',
+            height: 'auto',
+            striped: true,
+            collapsible: true,
+            singleSelect: false,
+            url: '../Reports/GetImportSummaryData', //获取数据的url
+            sortName: 'WeekOfYear',
+            sortOrder: 'asc',
+           // pagination: true,
+            rownumbers: true,
+            fitColumns: true,
+            columns: [[
+                   { field: 'WeekOfYear', title: '周', width: 70, sortable: true, align: 'center' },
+                   { field: 'CustomerSource', title: '来源', width: 70, sortable: true },
+                   { field: 'Total', title: '导入数据', width: 70, sortable: true },
+                   { field: 'ExtractTotal', title: '被提取数据', width: 70, sortable: true },
+                   { field: 'ExtractPer', title: '提取占比', width: 70, sortable: true },
+                   { field: 'CustomerFunnel1', title: '1-初步建立联系', width: 70, sortable: true },
+                   { field: 'TransitionPer1', title: '转换概率', width: 70, sortable: true },
+                   { field: 'CustomerFunnel2', title: '2-需求沟通', width: 70, sortable: true },
+                   { field: 'TransitionPer2', title: '转换概率', width: 70, sortable: true },
+                   { field: 'CustomerFunnel3', title: '3-方案推进', width: 70, sortable: true },
+                   { field: 'TransitionPer3', title: '转换概率', width: 70, sortable: true },
+                   { field: 'CustomerFunnel4', title: '4-合同阶段', width: 70, sortable: true },
+                   { field: 'TransitionPer4', title: '转换概率', width: 70, sortable: true },
+                   { field: 'CustomerFunnel7', title: 'Ice-冰冻客户', width: 70, sortable: true },
+                   { field: 'TransitionPer7', title: '转换概率', width: 70, sortable: true },
+            ]]
+        });
+
+        var parent = window.dialogArguments; //获取父页面
+        if (parent == "undefined" || parent == null) {
+            //首先获取iframe标签的id值
+
+            var iframeid = window.parent.$('#tabs').tabs('getSelected').find('iframe').attr("id");
+
+            //然后关闭AJAX相应的缓存
+            $.ajaxSetup({
+                cache: false
+            });
+
+            //获取按钮值
+            $.getJSON("../Home/GetToolbar", { id: iframeid }, function (data) {
+                if (data == null) {
+                    return;
+                }
+                $('#flexigridData').datagrid("addToolbarItem", data);
+            });
+        }
+    });
+    //将查询条件按照分隔符拼接成字符串
+    var search = "";
+
+    //“查询”按钮，弹出查询框
+    function flexiQuery() {
+
+
+        search = "";
+        
+        $('#flexigridData').datagrid('options').url = "../Reports/GetImportSummaryData";
+        $("#flexigridData").datagrid("clearSelections");
+        //执行查询
+        $('#flexigridData').datagrid('load', { search: search });
+
+    }
+    function flexiExport() {
+
+        $.messager.confirm('操作提示', "确定要导出导入客户汇总数据吗", function (r) {
+            if (r) {
+
+
+                var p = $('#flexigridData').datagrid('options').columns[0];
+                var field = [];//所有的列名
+                var title = [];//所有的标题名称
+                $(p).each(function () {
+
+                    if (!this.hidden) {
+                        field.push(this.field);
+                        title.push(this.title);
+                    }
+
+                });
+
+                $.post("../Reports/ExportImportSummary",
+                    {
+                        title: title.join(","),
+                        field: field.join(","),
+                        sortName: $('#flexigridData').datagrid('options').sortName,
+                        sortOrder: $('#flexigridData').datagrid('options').sortOrder,
+                        search: search
+                    }, function (res) {
+                        window.location.href = res;
+
+                    });
+            }
+        });
+    };
+</script>
+
+
+
+
+
+
+
+

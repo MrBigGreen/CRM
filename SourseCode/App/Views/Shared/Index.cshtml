@@ -1,0 +1,83 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head id="MyHead">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="0"> 
+    <link id="easyuiTheme" href="@Url.Content("~/Res/easyui/themes/default/easyui.css")" rel="stylesheet" type="text/css" />
+    <title>  </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/easyui")
+    @RenderSection("HeadContent", false)
+
+
+
+    <script type="text/javascript" language="javascript">
+
+        $(function () {
+            $(".window-mask").live("click", function () {
+              
+                $(".easyui-dialog").dialog("close");
+                $(".easyui-window").window("close");
+            });
+
+            $('.easyui-combobox').combobox({
+                width: 201,
+                onSelect: function (record) {
+                    var strs = record.text.split("—");
+                    $(this).combobox('setValue', strs[0]);
+                }
+            });
+            //查询按钮样式
+            $('.submitcss').mouseover(function () { this.style.background = 'rgb(113,4,4)'; }).mouseout(function () { this.style.background = 'rgb(131,0,0)'; });
+
+        });
+    </script>
+    <style>
+        a {
+            border-bottom: 1px solid #1c49b9;
+            text-decoration: none;
+            color: #1c49b9;
+            cursor: pointer;
+        }
+
+        .textbox-text {
+            cursor: default;
+            border-radius: 0 !important;
+            border: 1px solid #d5d5d5;
+            padding: 5px 4px;
+            line-height: 1.2;
+            font-size: 13px;
+            font-family: inherit;
+            box-shadow: none !important;
+        }
+
+        input[readonly]:hover {
+            border-color: #c3c3c3;
+        }
+
+        input[readonly] {
+            color: #939192;
+            background: #f5f5f5 !important;
+            cursor: default;
+            border-radius: 0 !important;
+            border: 1px solid #d5d5d5;
+            padding: 4px 4px;
+            line-height: 1.2;
+            font-size: 13px;
+            font-family: inherit;
+            box-shadow: none !important;
+        }
+    </style>
+</head>
+<body>
+    @RenderBody()
+    <table id="flexigridData"></table>
+
+    <div id="dialo" title="操作">
+    </div>
+    <div id="myWindow"></div>
+</body>
+</html>

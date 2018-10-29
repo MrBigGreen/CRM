@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="UnCallDBModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“asteriskcdrdb.cdr”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="cdr">
+          <Key>
+            <PropertyRef Name="calldate" />
+            <PropertyRef Name="clid" />
+            <PropertyRef Name="src" />
+            <PropertyRef Name="dst" />
+            <PropertyRef Name="dcontext" />
+            <PropertyRef Name="channel" />
+            <PropertyRef Name="dstchannel" />
+            <PropertyRef Name="lastapp" />
+            <PropertyRef Name="lastdata" />
+            <PropertyRef Name="duration" />
+            <PropertyRef Name="billsec" />
+            <PropertyRef Name="disposition" />
+            <PropertyRef Name="amaflags" />
+            <PropertyRef Name="accountcode" />
+            <PropertyRef Name="uniqueid" />
+            <PropertyRef Name="userfield" />
+            <PropertyRef Name="play" />
+          </Key>
+          <Property Name="calldate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="clid" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="src" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="dst" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="dcontext" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="channel" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="dstchannel" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="lastapp" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="lastdata" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="duration" Type="int" Nullable="false" />
+          <Property Name="billsec" Type="int" Nullable="false" />
+          <Property Name="disposition" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="amaflags" Type="int" Nullable="false" />
+          <Property Name="accountcode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="uniqueid" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="userfield" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="tag" Type="int" />
+          <Property Name="outup" Type="int" />
+          <Property Name="calltype" Type="char" MaxLength="10" />
+          <Property Name="addtime" Type="timestamp" Precision="0" />
+          <Property Name="play" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="outbound" Type="varchar" MaxLength="80" />
+        </EntityType>
+        <EntityContainer Name="UnCallDBModelStoreContainer">
+          <EntitySet Name="cdr" EntityType="Self.cdr" store:Type="Tables" store:Schema="asteriskcdrdb">
+            <DefiningQuery>SELECT
+`cdr`.`calldate`, 
+`cdr`.`clid`, 
+`cdr`.`src`, 
+`cdr`.`dst`, 
+`cdr`.`dcontext`, 
+`cdr`.`channel`, 
+`cdr`.`dstchannel`, 
+`cdr`.`lastapp`, 
+`cdr`.`lastdata`, 
+`cdr`.`duration`, 
+`cdr`.`billsec`, 
+`cdr`.`disposition`, 
+`cdr`.`amaflags`, 
+`cdr`.`accountcode`, 
+`cdr`.`uniqueid`, 
+`cdr`.`userfield`, 
+`cdr`.`tag`, 
+`cdr`.`outup`, 
+`cdr`.`calltype`, 
+`cdr`.`addtime`, 
+`cdr`.`play`, 
+`cdr`.`outbound`
+FROM `cdr` AS `cdr`</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UnCallDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cdr">
+          <Key>
+            <PropertyRef Name="calldate" />
+            <PropertyRef Name="clid" />
+            <PropertyRef Name="src" />
+            <PropertyRef Name="dst" />
+            <PropertyRef Name="dcontext" />
+            <PropertyRef Name="channel" />
+            <PropertyRef Name="dstchannel" />
+            <PropertyRef Name="lastapp" />
+            <PropertyRef Name="lastdata" />
+            <PropertyRef Name="duration" />
+            <PropertyRef Name="billsec" />
+            <PropertyRef Name="disposition" />
+            <PropertyRef Name="amaflags" />
+            <PropertyRef Name="accountcode" />
+            <PropertyRef Name="uniqueid" />
+            <PropertyRef Name="userfield" />
+            <PropertyRef Name="play" />
+          </Key>
+          <Property Name="calldate" Type="DateTime" Nullable="false" />
+          <Property Name="clid" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="src" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dst" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dcontext" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="channel" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dstchannel" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastapp" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastdata" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="duration" Type="Int32" Nullable="false" />
+          <Property Name="billsec" Type="Int32" Nullable="false" />
+          <Property Name="disposition" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="amaflags" Type="Int32" Nullable="false" />
+          <Property Name="accountcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="uniqueid" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userfield" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tag" Type="Int32" />
+          <Property Name="outup" Type="Int32" />
+          <Property Name="calltype" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="addtime" Type="DateTime" />
+          <Property Name="play" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="outbound" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="UnCall_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cdr" EntityType="Self.cdr" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UnCallDBModelStoreContainer" CdmEntityContainer="UnCall_DBEntities">
+          <EntitySetMapping Name="cdr">
+            <EntityTypeMapping TypeName="UnCallDBModel.cdr">
+              <MappingFragment StoreEntitySet="cdr">
+                <ScalarProperty Name="calldate" ColumnName="calldate" />
+                <ScalarProperty Name="clid" ColumnName="clid" />
+                <ScalarProperty Name="src" ColumnName="src" />
+                <ScalarProperty Name="dst" ColumnName="dst" />
+                <ScalarProperty Name="dcontext" ColumnName="dcontext" />
+                <ScalarProperty Name="channel" ColumnName="channel" />
+                <ScalarProperty Name="dstchannel" ColumnName="dstchannel" />
+                <ScalarProperty Name="lastapp" ColumnName="lastapp" />
+                <ScalarProperty Name="lastdata" ColumnName="lastdata" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="billsec" ColumnName="billsec" />
+                <ScalarProperty Name="disposition" ColumnName="disposition" />
+                <ScalarProperty Name="amaflags" ColumnName="amaflags" />
+                <ScalarProperty Name="accountcode" ColumnName="accountcode" />
+                <ScalarProperty Name="uniqueid" ColumnName="uniqueid" />
+                <ScalarProperty Name="userfield" ColumnName="userfield" />
+                <ScalarProperty Name="tag" ColumnName="tag" />
+                <ScalarProperty Name="outup" ColumnName="outup" />
+                <ScalarProperty Name="calltype" ColumnName="calltype" />
+                <ScalarProperty Name="addtime" ColumnName="addtime" />
+                <ScalarProperty Name="play" ColumnName="play" />
+                <ScalarProperty Name="outbound" ColumnName="outbound" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

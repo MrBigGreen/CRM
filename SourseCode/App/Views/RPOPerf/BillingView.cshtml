@@ -1,0 +1,113 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_Billing
+
+@{
+    ViewBag.Title = "开票";
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<style>
+    textarea {
+        height: 160px;
+        width: 480px;
+    }
+
+    input {
+        width: 100px;
+    }
+
+    .display-field {
+        height: auto;
+        width: 500px;
+    }
+</style>
+
+<div class="bigdiv">
+    <br style="clear: both;" />
+    @Html.HiddenFor(model => model.BillingID)
+    @Html.HiddenFor(model => model.SysPersonID)
+
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.TheMonth)：
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.TheMonth, new { @disabled = "disabled" })
+        @Html.ValidationMessageFor(model => model.TheMonth)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.TheWeek)：
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.TheWeek, Models.SysFieldModels.GetSysFieldValueByParentID("1607191358552092906af3a4986f2"), "--请选择--", new { @disabled = "disabled" })
+        @Html.ValidationMessageFor(model => model.TheWeek)
+    </div>
+
+    <br style="clear: both;" />
+    <div style="width: 450px;margin:10px; ">
+
+        <table id="dg" class="easyui-datagrid" title="本周实际" style="height:auto">
+            <thead>
+                <tr>
+                    <th data-options=" field:'CustomerName',width:200,editor:'textbox'">
+                        客户
+                    </th>
+                    <th data-options="field:'BillingAmount',width:80,align:'right',editor:{type:'numberbox',options:{precision:1}}">金额</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div style="width: 450px;margin:10px; ">
+        <table id="dg2" class="easyui-datagrid" title="下周预计" style=" height: auto; ">
+            <thead>
+                <tr>
+                    <th data-options="field:'CustomerName',width:200,editor:'textbox'">客户</th>
+                    <th data-options="field:'BillingAmount',width:80,align:'right',editor:{type:'numberbox',options:{precision:1}}">金额</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <br style="clear: both;" />
+    <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+
+    </div>
+</div>
+
+
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+
+
+
+<script type="text/javascript">
+
+
+    $('#dg').datagrid({
+        title: '本周实际', //列表的标题
+        iconCls: 'icon-edit',
+        width: '100%',
+        height: 'auto',
+        striped: true,
+        singleSelect: true,
+        url: '/RPOPerf/GetBillingDetails?id=@Model.BillingID&Category=1', //获取数据的url
+        idField: 'BillingDetailsID',
+        pagination: false,
+    });
+
+
+
+    $('#dg2').datagrid({
+        title: '下周预计', //列表的标题
+        iconCls: 'icon-edit',
+        width: '100%',
+        height: 'auto',
+        striped: true,
+        singleSelect: true,
+        url: '/RPOPerf/GetBillingDetails?id=@Model.BillingID&Category=2', //获取数据的url
+        idField: 'BillingDetailsID',
+        sortName: 'BillingDetailsID',
+        sortOrder: 'asc',
+        pagination: false,
+    });
+</script>

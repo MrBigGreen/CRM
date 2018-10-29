@@ -1,0 +1,119 @@
+﻿
+<fieldset style="margin: 10px 3px 0px 3px;">
+    @*<legend>
+            <a class="easyui-linkbutton" iconcls="icon-ok" onclick="getchecked()">选择</a>
+        </legend>*@
+    <div>
+        <label style="margin: 0px 10px 0px 0px;"><input id="rdoPerson" name="rdoSelect" type="radio" checked="checked" value="person">人员</label>
+        <label style="margin: 0px 10px 0px 0px;"><input id="rdodept" name="rdoSelect" type="radio" value="dept">部门</label>
+    </div>
+    <div style="overflow:auto; height:260px;">
+        <ul style="margin-top: 6px; padding-bottom: 10px; " id="myTree"></ul>
+        <br />
+    </div>
+</fieldset>
+<script type="text/javascript">
+
+        $(function () {
+
+            $("#rdoPerson").change(function () {
+                $('#myTree').tree({
+                    checkbox: true,
+                    url: '../SysDepartmentTree/GetMyDeptByPersonTree',
+                    cascadeCheck: true,
+                    onlyLeafCheck: true,
+                    onClick: function (node) {
+                        //  $(this).tree('toggle', node.target);
+                    },
+                    onBeforeLoad: function (node, param) {
+                        if (node) {
+                            param.parentid = node.id;
+                        }
+                    },
+                    onLoadSuccess: function (node, data) {
+                        var t = $(this);
+                        if (data) {
+                            $(data).each(function (index, d) {
+                                if (this.state == 'closed') {
+                                    t.tree('expandAll');
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+
+            $("#rdodept").change(function () {
+                $('#myTree').tree({
+                    checkbox: true,
+                    url: '../SysDepartmentTree/GetMyDeptTree',
+                    cascadeCheck: false,
+                    onlyLeafCheck: false,
+                    onClick: function (node) {
+                        //  $(this).tree('toggle', node.target);
+                    },
+                    onBeforeLoad: function (node, param) {
+                        if (node) {
+                            param.parentid = node.id;
+                        }
+                    },
+                    onLoadSuccess: function (node, data) {
+                        var t = $(this);
+                        if (data) {
+                            $(data).each(function (index, d) {
+                                if (this.state == 'closed') {
+                                    t.tree('expandAll');
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+            $('#myTree').tree({
+                checkbox: true,
+                url: '../SysDepartmentTree/GetMyDeptByPersonTree',
+                cascadeCheck: true,
+                onlyLeafCheck: true,
+                onClick: function (node) {
+                    //  $(this).tree('toggle', node.target);
+                },
+                onBeforeLoad: function (node, param) {
+                    if (node) {
+                        param.parentid = node.id;
+                    }
+                }
+            , onLoadSuccess: function (node, data) {
+                var t = $(this);
+                if (data) {
+                    $(data).each(function (index, d) {
+                        if (this.state == 'closed') {
+                            t.tree('expandAll');
+                        }
+                    });
+                }
+            }
+
+            });
+
+        });
+        function getchecked() {
+
+            //取得所有选中的节点，返回节点对象的集合
+            var nodes = $("#myTree").tree("getChecked");
+            if (nodes != null) {
+                
+                var s = '';
+                for (var i = 0; i < nodes.length; i++) {
+                    if (s != '') s += ',';
+                    s += nodes[i].text;
+                }
+                alert(s);
+
+            }
+            else {
+                alert("请至少选择一个");
+            }
+
+        }
+</script>
+

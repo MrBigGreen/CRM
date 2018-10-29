@@ -1,0 +1,131 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_Customer
+
+@{
+    ViewBag.Title = "公共客户池";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+<div id="divQuery">
+    <div class="easyui-panel" title="查询栏" iconcls="icon-search" collapsible="true" data-options="collapsed:true" style="height:auto;width:auto">
+        <table id="ttSearch" class="record" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th style="width:120px; text-align:right; padding-right:10px;height:36px">查询条件:</th>
+                <td>
+                    <input id="Keyword" name="Keyword" maxlength="100" value="" type="text" placeholder="搜索公司名称" style="width:220px" />
+                </td>
+            </tr>
+            <tr>
+                <th style="width:120px; text-align:right; padding-right:10px;height:26px">
+                    城市行业:
+                </th>
+                <td>
+                    <span>
+                        <input type="button" class="select_btn" id="btnCityName" name="btnCityName" value="选择城市" />
+                        <input type="hidden" id="CityCode" name="CityCode" value="" />
+                        <input type="hidden" id="CityName" name="CityName" value="" />
+                    </span>
+                    <span>
+                        <input type="button" class="select_btn" id="btnVocationName" name="btnVocationName" value="选择行业" />
+                        <input type="hidden" id="VocationCode" name="VocationCode" value="" />
+                        <input type="hidden" id="VocationName" name="VocationName" value="" />
+                    </span>
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <th style="width:120px; text-align:right; padding-right:10px;height:26px">
+                    企业性质:
+                </th>
+                <td>
+                    @Html.CheckBoxListFor(model => model.CompanyNatureCode, Models.SysFieldModels.GetSysFieldByParentID("1506121504159700965a90aed8b10"), false)
+                </td>
+            </tr>
+            @*<tr>
+                    <th style="width:120px; text-align:right; padding-right:10px;height:26px">
+                        冻结情况:
+                    </th>
+                    <td>
+                        <label style="margin: 0px 10px 0px 0px;"><input name="IsFrozen" type="radio" checked="checked" value="">全部</label>
+                        <label style="margin: 0px 10px 0px 0px;"><input name="IsFrozen" type="radio" value="1">是</label>
+                        <label style="margin: 0px 10px 0px 0px;"><input name="IsFrozen" type="radio" value="2">否</label>
+
+                    </td>
+                </tr>*@
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                        查 询
+                    </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" onclick="RemvoeAll()" class="easyui-linkbutton" data-options="iconCls:'icon-clear'">
+                        清 空
+                    </a>
+
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+<br style="clear: both;" />
+@Html.HiddenFor(m => m.SysPersonID)
+<table id="flexigridData"></table>
+<div id="FollowSet" class="easyui-dialog" iconcls="icon-add" style="width: 600px; height: 560px;
+      padding: 5px; overflow: auto; " title="" data-options="closed:true">
+    <div fit="true" style="height:95%;width:95%">
+        <div region="center" border="false" style="padding: 10px;width:100%; height:100%; background: #fff; border: 1px solid #ccc;">
+            <iframe frameborder="0" scrolling="no" style="height:100%;width:100%"></iframe>
+        </div>
+    </div>
+</div>
+
+<!-- 查看客户基本信息 start-->
+<div id="CustomerShow" class="easyui-dialog" iconcls="icon-add" style="width: 600px; height: 560px;
+      padding: 5px; overflow: auto; " title="" data-options="closed:true">
+    <input type="hidden" id="ShowCustomerID">
+    <div fit="true" style="height:95%;width:95%">
+        <div region="center" border="false" style="padding: 10px;width:100%; height:100%; background: #fff; border: 1px solid #ccc;">
+            <iframe frameborder="0" scrolling="no" style="height:100%;width:100%"></iframe>
+        </div>
+    </div>
+</div>
+<!-- 查看客户基本信息 end -->
+
+
+<!-- 客户归属设置 start-->
+<div id="Ownership" class="easyui-dialog" iconcls="icon-add" style="width: 600px; height: 560px;
+      padding: 5px; overflow: auto; " title="" data-options="closed:true">
+    <div fit="true" style="height:95%;width:95%">
+        <table id="OwnershipData" class="easyui-datagrid"></table>
+        <br style="clear: both;" />
+        <br />
+        <table>
+            <tr>
+                <td><label for="SysPersonID" style="display:inline-block; cursor:pointer;color:blue;" onclick="showModalOnly('SysPersonID','../../SysPerson');">设置归属人</label></td>
+                <td>
+                    <div id="checkSysPersonID">
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" id="SysPersonID" name="SysPersonID" />
+        <input type="hidden" id="CustomerIDs" />
+        <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+               onclick="SaveOwnership();">保存</a>
+            &nbsp;&nbsp;&nbsp;
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+               onclick="closeWindow();">关 闭</a>
+        </div>
+    </div>
+</div>
+<!-- 客户归属设置 end -->
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/type-bpopup_fuc.js" type="text/javascript"></script>
+<script type="text/javascript">$.getScript("/Scripts/jquery.bpopup-0.7.0.min.js")</script>
+<script type="text/javascript" language="javascript">$.getScript("/Scripts/Customer/Basic.js")</script>
+<script type="text/javascript" language="javascript">$.getScript("/Scripts/Customer/OwnershipModify.js")</script>
+<script type="text/javascript" language="javascript">$.getScript("/Scripts/Customer/Public.js")</script>

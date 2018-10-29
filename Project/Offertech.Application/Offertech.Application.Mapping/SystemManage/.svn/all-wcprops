@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/SystemManage
+END
+LogMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/SystemManage/LogMap.cs
+END
+CodeRuleMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/SystemManage/CodeRuleMap.cs
+END
+DatabaseLinkMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/SystemManage/DatabaseLinkMap.cs
+END
+CodeRuleSeedMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/SystemManage/CodeRuleSeedMap.cs
+END
+AreaMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/SystemManage/AreaMap.cs
+END
+DataItemMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/SystemManage/DataItemMap.cs
+END
+DatabaseBackupMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/SystemManage/DatabaseBackupMap.cs
+END
+DataItemDetailMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/SystemManage/DataItemDetailMap.cs
+END

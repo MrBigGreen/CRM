@@ -1,0 +1,128 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>跟进计划</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="~/Content/css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/css/app.css" />
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+    <script>
+        var isOverdue = '@Offertech.Application.Code.OperatorProvider.Provider.IsOverdue()';
+        if (isOverdue == "True") {
+            window.location.href = '/Wechat/Login';
+        }
+    </script>
+</head>
+<body class="crm-home">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"><span class="nav-back-title">返回</span></a>
+        <h1 class="mui-title">跟进计划</h1>
+    </header>
+    <div id="pullrefresh" class="mui-content mui-scroll-wrapper taskList">
+        <div class="mui-scroll">
+            <!--数据列表-->
+            <ul class="mui-table-view" id="taskLists"></ul>
+        </div>
+    </div>
+
+    <script src="~/Content/Scripts/jquery-1.11.1.js"></script>
+    <script src="~/Content/Scripts/mui.min.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/config.js"></script>
+    <script>
+        //系统方法
+        mui.init();
+
+        var Currentpage = 1;
+        var PageSize = 10;
+        var totalpage = 1;
+      
+        mui.init({
+            pullRefresh: {
+                container: '#pullrefresh',
+                down: {
+                    callback: pulldownRefresh
+                },
+                up: {
+                    contentrefresh: '正在加载...',
+                    callback: pullupRefresh
+                }
+            }
+        });
+
+        mui.back= function() {
+            location.href = "Home";
+        };
+        /**
+		 * 下拉刷新具体业务实现
+		 */
+        function pulldownRefresh() {
+
+            location.reload();
+
+        }
+        /**
+		 * 上拉加载具体业务实现
+		 */
+        function pullupRefresh() {
+            mui('#pullrefresh').pullRefresh().endPullupToRefresh(Currentpage > totalpage); 
+            var param = { rows: PageSize, page: Currentpage, sidx: "StartTime", sord: "asc" };
+            $.ajax({
+                type: "get",
+                url: "GetAllPlanData",
+                data: param,
+                async: false,
+                dataType: "json",
+                contentType: "application/x-www-form-urlencoded",
+                success: function (data) {
+                    var rows = data.resultdata.rows;
+                    Currentpage++;
+                    totalpage = data.resultdata.total;
+                    $.each(rows, function (i) {
+                        var row = rows[i];
+                        var li;
+                        li = document.createElement('li');
+                        li.className = 'mui-table-view-cell task-cell';
+                        var temphtml = "";
+                        temphtml += '<div class="cell-left">';
+                        temphtml += '<p class="task-time">' + row.starttime + '</p>';
+                        temphtml += '<p class="task-company"> ' + row.objectname + '</p>';
+                        temphtml += '</div>';
+                        temphtml += '<div class="cell-right">';
+                        temphtml += '<button type="button" data-customerinfo=\'' + JSON.stringify(row) + '\' class="mui-btn mui-btn-primary mui-btn-outlined write-btn">填</button>';
+                        temphtml += '</div>';
+                        li.innerHTML = temphtml;
+                        $("#taskLists").append(li);
+
+                    });
+                },
+                error: function (data) {
+                    mui.toast(data.responseText);
+                }
+            });
+
+        }
+        if (mui.os.plus) {
+            mui.plusReady(function () {
+
+                mui('#pullrefresh').pullRefresh().pullupLoading();
+
+            });
+        } else {
+            mui.ready(function () {
+                mui('#pullrefresh').pullRefresh().pullupLoading();
+            });
+        }
+        $(function () {
+            $("body").on("tap", ".write-btn", function () {
+                window.location.href = "TaskDetail?backrul=Mytask";
+                localStorage.setItem("customerinfo", $(this).attr("data-customerinfo"));
+            })
+        })
+
+
+    </script>
+</body>
+
+</html>

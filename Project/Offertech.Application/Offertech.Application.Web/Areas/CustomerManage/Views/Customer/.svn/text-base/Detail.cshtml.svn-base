@@ -1,0 +1,864 @@
+﻿@{;
+    ViewBag.Title = "明细页面";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<!--jqgrid表格组件start-->
+<link href="~/Content/scripts/plugins/jqgrid/jqgrid.css" rel="stylesheet" />
+<script src="~/Content/scripts/plugins/jqgrid/grid.locale-cn.js"></script>
+<script src="~/Content/scripts/plugins/jqgrid/jqgrid.min.js"></script>
+<link href="~/Content/styles/font-awesome.full.min.css" rel="stylesheet" />
+<link href="~/Content/styles/colorbox.css" rel="stylesheet" />
+<script src="~/Content/scripts/bootstrap/jquery.colorbox-min.js"></script>
+
+
+<!--表格组件end-->
+<script>
+    var keyValue = request('keyValue');
+    $(function () {
+        InitialPage();
+        initControl();
+        GetRatingGrid();
+        GetTimeline();
+        GetOwnershipChangeGrid();
+        GetShareGrid();
+        GetProjectGrid();
+        GetSubscribeGrid();
+    });
+    //初始化页面
+    function InitialPage() {
+        //resize重设布局;
+        //$(".gridPanel").width(750);
+        $(window).resize(function (e) {
+            window.setTimeout(function () {
+                $('#gridTable_Rating').setGridWidth(($('#Rating .gridPanel').width()));
+                $('#gridTable_Rating').setGridHeight($('#Rating .gridPanel').height());
+            }, 200);
+            e.stopPropagation();
+        });
+    }
+    //初始化控件
+    function initControl() {
+        //客户级别
+        $("#CustLevelId").ComboBox({
+            url: "../../SystemManage/DataItemDetail/GetDataItemListJson",
+            param: { EnCode: "Client_Level" },
+            id: "ItemDetailId",
+            text: "ItemName",
+            description: "==请选择==",
+            height: "200px"
+        });
+        //企业性质
+        $("#NatureCode").ComboBox({
+            url: "../../SystemManage/DataItemDetail/GetDataItemListJson",
+            param: { EnCode: "Client_NatureCode" },
+            id: "ItemDetailId",
+            text: "ItemName",
+            description: "==请选择==",
+            height: "200px"
+        });
+        //注册资金
+        $("#RegisterCapital").ComboBox({
+            url: "../../SystemManage/DataItemDetail/GetDataItemListJson",
+            param: { EnCode: "Client_RegisterCapital" },
+            id: "ItemDetailId",
+            text: "ItemName",
+            description: "==请选择==",
+            height: "200px"
+        });
+        //销售收入
+        $("#SalesRevenue").ComboBox({
+            url: "../../SystemManage/DataItemDetail/GetDataItemListJson",
+            param: { EnCode: "Client_SalesRevenue" },
+            id: "ItemDetailId",
+            text: "ItemName",
+            description: "==请选择==",
+            height: "200px"
+        });
+        //所属行业
+        $("#CustIndustryId").ComboBox({
+            url: "../../SystemManage/DataItemDetail/GetDataItemListJson",
+            param: { EnCode: "Client_Trade" },
+            id: "ItemDetailId",
+            text: "ItemName",
+            description: "==请选择==",
+            height: "200px"
+        });
+        //公司规模
+        $("#CompanySize").ComboBox({
+            url: "../../SystemManage/DataItemDetail/GetDataItemListJson",
+            param: { EnCode: "Client_CompanySize" },
+            id: "ItemDetailId",
+            text: "ItemName",
+            description: "==请选择==",
+            height: "200px"
+        });
+        //客户来源
+        $("#CustomerSource").ComboBox({
+            url: "../../SystemManage/DataItemDetail/GetDataItemListJson",
+            param: { EnCode: "Client_CustomerSource" },
+            id: "ItemDetailId",
+            text: "ItemName",
+            description: "==请选择==",
+            height: "200px"
+        });
+        //职位
+        $("#PostId").ComboBox({
+            url: "../../SystemManage/DataItemDetail/GetDataItemListJson",
+            param: { EnCode: "Client_Post" },
+            id: "ItemDetailId",
+            text: "ItemName",
+            description: "==请选择==",
+            height: "200px"
+        });
+        //所在省份
+        $("#ProvinceId").ComboBox({
+            url: "../../SystemManage/Area/GetAreaListJson",
+            param: { parentId: "0" },
+            id: "AreaCode",
+            text: "AreaName",
+            description: "选择省",
+            height: "200px"
+        }).bind("change", function () {
+            var value = $(this).attr('data-value');
+            $("#CityId").ComboBox({
+                url: "../../SystemManage/Area/GetAreaListJson",
+                param: { parentId: value },
+                id: "AreaCode",
+                text: "AreaName",
+                description: "选择市",
+                height: "200px"
+            });
+        });
+        //城市
+        $("#CityId").ComboBox({
+            description: "选择市",
+            height: "170px"
+        }).bind("change", function () {
+            var value = $(this).attr('data-value');
+            if (value) {
+                $("#CountyId").ComboBox({
+                    url: "../../SystemManage/Area/GetAreaListJson",
+                    param: { parentId: value },
+                    id: "AreaCode",
+                    text: "AreaName",
+                    description: "选择县/区",
+                    height: "170px"
+                });
+            }
+        });
+        //县/区
+        $("#CountyId").ComboBox({
+            description: "选择县/区",
+            height: "170px"
+        });
+
+        //获取表单
+        if (!!keyValue) {
+            $.SetForm({
+                url: "../../CustomerManage/Customer/GetFormJson",
+                param: { keyValue: keyValue },
+                success: function (data) {
+                    $("#form1").SetWebControls(data);
+                    $("#ProvinceId").trigger("change");
+                    $("#CityId").ComboBoxSetValue(data.CityId).trigger("change");
+                    $("#CountyId").ComboBoxSetValue(data.CityId);
+                    $("#CustLevelId").ComboBoxSetValue(data.CustLevelId);
+                    $("#NatureCode").ComboBoxSetValue(data.NatureCode);
+                    $("#RegisterCapital").ComboBoxSetValue(data.RegisterCapital);
+                    $("#SalesRevenue").ComboBoxSetValue(data.SalesRevenue);
+                    $("#CustIndustryId").ComboBoxSetValue(data.CustIndustryId);
+                    $("#CompanySize").ComboBoxSetValue(data.CompanySize);
+                    $("#CustomerSource").ComboBoxSetValue(data.CustomerSource);
+                    $("#PostId").ComboBoxSetValue(data.PostId);
+                }
+            })
+        }
+    }
+    //加载信用等级表格
+    function GetRatingGrid() {
+        var selectedRowIndex = 0;
+        var $gridTable = $('#gridTable_Rating');
+        $gridTable.jqGrid({
+            autowidth: true,
+            height: 520,
+            url: "../../CustomerManage/CustomerRating/GetPageListJson",
+            datatype: "json",
+            postData: { customerId: keyValue },
+            colModel: [
+                { label: '客户编号', name: 'CustomerId', index: 'CustomerId', hidden: true },
+                  {
+                      label: '企业性质', name: 'NatureCode', index: 'NatureCode', width: 170, align: 'center', sortable: true,
+                      formatter: function (cellvalue, options, rowObject) {
+                          return top.clientdataItem["Client_NatureCode"][cellvalue];
+                      }
+                  },
+                    {
+                        label: '注册资金', name: 'RegisterCapital', index: 'RegisterCapital', width: 120, align: 'center', sortable: true,
+                        formatter: function (cellvalue, options, rowObject) {
+                            return top.clientdataItem["Client_RegisterCapital"][cellvalue];
+                        }
+                    },
+                {
+                    label: '销售收入', name: 'SalesRevenue', index: 'SalesRevenue', width: 110, align: 'center', sortable: true,
+                    formatter: function (cellvalue, options, rowObject) {
+                        return top.clientdataItem["Client_SalesRevenue"][cellvalue];
+                    }
+                },
+                {
+                    label: '合同账期', name: 'ContractPeriod', index: 'ContractPeriod', width: 110, align: 'center', sortable: true,
+                    formatter: function (cellvalue, options, rowObject) {
+                        return top.clientdataItem["Client_ContractPeriod"][cellvalue];
+                    }
+                },
+                {
+                    label: '逾期垫款', name: 'OverdueAdvances', index: 'OverdueAdvances', width: 110, align: 'center', sortable: true,
+                    formatter: function (cellvalue, options, rowObject) {
+                        return top.clientdataItem["Client_OverdueAdvances"][cellvalue];
+                    }
+                },
+                { label: '信用等级', name: 'RatingScore', index: 'RatingScore', width: 80, align: 'center', sortable: true },
+                { label: '评估人', name: 'CreateUserName', index: 'CreateUserName', width: 80, align: 'left', sortable: true },
+                { label: '评估时间', name: 'CreateDate', index: 'CreateDate', width: 130, align: 'left', sortable: true, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+            ],
+            viewrecords: true,
+            rowNum: 30,
+            rowList: [30, 50, 100],
+            pager: "#gridPager_Rating",
+            sortname: 'CreateDate',
+            sortorder: 'desc',
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            onSelectRow: function () {
+                selectedRowIndex = $('#' + this.id).getGridParam('selrow');
+            },
+            gridComplete: function () {
+                $('#' + this.id).setSelection(selectedRowIndex, false);
+            }
+        });
+    }
+
+    /**** 客户等级评 开始 *****/
+    //新增
+    function btn_add_Rating() {
+        dialogOpen({
+            id: 'Form',
+            title: '添加客户等级评价表',
+            url: '/CustomerManage/CustomerRating/Form?CustomerId=' + keyValue,
+            width: '550px',
+            height: '450px',
+            callBack: function (iframeId) {
+                $('#gridTable_Rating').trigger('reloadGrid');
+                top.frames[iframeId].AcceptClick();
+            }
+        });
+    }
+    //信用等级列表刷新
+    function reload_Rating() {
+        $('#gridTable_Rating').trigger('reloadGrid');
+    }
+    /**** 客户等级评 结束 *****/
+
+    /**** 客户等级评 开始 *****/
+    //新增
+    function btn_add_TrailRecord() {
+        dialogOpen({
+            id: 'Form',
+            title: '填写跟进记录',
+            url: '/CustomerManage/TrailRecord/Form?objectId=' + keyValue + '&objectSort=2',
+            width: '590px',
+            height: '490px',
+            btn: null
+        });
+    }
+    //跟进记录刷新
+    function reload_TrailRecord() {
+        $("#ul_timeline").html('');
+        GetTimeline();
+    }
+    /**** 客户等级评 结束 *****/
+
+    //获取跟进记录列表
+    function GetTimeline() {
+        $.ajax({
+            url: "../../CustomerManage/TrailRecord/GetListJson",
+            data: { objectId: keyValue },
+            type: "get",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                var timeline = data.timeline;
+                var rows = data.rows;
+                var _html = "";
+                $.each(timeline, function (key) {
+                    _html += '<li> ';
+                    _html += '    <span class="label label-warning"><i class="fa fa-circle"></i>' + key + '</span> ';
+                    _html += '    <div class="content"> ';
+                    $.each(rows, function (i) {
+                        var row = rows[i];
+                        if (timeline[key] == formatDate(row.StartTime, 'yyyy-MM-dd')) {
+                            var FollowUpMode = "电话";
+                            if (row.FollowUpMode == 2) {
+                                FollowUpMode = "拜访";
+                            }
+                            else if (row.FollowUpMode == 3) {
+                                FollowUpMode = "邮件";
+                            }
+                            _html += '        <div class="row"> ';
+                            _html += '            <span class="item-flag"><i class="fa fa-file-text-o"></i></span> ';
+                            _html += '            <div class="item-data"> ';
+                            _html += '                <span class="time">' + formatDate(row.StartTime, 'hh:mm') + '</span> ~  <span class="time"> ' + formatDate(row.EndTime, 'hh:mm') + '</span> ';
+                            _html += '                <span class="name">【' + row.CreateUserName + '】</span><span class="name">' + row.SaleStageName + '</span> ';
+                            _html += '            </div> ';
+                            _html += '        </div> ';
+                            _html += '        <div class="row"> ';
+                            _html += '             <div class="col-sm-7 col-md-7 col-lg-7 col-xs-7"> ';
+                            _html += '                  <div class="item-data"> ';
+                            _html += '                      <span class="name">' + FollowUpMode + '</span> <i class="fa fa-caret-right"></i>';
+                            _html += '                      <span class="action">' + row.TrackContent + '</span> ';
+                            _html += '                  </div> ';
+                            _html += '              </div> ';
+                            _html += '             <div class="col-sm-5 col-md-5 col-lg-5 col-xs-5" style="padding-right:0"> ';
+                            if (row.FilesPath != null && row.FilesPath != undefined) {
+                                var files = row.FilesPath.split(';');
+                                _html += '                  <ul class="ace-thumbnails"> ';
+                                $.each(files, function (j) {
+                                    if (files[j] != '') {
+                                        _html += '                      <li>';
+                                        _html += '                          <a href="' + top.ImgServerUrl + files[j] + '" data-rel="colorbox"><img  src="' + top.ImgServerUrl + files[j] + '"/></a>';
+                                        _html += '                      </li> ';
+                                    }
+                                });
+                                _html += '                  </ul> ';
+                            }
+                            _html += '              </div> ';
+                            _html += '        </div> ';
+
+                        }
+                    });
+                    _html += '    </div> ';
+                    _html += '</li> ';
+
+                });
+                $("#ul_timeline").html(_html);
+            }
+        });
+        InitColorbox();
+    }
+
+    function InitColorbox() {
+        var colorbox_params = {
+            reposition: true,
+            scalePhotos: true,
+            scrolling: false,
+            previous: '<i class="icon-arrow-left"></i>',
+            next: '<i class="icon-arrow-right"></i>',
+            close: '&times;',
+            current: '{current} of {total}',
+            maxWidth: '100%',
+            maxHeight: '100%',
+            onOpen: function () {
+                document.body.style.overflow = 'hidden';
+            },
+            onClosed: function () {
+                document.body.style.overflow = 'auto';
+            },
+            onComplete: function () {
+                $.colorbox.resize();
+            }
+        };
+
+        $('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
+        $("#cboxLoadingGraphic").append("<i class='icon-spinner orange'></i>");
+    }
+
+    //加载归属变更记录
+    function GetOwnershipChangeGrid() {
+        var selectedRowIndex = 0;
+        var $gridTable = $('#gridTable_OwnershipChange');
+        $gridTable.jqGrid({
+            autowidth: false,
+            height: 520,
+            width: 900,
+            url: "../../CustomerManage/OwnershipChange/GetPageListJson",
+            datatype: "json",
+            postData: { keyValue: keyValue },
+            colModel: [
+                { label: '归属人', name: 'UserName', index: 'UserName', width: 200, align: 'left', sortable: true },
+                { label: '开始时间', name: 'StartDate', index: 'StartDate', width: 175, align: 'left', sortable: true },
+                { label: '结束时间', name: 'EndDate', index: 'EndDate', width: 175, align: 'left', sortable: true },
+            ],
+            viewrecords: true,
+            rowNum: 30,
+            rowList: [30, 50, 100],
+            pager: "#gridPager_OwnershipChange",
+            sortname: 'CreateDate',
+            sortorder: 'desc',
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            onSelectRow: function () {
+                selectedRowIndex = $('#' + this.id).getGridParam('selrow');
+            },
+            gridComplete: function () {
+                $('#' + this.id).setSelection(selectedRowIndex, false);
+            }
+        });
+    }
+
+    //加载分享记录
+    function GetShareGrid() {
+        var selectedRowIndex = 0;
+        var $gridTable = $('#gridTable_Share');
+        $gridTable.jqGrid({
+            autowidth: false,
+            height: 520,
+            width: 900,
+            url: "../../CustomerManage/Share/GetPageListJson",
+            datatype: "json",
+            postData: { keyValue: keyValue },
+            colModel: [
+                { label: '分享主键', name: 'ShareId', hidden: true },
+                { label: '相关主键', name: 'ObjectId', hidden: true },
+                { label: '被分享人', name: 'ToUserName', index: 'ToUserName', width: 150, align: 'left', sortable: true },
+                {
+                    label: '分享权限', name: 'Authority', index: 'Authority', width: 130, align: 'center', sortable: true, formatter(cellvalue, options, rowObject) {
+                        if (cellvalue == 1) {
+                            return "只读";
+                        }
+                        else if (cellvalue == 2) {
+                            return "编辑";
+                        }
+                    }
+                },
+                { label: '分享日期', name: 'CreateDate', index: 'CreateDate', width: 160, align: 'left', sortable: true, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: '备注', name: 'Description', index: 'Description', width: 220, align: 'left', sortable: true },
+            ],
+            viewrecords: true,
+            rowNum: 30,
+            rowList: [30, 50, 100],
+            pager: "#gridPager_Share",
+            sortname: 'CreateDate',
+            sortorder: 'desc',
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            onSelectRow: function () {
+                selectedRowIndex = $('#' + this.id).getGridParam('selrow');
+            },
+            gridComplete: function () {
+                $('#' + this.id).setSelection(selectedRowIndex, false);
+            }
+        });
+    }
+    //加载RPO项目评估
+    function GetProjectGrid() {
+        var selectedRowIndex = 0;
+        var $gridTable = $('#gridTable_RPO');
+        $gridTable.jqGrid({
+            autowidth: false,
+            height: 520,
+            width: 900,
+            url: "../../CustomerManage/Project/GetPageListJson",
+            datatype: "json",
+            colModel: [
+                 { label: '项目主键', name: 'ProjectId', index: 'ProjectId', hidden: true },
+                { label: '项目编号', name: 'ProjectCode', index: 'ProjectCode', hidden: true },
+                { label: '职位名称', name: 'ProjectName', index: 'ProjectName', width: 170, align: 'left', sortable: true },
+                { label: '薪资范围', name: 'ProjectBudget', index: 'ProjectBudget', width: 100, align: 'left', sortable: true },
+                { label: '招聘人数', name: 'ProjectPeopleQty', index: 'ProjectPeopleQty', width: 60, align: 'left', sortable: true },
+                {
+                    label: '福利待遇', name: 'ProjectBenefits', index: 'ProjectBenefits', width: 80, align: 'left', sortable: true, formatter: function (cellvalue, options, rowObject) {
+                        return top.clientdataItem["ProjectBenefits"][cellvalue];
+                    }
+                },
+                //{ label: '工作地点', name: 'ProjectAddress', index: 'ProjectAddress', width: 80, align: 'left', sortable: true },
+                //{ label: '项目说明', name: 'ProjectDesc', index: 'ProjectDesc', width: 80, align: 'left', sortable: true },
+                //{ label: '项目要求', name: 'Requirements', index: 'Requirements', width: 80, align: 'left', sortable: true },
+                { label: '评估结果', name: 'EvaluationResult', index: 'EvaluationResult', width: 90, align: 'left', sortable: true },
+                { label: '评估说明', name: 'EvaluationDesc', index: 'EvaluationDesc', width: 130, align: 'left', sortable: true },
+                { label: '评估人', name: 'EvaluationPerson', index: 'EvaluationPerson', width: 80, align: 'left', sortable: true },
+                { label: '评估时间', name: 'EvaluationTime', index: 'EvaluationTime', width: 140, align: 'left', sortable: true, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+            ],
+            viewrecords: true,
+            rowNum: 30,
+            rowList: [30, 50, 100],
+            pager: "#gridPager_RPO",
+            sortname: 'CreateDate',
+            sortorder: 'desc',
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            onSelectRow: function () {
+                selectedRowIndex = $('#' + this.id).getGridParam('selrow');
+            },
+            gridComplete: function () {
+                $('#' + this.id).setSelection(selectedRowIndex, false);
+            }
+        });
+    }
+    //加载预约记录
+    function GetSubscribeGrid() {
+        var selectedRowIndex = 0;
+        var $gridTable = $('#gridTable_Subscribe');
+        $gridTable.jqGrid({
+            autowidth: false,
+            height: 520,
+            width: 900,
+            url: "../../CustomerManage/Subscribe/GetPageListJson",
+            datatype: "json",
+            postData: { customerId: keyValue },
+            colModel: [
+                 { label: '预约主键', name: 'SubscribeId', index: 'SubscribeId', hidden: true },
+                { label: '预约编号', name: 'SubscribeCode', index: 'SubscribeCode', hidden: true },
+                { label: '主题', name: 'SubscribeName', index: 'SubscribeName', width: 210, align: 'left', sortable: true },
+                {
+                    label: '意向', name: 'Intention', index: 'Intention', width: 100, align: 'left', sortable: true,
+                    formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == "1") {
+                            return "来";
+                        }
+                        else if (cellvalue == "2") {
+                            return "不来";
+                        }
+                        else if (cellvalue == "3") {
+                            return "待定";
+                        }
+                        else {
+                            return "";
+                        }
+                    }
+                },
+                { label: '时间', name: 'SubscribeDate', index: 'SubscribeDate', width: 100, align: 'left', sortable: true, formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: '地点', name: 'Address', index: 'Address', width: 100, align: 'left', sortable: true },
+                {
+                    label: '实际情况', name: 'IsCome', index: 'IsCome', width: 100, align: 'left', sortable: true,
+                    formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == 1) {
+                            return "履约";
+                        }
+                        else if (cellvalue == 2) {
+                            return "失约";
+                        } else {
+                            return "";
+                        }
+                    }
+                },
+                { label: '备注', name: 'Description', index: 'Description', width: 210, align: 'left', sortable: true },
+            ],
+            viewrecords: true,
+            rowNum: 30,
+            rowList: [30, 50, 100],
+            pager: "#gridPager_Subscribe",
+            sortname: 'CreateDate',
+            sortorder: 'desc',
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            onSelectRow: function () {
+                selectedRowIndex = $('#' + this.id).getGridParam('selrow');
+            },
+            gridComplete: function () {
+                $('#' + this.id).setSelection(selectedRowIndex, false);
+            }
+        });
+    }
+    /**** 项目评估 开始 *****/
+    //新增
+    function btn_add_RPO() {
+        dialogOpen({
+            id: 'Form',
+            title: '添加项目',
+            url: '/CustomerManage/Project/Form?objectId=' + keyValue,
+            width: '550px',
+            height: '450px',
+            callBack: function (iframeId) {
+                $('#gridTable_RPO').trigger('reloadGrid');
+                top.frames[iframeId].AcceptClick();
+            }
+        });
+    }
+    //项目评估列表刷新
+    function reload_RPO() {
+        $('#gridTable_RPO').trigger('reloadGrid');
+    }
+    /**** 项目评估 结束 *****/
+
+    /**** 预约记录 开始 *****/
+    //新增
+    function btn_add_Subscribe() {
+        dialogOpen({
+            id: 'Form',
+            title: '增加预约',
+            url: '/CustomerManage/Subscribe/Form?customerId=' + keyValue,
+            width: '550px',
+            height: '450px',
+            callBack: function (iframeId) {
+                $('#gridTable_Subscribe').trigger('reloadGrid');
+                top.frames[iframeId].AcceptClick();
+            }
+        });
+    }
+    //修改
+    function btn_modify_Subscribe() {
+        var keyValue = $('#gridTable_Subscribe').jqGridRowValue('SubscribeId');
+        if (checkedRow(keyValue)) {
+            dialogOpen({
+                id: 'Form',
+                title: '修改预约',
+                url: '/CustomerManage/Subscribe/UpdateForm?keyValue=' + keyValue,
+                width: '550px',
+                height: '450px',
+                callBack: function (iframeId) {
+                    $('#gridTable_Subscribe').trigger('reloadGrid');
+                    top.frames[iframeId].AcceptClick();
+                }
+            });
+        }
+    }
+    //删除
+    function btn_delete_Subscribe() {
+        var keyValue = $('#gridTable_Subscribe').jqGridRowValue('SubscribeId');
+        if (keyValue) {
+            $.RemoveForm({
+                url: '../../CustomerManage/Subscribe/RemoveForm',
+                param: { keyValue: keyValue },
+                success: function (data) {
+                    $('#gridTable_Subscribe').trigger('reloadGrid');
+                }
+            })
+        } else {
+            dialogMsg('请选择需要删除的客户预约记录！', 0);
+        }
+    }
+    //预约记录 列表刷新
+    function reload_Subscribe() {
+        $('#gridTable_Subscribe').trigger('reloadGrid');
+    }
+    /**** 预约记录 结束 *****/
+
+
+</script>
+<div style="margin-top: 0px; margin-bottom: 0px; margin-right: 0px;">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#BaseInfo" data-toggle="tab">基本信息</a></li>
+        <li><a href="#Rating" data-toggle="tab">信用等级</a></li>
+        <li><a href="#TrailRecord" data-toggle="tab">跟进记录</a></li>
+        <li><a href="#OwnershipChange" data-toggle="tab">归属变更</a></li>
+        <li><a href="#Share" data-toggle="tab">分享记录</a></li>
+        <li><a href="#RPO" data-toggle="tab">RPO项目</a></li>
+        <li><a href="#Subscribe" data-toggle="tab">预约记录</a></li>
+
+
+    </ul>
+    <div class="tab-content" style="padding-top: 15px;">
+        <div id="BaseInfo" class="tab-pane active" style="padding-right: 30px;">
+            <table class="form">
+                <tr>
+                    <td class="formTitle">客户名称<font face="宋体">*</font></td>
+                    <td class="formValue">
+                        <input id="FullName" type="text" onblur="$.ExistField(this.id,'../../CustomerManage/Customer/ExistFullName')" class="form-control" isvalid="yes" checkexpession="NotNull" />
+                    </td>
+                    <td class="formTitle">客户级别<font face="宋体">*</font></td>
+                    <td class="formValue">
+                        <div id="CustLevelId" type="select" class="ui-select" isvalid="yes" checkexpession="NotNull"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">企业性质<font face="宋体">*</font></td>
+                    <td class="formValue">
+                        <div id="NatureCode" type="select" class="ui-select" isvalid="yes" checkexpession="NotNull"></div>
+                    </td>
+                    <td class="formTitle">注册资金<font face="宋体">*</font></td>
+                    <td class="formValue">
+                        <div id="RegisterCapital" type="select" class="ui-select" isvalid="yes" checkexpession="NotNull"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">销售收入<font face="宋体">*</font></td>
+                    <td class="formValue">
+                        <div id="SalesRevenue" type="select" class="ui-select" isvalid="yes" checkexpession="NotNull"></div>
+                    </td>
+                    <td class="formTitle">所属行业<font face="宋体">*</font></td>
+                    <td class="formValue">
+                        <div id="CustIndustryId" type="select" class="ui-select" isvalid="yes" checkexpession="NotNull"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">公司规模<font face="宋体">*</font></td>
+                    <td class="formValue">
+                        <div id="CompanySize" type="select" class="ui-select" isvalid="yes" checkexpession="NotNull"></div>
+                    </td>
+                    <td class="formTitle">客户来源<font face="宋体">*</font></td>
+                    <td class="formValue">
+                        <div id="CustomerSource" type="select" class="ui-select" isvalid="yes" checkexpession="NotNull"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">公司网站</td>
+                    <td class="formValue">
+                        <input id="CompanySite" type="text" class="form-control" />
+                    </td>
+                    <td class="formTitle">成立日期<font face="宋体">*</font></td>
+                    <td class="formValue">
+                        <input id="EstablishDate" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker()" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">公司地点</th>
+                    <td class="formValue" colspan="3">
+                        <div style="float: left; width: 255px;">
+                            <div id="ProvinceId" type="select" class="ui-select" style="float: left; width: 84px; margin-right: 1px;"></div>
+                            <div id="CityId" type="select" class="ui-select" style="float: left; width: 84px; margin-right: 1px;"></div>
+                            <div id="CountyId" type="select" class="ui-select" style="float: left; width: 84px; margin-right: 1px;"></div>
+                        </div>
+                        <div style="margin: 0 auto; width: 100%;">
+                            <input id="CompanyAddress" type="text" class="form-control" style="float: left; width: 355px;" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">公司情况</td>
+                    <td class="formValue" colspan='3'>
+                        <textarea id="CompanyDesc" class="form-control" style="height: 50px;"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">联系人<font face="宋体">*</font></td>
+                    <td class="formValue">
+                        <input id="Contact" type="text" class="form-control" isvalid="yes" checkexpession="NotNull" />
+                    </td>
+                    <td class="formTitle">职位<font face="宋体">*</font></td>
+                    <td class="formValue">
+                        <div id="PostId" type="select" class="ui-select" isvalid="yes" checkexpession="NotNull"></div>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td class="formTitle">手机</td>
+                    <td class="formValue">
+                        <input id="Mobile" type="text" class="form-control" />
+                    </td>
+                    <td class="formTitle">电话</td>
+                    <td class="formValue">
+                        <input id="Tel" type="text" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">传真</td>
+                    <td class="formValue">
+                        <input id="Fax" type="text" class="form-control" />
+                    </td>
+                    <td class="formTitle">QQ</td>
+                    <td class="formValue">
+                        <input id="QQ" type="text" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">Email</td>
+                    <td class="formValue">
+                        <input id="Email" type="text" class="form-control" />
+                    </td>
+                    <td class="formTitle">微信</td>
+                    <td class="formValue">
+                        <input id="Wechat" type="text" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">备注</td>
+                    <td class="formValue" colspan='3'>
+                        <textarea id="Description" class="form-control" style="height: 50px;"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">创建用户</td>
+                    <td class="formValue">
+                        <input id="CreateUserName" type="text" class="form-control" />
+                    </td>
+                    <td class="formTitle">创建时间</td>
+                    <td class="formValue">
+                        <input id="CreateDate" type="text" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">修改用户</td>
+                    <td class="formValue">
+                        <input id="ModifyUserName" type="text" class="form-control" />
+                    </td>
+                    <td class="formTitle">修改时间</td>
+                    <td class="formValue">
+                        <input id="ModifyDate" type="text" class="form-control" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="Rating" class="tab-pane " style="margin-left:20px;">
+            <div class="toolbar">
+                <div class="btn-group">
+                    <a id="lr-replace" class="btn btn-default" onclick="reload_Rating()"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
+                    <a id="lr-add" class="btn btn-default" onclick="btn_add_Rating()"><i class="fa fa-plus"></i>&nbsp;新增</a>
+                </div>
+            </div>
+            <div id="gridPanel_Rating" class="gridPanel">
+                <table id="gridTable_Rating"></table>
+                <div id="gridPager_Rating"></div>
+            </div>
+        </div>
+        <div id="TrailRecord" class="tab-pane " style="margin-left:20px;">
+            <div class="toolbar">
+                <div class="btn-group">
+                    <a id="lr-replace" class="btn btn-default" onclick="reload_TrailRecord()"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
+                    <a id="lr-add" class="btn btn-default" onclick="btn_add_TrailRecord()"><i class="fa fa-plus"></i>&nbsp;新增</a>
+                </div>
+            </div>
+            <div class="gridPanel">
+                <div style="margin: 10px; margin-bottom: 0px;padding-right:20px;">
+                    <div style="overflow: auto; ">
+                        <div class="timeline">
+                            <div class="line"></div>
+                            <ul id="ul_timeline" style="display:;"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="OwnershipChange" class="tab-pane " style="margin-left:20px;">
+            <div class="gridPanel">
+                <table id="gridTable_OwnershipChange"></table>
+                <div id="gridPager_OwnershipChange"></div>
+            </div>
+        </div>
+        <div id="Share" class="tab-pane " style="margin-left:20px;">
+            <div class="gridPanel">
+                <table id="gridTable_Share"></table>
+                <div id="gridPager_Share"></div>
+            </div>
+        </div>
+        <div id="RPO" class="tab-pane " style="margin-left:20px;">
+            <div class="toolbar">
+                <div class="btn-group">
+                    <a id="lr-replace" class="btn btn-default" onclick="reload_RPO()"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
+                    <a id="lr-add" class="btn btn-default" onclick="btn_add_RPO()"><i class="fa fa-plus"></i>&nbsp;新增</a>
+                </div>
+            </div>
+            <div class="gridPanel">
+                <table id="gridTable_RPO"></table>
+                <div id="gridPager_RPO"></div>
+            </div>
+        </div>
+        <div id="Subscribe" class="tab-pane " style="margin-left:20px;">
+            <div class="toolbar">
+                <div class="btn-group">
+                    <a id="lr-replace" class="btn btn-default" onclick="reload_Subscribe()"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
+                    <a id="lr-add" class="btn btn-default" onclick="btn_add_Subscribe()"><i class="fa fa-plus"></i>&nbsp;新增</a>
+                    <a id="lr-modify" class="btn btn-default" onclick="btn_modify_Subscribe()"><i class="fa fa-plus"></i>&nbsp;修改</a>
+                    <a id="lr-delete" class="btn btn-default" onclick="btn_delete_Subscribe()"><i class="fa fa-plus"></i>&nbsp;删除</a>
+                </div>
+            </div>
+            <div class="gridPanel">
+                <table id="gridTable_Subscribe"></table>
+                <div id="gridPager_Subscribe"></div>
+            </div>
+        </div>
+    </div>
+</div>

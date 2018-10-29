@@ -1,0 +1,67 @@
+﻿@using Common
+@using Models
+
+@{
+    ViewBag.Title = "信用等级评分列表";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<style type="text/css">
+    .record th {
+        text-align: center;
+    }
+</style>
+<br style="clear: both;" />
+<input type="hidden" id="CustomerID" name="CustomerID" value="@ViewBag.CustomerID" />
+<div style="width: 80%; display: inline-block;">
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-reload'" href="javascript:void(0)" style="float:left"
+       onclick="javascript: location.reload();"></a>
+    <div style="padding-left: 30px; margin-left: 30px;">
+        <label style="font-size:26px">等级：@ViewBag.RatingScore</label>
+    </div>
+    &nbsp;
+    
+</div>
+<table class="record" border="0" cellpadding="0" cellspacing="0" style="width: 600px;height:auto ;margin:10px">
+    <tr>
+         
+        <th>合同之前等级说明</th>
+
+        <th>合同之后等级说明</th>
+    </tr>
+    <tr style="display:none">
+        
+        <td style="text-align:center"></td>
+        <td style="text-align:center">@ViewBag.RatingScore</td>
+    </tr>
+    <tr>
+        
+        <td>
+            A.合同帐期3个月<br />
+            B.合同帐期2个月<br />
+            C.合同帐期1个月<br />
+            D.合同帐期15天<br />
+            E.无赊账条款
+        </td>
+        <td>
+            A.可以在合同外额外垫资60天<br />
+            B.可以在合同外额外垫资50天<br />
+            C.可以在合同外额外垫资40天<br />
+            D.可以在合同外额外垫资30天<br />
+            E.不在合同外额外垫资<br />
+        </td>
+    </tr>
+</table>
+
+
+<table id="flexigridData" style="width: 100%;height:auto"></table>
+<div class="easyui-dialog" iconcls="icon-add" style="width: 600px; height: 560px;
+      padding: 5px; overflow: auto; " title="" data-options="closed:true">
+    <div fit="true" style="height:95%;width:95%">
+        <div region="center" border="false" style="padding: 10px;width:100%; height:100%; background: #fff; border: 1px solid #ccc;">
+            <iframe frameborder="0" scrolling="no" style="height:100%;width:100%"></iframe>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" language="javascript">$.getScript("/Scripts/CustomerRating/SingleList.js")</script>

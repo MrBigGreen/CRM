@@ -1,0 +1,409 @@
+﻿@{ Layout = "~/Views/Shared/Index.cshtml"; }
+<style type="text/css">
+    .uploadContainer {
+        float: left;
+        text-align: center;
+        margin-right: 15px;
+    }
+
+    .imgDiv {
+        position: relative;
+        float: left;
+        text-align: center;
+        margin-right: 15px;
+        margin-bottom: 5px;
+        width: 149px;
+        height: 175px;
+    }
+
+        .imgDiv .file-panel {
+            position: absolute;
+            height: 30px;
+            filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#80000000', endColorstr='#80000000')\0;
+            background: rgba( 0, 0, 0, 0.5 );
+            width: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 300;
+        }
+
+            .imgDiv .file-panel span.cancel {
+                background-position: -48px -24px;
+                width: 24px;
+                height: 24px;
+                display: inline;
+                float: right;
+                text-indent: -9999px;
+                overflow: hidden;
+                background: url(/images/icons.png) no-repeat;
+                margin: 5px 1px 1px;
+                cursor: pointer;
+            }
+
+    #imgContainer img {
+        width: 149px;
+        height: 175px;
+    }
+
+    .webuploader-pick {
+        position: absolute;
+        top: 0px;
+        left: 86px;
+        width: 68px;
+        overflow: hidden;
+        bottom: auto;
+        right: auto;
+    }
+
+    .webuploader-container {
+        margin-top: 4px;
+        margin-left: -85px;
+        margin-right: 500px;
+    }
+</style>
+<form id="ff" method="POST" data-options="novalidate:true">
+    <table id="ttAdd" class="record">
+        <tr>
+            <th><span style="color:red">*</span>客户名称</th>
+            <td colspan="3">
+                <input id="CustomerName" name="CustomerName" readonly="readonly" style="width: 200px; background-color: #ccc" value="@ViewBag.CustomerName" />
+                <input type="hidden" id="CustomerID" name="CustomerID" value="@ViewBag.CustomerID" />
+                <a class="easyui-linkbutton" href="javascript:void(0)" onclick="ShowCustomer();">选择</a>
+            </td>
+        </tr>
+        <tr>
+            <th><span style="color:red">*</span>员工姓名</th>
+            <td colspan="3">
+                <input id="EmpName" name="EmpName" class="easyui-textbox" data-options="prompt:'请输入员工姓名'" required="true" style="width: 150px" missingmessage="员工姓名不能为空" />
+            </td>
+        </tr>
+        <tr>
+            <th><span style="color: red">*</span>性别</th>
+            <td colspan="3">
+                <input type="radio" name="Gender" value="1" checked="checked" />男
+                <input type="radio" name="Gender" value="0" />女
+            </td>
+        </tr>
+        <tr>
+            <th><span style="color: red">*</span>证件类型</th>
+            <td>
+                <input id="comCardType" name="comCardType" style="width:150px" value="--请选择--" />
+                <input type="hidden" id="IDType" name="IDType" />
+            </td>
+            <th><span style="color: red">*</span>证件号</th>
+            <td>
+                <input id="txtCardID" class="easyui-textbox" name="CardID" data-options="prompt:'请输入证件号'" required="true" style="width: 150px" missingmessage="证件号不能为空" />
+            </td>
+        </tr>
+        <tr>
+            <th><span style="color: red">*</span>银行</th>
+            <td>
+                <input id="comBankName" name="comBankName" style="width:200px" value="--请选择--" />
+                <input type="hidden" id="txtBankName" name="BankName" />
+            </td>
+            <th><span style="color: red">*</span>银行开户市</th>
+            <td>
+                <input id="txtBankCity" class="easyui-textbox" name="BankCity" data-options="prompt:'请输入银行开户市'" required="true" style="width: 150px" missingmessage="银行开户市不能为空" />
+            </td>
+        </tr>
+        <tr>
+            <th><span style="color: red">*</span>银行卡号</th>
+            <td colspan="3">
+                <input id="txtBankID" class="easyui-textbox" name="BankID" data-options="prompt:'请输入银行卡号',validType:'length[16,18]'" required="true" style="width: 150px" missingmessage="银行卡号不能为空" />
+            </td>
+        </tr>
+        <tr>
+            <th><span style="color: red">*</span>大合同主体</th>
+            <td>
+                <input id="comContractType" name="comContractType" style="width: 200px" />
+                <input type="hidden" id="txtContractType" name="ContractType" />
+            </td>
+            <th><span style="color: red">*</span>工资发放主体</th>
+            <td>
+                <input id="comWagesType" name="comWagesType" style="width: 200px" />
+                <input type="hidden" id="txtWagesType" name="WagesType" />
+            </td>
+        </tr>
+        <tr>
+            <th><span style="color: red">*</span>社保缴纳主体</th>
+            <td>
+                <input id="comSocialSecurityType" name="comSocialSecurityType" style="width: 200px" />
+                <input type="hidden" id="txtSocialSecurityType" name="SocialSecurityType" />
+            </td>
+            <th><span style="color: red">*</span>个税申报主体</th>
+            <td>
+                <input id="comTaxType" name="comTaxType" style="width: 200px" />
+                <input type="hidden" id="txtTaxType" name="TaxType" />
+            </td>
+        </tr>
+        <tr>
+            <th>手机号码</th>
+            <td colspan="3">
+                <input id="txtPhoneNum" type="text" name="PhoneNum" class="easyui-numberbox" precision="0" required="true" data-options="prompt:'请输入手机号码'" missingmessage="手机号码不能为空" style="width: 150px" />
+            </td>
+        </tr>
+        <tr>
+            <th> 国籍</th>
+            <td>
+                <input id="txtNation" class="easyui-textbox" name="Nation" data-options="prompt:'请输入国籍'" style="width: 150px" />
+            </td>
+            <th> 邮箱</th>
+            <td>
+                <input id="txtEmail" class="easyui-textbox" name="Email" data-options="prompt:'请输入邮箱'" style="width: 150px" />
+            </td>
+        </tr>
+        <tr>
+            <th> <span style="color: red">*</span>社保类型</th>
+            <td>
+                <input id="SocialInsurName" name="SocialInsurName" readonly="readonly" style="width: 150px;background-color:#ccc" />
+                <a class="easyui-linkbutton" href="javascript:void(0)" onclick="ShowSheBao();">选择</a>
+                <input type="hidden" id="SocialInsurID" name="SocialInsurID" />
+            </td>
+            <th> <span style="color: red">*</span>公积金类型</th>
+            <td>
+                <input id="HousingFundName" name="HousingFundName" readonly="readonly" style="width: 150px;background-color:#ccc" />
+                <a class="easyui-linkbutton" href="javascript:void(0)" onclick="ShowHousingFund();">选择</a>
+                <input type="hidden" id="HousingFundID" name="HousingFundID" />
+            </td>
+        </tr>
+
+        <tr>
+            <th>证件照</th>
+            <td colspan="3">
+                @*<div class="uploadContainer">
+                    <div id="uploader-demo">
+                        <!--用来存放item-->
+                        <div id="fileList1" class="uploader-list" style="display:none;"></div>
+                        <div id="filePicker1">上传证件</div>
+                    </div>
+                </div>
+                <div id="imgContainer1"></div>
+                <input type="hidden" name="IDCardPic1" id="IDCardPic1" value="HDpic" />
+
+                <div class="uploadContainer">
+                    <div id="uploader-demo2">
+                        <!--用来存放item-->
+                        <div id="fileList2" class="uploader-list" style="display:none;"></div>
+                        <div id="filePicker2">上传证件</div>
+                    </div>
+                </div>
+                <div id="imgContainer2"></div>
+                <input type="hidden" name="IDCardPic2" id="IDCardPic2" value="HDpic" />*@
+
+
+                <div class="uploadContainer">
+                    <div id="uploader-demo">
+                        <!--用来存放item-->
+                        <div id="fileList" class="uploader-list" style="display:none;"></div>
+                        <div id="filePicker">上传证件</div>
+                    </div>
+                </div>
+                <div id="imgContainer"></div>
+                <input type="hidden" name="HiddPIC" id="HiddPIC" value="HDpic" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" style="text-align:center">
+                <a class="easyui-linkbutton" iconcls="icon-ok" onclick="Create()">保存</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="easyui-linkbutton" iconcls="icon-cancel" onclick="parent.$('#w_add').window('close')">
+                    关闭
+                </a>
+            </td>
+        </tr>
+    </table>
+
+</form>
+<div id="myDialog"></div>
+
+
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.watermark.min.js"></script>
+<script src="~/Scripts/jquery.bpopup-0.7.0.min.js"></script>
+<script src="~/Scripts/type-bpopup_fuc.js" type="text/javascript"></script>
+
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/Res/webuploader/css/webuploader.css")" />
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/Res/webuploader/images/style.css")" />
+<script type="text/javascript" src="@Url.Content("~/Res/webuploader/js/webuploader.nolog.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/UploadFileMuti.js")"></script>
+<script src="~/Scripts/CardId.js"></script>
+<script src="~/Scripts/City.js"></script>
+<script type="text/javascript">
+
+    function ShowCustomer() {
+        showWindow("选择客户", "/Customer/ServiceList", 550, 450);
+    }
+
+    function ShowSheBao() {
+        showWindow("选择社保", "/PaySheBao/SheBaoList", 550, 450);
+    }
+    function ShowHousingFund() {
+        showWindow("选择公积金", "/PayHousingFund/List", 550, 450);
+    }
+    $('#comCardType').combobox({
+        url: '/SysField/GetComboBoxList?ParentID=1604141503590239432048f5e2282',
+        valueField: 'Value',
+        textField: 'Text',
+        editable: false
+    });
+    $('#comBankName').combobox({
+        url: '/SysField/GetComboBoxList?ParentID=1604141504524710001e45c171551',
+        valueField: 'Value',
+        textField: 'Text',
+        editable: false
+    });
+
+    $('#comContractType').combobox({
+        url: '/SysField/GetComboBoxList?ParentID=1604121151490315992e569f90a1e',
+        valueField: 'Value',
+        textField: 'Text',
+        //editable: false
+        filter: function (q, row) { //q：文本框内你输入的值，row：列表数据集合；
+            var opts = $(this).combobox('options');
+
+            //统一转换成小写进行比较；==0：匹配首位，>=0：匹配任意位置；
+            return row[opts.textField].indexOf(q) >= 0;
+        }
+    });
+
+    $('#comWagesType').combobox({
+        url: '/SysField/GetComboBoxList?ParentID=1604121151490315992e569f90a1e',
+        valueField: 'Value',
+        textField: 'Text',
+        //editable: false
+        filter: function (q, row) { //q：文本框内你输入的值，row：列表数据集合；
+            var opts = $(this).combobox('options');
+            return row[opts.textField].indexOf(q) >= 0;
+        }
+    });
+
+    $('#comSocialSecurityType').combobox({
+        url: '/SysField/GetComboBoxList?ParentID=1604121151490315992e569f90a1e',
+        valueField: 'Value',
+        textField: 'Text',
+        //editable: false
+        filter: function (q, row) { //q：文本框内你输入的值，row：列表数据集合；
+            var opts = $(this).combobox('options');
+            return row[opts.textField].indexOf(q) >= 0;
+        }
+    });
+
+    $('#comTaxType').combobox({
+        url: '/SysField/GetComboBoxList?ParentID=1604121151490315992e569f90a1e',
+        valueField: 'Value',
+        textField: 'Text',
+        //editable: false
+        filter: function (q, row) { //q：文本框内你输入的值，row：列表数据集合；
+            var opts = $(this).combobox('options');
+            return row[opts.textField].indexOf(q) >= 0;
+        }
+    });
+
+    function Create(parameters) {
+        var urlStr = '';
+        $('.imgDiv').each(function () {
+            urlStr += ';' + $(this).children('img').attr('src');
+        });
+        $('#HiddPIC').val(urlStr.substr(1));
+        var checkFlag = new clsIDCard($('#txtCardID').val());
+
+        if (!checkFlag.IsValid()) {
+
+            $.messager.alert('提示', '证件号验证错误！', "error");
+            return false;
+        }
+        var ph = $('#txtPhoneNum').val();
+        if (ph != "") {
+            var p = /^1[34578]\d{9}$/;
+            if (!p.test(ph)) {
+                $.messager.alert('提示', '手机号码验证错误！', "error");
+                return false;
+            }
+        }
+        var em = $('#txtEmail').val();
+        if (em != "") {
+            var e = /^(\w)+(\.\w+)*@@(\w)+((\.\w+)+)$/;
+            if (!e.test(em)) {
+                $.messager.alert('提示', '邮箱验证错误！', "error");
+                return false;
+            }
+        }
+        var comCardType = $('#comCardType').combobox('getValue');
+
+        var comBankName = $('#comBankName').combobox('getValue');
+
+        var comContractType = $('#comContractType').combobox('getValue');
+        var comWagesType = $('#comWagesType').combobox('getValue');
+        var comSocialSecurityType = $('#comSocialSecurityType').combobox('getValue');
+        var comTaxType = $('#comTaxType').combobox('getValue');
+
+        if (comCardType.indexOf("请选择") != -1) {
+            $.messager.alert('提示', '请选择证件类型！', "error");
+            return false;
+        } else {
+            $('#IDType').val(comCardType);
+        }
+        if (comBankName.indexOf("请选择") != -1) {
+            $.messager.alert('提示', '请选择银行！', "error");
+            return false;
+        } else {
+            $('#txtBankName').val(comBankName);
+        }
+        if (comContractType == "") {
+            $.messager.alert('提示', '请选择大合同主体！', "error");
+            return false;
+        } else {
+            $('#txtContractType').val(comContractType);
+        }
+        if (comWagesType == "") {
+            $.messager.alert('提示', '请选择工资发放主体！', "error");
+            return false;
+        } else {
+            $('#txtWagesType').val(comWagesType);
+        }
+        if (comSocialSecurityType == "") {
+            $.messager.alert('提示', '请选择社保缴纳主体！', "error");
+            return false;
+        } else {
+            $('#txtSocialSecurityType').val(comSocialSecurityType);
+        }
+        if (comTaxType == "") {
+            $.messager.alert('提示', '请选择个税申报主体！', "error");
+            return false;
+        } else {
+            $('#txtTaxType').val(comTaxType);
+        }
+        if ($("#SocialInsurID").val() == "") {
+            $.messager.alert('提示', '请选择社保类型！', "error");
+            return false;
+        }
+        if ($("#HousingFundID").val() == "") {
+            $.messager.alert('提示', '请选择公积金类型！', "error");
+            return false;
+        }
+
+        $.ajax({
+            url: "/PayEmployee/AddInfo",
+            type: "Post",
+            data: $("#ff").serialize(),
+            dataType: "json",
+            success: function (data) {
+                if ($.messager) {
+                    $.messager.alert('操作提示', data, "info", function (r) {
+                        parent.$('.easyui-window').window('close');
+                        parent.$('.easyui-dialog').dialog('close');
+
+                    });
+                }
+
+            },
+            error: function () {
+                SubmitResult = false;
+            }
+        });         
+    }
+
+     
+
+</script>

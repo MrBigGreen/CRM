@@ -1,0 +1,53 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_Contract
+
+@{ Layout = "~/Views/Shared/Index.cshtml"; }
+
+<div id="divQuery">
+    <div class="easyui-panel" title="查询栏" iconcls="icon-search" collapsible="true" data-options="collapsed:false" style="height:auto;width:auto">
+        <table id="ttSearch" class="record" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th style="width:120px; text-align:right; padding-right:10px;height:36px">查询条件:</th>
+                <td>
+                    <input id="CustomerName" name="CustomerName" maxlength="100" value="" type="text" placeholder="搜索公司名称" style="width:220px" />
+                </td>
+            </tr>
+            <tr>
+                <th style="width:120px; text-align:right; padding-right:10px;height:26px">
+                    日期:
+                </th>
+                <td>
+                    <input type="text" id="StartDate" value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'EndDate\');}', dateFmt: 'yyyy-MM-dd' })" />
+                    <span>到</span>
+                    <input type="text" id="EndDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'StartDate\');}', dateFmt: 'yyyy-MM-dd' })" />
+
+                </td>
+            </tr>
+            <tr>
+                <th style="width:120px; text-align:right; padding-right:10px;height:26px">
+                    服务类型:
+                </th>
+                <td>
+                    @Html.CheckBoxListFor(model => model.RecommendSolutionID, Models.SysFieldModels.GetSysFieldByParentIDByNew("1508071046119479968e30ccf1f9f", "Bridge", 2))
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                        查 询
+                    </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+<br style="clear: both;" />
+<table id="flexigridData"></table>
+
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="/Scripts/Contract/BridgeIndex.js" type="text/javascript"></script>
+<link href="~/Content/Contract/Index.css" rel="stylesheet" />
+

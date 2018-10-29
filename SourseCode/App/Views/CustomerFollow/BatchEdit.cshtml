@@ -1,0 +1,79 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_CustomerFollow
+
+@{
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+<style>
+    .editor-field {
+        width: 241px;
+        height: 24px;
+        float: left;
+        display: inline;
+    }
+
+    .editor-label {
+        width: 100px;
+        height: 24px;
+        float: right;
+        text-align: right;
+        line-height: 24px;
+        display: inline;
+    }
+</style>
+
+@Html.HiddenFor(m => m.CustomerFollowID)
+<div class="bigdiv">
+    <table cellpadding="0" cellspacing="0" border="0" align="center" style="width:80%">
+        <tr>
+            <td>
+                <div class="editor-label">
+                    <span class="red">*</span>@Html.LabelFor(model => model.ReservationDate)：
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                   @Html.TextBoxFor(model => model.ReservationDate, new { @class = "Wdate", style = "width:160px", onfocus = "WdatePicker({minDate:CurentTime(), dateFmt: 'yyyy/MM/dd HH:mm:ss' })" })
+                    @Html.ValidationMessageFor(model => model.ReservationDate)
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    <span class="red">*</span> @Html.LabelFor(model => model.FollowUpMode)：
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.RadioButtonListFor(model => model.FollowUpMode, Models.SysFieldModels.GetSysFieldByParentID("1506251032089851135c18a57f429"), true)
+                    @Html.ValidationMessageFor(model => model.FollowUpMode)
+
+                    <input type="hidden" id="FollowUpCategory" name="FollowUpCategory" value="no error" />
+                    <input type="hidden" id="FollowUpPurpose" name="FollowUpPurpose" value="no error" />
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+                    <input class="a2 f2" type="submit" id="submit" value="创建" style="display:none" />
+                    <a class="easyui-linkbutton" id="ContactSave" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+                       onclick="$('#submit').click();">修改</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+                       onclick="closeWindow();">取消</a>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <br style="clear: both;" />
+
+</div>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script type="text/javascript">$.getScript("/Scripts/CustomerFollow/Create.js")</script>
+

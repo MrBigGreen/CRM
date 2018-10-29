@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BridgehrKit/!svn/ver/14620/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data.Dapper
+END
+packages.config
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data.Dapper/packages.config
+END
+Offertech.Data.Dapper.csproj.user
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data.Dapper/Offertech.Data.Dapper.csproj.user
+END
+app.config
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data.Dapper/app.config
+END
+Offertech.Data.Dapper.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data.Dapper/Offertech.Data.Dapper.csproj
+END
+SqlDatabase.cs
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BridgehrKit/!svn/ver/13405/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data.Dapper/SqlDatabase.cs
+END
+MySqlDatabase.cs
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/BridgehrKit/!svn/ver/13405/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data.Dapper/MySqlDatabase.cs
+END
+OracleDatabase.cs
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/BridgehrKit/!svn/ver/13405/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data.Dapper/OracleDatabase.cs
+END

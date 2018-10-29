@@ -1,0 +1,252 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_CustomerFollow
+
+<!DOCTYPE html>
+<html>
+<head id="MyHead">
+
+    <title></title>
+    <link id="easyuiTheme" href="@Url.Content("~/Res/easyui/themes/default/easyui.css")" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/easyui")
+    <style type="text/css">
+        .combo {
+            font-family: 微软雅黑,新宋体;
+            height: 24px;
+            width: 210px;
+            border: 1px solid #CCC;
+        }
+
+        .display-label {
+            width: 120px;
+            height: 24px;
+            float: left;
+            text-align: right;
+            margin: 11px 0;
+            line-height: 24px;
+        }
+
+        .display-field {
+            height: 24px;
+            float: left;
+            margin: 11px 0 11px 6px;
+            color: #333;
+            width: 290px;
+            text-align: left;
+            display: inline;
+            line-height: 24px;
+        }
+    </style>
+
+
+    <style>
+        .editor-field {
+            width: 181px;
+            height: 24px;
+            float: left;
+            display: inline;
+        }
+
+        .editor-label {
+            width: 100px;
+            height: 24px;
+            float: right;
+            text-align: right;
+            line-height: 24px;
+            display: inline;
+        }
+
+        .record th {
+            text-align: right;
+        }
+    </style>
+
+
+    <script type='text/javascript'>
+        function ajaxFrom(form, url) {
+            $.ajax({
+                url: url,
+                type: "Post",
+                data: $(form).serialize(),
+                dataType: "json",
+                success: function (data) {
+                    if ($.messager) {
+                        $.messager.alert('操作提示', data, "info", function (r) {
+
+                            //合同阶段
+                            if ($("#CustomerFunnel").val() == "150718162712213888586d8311e52") {
+
+                                var id = $("#CustomerID").val();
+                                location.href = "../Contract/Create?customerId=" + id;
+                            }
+                            else {
+                                closeWindow();
+                            }
+
+
+                            //var id = $("#CustomerID").val();
+                            //location.href = "../Contract/Create?customerId=" + id;
+                            //location.href = "../Contract/CreateContractInfo";
+
+                        });
+                    }
+                    $(".easyui-linkbutton").removeAttr("disabled");
+                },
+                error: function () {
+                    $(".easyui-linkbutton").removeAttr("disabled");
+                }
+
+            });
+
+        }
+
+        $(function () {
+            $('.easyui-combobox').combobox({
+                width: 243
+            });
+            $("form").submit(function (form) {
+
+                $(".easyui-linkbutton").attr("disabled", "disabled");
+                if ($(this).form('validate')) {
+                    if (form.result) {
+                        ajaxFrom(this, this.action);
+                    }
+                }
+                return false;
+            });
+            //按钮样式
+            $('.a2').mouseover(function () { this.style.color = "#ae1121"; }).mouseout(function () { this.style.color = "#333"; });
+
+        });
+    </script>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <div class="bigdiv" style="margin-left:10px;width:96%;">
+            @Html.HiddenFor(model => model.CustomerFollowID)
+            @Html.HiddenFor(model => model.CustomerID)
+            @*对方级别*@
+            @Html.HiddenFor(model => model.OtherLevel)
+            @Html.HiddenFor(model => model.IsKP)
+            <input id="FollowUpCategory" name="FollowUpCategory" type="hidden" value="FollowUpCategory" />
+            <input id="FollowUpPurpose" name="FollowUpPurpose" type="hidden" value="FollowUpPurpose" />
+
+            <input name="ContactState" id="CheckYse" type="radio" value="1" checked="checked" style="display:none">
+
+
+            <table id="ttEdit" class="record">
+                <tr id="a">
+                    <th>联系人</th>
+                    <td>
+                        <input id="CustomerContactName" name="CustomerContactName" class="text-box single-line" style="width: 123px; background-color: rgb(204, 204, 204);" type="text" readonly="readonly" value="">
+                        <a id="dd" href="javascript:void(0)">选择</a>
+                        <a class="easyui-linkbutton" href="javascript:void(0)" onclick="ShowContactPerson();">选择</a>
+                    </td>
+                    <th>联系人方式</th>
+                    <td>
+                        <input id="CallPhone" name="CallPhone" class="text-box single-line" style="width: 123px; background-color: rgb(204, 204, 204);" type="text" readonly="readonly" value="">
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-call'" href="javascript:void(0)" onclick="javascript: CallTel();"></a>
+                    </td>
+                </tr>
+                <tr id="c">
+                    <th> 跟进方式</th>
+                    <td>
+                        @Html.RadioButtonListFor(model => model.FollowUpMode, Models.SysFieldModels.GetSysFieldByParentID("1506251032089851135c18a57f429"), true)
+                    </td>
+                    <th> </th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>跟进时间</th>
+                    <td>
+                        @Html.TextBoxFor(model => model.FollowUpDate, new { @class = "easyui-datebox", editable = "true", style = "width:150px" })
+                    </td>
+                    <th><span style="color:red">*</span>客户进程</th>
+                    <td>
+                        @Html.DropDownListFor(model => model.CustomerFunnel, Models.SysFieldModels.GetSysFieldByParentID("1506121008181709094ed4907cf81"), "--请选择--", new { @Style = "width:133px;" })
+                    </td>
+                </tr>
+                <tr id="b">
+                    <th>预计成单金额</th>
+                    <td>
+                        @Html.TextBoxFor(model => model.ExpectedMoney)
+                    </td>
+                    <th>预计成单日期</th>
+                    <td>
+                        @Html.TextBoxFor(model => model.ExpectedDate, new { @class = "easyui-datebox", editable = "true", style = "width:150px" })
+                    </td>
+                </tr>
+                <tr id="d">
+                    <th>可推荐方案</th>
+                    <td colspan="3">
+                        @Html.CheckBoxListFor(model => model.RecommendSolutionID, Models.SysFieldModels.GetSysFieldByParentID("1508071046119479968e30ccf1f9f"))
+                        @Html.HiddenFor(model => model.RecommendSolutionIDNew)
+                    </td>
+                </tr>
+                <tr id="e">
+                    <th>商机判断</th>
+                    <td>
+                        @Html.DropDownListFor(model => model.Opportunities, Models.SysFieldModels.GetSysFieldByParentID("150612100955842681016eb929de8"), "--请选择--", new { @Style = "width:133px;" })
+                    </td>
+                    <th> 下次跟进时间</th>
+                    <td>
+                        <span>
+                            @*@Html.TextBoxFor(model => model.NextFollowDate, new { @class = "easyui-datetimebox", editable = "true", style = "width:150px" })*@
+                            @Html.TextBoxFor(model => model.NextFollowDate, new { @class = "Wdate", style = "width:160px", onfocus = "WdatePicker({minDate:CurentTime(), dateFmt: 'yyyy/MM/dd HH:mm:ss' })" })
+                        </span>
+                    </td>
+                </tr>
+                <tr id="f">
+                    <th> 下次跟进方式</th>
+                    <td>
+                        @Html.RadioButtonListFor(model => model.NextFollowUpMode, Models.SysFieldModels.GetSysFieldByParentID("1506251032089851135c18a57f429"), true)
+                    </td>
+                    <th> 下次跟进目的</th>
+                    <td>
+                        @Html.DropDownListFor(model => model.NextFollowUpPurpose, Models.SysFieldModels.GetSysFieldByParentID("15061210014976927076a3fd215ab"), "--请选择--", new { @Style = "width:133px;" })
+                    </td>
+                </tr>
+                <tr id="g">
+                    <td colspan="4">
+                        <div>
+                            <span style="color:red">*</span>客户反馈的需求描述记录
+                            <span style="text-align: left; float: right; width: 190px;  vertical-align: bottom;  ">
+                                您可输入剩余字数：<b class="red" id="leave_letter">800</b>
+                            </span>
+                        </div>
+                        <textarea id="Remark" name="Remark" style=" width: 88%; height: 53px; resize: none;  " maxlength="800" onkeyup="checkLength(this);"></textarea>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+                            <input class="a2 f2" type="submit" id="btnSubmit" value="创建" style="display:none" />
+                            <a class="easyui-linkbutton" id="submit" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+                               onclick="javascript: checkSubmit();">保存</a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+                               onclick="closeWindow();">取消</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <br style="clear: both;" />
+        </div>
+    }
+    <link href="~/Res/PublicCommon.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.watermark.min.js"></script>
+    <script type="text/javascript">$.getScript("/Scripts/CustomerFollow/FollowBack.js")</script>
+
+    <script src="~/Scripts/JScriptCommon.js"></script>
+    <script type="text/javascript">
+
+        function ShowContactPerson() {
+
+            showWindow("选择联系人", '/CustomerContact/MinList?ID=' + $("#CustomerID").val(), 450, 410);
+        }
+
+    </script>
+</body>
+</html>

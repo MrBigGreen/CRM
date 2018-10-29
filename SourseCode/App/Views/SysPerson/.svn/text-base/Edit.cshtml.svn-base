@@ -1,0 +1,290 @@
+﻿@model CRM.DAL.SysPerson
+
+@{
+    Layout = "~/Views/Shared/Edit.cshtml";
+}
+@using Common
+@using Models
+@section CurentPlace {
+    修改
+}
+
+<fieldset>
+    <legend>
+        <input class="a2 f2" type="button" onclick="return getCheckSubmit();" value="修改" />
+        <input class="a2 f2" type="button" onclick="BackList('SysPerson')" value="返回列表" />
+        @*<input class="a2 f2" type="button" onclick="showSalarySubject();" value="分配薪资主体" />*@
+    </legend>
+    <div class="bigdiv">
+        <div style="float:right; width:379px;height:184px;">
+            <img id="showPic" src="~/Images/noPic.jpg" width="149" height="175" />
+            <div style="float:left">
+                <div id="uploader-demo">
+                    <!--用来存放item-->
+                    <div id="fileList" style="display:none;" class="uploader-list"></div>
+                    <div id="filePicker">上传头像</div>
+                </div>
+            </div>
+        </div>
+
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.LogonTime)
+        @Html.HiddenFor(model => model.LogonIP)
+        @Html.HiddenFor(model => model.VersionNo)
+        @Html.HiddenFor(model => model.IsDelete)
+        @Html.HiddenFor(model => model.SysRoleIdOld)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MyName)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MyName)
+            @Html.ValidationMessageFor(model => model.MyName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SurePassword)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SurePassword)
+            @Html.ValidationMessageFor(model => model.SurePassword)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sex)：
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Sex, Models.SysFieldModels.GetSysField("SysPerson", "Sex"), "请选择")
+        </div>
+        <div class="editor-label">
+            @*<a class="anUnderLine" onclick="showModalOnly('SysDepartmentId','../../SysDepartment');">
+                    @Html.LabelFor(model => model.SysDepartmentId)
+                </a>：*@
+            @Html.LabelFor(model => model.SysDepartmentId, new { style = "display:inline-block; cursor:pointer;color:blue;", onclick = "showModalOnly('SysDepartmentId','../../SysDepartment');" })
+        </div>
+
+
+        <div class="editor-field">
+            <div id="checkSysDepartmentId">
+                @if (Model != null)
+                {
+                    if (null != Model.SysDepartmentId)
+                    {
+                        <table id="@Model.SysDepartmentId"
+                               class="deleteStyle">
+                            <tr>
+                                <td>
+                                    <img alt="删除" title="点击删除" style=" cursor:pointer;" onclick="deleteTable('@Model.SysDepartmentId','SysDepartmentId');" src="../../../Images/deleteimge.png" />
+                                </td>
+                                <td>
+                                    @Model.SysDepartment.Name
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                }
+            </div>
+            @Html.HiddenFor(model => model.SysDepartmentId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EnglishName)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EnglishName)
+            @Html.ValidationMessageFor(model => model.EnglishName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Position)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Position)
+            @Html.ValidationMessageFor(model => model.Position)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CompanyQQ)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CompanyQQ)
+            @Html.ValidationMessageFor(model => model.CompanyQQ)
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("角色权限")：
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SysRoleId, new SelectList(new CRM.BLL.SysRoleBLL().GetAllDisplay(), "Id", "Name"), "--请选择--")
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MobilePhoneNumber)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MobilePhoneNumber)
+            @Html.ValidationMessageFor(model => model.MobilePhoneNumber)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Telephone)：
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Telephone, new { @Style = "width:160px" }) -
+            @Html.TextBoxFor(model => model.TelephoneExt, new { @style = "width:60px" })
+            @Html.ValidationMessageFor(model => model.Telephone)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailAddress)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EmailAddress)
+            @Html.ValidationMessageFor(model => model.EmailAddress)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.State)：
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonListFor(model => model.State, Models.SysFieldModels.GetSysField("SysPerson", "State"), false)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CustomerCeiling)：
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.CustomerCeiling, Models.SysFieldModels.GetSysFieldValueByParentID("1507211652160012567cb8396adce"), "--请选择--")
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FollowType)：
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.FollowType, Models.SysFieldModels.GetSysFieldValueByParentID("15121614201749560775ccfd49ee0"), "--请选择--")
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PositionStatus)：
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonListFor(model => model.PositionStatus, Models.SysFieldModels.GetSysFieldDisplayValue("SysPerson", "PositionStatus"), false)
+        </div>
+        <br style="clear: both;" />
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Remark)：
+        </div>
+
+        <div class="textarea-box">
+            @Html.TextAreaFor(model => model.Remark)
+            @Html.ValidationMessageFor(model => model.Remark)
+        </div>
+        @Html.HiddenFor(model => model.CreateTime) @Html.HiddenFor(model => model.CreatePerson)
+    </div>
+    @Html.HiddenFor(model => model.HDpic)
+    @Html.HiddenFor(model => model.PageStyle)
+    @Html.HiddenFor(model => model.LogonNum)
+    @Html.HiddenFor(model => model.InitPwd)
+    <input type="hidden" id="OldPic" name="OldPic" value="@(ViewBag.OldPic)" />
+    <input type="hidden" id="fileUrl" value="HDpic" />
+    <script type="text/javascript" src="@Url.Content("~/Res/webuploader/js/webuploader.nolog.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/UploadFile.js")"></script>
+    <div id="myWindow">
+    </div>
+</fieldset>
+
+@section HeadContent{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Res/webuploader/css/webuploader.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Res/webuploader/images/style.css")" />
+}
+<script type="text/javascript">
+
+    $(function () {
+        var pic = $("#HDpic").val();
+        if (pic == '') {
+            $("#showPic").attr("src", "/Images/noPic.jpg")
+        } else {
+            $("#showPic").attr("src", pic);//显示头像图片
+        }
+        $("#Province").change(function () { getCity("#City"); });
+
+
+        $("#City").change(function () { getVillage("#Village"); });
+
+        $("#SysRoleIdOld").val($("#SysRoleId").val());
+    });
+
+    function getCity(City) {
+        $(City).empty();
+        $("<option></option>")
+                .val("")
+                .text("请选择")
+                .appendTo($(City));
+        bindDropDownList(City, "#Province");
+        $(City).change();
+    }
+
+    function getVillage(Village) {
+        $(Village).empty();
+        $("<option></option>")
+                .val("")
+                .text("请选择")
+                .appendTo($(Village));
+        bindDropDownList(Village, "#City");
+        $(Village).change();
+    }
+
+
+    function showSalarySubject() {
+        var id = $("#Id").val();
+        var href = "/SysPerson/SalarySubject?id=" + id;
+        showWindowTop("设置薪资主体", href, 580, 680, true);
+    }
+
+    function getCheckSubmit() {
+        var flag = false;
+        var postionStatus = $("input[name='PositionStatus']:checked").val();
+        if (postionStatus == "False") {
+            //进入离职，把所有销售分享过来的客户释放掉
+            $.messager.confirm('提示', '员工离职后，将会释放所有分享过来的客户！', function (r) {
+                if (r) {
+
+                    getSave();
+                }
+            });
+        }
+        else {
+            getSave();
+        }
+
+    }
+    function getSave() {
+        $.ajax({
+            url: $("form").action,
+            type: "Post",
+            data: $("form").serialize(),
+            dataType: "json",
+            success: function (data) {
+
+                if ($.messager) {
+                    $.messager.defaults.ok = '确定';
+                    $.messager.defaults.cancel = '继续';
+                    $.messager.confirm('操作提示', data, function (r) {
+                        if (r) {
+                            window.location.href = 'javascript:history.go(-1)';
+                        }
+                    });
+                }
+
+            }
+        });
+    }
+</script>
+
+

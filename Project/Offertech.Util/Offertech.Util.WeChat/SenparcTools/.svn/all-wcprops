@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/BridgehrKit/!svn/ver/13841/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/SenparcTools
+END
+OAuth2ApiHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/BridgehrKit/!svn/ver/13841/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/SenparcTools/OAuth2ApiHelper.cs
+END
+UserHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/BridgehrKit/!svn/ver/13841/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/SenparcTools/UserHelper.cs
+END
+WxReturnCodeMessage.cs
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/BridgehrKit/!svn/ver/13841/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/SenparcTools/WxReturnCodeMessage.cs
+END
+MediaHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/BridgehrKit/!svn/ver/13841/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/SenparcTools/MediaHelper.cs
+END
+JsApiPay.cs
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/BridgehrKit/!svn/ver/13841/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/SenparcTools/JsApiPay.cs
+END
+TenPayHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/BridgehrKit/!svn/ver/13841/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/SenparcTools/TenPayHelper.cs
+END
+DepartmentHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/BridgehrKit/!svn/ver/13841/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/SenparcTools/DepartmentHelper.cs
+END
+EncryptHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/BridgehrKit/!svn/ver/13841/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/SenparcTools/EncryptHelper.cs
+END
+MessageHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/BridgehrKit/!svn/ver/13841/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/SenparcTools/MessageHelper.cs
+END
+SenparcSdkBase.cs
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/BridgehrKit/!svn/ver/13841/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/SenparcTools/SenparcSdkBase.cs
+END

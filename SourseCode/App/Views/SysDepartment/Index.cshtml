@@ -1,0 +1,162 @@
+﻿@model CRM.DAL.SysDepartment
+@{ Layout = "~/Views/Shared/Index.cshtml"; }
+@using Common @using Models
+
+<script type="text/javascript">
+    $(function () {
+
+        $('#flexigridData').treegrid({
+            title: '注意：请先删除子节点，然后删除父节点',
+            iconCls: 'icon-site',
+            //                    url: '../SysDepartment/GetAllMetadata',
+            idField: 'Id',
+            treeField: 'Name',
+            rownumbers: true,
+            showFooter: true,
+            toolbar: [
+            {
+                text: '详细',
+                iconCls: 'icon-search',
+                handler: function () {
+                    return getView();
+                }
+            }, {
+                text: '创建',
+                iconCls: 'icon-add',
+                handler: function () {
+                    return flexiCreate();
+                }
+            },  {
+                text: '删除',
+                iconCls: 'icon-remove',
+                handler: function () {
+                    return flexiDelete();
+                }
+            }, {
+                text: '修改',
+                iconCls: 'icon-edit',
+                handler: function () {
+                    return flexiModify();
+                }
+
+            }],
+
+        columns: [[
+            { field: 'Name', title: '@Html.DisplayNameFor(model => model.Name)', width: 215 }
+
+        ,{ field: 'Address', title:  '@Html.DisplayNameFor(model => model.Address)', width: 197 }
+        ,{ field: 'Sort', title:  '@Html.DisplayNameFor(model => model.Sort)', width: 197 }
+        ,{ field: 'Remark', title:  '@Html.DisplayNameFor(model => model.Remark)', width: 197 }
+
+        ]]
+         ,
+        onBeforeLoad: function (row, param) {
+
+            if (row) {
+                $(this).treegrid('options').url = '../SysDepartment/GetAllMetadata/' + row.Id;
+            } else {
+                $(this).treegrid('options').url = '../SysDepartment/GetAllMetadata';
+            }
+        } 
+    });
+
+    var parent = window.dialogArguments; //获取父页面
+    if (parent == "undefined" || parent == null) {
+        //    不是在iframe中打开的
+    } else {
+        //隐藏所有的按钮和分隔符
+        $(".l-btn.l-btn-plain").hide();
+        $(".datagrid-btn-separator").hide();
+        //添加选择按钮
+        $('#flexigridData').datagrid("addToolbarItem", [{ "text": "选择", "iconCls": "icon-ok", handler: function () { flexiSelect(); } }]);
+    }
+    });
+
+    function flexiSelect() {
+        var node = $('#flexigridData').treegrid('getSelected');
+        if (!node) {
+            $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+            return false;
+        }
+        var arr = new Array(0);
+        arr.push(node.Id);
+        arr.push("^"); //主键列和显示列的分割符 ^
+        arr.push(node.Name);
+        //主键列和显示列之间用 ^ 分割   每一项用 , 分割
+        if (arr.length == 3) {//一条数据和多于一条
+            returnParent(arr.join("&")); //每一项用 & 分割
+        }
+        return false;
+    }
+    //导航到查看详细的按钮
+    function getView() {
+
+        var arr = $('#flexigridData').treegrid('getSelected');
+
+        if (arr) {
+            window.location.href = "../SysDepartment/Details/" + arr.Id;
+
+        } else {
+            $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+        }
+        return false;
+    }
+    //导航到创建的按钮
+    function flexiCreate() {
+
+        window.location.href = "../SysDepartment/Create";
+        return false;
+    }
+    //导航到修改的按钮
+    function flexiModify() {
+
+        var arr = $('#flexigridData').treegrid('getSelected');
+
+        if (arr) {
+            window.location.href = "../SysDepartment/Edit/" + arr.Id;
+
+        } else {
+            $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+        }
+        return false;
+    };
+    //删除的按钮
+    function flexiDelete() {
+
+        var node = $('#flexigridData').treegrid('getSelected');
+        if (!node) {
+            $.messager.alert('操作提示', '请选择数据!', 'warning');
+
+        } else {
+            $.messager.confirm('操作提示', "确认删除这1项吗？", function (r) {
+                if (r) {
+                    $.post("../SysDepartment/Delete", { query: node.Id }, function (res) {
+                        if (res == "OK") {
+                            remove();
+                            $.messager.alert('操作提示', '删除成功!', 'info');
+                        }
+                        else {
+                            if (res == "") {
+                                $.messager.alert('操作提示', '删除失败!请查看该数据与其他模块下的信息的关联，或联系管理员。', 'info');
+                            }
+                            else {
+                                $.messager.alert('操作提示', res, 'info');
+                            }
+                        }
+                    });
+                }
+            });
+        }
+        return false;
+    };
+
+
+    function remove() {
+        var node = $('#flexigridData').treegrid('getSelected');
+        if (node) {
+            $('#flexigridData').treegrid('remove', node.Id);
+        }
+    }
+</script>
+
+

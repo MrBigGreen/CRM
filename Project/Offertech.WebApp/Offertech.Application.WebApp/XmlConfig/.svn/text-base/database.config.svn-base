@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<connectionStrings>
+  <!--本地-->
+  <!--<add name="BaseDb" connectionString="Server=.;Initial Catalog=MyCrm_DB;User ID=sa;Password=sa." providerName="System.Data.SqlClient" />
+  <add name="AccountDb" connectionString="Server=.;Initial Catalog=MyCrm_DB;User ID=sa;Password=sa." providerName="System.Data.SqlClient" />-->
+  <!--开发-->
+  <add name="BaseDb" connectionString="Server=172.28.100.17;Initial Catalog=MyCrm_DB;User ID=sa;Password=Password0" providerName="System.Data.SqlClient" />
+  <add name="AccountDb" connectionString="Server=172.28.100.17;Initial Catalog=MyCrm_DB;User ID=sa;Password=Password0" providerName="System.Data.SqlClient" />
+
+  <!--测试-->
+
+  <!--<add name="BaseDb" connectionString="Server=103.21.119.66;Initial Catalog=OfferWX;User ID=sa;Password=Password0" providerName="System.Data.SqlClient" />
+  <add name="AccountDb" connectionString="Server=103.21.119.66;Initial Catalog=OfferWX;User ID=sa;Password=Password0" providerName="System.Data.SqlClient" />-->
+
+
+  <!--正式-->
+  
+  <!--<add name="BaseDb" connectionString="Server=103.21.119.67;Initial Catalog=MyCrm_DB;User ID=sa;Password=Password0" providerName="System.Data.SqlClient" />
+  <add name="AccountDb" connectionString="Server=103.21.119.67;Initial Catalog=MyCrm_DB;User ID=sa;Password=Password0" providerName="System.Data.SqlClient" />-->
+
+
+
+  <!--<add name="BaseDb" connectionString="Server=.;Initial Catalog=LeaRunFramework_Base_2016;User ID=sa;Password=sa." providerName="System.Data.SqlClient" />
+  <add name="AccountDb" connectionString="Server=.;Initial Catalog=Learun_account;User ID=sa;Password=sa." providerName="System.Data.SqlClient" />-->
+
+
+  <!--<add name="BaseDb" connectionString="Data Source=192.168.0.103;port=3306;Initial Catalog=LeaRunFramework_Base_2016;user id=learun;password=123456;charset=utf8" providerName="MySql.Data.MySqlClient"/>-->
+  <!--<add name="BaseDb" connectionString="User Id=kooboocmsv3;Password=kooboocmsv3;PERSIST SECURITY INFO=True;Data Source=kooboocmsv3"  providerName="Oracle.ManagedDataAccess.Client"/>-->
+</connectionStrings>

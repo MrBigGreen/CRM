@@ -1,0 +1,218 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_Contract
+
+@{
+    ViewBag.Title = "考勤报表";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+
+<div id="divQuery">
+    <div class="easyui-panel" title="查询栏" iconcls="icon-search" collapsible="true" data-options="collapsed:false" style="height: auto; width: auto">
+        <table id="ttSearch" class="record" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    日期:
+                </th>
+                <td>
+                    <input type="text" id="StartDate" value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'EndDate\');}', dateFmt: 'yyyy-MM-dd' })" />
+                    <span>到</span>
+                    <input type="text" id="EndDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'StartDate\');}', dateFmt: 'yyyy-MM-dd' })" />
+
+                </td>
+            </tr>
+           <tr>
+                <th style="width:120px; text-align:right; padding-right:10px;height:26px">
+                    考勤对象:
+                </th>
+                <td>
+                    @if (ViewBag.PersonList != null)
+                    {
+                        <label>
+                            @Html.CheckBoxList("SysPersonIdList", (IEnumerable<SelectListItem>)ViewBag.PersonList, false)
+
+                        </label>
+                    }
+                    else
+                    {
+                        @Html.Action("Selected", "SysDepartmentTree")
+                    }
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center">
+                    <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                        查 询
+                    </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+<br style="clear: both;" />
+<table id="flexigridData"></table>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $('#flexigridData').datagrid({
+            title: '考勤报表', //列表的标题
+            iconCls: 'icon-site',
+            width: '99%',
+            height: 'auto',
+            striped: true,
+            collapsible: true,
+            singleSelect: false,
+            //url: '../Reports/GetCustomerContractData', //获取数据的url
+            idField: 'CustomerFollowID',
+            sortName: 'SortColumn',
+            sortOrder: 'desc',
+            toolbar: [{
+                text: '导出',
+                iconCls: 'icon-excel',
+                handler: function () {
+                    return flexiExport();
+                }
+            }],
+            pagination: true,
+            rownumbers: true,
+            fitColumns: true,
+            columns: [[
+             
+            {
+                field: 'CustomerName', title: '公司名称', width: 170, align: 'center', resizable: false,
+                formatter: function (value, rowData, rowIndex) {
+                    var a = '<a href=\'javascript:window.parent.addTabUpdate("' + rowData.CustomerName + '", "/Customer/SelfDetails?ID=' + rowData.CustomerID + '", "tu1425", true);\'  class="easyui-linkbutton" style="border: none; text-decoration: none;"  >' + rowData.CustomerName + '</a> ';
+                    return a;
+                }
+            }
+             , { field: 'DepartmentName', title: '部门', width: 100, align: 'center' }
+            , { field: 'MyName', title: '姓名', width: 100, align: 'center' }
+             , { field: 'FollowUpPurposeName', title: '跟进目的', width: 100, align: 'center' }
+           , {
+              field: 'ReservationDate', title: '跟进日期', width: 75, align: 'center', hidden: false, formatter: function (value, rec) {
+                    if (value) {
+                        return datetimeConvert(value, "yyyy-MM-dd");
+                    }
+                }
+            }
+            , {
+                field: 'GoTime', title: '出发时间', width: 125, align: 'center', hidden: false, formatter: function (value, rec) {
+                    if (value) {
+                        return datetimeConvert(value, "yyyy-MM-dd hh:mm:ss");
+                    }
+                }
+            }
+            , {
+                field: 'BackTime', title: '结束时间', width: 125, align: 'center', hidden: false, formatter: function (value, rec) {
+                    if (value) {
+                        return datetimeConvert(value, "yyyy-MM-dd hh:mm:ss");
+                    }
+                }
+            }
+            
+          , { field: 'CustomerFunnelName', title: '跟进进程', width: 100, align: 'center' }
+            ]]
+        });
+    });
+
+
+    //将查询条件按照分隔符拼接成字符串
+    var search = "";
+
+    //“查询”按钮，弹出查询框
+    function flexiQuery() {
+        search = "";
+
+        if ($("#StartDate").val() != "") {
+
+            search = search + 'StartDate' + "&" + $('#StartDate').val() + '^';
+        }
+        if ($("#EndDate").val() != "") {
+            search = search + 'EndDate' + "&" + $('#EndDate').val() + '^';
+        }
+        
+
+        var SysPersonId = "";
+
+        if ($("input[name='SysPersonIdList']").length > 0) {
+            $("input[name='SysPersonIdList']:checked").each(function () {
+                SysPersonId += $(this).val() + ',';
+            });
+        }
+        else {
+
+            //取得所有选中的节点，返回节点对象的集合
+            var nodes = $("#myTree").tree("getChecked");
+            if (nodes != null && nodes.length > 0) {
+                for (var i = 0; i < nodes.length; i++) {
+                    SysPersonId += nodes[i].id + ",";
+                }
+                if ($('input:radio[name="rdoSelect"]:checked').val() == "person") {
+                    //人员选择
+                    search = search + 'FindType&0^';
+                }
+                else {
+                    //部门选择
+                    search = search + 'FindType&1^';
+                }
+            }
+        }
+
+        if (SysPersonId.length > 0) {
+            search = search + 'SysPersonID' + "&" + SysPersonId.substring(0, SysPersonId.length - 1) + '^';
+        }
+        else {
+            search = search + 'SysPersonID' + "&" + $("#SysPersonID").val() + '^';
+        }
+        $('#flexigridData').datagrid('options').url = "../Reports/GetHRListData";
+        $("#flexigridData").datagrid("clearSelections");
+        //执行查询
+        $('#flexigridData').datagrid('load', { search: search });
+
+    }
+
+    function flexiExport() {
+
+        $.messager.confirm('操作提示', "确定要导出考勤数据吗", function (r) {
+            if (r) {
+
+
+                var p = $('#flexigridData').datagrid('options').columns[0];
+                var field = [];//所有的列名
+                var title = [];//所有的标题名称
+                $(p).each(function () {
+
+                    if (!this.hidden) {
+                        field.push(this.field);
+                        title.push(this.title);
+                    }
+
+                });
+
+                $.post("../Reports/ExportHRListData",
+                    {
+                        title: title.join(","),
+                        field: field.join(","),
+                        sortName: $('#flexigridData').datagrid('options').sortName,
+                        sortOrder: $('#flexigridData').datagrid('options').sortOrder,
+                        search: search
+                    }, function (res) {
+                        window.location.href = res;
+
+                    });
+            }
+        });
+    };
+</script>
+
+
+
+
+
+
+
+

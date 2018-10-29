@@ -1,0 +1,151 @@
+﻿@{ Layout = "~/Views/Shared/Index.cshtml"; }
+@using Common
+@using Models
+
+<div class="easyui-panel" id="panelShow" title="查询栏" iconcls="icon-search" collapsible="true" style="height:auto;width:auto">
+    <table id="ttSearch" class="record">
+        <tr>
+            <th>公司</th>
+            <td>
+                <select id="cc" style="width:350px;"></select>
+            </td>
+        </tr>
+        <tr>
+            <th>日期</th>
+            <td>
+                <input class="easyui-datebox" id="beginDate" editable="false" style="width:100px" />&nbsp;&nbsp;到&nbsp;&nbsp;
+                <input class="easyui-datebox" id="endDate" editable="false" style="width:100px" />
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" style="text-align:center">
+                <input type="button" id="todaySearch" style="width: 80px;" onclick="SearchParm()" value="搜索">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               @* <input type="button" id="btnClear" style="width: 80px;" onclick="RemvoeAll()" value="清空">*@
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="easyui-panel" style="height:auto;" collapsible="true">
+    <table id="flexigridData"></table>
+</div>
+<div id="tb" style="padding:3px;height:24px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-excel" plain="true" onclick="ExportInfo()" style="float: left; margin-right: 20px;">导出</a>
+</div>
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.watermark.min.js"></script>
+<script src="~/Scripts/jquery.bpopup-0.7.0.min.js"></script>
+<script src="~/Scripts/type-bpopup_fuc.js" type="text/javascript"></script>
+<script src="/Scripts/Employees/Index.js" type="text/javascript"></script>
+<link href="~/Content/TodayTasks/Index.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(function () {
+        $('#flexigridData').datagrid({
+            title: '社保信息汇总查询', //列表的标题
+            iconCls: 'icon-site',
+            width: 'auto',
+            height: 'auto',
+            loadMsg: "正在加载...",
+            striped: true,
+            url: '../PayReport/GetSocialSecurityReportData', //获取数据的url
+            sortName: 'ContractID',
+            sortOrder: 'desc',
+            idField: 'ContractID',
+            fitColumns: true,
+
+            columns: [[
+             { field: 'ContractName', title: '公司名称', width: $(this).width() * 0.2, align: 'center', rowspan: 2, resizable: false }
+             , { field: 'CustomerCounts', title: '客户数量', width: $(this).width() * 0.3, align: 'center', rowspan: 2, resizable: false }
+             , { title: '客户结算额', colspan: 2 }
+             , { title: '扣个人数据', colspan: 2 }
+             , { title: '实际缴纳', colspan: 4 }
+               , { field: 'SetDifferenceAmount', title: '结算扣缴差异额', width: $(this).width() * 0.1, align: 'center', rowspan: 2, resizable: false }
+            ], [
+               { field: 'CustomerNums', title: '人数', width: $(this).width() * 0.3, align: 'center', resizable: false }
+             , { field: 'CustomerAmount', title: '金额', width: $(this).width() * 0.3, align: 'center', resizable: false }
+             , { field: 'PersonsNums', title: '人数', width: $(this).width() * 0.2, align: 'center', resizable: false }
+             , { field: 'PersonsAmount', title: '金额', width: $(this).width() * 0.3, align: 'center', resizable: false }
+             , { field: 'RealPersonsNums', title: '人数', width: $(this).width() * 0.1, align: 'center', resizable: false }
+             , { field: 'RealPersonsAmount', title: '个人部分', width: $(this).width() * 0.1, align: 'center', resizable: false }
+             , { field: 'RealCompanyAmount', title: '公司部分', width: $(this).width() * 0.1, align: 'center', resizable: false }
+             , { field: 'RealTotal', title: '合计', width: $(this).width() * 0.1, align: 'center', resizable: false }
+            ]],
+            pagination: true,
+            rownumbers: true,
+            showFooter: true,
+            toolbar: '#tb'
+
+        });
+
+        $("#beginDate").datebox({
+            onSelect: function () {
+                if ($("#endDate").datebox('getValue') != "") {
+                    if (toDate($("#beginDate").datebox('getValue')) > toDate($("#endDate").datebox('getValue'))) {
+                        $.messager.alert('提示', '开始日期不得晚于结束日期！', "info");
+                        $("#beginDate").datebox("setValue", "");
+                        return false;
+                    };
+                }
+
+            }
+        });
+
+        $("#endDate").datebox({
+            onSelect: function () {
+                if ($("#beginDate").datebox('getValue') != "") {
+                    if (toDate($("#endDate").datebox('getValue')) < toDate($("#beginDate").datebox('getValue'))) {
+                        $.messager.alert('提示', '结束日期不得早于开始日期！', "info");
+                        $("#endDate").datebox("setValue", "");
+                        return false;
+                    }
+                }
+
+            }
+        });
+        $("#cc").combotree({
+            url: '/PayReport/GetCombox?parm=1604121151490315992e569f90a1e',
+            valueField: 'id',
+            textField: 'text',
+            editable: false,
+            multiple: true,
+            checkbox: true
+        });
+    });
+
+    function toDate(str) {
+        var sd = str.split("-");
+        return new Date(sd[0], sd[1], sd[2]);
+    }
+
+    //按条件查询
+    function SearchParm() {
+        var search = "";
+
+        var ck = $("#cc").combotree("getValues");//公司
+
+        var beginDate = $('#beginDate').datebox('getValue');//开始时间
+        var endDate = $('#endDate').datebox('getValue');//结束时间
+
+
+        search = 'CombotreeCheck&' + ck + '^';
+        search += 'StartDate&' + beginDate + '^';
+        search += 'EndDate&' + endDate + '^';
+
+        $("#flexigridData").datagrid("clearSelections");
+        //执行查询
+        $('#flexigridData').datagrid('load', { search: search });
+    }
+    //搜索清空
+    function RemvoeAll() {
+
+        $("#cc").combotree("reload");
+        $('#beginDate').datebox('setValue', '');
+        $('#endDate').datebox('setValue', '');
+        $("#flexigridData").datagrid("clearSelections");
+    }
+</script>
+
+
+
+

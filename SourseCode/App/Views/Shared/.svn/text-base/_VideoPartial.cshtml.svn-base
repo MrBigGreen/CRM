@@ -1,0 +1,55 @@
+﻿
+
+    <div class="video_wrap2">
+        <ul class="video_title2">
+            <li class="close"></li>
+        </ul>
+        <div class="video_container2">
+            <div class="video_area2">
+                <div id="video"></div>
+                <script type="text/javascript">
+
+                </script>
+            </div>
+        </div>
+    </div>
+   <script type="text/javascript">
+    function PlayVideo(_fileName, _videosource) {
+        var _width = 640, _height = 480;
+        if ("B807BA5F-38D0-401D-B172-9B11CA211CA5" != _videosource) {
+            _width = 480;
+            _height = 640;
+        }
+        //if (_fileName.indexOf(".mp4") > -1) {
+        //    _width = 480;
+        //    _height = 640;
+        //}
+        $(".video_area2").css({ width: _width, height: _height });
+        $(".bpopup_video").css({ height: "auto" });
+        var x = $(window).width() / 2 - $(".bpopup_video").width() / 2;
+        var num = $(window).height() / 2 - $(".bpopup_video").height() / 2 + $(window).scrollTop();
+        var y = num > 0 ? num : 0;
+        $(".bpopup_video").bPopup({
+            modalClose: false,
+            closeClass: 'close',
+            follow: [false, false],
+            position: [x, y],
+            onClose: function () {
+                jwplayer().remove();
+            }
+        }, function () {
+            jwplayer("video").setup({
+                flashplayer: "../../Scripts/player.swf",
+                file: _fileName,
+                height: _height,
+                width: _width,
+                screencolor: "#383838",
+                backcolor: "#585858",
+                frontcolor: "#b9b9b9",
+                autoStart: true,
+                controlbar: "bottom",
+                stretching: 'exactfit'
+            });
+        });
+    }
+   </script>

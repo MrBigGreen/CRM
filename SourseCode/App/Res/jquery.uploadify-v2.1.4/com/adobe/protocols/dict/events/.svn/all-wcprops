@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/App/Res/jquery.uploadify-v2.1.4/com/adobe/protocols/dict/events
+END
+DictionaryServerEvent.as
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/App/Res/jquery.uploadify-v2.1.4/com/adobe/protocols/dict/events/DictionaryServerEvent.as
+END
+MatchEvent.as
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/App/Res/jquery.uploadify-v2.1.4/com/adobe/protocols/dict/events/MatchEvent.as
+END
+DefinitionHeaderEvent.as
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/App/Res/jquery.uploadify-v2.1.4/com/adobe/protocols/dict/events/DefinitionHeaderEvent.as
+END
+ConnectedEvent.as
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/App/Res/jquery.uploadify-v2.1.4/com/adobe/protocols/dict/events/ConnectedEvent.as
+END
+DisconnectedEvent.as
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/App/Res/jquery.uploadify-v2.1.4/com/adobe/protocols/dict/events/DisconnectedEvent.as
+END
+DatabaseEvent.as
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/App/Res/jquery.uploadify-v2.1.4/com/adobe/protocols/dict/events/DatabaseEvent.as
+END
+MatchStrategiesEvent.as
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/App/Res/jquery.uploadify-v2.1.4/com/adobe/protocols/dict/events/MatchStrategiesEvent.as
+END
+DefinitionEvent.as
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/App/Res/jquery.uploadify-v2.1.4/com/adobe/protocols/dict/events/DefinitionEvent.as
+END
+ErrorEvent.as
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/App/Res/jquery.uploadify-v2.1.4/com/adobe/protocols/dict/events/ErrorEvent.as
+END
+NoMatchEvent.as
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/App/Res/jquery.uploadify-v2.1.4/com/adobe/protocols/dict/events/NoMatchEvent.as
+END

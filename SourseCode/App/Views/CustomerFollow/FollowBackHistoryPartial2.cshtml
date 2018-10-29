@@ -1,0 +1,133 @@
+﻿@using Common
+@using Models
+@model IList<CRM.DAL.CustomerFollowModel>
+@{
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+@*<link href="~/Res/PublicCommon.css" rel="stylesheet" />*@
+
+<style>
+    .editor-field {
+        width: 181px;
+        height: 24px;
+        float: left;
+        display: inline;
+    }
+
+    .editor-label {
+        width: 100px;
+        height: 24px;
+        float: right;
+        text-align: right;
+        line-height: 24px;
+        display: inline;
+    }
+</style>
+
+<fieldset>
+    <legend>
+    </legend>
+    <div style="height:auto ;width:auto">
+        @{
+            if (Model != null && Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
+
+                    <table style="width:100%">
+                        <tr>
+                            <td align="left" style="width:62px;">
+
+                                <label style=" font-weight:bolder;">跟进日期：</label>
+                            </td>
+                            <td style="width:133px;">
+                                <label>@item.FollowUpDate</label>
+                            </td>
+                            <td align="left" style="width:62px;">
+                                <label style=" font-weight:bolder;">跟进人：</label>
+                            </td>
+                            <td style="width:133px;">
+                                <label>@item.MyName</label>
+                            </td>
+
+                            <td align="left" style="width:62px;">
+                                <label style=" font-weight:bolder;">客户进程：</label>
+                            </td>
+                            <td style="width:163px;">
+                                <label>@item.CustomerFunnel</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" style="width: 62px;">
+                                <label style="font-weight: bolder;">跟进方式：</label>
+                            </td>
+                            <td style="width: 133px;">
+                                <label>@item.FollowUpMode</label>
+                            </td>
+                            <td align="left" style="width: 62px;">
+                                <label style="font-weight: bolder;">联系人：</label>
+                            </td>
+                            <td style="width: 73px;">
+                                <label>@item.ContactName</label>
+                            </td>
+                            <td align="left" style="width: 62px;">
+                                <label style="font-weight: bolder;">对方级别：</label>
+                            </td>
+                            <td style="width: 133px;">
+                                <label>@item.CustomerLevel</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" style="width: 62px;">
+                                <label style="font-weight: bolder;">开始时间：</label>
+                            </td>
+                            <td style="width: 133px;">
+                                <label>@item.GoTime</label>
+                            </td>
+                            <td align="left" style="width: 62px;">
+                                <label style="font-weight: bolder;">结束时间：</label>
+                            </td>
+                            <td style="width: 73px;">
+                                <label>@item.BackTime</label>
+                            </td>
+                            <td >
+                                
+                            </td>
+                            <td >
+                                
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="easyui-panel" style="margin-bottom:20px;width:100%">
+                        <div class="easyui-layout" data-options="fit:true" style="width: 100%;min-height: 30px; ">
+                            <div style="width: 95%;  max-height:160px;min-height:62px; overflow-y: auto;">
+
+                                @if (item.ContactState == 2)
+                                {
+                                    <div style="padding:5px">
+                                        未联系上
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div style="padding:5px">
+                                        @Html.Raw(item.Remark)
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div style="margin-bottom:60px;">
+                    <div>无跟进记录</div>
+                </div>
+            }
+
+        }
+    </div>
+
+</fieldset> 

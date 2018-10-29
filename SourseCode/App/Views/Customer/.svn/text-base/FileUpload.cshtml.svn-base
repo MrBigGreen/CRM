@@ -1,0 +1,110 @@
+﻿@model System.Data.DataTable
+
+@{ Layout = "~/Views/Shared/Index.cshtml"; }
+<style type="text/css">
+    table.gridtable {
+        font-family: verdana,arial,sans-serif;
+        font-size: 11px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #666666;
+        border-collapse: collapse;
+        width: 98%;
+        table-layout: fixed;
+    }
+
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+            min-width: 80px;
+            max-width: 430px;
+        }
+
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+            min-width: 80px;
+            max-width: 430px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+</style>
+<br />
+<br />
+<div>
+    &nbsp;&nbsp;
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-undo'" href="/Customer/Import">返回批量导入</a>
+    &nbsp;&nbsp;
+
+    @*<a class="easyui-linkbutton" data-options="iconCls:'icon-undo'" href="/Customer/Self">返回我的客户</a>*@
+
+    @if (ViewBag.Url != null)
+    {
+        <a class="easyui-linkbutton" iconcls="icon-ok" onclick="ExportInfo()">导出结果</a>
+
+    }
+    <br />
+    <div id="Navigation" class="mbx">
+        客户导入详细信息
+    </div>
+    <div class="panel">
+        @if (ViewBag.Error != null)
+        {
+            <label>@ViewBag.Error</label>
+        }
+    </div>
+    <div class="easyui-panel">
+        @if (Model != null)
+        {
+            System.Data.DataTable data = Model;
+            if (data.Columns.Count > 0 && data.Rows.Count > 0)
+            {
+                <table class="gridtable">
+                    <tr>
+                        @for (int i = 0; i < data.Columns.Count; i++)
+                        {
+                            if (i == 0)
+                            {
+                                <th style="width:170px">@data.Columns[i].ColumnName</th>
+                            }
+                            else if (i == data.Columns.Count - 1)
+                            {
+                                <th style="width:220px">@data.Columns[i].ColumnName</th>
+                            }
+                            else
+                            {
+                                <th>@data.Columns[i].ColumnName</th>
+                            }
+
+                        }
+                    </tr>
+                    @for (int i = 0; i < data.Rows.Count; i++)
+                    {
+                        <tr>
+                            @for (int j = 0; j < data.Columns.Count; j++)
+                            {
+                                <td title="@data.Rows[i][j]">@data.Rows[i][j]</td>
+                            }
+                        </tr>
+                    }
+                </table>
+            }
+        }
+    </div>
+</div>
+<script>
+    function ExportInfo() {
+
+
+        window.location.href = '@ViewBag.Url';
+
+    }
+
+</script>

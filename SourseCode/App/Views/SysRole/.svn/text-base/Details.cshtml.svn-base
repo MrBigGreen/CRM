@@ -1,0 +1,49 @@
+﻿@model CRM.DAL.SysRole
+
+@{
+    Layout = "~/Views/Shared/Details.cshtml";
+}
+@using Common
+ @section CurentPlace {
+    详细  
+}
+ 
+    <fieldset>
+        <legend>
+            <input class="a2 f2" type="button" onclick="window.location.href = 'javascript:history.go(-1)';" value="返回" />
+        </legend>
+        <div class="bigdiv">
+                  
+                <div class="display-label">
+                      @Html.LabelFor(model => model.Name) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Name) 
+                </div>
+                <br style="clear: both;" />
+                <div class="display-label">
+                    @Html.LabelFor(model => model.Description) :
+                </div>
+                <div class="textarea-box">
+                    @Html.TextAreaFor(model => model.Description, new {  @readonly=true})                   
+                </div>      
+                    
+                <div class="display-label">
+                      @Html.LabelFor(model => model.SysPersonId) :
+                </div>
+                <div class="display-field">            
+                    @{string ids8 = string.Empty;
+                       foreach (var item8 in Model.SysPerson)
+                       {
+                           ids8 += item8.Name;
+                           ids8 += " , ";
+                                 
+                     } 
+                    
+                @ids8   
+                  }
+                </div>
+        </div>
+    </fieldset>
+
+

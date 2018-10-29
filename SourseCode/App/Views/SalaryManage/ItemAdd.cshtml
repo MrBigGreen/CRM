@@ -1,0 +1,72 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TP_SalaryItem
+
+@{
+    ViewBag.Title = "薪资项目创建";
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<style>
+    textarea {
+        height: 160px;
+        width: 480px;
+    }
+
+    input {
+        width: 480px;
+    }
+
+    .display-field {
+        height: auto;
+        width: 500px;
+    }
+</style>
+
+<div class="bigdiv">
+    @Html.HiddenFor(model => model.SalaryItemID)
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.ItemCode)：
+    </div>
+    <div class="editor-field" style="width:150px">
+        @Html.TextBoxFor(model => model.ItemCode, new { @style = "width:140px;" })
+        @Html.ValidationMessageFor(model => model.ItemCode)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.ItemName)：
+    </div>
+    <div class="editor-field" style="width:150px">
+        @Html.TextBoxFor(model => model.ItemName, new { @style = "width:140px;" })
+        @Html.ValidationMessageFor(model => model.ItemName)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.DataType)：
+    </div>
+    <div class="editor-field" style="width:150px">
+        @Html.DropDownListFor(model => model.DataType, Models.SysFieldModels.GetSysFieldValueByParentID("160629140209184600402511a8a3f"))
+        @Html.ValidationMessageFor(model => model.DataType)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.ItemClass)：
+    </div>
+    <div class="editor-field" style="width:150px">
+        @Html.DropDownListFor(model => model.ItemClass, Models.SysFieldModels.GetSysFieldValueByParentID("1606291407214906611150751ffda"))
+        @Html.ValidationMessageFor(model => model.ItemClass)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.Sort)：
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.Sort, new { @style = "width:140px;" })
+        @Html.ValidationMessageFor(model => model.Sort)
+    </div>
+    <br style="clear: both;" />
+    <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+        <input class="a2 f2" type="submit" id="submit" value="创 建" />
+    </div>
+</div>
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />

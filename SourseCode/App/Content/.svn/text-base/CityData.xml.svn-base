@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <OneDimension ID="435d57e6-21a5-4893-ba4f-78f64e4dfd3d" Name="北京">
+    <TwoDimension ID="bfff237f-46f4-448d-a2a2-24af1649947b" Name="北京市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="e37cf4b7-aa4d-44c5-aa3a-b27007804df6" Name="天津">
+    <TwoDimension ID="23820405-6082-4f51-aee0-9366e1088218" Name="天津市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="6c5c46b6-fe42-43fc-b44f-cb594f00d3e2" Name="河北">
+    <TwoDimension ID="4463eda5-e999-4e92-b0a2-a2b15ebb6def" Name="石家庄市">
+    </TwoDimension>
+    <TwoDimension ID="7b5ac553-91a2-4e31-bf03-1d9370633d2c" Name="唐山市">
+    </TwoDimension>
+    <TwoDimension ID="66a02f45-fb07-4b60-84d9-9685ef796fdf" Name="秦皇岛市">
+    </TwoDimension>
+    <TwoDimension ID="968d1629-d888-4491-ab32-026e6e2d3d1f" Name="邯郸市">
+    </TwoDimension>
+    <TwoDimension ID="0ccbde40-f41f-484a-98fd-00c661fa0dca" Name="邢台市">
+    </TwoDimension>
+    <TwoDimension ID="9e531ec6-53c9-422c-b6ac-06923604fda0" Name="保定市">
+    </TwoDimension>
+    <TwoDimension ID="72487e7e-94d1-47b0-8218-14ce6b928909" Name="张家口市">
+    </TwoDimension>
+    <TwoDimension ID="304fa593-11e4-4e0f-a7b2-b81361beb3bb" Name="承德市">
+    </TwoDimension>
+    <TwoDimension ID="b81f2ab4-0246-4d10-8ada-90cc35014705" Name="沧州市">
+    </TwoDimension>
+    <TwoDimension ID="fa251cd4-ffff-4913-97de-89b0dc9ffe48" Name="廊坊市">
+    </TwoDimension>
+    <TwoDimension ID="c0d7983a-3cc0-41fc-9258-dfb36cfeee92" Name="衡水市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="e9ba3c2a-affe-42a4-8c0a-12b04e20f19a" Name="山西">
+    <TwoDimension ID="6dfd58d6-5674-47f1-872a-4b337c15a33d" Name="太原市">
+    </TwoDimension>
+    <TwoDimension ID="106c0de8-eec0-4e3a-bb38-67a450e38f97" Name="大同市">
+    </TwoDimension>
+    <TwoDimension ID="2ff78f44-3fc4-4131-898a-9219c182ebd5" Name="阳泉市">
+    </TwoDimension>
+    <TwoDimension ID="e2ad0d3a-8b88-405c-8ff0-e82b655eb6ab" Name="长治市">
+    </TwoDimension>
+    <TwoDimension ID="1dd40ab5-3e51-4c19-98d0-175482b1feef" Name="晋城市">
+    </TwoDimension>
+    <TwoDimension ID="c3b9abef-2b4b-487b-8d0c-9dab1763090d" Name="朔州市">
+    </TwoDimension>
+    <TwoDimension ID="87126612-b590-4b11-84cd-5fe1e3395a0f" Name="晋中市">
+    </TwoDimension>
+    <TwoDimension ID="8766e295-9548-4288-bdb3-40817fa1f674" Name="运城市">
+    </TwoDimension>
+    <TwoDimension ID="f1aa8d12-be85-4e65-aed9-52286fc5a262" Name="忻州市">
+    </TwoDimension>
+    <TwoDimension ID="d88714d4-1e60-4d77-b8c3-2aee7db2ba8f" Name="临汾市">
+    </TwoDimension>
+    <TwoDimension ID="31ff6a5a-3546-458a-bf21-8deb81954c47" Name="吕梁市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="7be38261-5eb1-407a-a966-7d38b78ad7bb" Name="内蒙古">
+    <TwoDimension ID="6a3671f6-8e7d-4606-813a-8c7177936c07" Name="呼和浩特市">
+    </TwoDimension>
+    <TwoDimension ID="7e75d9f7-a48d-4adf-a12d-f6af523c0888" Name="包头市">
+    </TwoDimension>
+    <TwoDimension ID="47c68e5d-8eb5-4254-a295-1f62e03132a1" Name="乌海市">
+    </TwoDimension>
+    <TwoDimension ID="7ef31c82-26d7-4203-a60a-0cd828226ac8" Name="赤峰市">
+    </TwoDimension>
+    <TwoDimension ID="f2de7049-cca5-4327-878b-e09bb8e0c073" Name="通辽市">
+    </TwoDimension>
+    <TwoDimension ID="80553951-d200-4426-851c-5c32b6d418de" Name="鄂尔多斯市">
+    </TwoDimension>
+    <TwoDimension ID="cf4914ea-99ee-4b82-8dde-75ef66eb65c7" Name="呼伦贝尔市">
+    </TwoDimension>
+    <TwoDimension ID="6dc9571f-0613-4ce2-944d-82a84d8f3aaa" Name="巴彦淖尔市">
+    </TwoDimension>
+    <TwoDimension ID="084dc3cd-94a1-4b48-aa2c-2ad07fb22e43" Name="乌兰察布市">
+    </TwoDimension>
+    <TwoDimension ID="4c3e8e93-7c87-4200-9aec-ff83170fbef9" Name="兴安盟">
+    </TwoDimension>
+    <TwoDimension ID="5dbfe79e-b715-46ff-8a4b-6d3be60dbf96" Name="锡林郭勒盟">
+    </TwoDimension>
+    <TwoDimension ID="ae483d63-2317-4035-8983-9f84436aaaf6" Name="阿拉善盟">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="a8941e83-e3ae-4795-95e4-82a0b11cdbe6" Name="辽宁">
+    <TwoDimension ID="af05aaf7-3795-46e3-89cb-13ad29c580f7" Name="沈阳市">
+    </TwoDimension>
+    <TwoDimension ID="60830c1f-5065-4369-8833-09ac92eb2ee9" Name="大连市">
+    </TwoDimension>
+    <TwoDimension ID="42627ec5-4e18-4bcc-b462-8fd6a5ac03c9" Name="鞍山市">
+    </TwoDimension>
+    <TwoDimension ID="d1d2211b-1296-48dd-86da-84ca9768d6e3" Name="抚顺市">
+    </TwoDimension>
+    <TwoDimension ID="1b8c8c11-ec4e-4b2d-a27f-cabe7d0c70d1" Name="本溪市">
+    </TwoDimension>
+    <TwoDimension ID="5abedee9-ff9c-420c-a7ac-dd9bfe058c89" Name="丹东市">
+    </TwoDimension>
+    <TwoDimension ID="84d6be32-4028-4041-a1c0-711c1ec1166d" Name="锦州市">
+    </TwoDimension>
+    <TwoDimension ID="e19b7032-571e-4fd4-a925-f3873a3b72fc" Name="营口市">
+    </TwoDimension>
+    <TwoDimension ID="e5bea319-701d-4676-a98c-f4f3d3183d61" Name="阜新市">
+    </TwoDimension>
+    <TwoDimension ID="5e7dcb16-de9c-4378-b78c-a73d71db6280" Name="辽阳市">
+    </TwoDimension>
+    <TwoDimension ID="56927e3c-b932-40ce-aaaa-c84179f4ae0a" Name="盘锦市">
+    </TwoDimension>
+    <TwoDimension ID="415725ca-334a-42a1-89b6-7dcb9d260b08" Name="铁岭市">
+    </TwoDimension>
+    <TwoDimension ID="9f6bf723-2eba-43b7-8c25-730fc4eeaa1c" Name="朝阳市">
+    </TwoDimension>
+    <TwoDimension ID="6d388064-0bee-4cef-9ae0-01d1037ea2ba" Name="葫芦岛市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="08994fe4-7c5a-40f9-9186-ce17a1c7b759" Name="吉林">
+    <TwoDimension ID="45dda781-6d9d-45f0-a1ca-09e0a7b04dac" Name="长春市">
+    </TwoDimension>
+    <TwoDimension ID="c3a20baf-c824-42e7-b1aa-86af499d70e4" Name="吉林市">
+    </TwoDimension>
+    <TwoDimension ID="9a8a02c9-b969-4afe-96b0-91c32df60c6b" Name="四平市">
+    </TwoDimension>
+    <TwoDimension ID="07fb5d50-904f-4cbf-8ae8-0aed72d3ed67" Name="辽源市">
+    </TwoDimension>
+    <TwoDimension ID="b90ad7f8-467b-425c-90f1-00ebc903c6da" Name="通化市">
+    </TwoDimension>
+    <TwoDimension ID="cc6990cf-65f1-473c-b102-40b502a68314" Name="白山市">
+    </TwoDimension>
+    <TwoDimension ID="3af4557a-f099-452b-bc66-3f3077bc5b32" Name="松原市">
+    </TwoDimension>
+    <TwoDimension ID="000cfdf1-2ced-424e-b723-8f9745328050" Name="白城市">
+    </TwoDimension>
+    <TwoDimension ID="ec837d7e-2b49-444f-8669-f405d4c0e664" Name="延边朝鲜族自治州">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="1a017c3f-5c30-47ce-837d-b40fecdf2681" Name="黑龙江">
+    <TwoDimension ID="500d0ea1-842b-4dd5-ba4e-1f576ade2c8b" Name="哈尔滨市">
+    </TwoDimension>
+    <TwoDimension ID="c927b9c6-e440-4fb5-9a43-2a0faa3ea205" Name="齐齐哈尔市">
+    </TwoDimension>
+    <TwoDimension ID="5ae0cf18-104f-4a2c-9727-0feb2eeefb67" Name="鸡西市">
+    </TwoDimension>
+    <TwoDimension ID="36b56c00-1845-423b-a872-8a3823ebf914" Name="鹤岗市">
+    </TwoDimension>
+    <TwoDimension ID="ec60ced2-2520-4dd3-ab72-e69c8e757cba" Name="双鸭山市">
+    </TwoDimension>
+    <TwoDimension ID="4820fb3e-12dd-4afe-8bb1-3608589f9591" Name="大庆市">
+    </TwoDimension>
+    <TwoDimension ID="8cb09d24-9545-4378-91b6-a5cb427369ac" Name="伊春市">
+    </TwoDimension>
+    <TwoDimension ID="919e28f6-eee8-4d15-a2e2-814510bc3e80" Name="佳木斯市">
+    </TwoDimension>
+    <TwoDimension ID="c8e01143-b76e-41bc-95dd-530b31d82094" Name="七台河市">
+    </TwoDimension>
+    <TwoDimension ID="1bd3bdca-ad45-497f-b16d-ee984b98537f" Name="牡丹江市">
+    </TwoDimension>
+    <TwoDimension ID="79555fbe-1d0e-4a1f-b0ab-1403f1c77a5b" Name="黑河市">
+    </TwoDimension>
+    <TwoDimension ID="085c7f5b-cd09-43a5-bdaa-42322616cd0c" Name="绥化市">
+    </TwoDimension>
+    <TwoDimension ID="a879ed5c-2ec5-488d-addc-00e2ba130814" Name="大兴安岭地区">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="90fdceaf-4b43-4937-bc0f-b95ad79f5759" Name="上海">
+    <TwoDimension ID="1adebba9-81bd-4860-8eb8-104f348451d1" Name="上海市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="abbd50f5-974e-410e-b38f-0d9d93633f69" Name="江苏">
+    <TwoDimension ID="0f6fe6f0-d1f3-47c2-bb61-fe607aa772ab" Name="南京市">
+    </TwoDimension>
+    <TwoDimension ID="2b4dd40c-0088-4ba9-97e7-c7555a7855f6" Name="无锡市">
+    </TwoDimension>
+    <TwoDimension ID="3b7e3209-a3f7-44a2-813a-330c43ebabcb" Name="徐州市">
+    </TwoDimension>
+    <TwoDimension ID="97e5a5fd-2c36-4650-97ee-6dcbbd8846ef" Name="常州市">
+    </TwoDimension>
+    <TwoDimension ID="94a95d4e-3c3a-4eef-b979-6ae8b7ff324e" Name="苏州市">
+    </TwoDimension>
+    <TwoDimension ID="ee14e5fd-e407-4c7e-b982-1600ff8c7979" Name="南通市">
+    </TwoDimension>
+    <TwoDimension ID="6eeb34fb-a978-4798-bfb2-0ca0382c3f60" Name="连云港市">
+    </TwoDimension>
+    <TwoDimension ID="d6630a68-102b-4176-a23a-2b942d4cc96b" Name="淮安市">
+    </TwoDimension>
+    <TwoDimension ID="fa4da513-c8f5-481d-9f7b-f847b6c4bbe0" Name="盐城市">
+    </TwoDimension>
+    <TwoDimension ID="04717cde-5c55-45c7-9786-9633c3f3259e" Name="扬州市">
+    </TwoDimension>
+    <TwoDimension ID="78fefd30-8ec9-4289-8c5c-e148a37a0eb2" Name="镇江市">
+    </TwoDimension>
+    <TwoDimension ID="078808b6-9125-4f44-b50e-ceed58956df4" Name="泰州市">
+    </TwoDimension>
+    <TwoDimension ID="2a782520-c715-4127-832e-9fea01607940" Name="宿迁市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="06a017f9-682f-4789-8f8b-40de0b275269" Name="浙江">
+    <TwoDimension ID="94ab2fa0-bc7e-43d1-80fb-6d36b7284de5" Name="杭州市">
+    </TwoDimension>
+    <TwoDimension ID="c5b083cd-bc05-42e5-99e9-dadd66e97a19" Name="宁波市">
+    </TwoDimension>
+    <TwoDimension ID="3a76daed-6686-425f-bd51-4900e0dfc722" Name="温州市">
+    </TwoDimension>
+    <TwoDimension ID="94e8e6c9-df84-41f2-9d1f-2ec8d7b92d0d" Name="嘉兴市">
+    </TwoDimension>
+    <TwoDimension ID="4cf280e2-4c56-402b-b834-99b0b3beb317" Name="湖州市">
+    </TwoDimension>
+    <TwoDimension ID="0962cf9c-e121-41f7-b0f7-7027c64e3184" Name="绍兴市">
+    </TwoDimension>
+    <TwoDimension ID="5cfed1a1-4e0b-4253-a6f7-e5336c8e87f0" Name="金华市">
+    </TwoDimension>
+    <TwoDimension ID="6595f700-4141-434d-a089-2f3f88cd0231" Name="衢州市">
+    </TwoDimension>
+    <TwoDimension ID="826bba22-2bf9-4d11-ac0d-935609aec74d" Name="舟山市">
+    </TwoDimension>
+    <TwoDimension ID="89a8cab1-ce14-4ff4-a466-a01615e60b74" Name="台州市">
+    </TwoDimension>
+    <TwoDimension ID="f0c6de12-57d6-49dc-8330-9e83a40ad75b" Name="丽水市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="a7e72b24-7a6f-4e26-8e56-ec4534b15615" Name="安徽">
+    <TwoDimension ID="c1c9d36f-3aac-4944-bdc0-b7da550528f1" Name="合肥市">
+    </TwoDimension>
+    <TwoDimension ID="f0797b76-2d8e-40f6-a41a-a35165c7fb4c" Name="芜湖市">
+    </TwoDimension>
+    <TwoDimension ID="b8ee5d26-63ab-4bc9-89d4-e8caac6d6d2e" Name="蚌埠市">
+    </TwoDimension>
+    <TwoDimension ID="fe7a3d96-c3aa-4ade-be98-5f8c55a421b2" Name="淮南市">
+    </TwoDimension>
+    <TwoDimension ID="24524a11-7e51-4183-b0b5-51f70056f2cf" Name="马鞍山市">
+    </TwoDimension>
+    <TwoDimension ID="33e8c445-b1ea-4018-8f05-c277e897f775" Name="淮北市">
+    </TwoDimension>
+    <TwoDimension ID="4e1bd68f-ea4f-48db-96be-546eacbb19ff" Name="铜陵市">
+    </TwoDimension>
+    <TwoDimension ID="43a9df42-9e0d-479f-8488-151d2251b6ef" Name="安庆市">
+    </TwoDimension>
+    <TwoDimension ID="4bf7e87f-84be-4f67-a939-24a1c464259b" Name="黄山市">
+    </TwoDimension>
+    <TwoDimension ID="6ed2d23d-c82c-47a8-b138-a8da6734df2c" Name="滁州市">
+    </TwoDimension>
+    <TwoDimension ID="6c5ea4dd-a616-4574-8795-b70fd3f2ca18" Name="阜阳市">
+    </TwoDimension>
+    <TwoDimension ID="d9132c0f-928c-4953-831c-d2dd2eb8193b" Name="宿州市">
+    </TwoDimension>
+    <TwoDimension ID="cdde9a95-7c88-4e59-abed-2752aa51ad6e" Name="巢湖市">
+    </TwoDimension>
+    <TwoDimension ID="c2409988-2dde-4446-9e2d-128939a0e679" Name="六安市">
+    </TwoDimension>
+    <TwoDimension ID="6b4b9ebe-08bd-40a4-b848-99c79dcb53fd" Name="亳州市">
+    </TwoDimension>
+    <TwoDimension ID="ef3e92da-7f10-4a89-b9e9-04093318a4d6" Name="池州市">
+    </TwoDimension>
+    <TwoDimension ID="6bae12e6-a74b-4cc5-8d44-22fe164003d2" Name="宣城市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="c5741277-018d-4f31-9849-eea364608676" Name="福建">
+    <TwoDimension ID="4df2b5ee-8b48-4263-a58a-2ce8e7d609fc" Name="福州市">
+    </TwoDimension>
+    <TwoDimension ID="b95350d2-d3d0-4a4d-8bff-73a87acf0b05" Name="厦门市">
+    </TwoDimension>
+    <TwoDimension ID="f17896c9-39a8-4438-be68-451e39a15d53" Name="莆田市">
+    </TwoDimension>
+    <TwoDimension ID="555f2ca1-eeb2-4dd2-8941-a406b4bd9316" Name="三明市">
+    </TwoDimension>
+    <TwoDimension ID="743db93c-1061-4bb2-8cbd-c49e895af4d1" Name="泉州市">
+    </TwoDimension>
+    <TwoDimension ID="bea2cfb2-0c86-4e41-8c24-f8eff52fe49d" Name="漳州市">
+    </TwoDimension>
+    <TwoDimension ID="fc1479bf-058a-4003-93fb-daa58bc10571" Name="南平市">
+    </TwoDimension>
+    <TwoDimension ID="2f009b4f-9f29-493b-aab8-aaa5d035ad5a" Name="龙岩市">
+    </TwoDimension>
+    <TwoDimension ID="80f028bd-74af-45a9-8351-8e193c6c2bff" Name="宁德市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="83163d15-f2de-489c-a299-106c054e24f4" Name="江西">
+    <TwoDimension ID="0af1266c-316e-4fb9-b819-8aab1db61406" Name="南昌市">
+    </TwoDimension>
+    <TwoDimension ID="d64e8fd0-8a77-488f-b80d-d061e0f69202" Name="景德镇市">
+    </TwoDimension>
+    <TwoDimension ID="30d6d37a-b46d-4f23-99d4-39f5576af418" Name="萍乡市">
+    </TwoDimension>
+    <TwoDimension ID="e6998717-ff90-4d57-adb2-8ed2cb529a4c" Name="九江市">
+    </TwoDimension>
+    <TwoDimension ID="aba6bae6-3af8-485e-8bd1-0fe2d0d0b22f" Name="新余市">
+    </TwoDimension>
+    <TwoDimension ID="7a68cfa3-6e94-4a1f-b01b-2d19366081be" Name="鹰潭市">
+    </TwoDimension>
+    <TwoDimension ID="282bc76c-3b91-4170-987f-a625052d12b9" Name="赣州市">
+    </TwoDimension>
+    <TwoDimension ID="35f5892b-a2c5-435b-8f7c-a54cb164e685" Name="吉安市">
+    </TwoDimension>
+    <TwoDimension ID="fa5f9833-809a-48b9-9976-e65e6c027eb2" Name="宜春市">
+    </TwoDimension>
+    <TwoDimension ID="c7edb151-1906-476f-bb79-ab407da19e3e" Name="抚州市">
+    </TwoDimension>
+    <TwoDimension ID="b0e00876-31ea-4b99-a254-49d905d657b6" Name="上饶市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="bc09f33c-d60e-468c-99d4-a5c73dfd39d5" Name="山东">
+    <TwoDimension ID="383b6515-0ed9-4b46-9823-7379cb980920" Name="济南市">
+    </TwoDimension>
+    <TwoDimension ID="b575350f-bd31-4fd7-a8a9-af072c626f81" Name="青岛市">
+    </TwoDimension>
+    <TwoDimension ID="05fe548c-b573-4df3-ab85-8042090b2c5c" Name="淄博市">
+    </TwoDimension>
+    <TwoDimension ID="f5b152fb-a092-400f-a40d-a01457e7be19" Name="枣庄市">
+    </TwoDimension>
+    <TwoDimension ID="188c11d7-fb21-417a-99fc-1954d6be4ab9" Name="东营市">
+    </TwoDimension>
+    <TwoDimension ID="3dfcc386-8a0b-4e54-9acd-ea71f1d2ae01" Name="烟台市">
+    </TwoDimension>
+    <TwoDimension ID="6701b35a-7d96-496f-9e02-1eef73bfd6ec" Name="潍坊市">
+    </TwoDimension>
+    <TwoDimension ID="f12664b9-afa5-4d1d-b23e-946d1762b059" Name="济宁市">
+    </TwoDimension>
+    <TwoDimension ID="60774396-0369-4833-9e28-48ec88e66466" Name="泰安市">
+    </TwoDimension>
+    <TwoDimension ID="29a19294-a832-4d67-9b67-71b50bbead68" Name="威海市">
+    </TwoDimension>
+    <TwoDimension ID="34ae6789-e3cc-4bbb-9512-513f4ec299dd" Name="日照市">
+    </TwoDimension>
+    <TwoDimension ID="2234115a-97c4-4509-977a-f1d4ecfa9140" Name="莱芜市">
+    </TwoDimension>
+    <TwoDimension ID="4779778b-1f8c-44d2-a6a6-a9ee7df1c20e" Name="临沂市">
+    </TwoDimension>
+    <TwoDimension ID="c838ac9e-5429-4acf-b197-b90a1bf9990a" Name="德州市">
+    </TwoDimension>
+    <TwoDimension ID="d8c44c51-c797-457e-a6fb-5d948ab5dca8" Name="聊城市">
+    </TwoDimension>
+    <TwoDimension ID="ad6dcad3-ba0c-42f2-a03a-276e2ffb1a13" Name="滨州市">
+    </TwoDimension>
+    <TwoDimension ID="dbf9c2ab-4332-4c07-ba4b-5f2c88ae5441" Name="菏泽市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="99e3ef2b-a66c-412d-9dfb-a2753f1240b8" Name="河南">
+    <TwoDimension ID="cbb60695-03e5-4d6b-89ec-9e1241191a3c" Name="郑州市">
+    </TwoDimension>
+    <TwoDimension ID="90f97f06-d490-4d87-9f48-139e1a63a4e0" Name="开封市">
+    </TwoDimension>
+    <TwoDimension ID="7557f716-93a9-4af9-ac09-8cfcb722dbe5" Name="洛阳市">
+    </TwoDimension>
+    <TwoDimension ID="d64fa805-c315-4817-895c-0f333f777c97" Name="平顶山市">
+    </TwoDimension>
+    <TwoDimension ID="a2cc9a0d-157b-4745-b4e3-c7236dad6fdf" Name="安阳市">
+    </TwoDimension>
+    <TwoDimension ID="faa3bc7a-3f79-4583-8f8d-e0039ef1e05d" Name="鹤壁市">
+    </TwoDimension>
+    <TwoDimension ID="42913d72-3a4b-4881-b9b3-d8d37dcbfed9" Name="新乡市">
+    </TwoDimension>
+    <TwoDimension ID="96891062-1f61-44ba-ad8b-ae01759bf32a" Name="焦作市">
+    </TwoDimension>
+    <TwoDimension ID="d35083d5-ae0b-478b-95f5-0f96b92ffb0c" Name="濮阳市">
+    </TwoDimension>
+    <TwoDimension ID="52cb795b-e06f-4544-be9e-e88e8af27b17" Name="许昌市">
+    </TwoDimension>
+    <TwoDimension ID="0f6bd88a-1348-4ab9-9cc2-8d6c03766578" Name="漯河市">
+    </TwoDimension>
+    <TwoDimension ID="a020c8a0-59e3-4d86-89e1-175d4cca3a9c" Name="三门峡市">
+    </TwoDimension>
+    <TwoDimension ID="124adc4d-33ca-4ef5-ad10-a056a834f0a5" Name="南阳市">
+    </TwoDimension>
+    <TwoDimension ID="63e5ea72-ce3a-4aec-a95b-849115c7e9c4" Name="商丘市">
+    </TwoDimension>
+    <TwoDimension ID="7bf961fe-c986-43c5-b7ff-7ffcfe1b0d08" Name="信阳市">
+    </TwoDimension>
+    <TwoDimension ID="5f306e5a-9653-4fcd-8d7e-d920452309b1" Name="周口市">
+    </TwoDimension>
+    <TwoDimension ID="5a182082-75de-4013-a508-6a1677e8f464" Name="驻马店市">
+    </TwoDimension>
+    <TwoDimension ID="5a76bc45-c89f-4f82-9029-97011176d207" Name="济源市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="34e7aeb3-1524-4e2e-9ab2-b0801df96700" Name="湖北">
+    <TwoDimension ID="faa58baf-601e-41ea-a170-5c463542609a" Name="武汉市">
+    </TwoDimension>
+    <TwoDimension ID="fe88dc0a-74c2-4c04-a22e-b3de9a42416c" Name="黄石市">
+    </TwoDimension>
+    <TwoDimension ID="0cdd7a63-87fd-45e0-b3e7-5cb9b5c4c0b0" Name="十堰市">
+    </TwoDimension>
+    <TwoDimension ID="4d01f273-a266-44e4-8ee8-ec0abc9d54ea" Name="宜昌市">
+    </TwoDimension>
+    <TwoDimension ID="08029739-0ef8-4f1a-b72e-27ccc76fac3d" Name="襄樊市">
+    </TwoDimension>
+    <TwoDimension ID="eb8847a9-fb2b-4576-8c22-43b1f3ea89ff" Name="鄂州市">
+    </TwoDimension>
+    <TwoDimension ID="fa768b3d-080b-4b9c-b807-05756b4a1df2" Name="荆门市">
+    </TwoDimension>
+    <TwoDimension ID="bc98fc95-f48a-44e2-b4ae-d11fcda14cc8" Name="孝感市">
+    </TwoDimension>
+    <TwoDimension ID="66b7dcbf-ddc9-49e7-9799-3c8bd2356ae7" Name="荆州市">
+    </TwoDimension>
+    <TwoDimension ID="2485347a-214a-4d41-aa15-b86c1a26948e" Name="黄冈市">
+    </TwoDimension>
+    <TwoDimension ID="bbc4afbe-8456-4746-9d11-836b69304ca6" Name="咸宁市">
+    </TwoDimension>
+    <TwoDimension ID="0765ae25-0c92-4614-96ef-a72aa357db99" Name="随州市">
+    </TwoDimension>
+    <TwoDimension ID="bc36b395-5f16-4252-a1c6-a7b667508d95" Name="恩施土家族苗族自治州">
+    </TwoDimension>
+    <TwoDimension ID="248beea0-ee5c-428f-9ad3-3ee01678d7f9" Name="省直辖县级行政单位">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="0494d7c6-89a0-4ec1-a51f-6f4b1a780d5d" Name="湖南">
+    <TwoDimension ID="0b673959-d856-4042-8182-6b4fb4f3034b" Name="长沙市">
+    </TwoDimension>
+    <TwoDimension ID="2f9f792a-af01-4a3f-82e9-2db29d0d2f36" Name="株洲市">
+    </TwoDimension>
+    <TwoDimension ID="b4fdf948-b8e5-4547-8cbd-f5dabf714de3" Name="湘潭市">
+    </TwoDimension>
+    <TwoDimension ID="e4027346-b4b9-4c78-9591-291f8fef19f6" Name="衡阳市">
+    </TwoDimension>
+    <TwoDimension ID="f279e921-9ebd-4196-a13a-08d12bc19543" Name="邵阳市">
+    </TwoDimension>
+    <TwoDimension ID="25e13d54-e538-40b7-bc49-c511a07af3e9" Name="岳阳市">
+    </TwoDimension>
+    <TwoDimension ID="6407fe66-21b6-49eb-b28d-17ba1bc8c609" Name="常德市">
+    </TwoDimension>
+    <TwoDimension ID="ffb69c21-859d-450e-b776-bd56ac3f1f00" Name="张家界市">
+    </TwoDimension>
+    <TwoDimension ID="8586c68a-bdd3-4b75-8b44-c02d201ec444" Name="益阳市">
+    </TwoDimension>
+    <TwoDimension ID="cf150ad9-5c67-46de-a8e9-50c6de64748f" Name="郴州市">
+    </TwoDimension>
+    <TwoDimension ID="41da450d-4e59-4a21-a01a-fed7eea8f92f" Name="永州市">
+    </TwoDimension>
+    <TwoDimension ID="3284fc39-61b3-45b0-9609-f6413babbe85" Name="怀化市">
+    </TwoDimension>
+    <TwoDimension ID="4e82ecaf-4310-4294-bc26-25b5be31ddf6" Name="娄底市">
+    </TwoDimension>
+    <TwoDimension ID="8c156048-e679-4dd6-a2ce-8dcc5fa28644" Name="湘西土家族苗族自治州">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="1bb833fe-9ab6-428b-86fc-abc911c8e4d1" Name="广东">
+    <TwoDimension ID="5a6d6660-ba71-46a1-9b48-904775c06ff5" Name="广州市">
+    </TwoDimension>
+    <TwoDimension ID="80857963-3383-48c9-9b6f-f9159cba033a" Name="韶关市">
+    </TwoDimension>
+    <TwoDimension ID="a9cf871b-3cf9-4bbe-bf5a-a01e31887efe" Name="深圳市">
+    </TwoDimension>
+    <TwoDimension ID="7c660d87-24ec-45c7-931b-ca362e301970" Name="珠海市">
+    </TwoDimension>
+    <TwoDimension ID="6f05ea54-42c2-44fc-a232-243feaa1cd9b" Name="汕头市">
+    </TwoDimension>
+    <TwoDimension ID="157eab66-a0b5-483c-8161-937c14c326b6" Name="佛山市">
+    </TwoDimension>
+    <TwoDimension ID="72a91585-77a2-4b14-9729-771e432a5c34" Name="江门市">
+    </TwoDimension>
+    <TwoDimension ID="e89f20fe-b81a-46af-98fe-e6b5ea5c66eb" Name="湛江市">
+    </TwoDimension>
+    <TwoDimension ID="9de50565-3918-41be-a27c-3132a791a943" Name="茂名市">
+    </TwoDimension>
+    <TwoDimension ID="52de8d09-37a1-40c0-bc7e-954204c8503f" Name="肇庆市">
+    </TwoDimension>
+    <TwoDimension ID="73edc5ce-ede1-43f8-9798-7caadaa18afb" Name="惠州市">
+    </TwoDimension>
+    <TwoDimension ID="e66ec7fd-7e1d-432f-97f1-233ecac1a4d1" Name="梅州市">
+    </TwoDimension>
+    <TwoDimension ID="3ca214d8-428f-4055-8d6c-1fd914da0bdc" Name="汕尾市">
+    </TwoDimension>
+    <TwoDimension ID="ec2b786f-f774-4158-9a6d-74808ce6ceb0" Name="河源市">
+    </TwoDimension>
+    <TwoDimension ID="f1442685-85f4-411a-9386-00aea71b3f6c" Name="阳江市">
+    </TwoDimension>
+    <TwoDimension ID="918486c1-ddec-4233-9c43-ef36d18a032f" Name="清远市">
+    </TwoDimension>
+    <TwoDimension ID="79afcfbd-ea92-4c9f-8e79-33991db6cf20" Name="东莞市">
+    </TwoDimension>
+    <TwoDimension ID="cb925f16-e410-4e1b-a4dd-20141127af15" Name="中山市">
+    </TwoDimension>
+    <TwoDimension ID="302eae86-f044-4f21-8766-c4b983e836cb" Name="潮州市">
+    </TwoDimension>
+    <TwoDimension ID="a4d585e4-912c-4ed8-9093-1f89f4ce57cb" Name="揭阳市">
+    </TwoDimension>
+    <TwoDimension ID="9e2acc23-0a4c-4ab2-bae0-d86c71cb2c39" Name="云浮市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="1cf31287-fadc-4cc6-9cf5-24fe4cd16d1d" Name="广西">
+    <TwoDimension ID="5b1dc6ee-27fa-4a58-bea7-6295aacf133f" Name="南宁市">
+    </TwoDimension>
+    <TwoDimension ID="b449e473-822c-477e-86a8-1c5a85169c49" Name="柳州市">
+    </TwoDimension>
+    <TwoDimension ID="4f6546b1-4ee5-40b9-9a8c-5a9ffac2aa5e" Name="桂林市">
+    </TwoDimension>
+    <TwoDimension ID="78cab291-238e-4fcf-ac8e-efa0e8c4b9c4" Name="梧州市">
+    </TwoDimension>
+    <TwoDimension ID="b6c3a27a-84b5-42e9-9f83-201f89adc54a" Name="北海市">
+    </TwoDimension>
+    <TwoDimension ID="04efb0b5-0a79-4fde-b77f-1391ab1033d7" Name="防城港市">
+    </TwoDimension>
+    <TwoDimension ID="7eda9fae-0bfc-4815-998b-9230cbdd68f9" Name="钦州市">
+    </TwoDimension>
+    <TwoDimension ID="ae05f4dc-e4b3-41bc-8502-6e2c546254c3" Name="贵港市">
+    </TwoDimension>
+    <TwoDimension ID="1bb9c354-ee02-48e9-843e-33bcb016bb34" Name="玉林市">
+    </TwoDimension>
+    <TwoDimension ID="6a4b2f92-32de-4881-9dbb-519efbe97e49" Name="百色市">
+    </TwoDimension>
+    <TwoDimension ID="519924b4-b956-45b6-931c-8c7715bbb95e" Name="贺州市">
+    </TwoDimension>
+    <TwoDimension ID="acaa91bf-1a86-42eb-8dda-2503655ccf49" Name="河池市">
+    </TwoDimension>
+    <TwoDimension ID="c750236b-072d-442d-a8d2-b1b0b08b1157" Name="来宾市">
+    </TwoDimension>
+    <TwoDimension ID="3c30512c-b8b7-4e5b-b460-ac1ee1e7d7f3" Name="崇左市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="7e1be0ee-4b21-48b3-a1a7-f8b6406fe541" Name="海南">
+    <TwoDimension ID="05b0c4ed-7441-40ce-bf28-7e3a5bf0d917" Name="海口市">
+    </TwoDimension>
+    <TwoDimension ID="08b14ba9-a20c-42a2-977d-d113658a89aa" Name="三亚市">
+    </TwoDimension>
+    <TwoDimension ID="61bf99dc-0540-4b52-a014-5a63fe1b694d" Name="省直辖县级行政单位">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="64f4bfcb-7998-45d6-a5de-840ccd961fff" Name="重庆">
+    <TwoDimension ID="48eadce9-19f4-4a55-8920-00c952200cfb" Name="重庆市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="c8ce94a2-bc4e-4623-8800-29a8511b17af" Name="四川">
+    <TwoDimension ID="bd76c1c9-cf6d-4447-893d-64025dc89012" Name="成都市">
+    </TwoDimension>
+    <TwoDimension ID="cbaaa66a-0d31-42ac-8e54-2895e45e9df3" Name="自贡市">
+    </TwoDimension>
+    <TwoDimension ID="b6cacbf8-93b0-40d8-914f-f8e1d384a725" Name="攀枝花市">
+    </TwoDimension>
+    <TwoDimension ID="32b676bc-bc9f-45d8-b0e7-064235b2d01e" Name="泸州市">
+    </TwoDimension>
+    <TwoDimension ID="dbec3f37-73e8-4968-b7f6-c86a9ac024ab" Name="德阳市">
+    </TwoDimension>
+    <TwoDimension ID="2de6c9b1-c0b1-4f4c-a2b2-117172a388f7" Name="绵阳市">
+    </TwoDimension>
+    <TwoDimension ID="3df40161-5f43-499c-97b3-f78985499bba" Name="广元市">
+    </TwoDimension>
+    <TwoDimension ID="07a9c4c1-9268-479e-a1d3-5118dff1bada" Name="遂宁市">
+    </TwoDimension>
+    <TwoDimension ID="6d86e21f-a0c2-44aa-b80c-550842317844" Name="内江市">
+    </TwoDimension>
+    <TwoDimension ID="3a18d2de-281a-4798-aaf6-56e29b234dc4" Name="乐山市">
+    </TwoDimension>
+    <TwoDimension ID="cedaa2c8-f477-4f1f-96c8-0c26669b20eb" Name="南充市">
+    </TwoDimension>
+    <TwoDimension ID="efa9c649-0836-4771-84d7-9627d5f0887d" Name="眉山市">
+    </TwoDimension>
+    <TwoDimension ID="7eaceb54-0eaa-4097-b22d-61fbdecfbe29" Name="宜宾市">
+    </TwoDimension>
+    <TwoDimension ID="b3cf3b01-030d-475f-a525-4f6fb6614065" Name="广安市">
+    </TwoDimension>
+    <TwoDimension ID="ea4e8ec9-787b-4a79-b734-31fd14bfb4f2" Name="达州市">
+    </TwoDimension>
+    <TwoDimension ID="b54cb852-933c-42b2-87a8-4fe490a670db" Name="雅安市">
+    </TwoDimension>
+    <TwoDimension ID="bac51e60-e042-4d1b-9a48-b560f56b553d" Name="巴中市">
+    </TwoDimension>
+    <TwoDimension ID="391a89bc-50be-4137-98d3-80c8a3c8a8cc" Name="资阳市">
+    </TwoDimension>
+    <TwoDimension ID="e2ae0a61-8bab-4230-a71c-89316939f662" Name="阿坝藏族羌族自治州">
+    </TwoDimension>
+    <TwoDimension ID="5fed1fc9-cb11-4d29-99c3-4b8e5da2f23a" Name="甘孜藏族自治州">
+    </TwoDimension>
+    <TwoDimension ID="f9f8b134-50b6-4074-9232-a8d5c2fa1de1" Name="凉山彝族自治州">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="e1212ed8-c1df-4127-8808-a1bfa59c4682" Name="贵州">
+    <TwoDimension ID="f60d2774-848f-45f1-9fd5-d7131314c6b7" Name="贵阳市">
+    </TwoDimension>
+    <TwoDimension ID="cacd4f1a-2644-4ebf-a54f-1c26fb8742d6" Name="六盘水市">
+    </TwoDimension>
+    <TwoDimension ID="c10ae5b5-07b8-4a97-a4e9-73f9b2fbf374" Name="遵义市">
+    </TwoDimension>
+    <TwoDimension ID="cf640385-eff6-4162-8ae1-214852145831" Name="安顺市">
+    </TwoDimension>
+    <TwoDimension ID="21d2b976-34cb-401d-b425-6c77b8038769" Name="铜仁地区">
+    </TwoDimension>
+    <TwoDimension ID="944e3d55-7c89-4747-96e4-13ed3cb633d2" Name="黔西南布依族苗族自治州">
+    </TwoDimension>
+    <TwoDimension ID="10762131-1bc5-4c1d-918c-469def5ad617" Name="毕节地区">
+    </TwoDimension>
+    <TwoDimension ID="c21a6596-d57b-4f87-a891-0de64fb6c382" Name="黔东南苗族侗族自治州">
+    </TwoDimension>
+    <TwoDimension ID="1b77b89a-78cf-43b3-80e4-7eaf5a271b95" Name="黔南布依族苗族自治州">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="6bc59589-f790-4914-95c5-eb34db1affd1" Name="云南">
+    <TwoDimension ID="011263e9-aaad-4ab1-9d96-7f53273fa41a" Name="昆明市">
+    </TwoDimension>
+    <TwoDimension ID="5f6c4ee5-af41-4eec-9527-1061f099939e" Name="曲靖市">
+    </TwoDimension>
+    <TwoDimension ID="d0e26eec-daaa-43f4-8bd6-d439d8baf3cb" Name="玉溪市">
+    </TwoDimension>
+    <TwoDimension ID="35992712-d8e5-4e41-8654-c3309980afdc" Name="保山市">
+    </TwoDimension>
+    <TwoDimension ID="c693490e-0c75-4507-b346-24accccfde72" Name="昭通市">
+    </TwoDimension>
+    <TwoDimension ID="a281c792-af12-450e-9a71-d0e138fa0447" Name="丽江市">
+    </TwoDimension>
+    <TwoDimension ID="49be9119-ddbb-4aa6-aed4-09655b9dfa48" Name="普洱市">
+    </TwoDimension>
+    <TwoDimension ID="521022f0-d6af-47c3-a942-02bc4ed454d2" Name="临沧市">
+    </TwoDimension>
+    <TwoDimension ID="bb84f8b9-9235-4b9e-8a96-69a438a58360" Name="楚雄彝族自治州">
+    </TwoDimension>
+    <TwoDimension ID="f302c2e1-0d39-4dc6-95ad-09b135b07991" Name="红河哈尼族彝族自治州">
+    </TwoDimension>
+    <TwoDimension ID="e50afd0e-6540-42a9-8f90-ca214aaf4d47" Name="文山壮族苗族自治州">
+    </TwoDimension>
+    <TwoDimension ID="4de8baa1-58aa-4c44-b8b8-454fa0919510" Name="西双版纳傣族自治州">
+    </TwoDimension>
+    <TwoDimension ID="edd6c7a6-eec9-4549-861e-56b12af70a01" Name="大理白族自治州">
+    </TwoDimension>
+    <TwoDimension ID="50d6fe5d-087a-476b-9635-019f53e9f582" Name="德宏傣族景颇族自治州">
+    </TwoDimension>
+    <TwoDimension ID="72cad22e-b5d5-4e19-9d62-2876de49a277" Name="怒江傈僳族自治州">
+    </TwoDimension>
+    <TwoDimension ID="75400f35-3b04-454c-bc3b-26b7bdaca4c6" Name="迪庆藏族自治州">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="a4a92edc-a8c8-4ba2-869b-9ce9df7df3df" Name="西藏">
+    <TwoDimension ID="5b5e5ab0-cd1b-4f2d-862c-58be49a18ae8" Name="拉萨市">
+    </TwoDimension>
+    <TwoDimension ID="f27dcd28-be1b-4834-ad22-dd89a08c9df1" Name="昌都地区">
+    </TwoDimension>
+    <TwoDimension ID="1137e56d-75cf-4764-8103-a416915ea686" Name="山南地区">
+    </TwoDimension>
+    <TwoDimension ID="5bd5d3ee-65f7-42c4-a784-442153a60bdc" Name="日喀则地区">
+    </TwoDimension>
+    <TwoDimension ID="8c95e479-c953-49f6-9a6b-0ab7bf97a60e" Name="那曲地区">
+    </TwoDimension>
+    <TwoDimension ID="14188a49-aba9-40ed-833d-385928edcfdb" Name="阿里地区">
+    </TwoDimension>
+    <TwoDimension ID="22b583f1-c346-4d65-bc52-ff81800df9cb" Name="林芝地区">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="7f79717a-bec7-4c7c-ac2b-54bc1061fe72" Name="陕西">
+    <TwoDimension ID="6cdc7782-f7e2-4765-90fa-6f3bf3bcf15a" Name="西安市">
+    </TwoDimension>
+    <TwoDimension ID="a9ab84e3-3a5d-4c41-a72a-38cc789ae682" Name="铜川市">
+    </TwoDimension>
+    <TwoDimension ID="158dc1c3-c13a-406b-8840-559b67b86869" Name="宝鸡市">
+    </TwoDimension>
+    <TwoDimension ID="af5ed1fd-fd85-43eb-8bb5-c95a07767450" Name="咸阳市">
+    </TwoDimension>
+    <TwoDimension ID="d756c36d-1c4e-4af6-83cc-ca1be7eec06e" Name="渭南市">
+    </TwoDimension>
+    <TwoDimension ID="f0a09ce4-c3e4-441f-8a68-5404f6570480" Name="延安市">
+    </TwoDimension>
+    <TwoDimension ID="fd30f4b0-c818-4d78-8557-8031f5ba7a2b" Name="汉中市">
+    </TwoDimension>
+    <TwoDimension ID="59e14d31-9c6f-4609-a857-0689111b3d63" Name="榆林市">
+    </TwoDimension>
+    <TwoDimension ID="2afaee35-ed62-4574-bacc-10fb02040a82" Name="安康市">
+    </TwoDimension>
+    <TwoDimension ID="265b3f7d-ecdc-4604-95bb-7e9a7ce9f672" Name="商洛市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="04439f6f-5a37-4f67-8d55-361047f33dee" Name="甘肃">
+    <TwoDimension ID="40c49366-ff64-413e-9795-ffcf2c08027c" Name="兰州市">
+    </TwoDimension>
+    <TwoDimension ID="87edf15b-b8ce-4708-b039-78e3a65c5b73" Name="嘉峪关市">
+    </TwoDimension>
+    <TwoDimension ID="3de6593e-9be7-4271-a847-63a53220950b" Name="金昌市">
+    </TwoDimension>
+    <TwoDimension ID="55bd7f24-ce87-442c-bb8a-4263101d46d6" Name="白银市">
+    </TwoDimension>
+    <TwoDimension ID="4a06fb62-f154-4368-a525-c3d48f1543f7" Name="天水市">
+    </TwoDimension>
+    <TwoDimension ID="636cabaa-f467-484e-ad62-6c797d96108b" Name="武威市">
+    </TwoDimension>
+    <TwoDimension ID="726e38dd-17f2-447b-8880-3ff460dfb16f" Name="张掖市">
+    </TwoDimension>
+    <TwoDimension ID="093ad442-3be3-4932-b22d-3a3c903b5f19" Name="平凉市">
+    </TwoDimension>
+    <TwoDimension ID="7907b5aa-3301-4334-8b1d-bc81773e7d59" Name="酒泉市">
+    </TwoDimension>
+    <TwoDimension ID="30b40781-d8e0-4757-85f3-5829f5c0dd5d" Name="庆阳市">
+    </TwoDimension>
+    <TwoDimension ID="948b529f-cba3-4fba-8edd-2fb7f5fa382c" Name="定西市">
+    </TwoDimension>
+    <TwoDimension ID="174f7a84-2e67-476f-b5d5-7de13805a811" Name="陇南市">
+    </TwoDimension>
+    <TwoDimension ID="0340e748-270f-45d3-909b-8c0b9669d4d7" Name="临夏回族自治州">
+    </TwoDimension>
+    <TwoDimension ID="87b0fe3e-e37e-4a9d-b65d-bd7b18adcd8f" Name="甘南藏族自治州">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="27e90ddc-a0c8-43e1-a02b-e6c487238b2f" Name="青海">
+    <TwoDimension ID="c597ff88-622e-47c1-84dd-865dc14bc2e6" Name="西宁市">
+    </TwoDimension>
+    <TwoDimension ID="d9533ece-6f99-452e-a882-6dc817ae5607" Name="海东地区">
+    </TwoDimension>
+    <TwoDimension ID="2ab32f88-ca38-4f45-b510-a0dda4e3b9b0" Name="海北藏族自治州">
+    </TwoDimension>
+    <TwoDimension ID="3205ff77-ab4a-47dc-b049-ffdfc516f1a0" Name="黄南藏族自治州">
+    </TwoDimension>
+    <TwoDimension ID="20b4e0da-25b4-4c0b-a84c-21876cfa3fdb" Name="海南藏族自治州">
+    </TwoDimension>
+    <TwoDimension ID="9f8687b3-64aa-4dd0-9a29-f26cc654a217" Name="果洛藏族自治州">
+    </TwoDimension>
+    <TwoDimension ID="4e46685e-61d2-4326-827a-fc4554ee9489" Name="玉树藏族自治州">
+    </TwoDimension>
+    <TwoDimension ID="6189586e-0c8d-4ccd-8ece-cd51d5ae6a77" Name="海西蒙古族藏族自治州">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="a312e7da-1399-4897-8f43-80ae2b0f366b" Name="宁夏">
+    <TwoDimension ID="16610aa1-71c3-43ba-a9d3-866baa371d2a" Name="银川市">
+    </TwoDimension>
+    <TwoDimension ID="e8ba2d78-da8d-4505-bc10-9838684dbcdb" Name="石嘴山市">
+    </TwoDimension>
+    <TwoDimension ID="39b2b4ce-11b5-4406-9688-3c309aecea75" Name="吴忠市">
+    </TwoDimension>
+    <TwoDimension ID="ce748ade-80ec-4dfe-bd5e-5249bdf2d373" Name="固原市">
+    </TwoDimension>
+    <TwoDimension ID="5cd2416b-9206-4dfe-af6b-3ce36e6b9120" Name="中卫市">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="0969c049-f086-49d8-a25d-de6de3e0c4f5" Name="新疆">
+    <TwoDimension ID="c08ef81b-6d65-425f-8ca7-0135a0f7fdd6" Name="乌鲁木齐市">
+    </TwoDimension>
+    <TwoDimension ID="69214033-e330-422d-a5c1-eb748aaabc7c" Name="克拉玛依市">
+    </TwoDimension>
+    <TwoDimension ID="84c3cb36-1e4a-4650-b038-5e7df8014050" Name="吐鲁番地区">
+    </TwoDimension>
+    <TwoDimension ID="5be0832d-d51c-494d-9d63-64ed760b9112" Name="哈密地区">
+    </TwoDimension>
+    <TwoDimension ID="4e79e049-827f-4bf0-9dc9-8f47a3da6b8b" Name="昌吉回族自治州">
+    </TwoDimension>
+    <TwoDimension ID="56aa5af5-f306-430f-ba9d-a282df347fad" Name="博尔塔拉蒙古自治州">
+    </TwoDimension>
+    <TwoDimension ID="29af9401-da5b-4854-94dd-3b32adca380b" Name="巴音郭楞蒙古自治州">
+    </TwoDimension>
+    <TwoDimension ID="15635fb0-7a68-4a41-8987-15728c03282c" Name="阿克苏地区">
+    </TwoDimension>
+    <TwoDimension ID="d3e50f12-3068-4b96-8ed1-faf3929eab26" Name="克孜勒苏柯尔克孜自治州">
+    </TwoDimension>
+    <TwoDimension ID="089984f5-5a27-4408-98dd-7ab148f02d4f" Name="喀什地区">
+    </TwoDimension>
+    <TwoDimension ID="4ce0c2b3-d8bc-4972-8aca-e7f3fb9720f2" Name="和田地区">
+    </TwoDimension>
+    <TwoDimension ID="c681678e-3a4a-4fc9-8e9c-139482a6222a" Name="伊犁哈萨克自治州">
+    </TwoDimension>
+    <TwoDimension ID="f0d0c235-d0a8-4310-b02e-9c837a7aabcb" Name="塔城地区">
+    </TwoDimension>
+    <TwoDimension ID="b5b8717d-5d8a-4506-b696-4198f1fdd0fa" Name="阿勒泰地区">
+    </TwoDimension>
+    <TwoDimension ID="0aa494a8-823c-4189-acf1-18a753130398" Name="省直辖县级行政单位">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="0317f6d3-8d48-4ddb-a1b8-410a2cda658e" Name="香港">
+    <TwoDimension ID="07454adf-2ec8-496f-8d4c-2a659b7dbeeb" Name="香港">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="24859ce7-7f51-40be-a9b3-b3dfbf4634c7" Name="澳门">
+    <TwoDimension ID="f620436d-3714-407a-b3cd-b14c593ee2ac" Name="澳门">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="689e22f9-cd53-4dd5-912c-8693a7debb5b" Name="台湾">
+    <TwoDimension ID="fd49b392-f246-497c-9648-ebba88f71272" Name="台湾">
+    </TwoDimension>
+  </OneDimension>
+</root>

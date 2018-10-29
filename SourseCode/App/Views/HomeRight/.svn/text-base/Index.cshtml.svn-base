@@ -1,0 +1,242 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title> 我的工作台 </title>
+    <link id="easyuiTheme" href="@Url.Content("~/Res/easyui/themes/default/easyui.css")" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/easyui")
+    <script src="~/Res/easyui/jquery.portal.js"></script>
+    <script src="~/Res/echarts-m-1.0.0/build/dist/echarts.js"></script>
+    <style type="text/css">
+    </style>
+
+    <script>
+        $(function () {
+            $('#pp').portal({
+                border: false,
+                fit: true
+            });
+
+        });
+
+
+        var Common = {
+            //EasyUI用DataGrid用日期格式化
+            TimeFormatter: function (value, rec, index) {
+                if (value == undefined) {
+                    return "";
+                }
+                return dateConvert(value);
+
+            }
+
+        };
+
+    </script>
+    <style>
+        .denglu {
+            color: blue;
+        }
+
+        .tbl {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            line-height: 22px;
+        }
+
+            .tbl th {
+                text-align: right;
+                font-weight: bold;
+            }
+
+            .tbl tr {
+                text-align: right;
+                font-weight: bolder;
+            }
+    </style>
+</head>
+<body style="overflow-x: hidden" class="easyui-layout">
+    <div region="center" border="false">
+        <div id="pp">
+            <div style="width:40%;">
+                <div id="pgrid" title="我的工作" collapsible="true" closable="true" style="height: 351px; ">
+                    @*@(new HtmlString(ViewBag.MyWorking))*@
+                    <div id="MyWorking" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
+                </div>
+                @if (ViewBag.NoContactQty != null)
+                {
+                    <div title="客户未联系" collapsible="true" closable="true" style="height: 106px; padding-left: 5px; ">
+                        您有<span style="color:red;font-weight:bold">
+                            @ViewBag.NoContactQty
+                        </span>个客户长时间未联系（仅自己的客户30天以上未联系） <br />
+
+                    </div>
+                }
+
+                <div id="pgrid2" title="通知中心" collapsible="true" closable="true" style="height: 206px">
+                    <table id="flexigridData"></table>
+                    @*<table class="easyui-datagrid" style="width:460px;height:auto"
+                           fit="true" border="false"
+                           singleselect="true"
+                           idfield="ID" url='../SysNotice/GetDataByPersonName'>
+                        <thead>
+                            <tr>
+                                <th field="Message" width="356">通知内容</th>
+                                <th field="LostTime" formatter="Common.TimeFormatter" width="100">失效时间</th>
+
+                            </tr>
+                        </thead>
+                    </table>*@
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <script type="text/javascript">
+
+        $(function () {
+            $('#flexigridData').datagrid({
+                title: '通知中心', //列表的标题
+                iconCls: 'icon-site',
+                width: '98%',
+                height: '206px',
+                striped: true,
+                collapsible: true,
+                singleSelect: true,
+                border: false,
+                fit:true,
+                url: '../SysNotice/GetNoticeUnreadData', //获取数据的url
+                idField: 'Id',
+                sortName: 'CreatedTime',
+                sortOrder: 'desc',
+                columns: [[                    
+                     {
+                         field: 'Title', title: '通知内容', width: 330, formatter: function (value, rowData) {
+                             
+                             return '<a href=\'javascript:showWindowTop("通知内容", "/SysNotice/View?Id=' + rowData.Id + '", 650, 480);\'  class="easyui-linkbutton" style="border: none; text-decoration: none;"  >' + value + '</a> ';
+                         }
+                     },
+                      {
+                          field: 'CreateTime', title: '创建时间', width: 185, formatter: function (value, rec) {
+                              if (value) {
+                                  return datetimeConvert(value, "yyyy-MM-dd hh:mm");
+                              }
+                          }
+                      },
+                     //{
+                     //    field: 'LostTime', title: '失效时间', width: 125, formatter: function (value, rec) {
+                     //        if (value) {
+                     //            return datetimeConvert(value, "yyyy-MM-dd hh:mm");
+                     //        }
+                     //    }
+                     //}
+                  
+                ]],
+                //pagination: true,
+                //rownumbers: true,
+                onDblClickRow: function () {
+                    getView();
+                },
+
+            });
+        });
+        // Step:3 conifg ECharts's path, link to echarts.js from current page.
+        // Step:3 为模块加载器配置echarts的路径，从当前页面链接到echarts.js，定义所需图表路径
+        require.config({
+            paths: {
+                echarts: '/Res/echarts-m-1.0.0/dist'
+            }
+        });
+
+        // Step:4 require echarts and use it in the callback.
+        // Step:4 动态加载echarts然后在回调函数中开始使用，注意保持按需加载结构定义图表路径
+        require(
+            [
+                'echarts',
+                'echarts/chart/pie',
+                'echarts/chart/bar',
+                'echarts/chart/funnel',
+                'echarts/chart/line'
+            ],
+            function (ec) {
+
+                //--- 图表 ---
+                $.getJSON("../HomeRight/GetFunnelStatistics", { random: Math.random() }, function (data) {
+
+                    if (data == null) {
+                        console.log(0);
+                        return;
+                    }
+
+                    var legends = new Array();
+                    $.each(data, function (index, item) {
+                        legends.push(item.name);
+                    });
+
+
+                    var myChart = ec.init(document.getElementById('MyWorking'));
+
+                    var option = {
+                        title: {
+                            //text: '客户进程',
+                            //subtext: '纯属虚构',
+                            x: 'center'
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b} : {c} ({d}%)"
+                        },
+                        legend: {
+                            orient: 'vertical',
+                            x: 'left',
+                            data: legends
+                        },
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                mark: { show: true },
+                                dataView: { show: true, readOnly: false },
+                                magicType: {
+                                    show: true,
+                                    type: ['pie', 'funnel'],
+                                    option: {
+                                        funnel: {
+                                            x: '25%',
+                                            width: '50%',
+                                            funnelAlign: 'left',
+                                            max: 1548
+                                        }
+                                    }
+                                },
+                                restore: { show: true },
+                                saveAsImage: { show: true }
+                            }
+                        },
+                        calculable: true,
+                        series: [
+                            {
+                                //name:'访问来源',
+                                type: 'pie',
+                                radius: '55%',
+                                center: ['50%', '60%'],
+                                data: data
+                            }
+                        ]
+                    };
+                    // 为echarts对象加载数据
+                    myChart.setOption(option);
+                });
+            }
+        );
+    </script>
+</body>
+</html>

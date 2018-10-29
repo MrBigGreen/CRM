@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/13820/VISS/solution/WebSrc/CRM/Project/packages/Microsoft.AspNet.Mvc.5.2.3/Content
+END
+Web.config.install.xdt
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/BridgehrKit/!svn/ver/13820/VISS/solution/WebSrc/CRM/Project/packages/Microsoft.AspNet.Mvc.5.2.3/Content/Web.config.install.xdt
+END
+Web.config.uninstall.xdt
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/BridgehrKit/!svn/ver/13820/VISS/solution/WebSrc/CRM/Project/packages/Microsoft.AspNet.Mvc.5.2.3/Content/Web.config.uninstall.xdt
+END

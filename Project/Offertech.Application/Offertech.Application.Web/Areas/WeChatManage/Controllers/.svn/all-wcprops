@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/WeChatManage/Controllers
+END
+OrganizeController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/WeChatManage/Controllers/OrganizeController.cs
+END
+UserController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/WeChatManage/Controllers/UserController.cs
+END
+AppController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/WeChatManage/Controllers/AppController.cs
+END
+TokenController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/WeChatManage/Controllers/TokenController.cs
+END

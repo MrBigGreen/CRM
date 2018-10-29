@@ -1,0 +1,198 @@
+@{;
+    ViewBag.Title = "列表页面";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<script>
+;
+    $(function () {
+        InitialPage();
+        GetGrid();
+    });
+    //初始化页面
+    function InitialPage() {
+        //resize重设布局;
+        $(window).resize(function (e) {
+            window.setTimeout(function () {
+                $('#gridTable').setGridWidth(($('.gridPanel').width()));
+                $('#gridTable').setGridHeight($(window).height() - 136.5);
+            }, 200);
+            e.stopPropagation();
+        });
+    }
+    //加载表格
+    function GetGrid() {
+        var selectedRowIndex = 0;
+        var $gridTable = $('#gridTable');
+        $gridTable.jqGrid({
+            autowidth: true,
+            height: $(window).height() - 136.5,
+            url: "../../CustomerManage/Project/GetPageListJson",
+            datatype: "json",
+            colModel: [
+                { label: '项目主键', name: 'ProjectId', index: 'ProjectId', hidden: true },
+                { label: '项目编号', name: 'ProjectCode', index: 'ProjectCode', width: 80, align: 'left', sortable: true },
+                { label: '项目名称', name: 'ProjectName', index: 'ProjectName', width: 80, align: 'left', sortable: true },
+                { label: '客户编号', name: 'CustomerId', index: 'CustomerId', width: 80, align: 'left', sortable: true },
+                { label: '项目说明', name: 'ProjectDesc', index: 'ProjectDesc', width: 80, align: 'left', sortable: true },
+                { label: '项目要求', name: 'Requirements', index: 'Requirements', width: 80, align: 'left', sortable: true },
+                { label: '项目预算', name: 'ProjectBudget', index: 'ProjectBudget', width: 80, align: 'left', sortable: true },
+                { label: '招聘人数', name: 'ProjectPeopleQty', index: 'ProjectPeopleQty', width: 80, align: 'left', sortable: true },
+                { label: '福利待遇', name: 'ProjectBenefits', index: 'ProjectBenefits', width: 80, align: 'left', sortable: true },
+                { label: '工作地点', name: 'ProjectAddress', index: 'ProjectAddress', width: 80, align: 'left', sortable: true },
+                { label: '评估结果', name: 'EvaluationResult', index: 'EvaluationResult', width: 80, align: 'left', sortable: true },
+                { label: '评估说明', name: 'EvaluationDesc', index: 'EvaluationDesc', width: 80, align: 'left', sortable: true },
+                { label: '评估人', name: 'EvaluationPerson', index: 'EvaluationPerson', width: 80, align: 'left', sortable: true },
+                { label: '评估时间', name: 'EvaluationTime', index: 'EvaluationTime', width: 80, align: 'left', sortable: true },
+                { label: '排序码', name: 'SortCode', index: 'SortCode', width: 80, align: 'left', sortable: true },
+                { label: '删除标记', name: 'DeleteMark', index: 'DeleteMark', width: 80, align: 'left', sortable: true },
+                { label: '有效标志', name: 'EnabledMark', index: 'EnabledMark', width: 80, align: 'left', sortable: true },
+                { label: '备注', name: 'Description', index: 'Description', width: 80, align: 'left', sortable: true },
+                { label: '创建日期', name: 'CreateDate', index: 'CreateDate', width: 80, align: 'left', sortable: true },
+                { label: '创建用户主键', name: 'CreateUserId', index: 'CreateUserId', width: 80, align: 'left', sortable: true },
+                { label: '创建用户', name: 'CreateUserName', index: 'CreateUserName', width: 80, align: 'left', sortable: true },
+                { label: '修改日期', name: 'ModifyDate', index: 'ModifyDate', width: 80, align: 'left', sortable: true },
+                { label: '修改用户主键', name: 'ModifyUserId', index: 'ModifyUserId', width: 80, align: 'left', sortable: true },
+                { label: '修改用户', name: 'ModifyUserName', index: 'ModifyUserName', width: 80, align: 'left', sortable: true },
+            ],
+            viewrecords: true,
+            rowNum: 30,
+            rowList: [30, 50, 100],
+            pager: "#gridPager",
+            sortname: 'ProjectId',
+            sortorder: 'desc',
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            onSelectRow: function () {
+                selectedRowIndex = $('#' + this.id).getGridParam('selrow');
+            },
+            gridComplete: function () {
+                $('#' + this.id).setSelection(selectedRowIndex, false);
+            },
+            subGrid: true,
+            subGridRowExpanded: function (subgrid_id, row_id) {
+                var keyValue = $gridTable.jqGrid('getRowData', row_id)['ProjectId'];
+                var subgrid_table_id = subgrid_id + "_t";
+                $("#" + subgrid_id).html("<table id='" + subgrid_table_id + "'></table>");
+                $("#" + subgrid_table_id).jqGrid({
+                    url: "../../CustomerManage/Project/GetDetailsJson",
+                    postData: { keyValue: keyValue },
+                    datatype: "json",
+                    height: "100%",
+                    colModel: [
+                { label: '项目编号', name: 'ProjectEvalDetailsId', index: 'ProjectEvalDetailsId', width: 80, align: 'left', sortable: true },
+                { label: '项目主键', name: 'ProjectId', index: 'ProjectId', width: 80, align: 'left', sortable: true },
+                { label: '评估结果', name: 'EvaluationResult', index: 'EvaluationResult', width: 80, align: 'left', sortable: true },
+                { label: '评估说明', name: 'EvaluationDesc', index: 'EvaluationDesc', width: 80, align: 'left', sortable: true },
+                { label: '评估人', name: 'EvaluationPerson', index: 'EvaluationPerson', width: 80, align: 'left', sortable: true },
+                { label: '评估时间', name: 'EvaluationTime', index: 'EvaluationTime', width: 80, align: 'left', sortable: true },
+                { label: '排序码', name: 'SortCode', index: 'SortCode', width: 80, align: 'left', sortable: true },
+                { label: '删除标记', name: 'DeleteMark', index: 'DeleteMark', width: 80, align: 'left', sortable: true },
+                { label: '有效标志', name: 'EnabledMark', index: 'EnabledMark', width: 80, align: 'left', sortable: true },
+                { label: '备注', name: 'Description', index: 'Description', width: 80, align: 'left', sortable: true },
+                { label: '创建日期', name: 'CreateDate', index: 'CreateDate', width: 80, align: 'left', sortable: true },
+                { label: '创建用户主键', name: 'CreateUserId', index: 'CreateUserId', width: 80, align: 'left', sortable: true },
+                { label: '创建用户', name: 'CreateUserName', index: 'CreateUserName', width: 80, align: 'left', sortable: true },
+                { label: '修改日期', name: 'ModifyDate', index: 'ModifyDate', width: 80, align: 'left', sortable: true },
+                { label: '修改用户主键', name: 'ModifyUserId', index: 'ModifyUserId', width: 80, align: 'left', sortable: true },
+                { label: '修改用户', name: 'ModifyUserName', index: 'ModifyUserName', width: 80, align: 'left', sortable: true },
+                    ],
+                    caption: "明细",
+                    rowNum: "1000",
+                    rownumbers: true,
+                    shrinkToFit: false,
+                    gridview: true,
+                    hidegrid: false
+                });
+            }
+        });
+    }
+    //新增
+    function btn_add() {
+        dialogOpen({
+            id: 'Form',
+            title: '添加项目表',
+            url: '/CustomerManage/Project/ProjectForm',
+            width: '1000px',
+            height: '750px',
+            callBack: function (iframeId) {
+                top.frames[iframeId].AcceptClick();
+            }
+        });
+    }
+    //编辑
+    function btn_edit() {
+        var keyValue = $('#gridTable').jqGridRowValue('ProjectId');
+        if (checkedRow(keyValue)) {
+            dialogOpen({
+                id: 'Form',
+                title: '编辑项目表',
+                url: '/CustomerManage/Project/ProjectForm?keyValue=' + keyValue,
+                width: '1000px',
+                height: '750px',
+                callBack: function (iframeId) {
+                    top.frames[iframeId].AcceptClick();
+                }
+            })
+        }
+    }
+    //删除
+    function btn_delete() {
+        var keyValue = $('#gridTable').jqGridRowValue('ProjectId');
+        if (keyValue) {
+            $.RemoveForm({
+                url: '../../CustomerManage/Project/RemoveForm',
+                param: { keyValue: keyValue },
+                success: function (data) {
+                    $('#gridTable').trigger('reloadGrid');
+                }
+            })
+        } else {
+            dialogMsg('请选择需要删除的项目表！', 0);
+        }
+    }
+    //详细
+    function btn_details() {
+        var keyValue = $('#gridTable').jqGridRowValue('ProjectId');
+        if (checkedRow(keyValue)) {
+            dialogOpen({
+                id: 'Form',
+                title: '详细项目表',
+                url: '/CustomerManage/Project/ProjectForm?keyValue=' + keyValue + '&isDeltail=true',
+                width: '1000px',
+                height: '750px',
+                btn: null,
+                callBack: function (iframeId) {
+                    top.frames[iframeId].AcceptClick();
+                }
+            })
+        }
+    }
+</script>
+<div class="titlePanel">
+    <div class="title-search">
+        <table>
+            <tr>
+                <td>
+                    <input id="txt_Keyword" type="text" class="form-control" placeholder="请输入要查询关键字" style="width: 200px;" />
+                </td>
+                <td style="padding-left: 5px;">
+                    <a id="btn_Search" class="btn btn-primary"><i class="fa fa-search"></i>查询</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="toolbar">
+        <div class="btn-group">
+            <a id="lr-replace" class="btn btn-default" onclick="reload()"><i class="fa fa-refresh"></i>刷新</a>
+            <a id="lr-add" class="btn btn-default" onclick="btn_add()"><i class="fa fa-plus"></i>新增</a>
+            <a id="lr-edit" class="btn btn-default" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>编辑</a>
+            <a id="lr-delete" class="btn btn-default" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+            <a id="lr-delete" class="btn btn-default" onclick="btn_details()"><i class="fa fa-list-alt"></i>详细</a>
+        </div>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridTable"></table>
+    <div id="gridPager"></div>
+</div>

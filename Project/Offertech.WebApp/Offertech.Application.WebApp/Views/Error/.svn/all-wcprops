@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/BridgehrKit/!svn/ver/14305/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Error
+END
+ErrorBrowser.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/BridgehrKit/!svn/ver/14305/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Error/ErrorBrowser.cshtml
+END
+ErrorMessage.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/BridgehrKit/!svn/ver/14305/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Error/ErrorMessage.cshtml
+END
+ErrorPath404.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/BridgehrKit/!svn/ver/14305/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Error/ErrorPath404.cshtml
+END

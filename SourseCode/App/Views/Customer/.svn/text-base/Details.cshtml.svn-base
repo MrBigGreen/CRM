@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head id="MyHead">
+    <link id="easyuiTheme" href="@Url.Content("~/Res/easyui/themes/default/easyui.css")" rel="stylesheet" type="text/css" />
+    <title></title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/easyui")
+    <style type="text/css">
+        .combo {
+            font-family: 微软雅黑,新宋体;
+            height: 24px;
+            width: 210px;
+            border: 1px solid #CCC;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="mbx">
+        <a href="/Customer/Index" class="easyui-linkbutton1" data-options="iconCls:'icon-back'">客户管理</a>>客户详细信息
+        &nbsp;&nbsp;
+        <div style="float:right">
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-undo'" href="/Customer/Index">返回</a>
+        </div>
+
+    </div>
+    <div class="easyui-tabs" style="width:100%;height:650px">
+        <div title="客户信息卡" style="padding:1px">
+            @{Html.RenderAction("Edit", "Customer", new { ID = @ViewBag.ID });}
+            <div id="contactDiv"></div>
+        </div>
+        @if (ViewBag.FollowType == 2)
+        {
+            <div title="跟进记录" style="padding:1px;">
+                @*<iframe id="CustomerFollow" frameborder="0" scrolling="no" style="width: 99%; height: 98%;"></iframe>*@
+                @{Html.RenderAction("FollowBackHistoryPartial", "CustomerFollow", new { CustomerID = @ViewBag.ID, FollowType = 2, page = 1 });}
+            </div>
+            <div title="Sales跟进记录" style="padding:1px;">
+                @*<iframe id="CustomerFollow" frameborder="0" scrolling="no" style="width: 99%; height: 98%;"></iframe>*@
+                @{Html.RenderAction("FollowBackHistoryPartial", "CustomerFollow", new { CustomerID = @ViewBag.ID, FollowType = 1, page = 1 });}
+            </div>
+        }
+        else
+        {
+            <div title="跟进记录" style="padding:1px;">
+                @*<iframe id="CustomerFollow" frameborder="0" scrolling="no" style="width: 99%; height: 98%;"></iframe>*@
+                @{Html.RenderAction("FollowBackHistoryPartial", "CustomerFollow", new { CustomerID = @ViewBag.ID, FollowType = 1, page = 1 });}
+            </div>
+
+        }
+
+        @*<div title="服务购买记录卡" style="padding:1px">
+
+            </div>*@
+        <div title="客户归属变更记录表" style="padding:1px">
+            <iframe id="CustomerAttributionChange" frameborder="0" scrolling="no" style="width: 99%; height: 98%;"></iframe>
+        </div>
+        @*<div title="客户操作日志" style="padding:1px">
+
+            </div>*@
+        <div title="客户分享清单" style="padding:1px">
+            <iframe id="CustomerShare" frameborder="0" scrolling="no" style="width: 99%; height: 98%;"></iframe>
+        </div>
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+
+        //$("#CustomerFollow").attr("src", "/CustomerFollow/Index?ID=@ViewBag.ID");
+        $("#CustomerAttributionChange").attr("src", "/CustomerAttributionChange/Index?ID=@ViewBag.ID");
+        $("#CustomerShare").attr("src", "/CustomerShare/Index?ID=@ViewBag.ID");
+
+        $.get("/CustomerContact/index?ID=@ViewBag.ID", function (data) {
+            $("#contactDiv").html(data);
+        });
+    })
+
+
+</script>

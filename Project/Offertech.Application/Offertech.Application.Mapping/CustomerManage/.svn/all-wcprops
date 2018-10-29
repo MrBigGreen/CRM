@@ -1,0 +1,125 @@
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/BridgehrKit/!svn/ver/14612/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage
+END
+CustomerContactMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/CustomerContactMap.cs
+END
+ContractMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/ContractMap.cs
+END
+ChanceMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/ChanceMap.cs
+END
+SubscribeMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/BridgehrKit/!svn/ver/14612/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/SubscribeMap.cs
+END
+Client_ProjectEvalDetailsMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/Client_ProjectEvalDetailsMap.cs
+END
+OwnershipChangeMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/OwnershipChangeMap.cs
+END
+CustomerFollowMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/BridgehrKit/!svn/ver/13498/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/CustomerFollowMap.cs
+END
+CashBalanceMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/CashBalanceMap.cs
+END
+ExpensesMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/ExpensesMap.cs
+END
+InvoiceMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/InvoiceMap.cs
+END
+OrderEntryMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/OrderEntryMap.cs
+END
+ContractServiceMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/ContractServiceMap.cs
+END
+CustomerMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/CustomerMap.cs
+END
+CooperativeServiceMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/CooperativeServiceMap.cs
+END
+ReceivableMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/ReceivableMap.cs
+END
+ShareMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/ShareMap.cs
+END
+ProjectMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/ProjectMap.cs
+END
+CustomerRatingMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/CustomerRatingMap.cs
+END
+TrailRecordMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/TrailRecordMap.cs
+END
+OrderMap.cs
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Mapping/CustomerManage/OrderMap.cs
+END

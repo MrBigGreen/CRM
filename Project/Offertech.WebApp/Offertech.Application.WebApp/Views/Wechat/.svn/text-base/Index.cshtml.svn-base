@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="~/Content/Scripts/mui.min.js"></script>
+    <link href="~/Content/css/mui.min.css" rel="stylesheet" />
+    <script type="text/javascript" charset="utf-8">
+        mui.init();
+        var isOverdue = '@Offertech.Application.Code.OperatorProvider.Provider.IsOverdue()';     
+        
+        if (isOverdue == "True") {
+            window.location.href = '/Wechat/Login';
+        }
+        else {            
+            window.location.href = '/Wechat/Home';
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

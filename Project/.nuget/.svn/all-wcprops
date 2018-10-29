@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/.nuget
+END
+NuGet.exe
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/.nuget/NuGet.exe
+END
+NuGet.Config
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/.nuget/NuGet.Config
+END
+NuGet.targets
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/.nuget/NuGet.targets
+END

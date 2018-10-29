@@ -1,0 +1,76 @@
+﻿@{ Layout = "~/Views/Shared/Index.cshtml"; }
+
+<div>
+    <table id="ttSearch" class="record">
+        @*<tr>
+            <td>员工姓名</td>
+            <td>公司名称</td>
+            <td>性别</td>
+            <td>身份证号码</td>
+            <td>银行卡号</td>
+            <td>错误描述</td>
+        </tr>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.EmpName</td>
+                    <td>@item.CompanyName</td>
+                    <td>@item.GenderName</td>
+                    <td>@item.IDCard</td>
+                    <td>@item.BankID</td>
+                    <td>@item.ErrorInfo</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" style="text-align: center">@ViewBag.Info</td>
+
+            </tr>
+        }*@
+        <tr>
+
+            @if (int.Parse(ViewBag.ErrorCount.ToString()) == -1)
+            {
+                <th>失败原因</th>
+                <td colspan="3">导入数据不存在!</td>
+            }
+            else
+            {
+                <th>失败数量</th>
+                <td colspan="3">@ViewBag.ErrorCount</td>
+            }
+        </tr>
+        <tr>
+            <td colspan="4" style="text-align: center">
+                @if (Model != null)
+                {
+                    <a class="easyui-linkbutton" iconcls="icon-ok" onclick="ExportInfo()">导出</a> 
+
+                    <a class="easyui-linkbutton" iconcls="icon-cancel" onclick="parent.$('#w_fire').window('close')">关闭</a>
+                }
+                else
+                {
+                    <a class="easyui-linkbutton" iconcls="icon-cancel" onclick="parent.$('#w_fire').window('close')"> 关闭</a>
+                }
+            </td>
+        </tr>
+    </table>
+</div>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.watermark.min.js"></script>
+<script src="~/Scripts/jquery.bpopup-0.7.0.min.js"></script>
+<script src="~/Scripts/type-bpopup_fuc.js" type="text/javascript"></script>
+<script>
+    function ExportInfo() {
+
+
+        window.location.href = '@ViewBag.Url';
+
+    }
+
+</script>

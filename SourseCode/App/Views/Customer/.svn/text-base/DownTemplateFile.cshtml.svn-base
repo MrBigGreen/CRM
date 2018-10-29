@@ -1,0 +1,4 @@
+﻿
+@{ Layout = "~/Views/Shared/Index.cshtml"; }
+
+<div class="loadingDiv" style=" display:none">&nbsp;<img src="../images/loading.gif" alt="Loading" />&nbsp;客户批量导入模板下载中...</div>

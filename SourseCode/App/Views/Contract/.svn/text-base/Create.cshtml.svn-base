@@ -1,0 +1,19 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_Contract
+
+@{
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+
+<div class="easyui-tabs" style="width:100%;height:650px">
+    <div title="欧孚合同" style="padding:1px">
+        @*@{Html.RenderAction("OfferCreateContractInfo", "Contract");}*@
+        <iframe src="/Contract/OfferCreateContractInfo?customerId=@ViewBag.CustomerID" frameborder="0" scrolling="no" style="width: 99%; height: 98%;"></iframe>
+
+    </div>
+    <div title="博尔捷合同" style="padding:1px">
+        @*@{Html.RenderAction("BridgeCreateContractInfo", "Contract");}*@
+        <iframe src="/Contract/BridgeCreateContractInfo?customerId=@ViewBag.CustomerID" frameborder="0" scrolling="no" style="width: 99%; height: 98%;"></iframe>
+    </div>
+</div>

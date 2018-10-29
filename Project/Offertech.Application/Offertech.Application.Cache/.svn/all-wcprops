@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/BridgehrKit/!svn/ver/14278/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Cache
+END
+AreaCache.cs
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/BridgehrKit/!svn/ver/13875/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Cache/AreaCache.cs
+END
+DataItemCache.cs
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/BridgehrKit/!svn/ver/13362/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Cache/DataItemCache.cs
+END
+JobCache.cs
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Cache/JobCache.cs
+END
+UserGroupCache.cs
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Cache/UserGroupCache.cs
+END
+app.config
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/BridgehrKit/!svn/ver/13818/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Cache/app.config
+END
+OrganizeCache.cs
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/BridgehrKit/!svn/ver/13284/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Cache/OrganizeCache.cs
+END
+UserCache.cs
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Cache/UserCache.cs
+END
+Offertech.Application.Cache.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/BridgehrKit/!svn/ver/13816/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Cache/Offertech.Application.Cache.csproj
+END
+CustomerCache.cs
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/BridgehrKit/!svn/ver/13816/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Cache/CustomerCache.cs
+END
+RoleCache.cs
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Cache/RoleCache.cs
+END
+DepartmentCache.cs
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/BridgehrKit/!svn/ver/13284/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Cache/DepartmentCache.cs
+END
+PostCache.cs
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Cache/PostCache.cs
+END
+CompanyCache.cs
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/BridgehrKit/!svn/ver/13624/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Cache/CompanyCache.cs
+END

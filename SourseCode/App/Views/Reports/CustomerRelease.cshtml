@@ -1,0 +1,146 @@
+﻿@{
+    ViewBag.Title = "客户释放";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+<div id="divQuery">
+    <div class="easyui-panel" title="查询栏" iconcls="icon-search" collapsible="true" data-options="collapsed:false" style="height:auto;width:auto">
+        <table id="ttSearch" class="record" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th style="width:120px; text-align:right; padding-right:10px;height:26px">
+                    日期:
+                </th>
+                <td>
+                    <input type="text" id="StartDate" value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'EndDate\');}', dateFmt: 'yyyy-MM-dd' })" />
+                    <span>到</span>
+                    <input type="text" id="EndDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'StartDate\');}', dateFmt: 'yyyy-MM-dd' })" />
+                </td>
+            </tr>
+            <tr>
+                <th style="width:120px; text-align:right; padding-right:10px;height:26px">
+                    搜索类型:
+                </th>
+                <td>
+                    <label style="margin: 0px 10px 0px 0px;"><input name="Type" type="radio" checked="checked" value="1">全部</label>
+                    <label style="margin: 0px 10px 0px 0px;"><input name="Type" type="radio" value="2">已提取</label>
+                    <label style="margin: 0px 10px 0px 0px;"><input name="Type" type="radio" value="3">未提取</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                        查 询
+                    </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+<br style="clear: both;" />
+<table id="flexigridData"></table>
+<script type="text/javascript">
+    $(function () {
+        $('#flexigridData').datagrid({
+            title: '客户释放', //列表的标题
+            iconCls: 'icon-site',
+            width: '99%',
+            height: 'auto',
+            striped: true,
+            collapsible: true,
+            singleSelect: false,
+            idField: 'PersonID',
+            sortName: 'SortColumn',
+            sortOrder: 'desc',
+            toolbar: [{
+                text: '导出',
+                iconCls: 'icon-excel',
+                handler: function () {
+                    return flexiExport();
+                }
+            }],
+            pagination: true,
+            rownumbers: true,
+            columns: [[
+                {
+                    field: 'ReleaseTime', title: '释放时间', width: 148, formatter: function (value, rec) {
+                        if (value) {
+                            return datetimeConvert(value, "yyyy-MM-dd hh:mm:ss");
+                        }
+                    }
+                },
+                {
+                    field: 'CustomerName', title: '客户名称', width: 217, formatter: function (value, rowData) {
+                        return '<a href=\'javascript:window.parent.addTabUpdate("' + rowData.CustomerName + '", "/Customer/SelfDetails?ID=' + rowData.CustomerID + '", "tu1425", true);\'  class="easyui-linkbutton" style="border: none; text-decoration: none;"  >' + value + '</a> ';
+                    }
+                },
+                { field: 'ExtractionPersonName', title: '提取人', width: 127 },
+                {
+                    field: 'BelongingDate', title: '提取时间', width: 148, formatter: function (value, rec) {
+                        if (value) {
+                            return datetimeConvert(value, "yyyy-MM-dd hh:mm:ss");
+                        }
+                    }
+                },
+
+            ]],
+        });
+    });
+
+
+    //将查询条件按照分隔符拼接成字符串
+    var search = "";
+    //“查询”按钮，弹出查询框
+    function flexiQuery() {
+
+        search = "";
+
+        if ($("#StartDate").val() != "") {
+
+            search = search + 'StartDate' + "&" + $('#StartDate').val() + '^';
+        }
+        if ($("#EndDate").val() != "") {
+            search = search + 'EndDate' + "&" + $('#EndDate').val() + '^';
+        }
+
+
+        search = search + 'Type' + "&" + $("input[name='Type']:checked").val() + '^';
+
+        $('#flexigridData').datagrid('options').url = "../Reports/GetCustomerReleaseData";
+        $("#flexigridData").datagrid("clearSelections");
+        //执行查询
+        $('#flexigridData').datagrid('load', { search: search });
+    }
+
+    function flexiExport() {
+
+        $.messager.confirm('操作提示', "确定要导出客户释放数据吗", function (r) {
+            if (r) {
+
+
+                var p = $('#flexigridData').datagrid('options').columns[0];
+                var field = [];//所有的列名
+                var title = [];//所有的标题名称
+                $(p).each(function () {
+
+                    if (!this.hidden) {
+                        field.push(this.field);
+                        title.push(this.title);
+                    }
+
+                });
+
+                $.post("../Reports/ExportCustomerRelease",
+                    {
+                        title: title.join(","),
+                        field: field.join(","),
+                        sortName: $('#flexigridData').datagrid('options').sortName,
+                        sortOrder: $('#flexigridData').datagrid('options').sortOrder,
+                        search: search
+                    }, function (res) {
+                        window.location.href = res;
+
+                    });
+            }
+        });
+    };
+</script>

@@ -1,0 +1,143 @@
+﻿@using Common
+@using Models
+@{
+    ViewBag.Title = "提供客户选择使用的视图 - 客户管理";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<div id="divQuery">
+    <div class="easyui-panel" title="查询栏" iconcls="icon-search" collapsible="true" data-options="collapsed:false" style="height:auto;width:auto">
+        <table id="ttSearch" class="record" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <th style="width:120px; text-align:right; padding-right:10px;height:26px">
+                        客户名称:
+                    </th>
+                    <td>
+                        <input type="hidden" id="SeachType" name="SeachType" value="@ViewBag.SeachType" />
+                        <input type='text' id='CustomerName' name="CustomerName" />
+                        <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="margin-left:30px">
+                            查 询
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<br style="clear: both;" />
+<table id="customerDatagrid" class="easyui-datagrid" title="数据列表" style="width:auto;height:250px"
+       data-options="idField: 'CustomerID',singleSelect:true,collapsible:true,method:'post',pagination:true,rownumbers: true,onDblClickRow:function(){flexiSelect();}">
+    <thead>
+        <tr>
+            <th data-options="field:'ck',width:80,checkbox:true">全选</th>
+            <th data-options="field:'CustomerName',width:230">
+                客户名称
+            </th>
+            <th data-options="field:'OwnershipPerson',width:100">归属人</th>
+            <th data-options="field:'ProvinceName',width:130, formatter: function (value, rec) {
+                    if(value== '' || value == null || value == undefined)
+                {
+                    return '';
+                }
+                    var str = value;
+
+                    if (rec.CityName != '') {
+                        str += ' - ' + rec.CityName;
+                    }
+                    if (rec.DistrictName != '' && rec.DistrictName != null && rec.DistrictName != undefined) {
+                        str += ' - '+ rec.DistrictName;
+                    }
+                    return str;
+                }">地区</th>
+        </tr>
+    </thead>
+</table>
+
+<script type="text/javascript">
+
+   // var aa= '<a href=\'似的发射点 \' class=\'easyui-linkbutton\' style=\'border: none; text-decoration none;\'>\' + rowData.CustomerName + \'</a> ';
+    $(function () {
+        var frameId = window.frameElement && window.frameElement.id || '';
+        if (frameId == "iframeWindowTop" || frameId == "iframeWindow") {
+            //添加选择按钮
+            $('#customerDatagrid').datagrid("addToolbarItem", [{ "text": "选择", "iconCls": "icon-ok", handler: function () { flexiSelect(); } }]);
+        }
+        else {
+            //如果列表页出现在弹出框中，则只显示查询和选择按钮
+            var parent = window.dialogArguments; //获取父页面
+            if (parent == "undefined" || parent == null) {
+                //首先获取iframe标签的id值
+                var iframeid = window.parent.$('#tabs').tabs('getSelected').find('iframe').attr("id");
+                //然后关闭AJAX相应的缓存
+                $.ajaxSetup({
+                    cache: false
+                });
+                if (iframeid != "") {
+                    //获取按钮值
+                    $.getJSON("../Home/GetToolbar", { id: iframeid }, function (data) {
+                        if (data == null) {
+                            return;
+                        }
+                        $('#customerDatagrid').datagrid("addToolbarItem", data);
+                    });
+                }
+            }
+        }
+		    $("a[name='CustomerID']").live("click", function () {
+                showWindowTop("查看客户信息", "/Customer/BaseInfo?id=" + $(this).attr("id"), 860, 550);
+    });
+	
+	
+
+
+        flexiQuery();
+    });
+
+    //“查询”按钮，弹出查询框
+    function flexiQuery() {
+
+        //将查询条件按照分隔符拼接成字符串
+        var search = "";
+
+        var CustomerName = $("#CustomerName").val();
+        if (CustomerName != "") {
+            search = search + 'CustomerName&' + CustomerName + '^';
+        }
+        search = search + 'SeachType&@ViewBag.SeachType^';
+
+
+        $('#customerDatagrid').datagrid('options').url = "../Customer/GetSelectedList";
+        $("#customerDatagrid").datagrid("clearSelections");
+        //执行查询
+        $('#customerDatagrid').datagrid('load', { search: search });
+    }
+
+
+
+
+    //“选择”按钮，在其他（与此页面有关联）的页面中，此页面以弹出框的形式出现，选择页面中的数据
+    function flexiSelect() {
+
+        var rows = $('#customerDatagrid').datagrid('getSelections');
+        if (rows.length == 0) {
+            $.messager.alert('操作提示', '请选择数据!', 'warning');
+            return false;
+        }
+        debugger;
+        var id = $('#CustomerID', window.parent.document);
+        if (id != undefined) {
+            id.val(rows[0].CustomerID);
+        }
+        var name = $('#CustomerName', window.parent.document);
+        if (name != undefined) {
+            name.val(rows[0].CustomerName);
+        }
+        window.parent.$('#myWindow').window('close');
+    }
+
+    
+</script>
+

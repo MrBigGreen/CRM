@@ -1,0 +1,74 @@
+﻿@model CRM.DAL.SysOperation
+
+@{
+    Layout = "~/Views/Shared/Edit.cshtml";
+}
+@using Common
+@using Models
+ @section CurentPlace {
+    修改  
+}
+
+    <fieldset>
+        <legend>
+            <input class="a2 f2" type="submit" value="修改" />
+            <input class="a2 f2" type="button" onclick="BackList('SysOperation')" value="返回列表" />
+        </legend>
+        <div class="bigdiv">
+            @Html.HiddenFor(model => model.Id )      
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Function)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Function)
+                @Html.ValidationMessageFor(model => model.Function)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Iconic)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Iconic)
+                @Html.ValidationMessageFor(model => model.Iconic)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Sort) ：
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Sort, new {  onkeyup = "isInt(this)", @class="text-box single-line" })
+                @Html.ValidationMessageFor(model => model.Sort) 
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Remark)：
+            </div>
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.Remark) 
+                @Html.ValidationMessageFor(model => model.Remark) 
+            </div>        
+          
+            @Html.HiddenFor(model => model.State) @Html.HiddenFor(model => model.CreateTime) @Html.HiddenFor(model => model.CreatePerson ) 
+        </div>
+    </fieldset>
+
+
+
+
+    <script type="text/javascript">
+
+        $(function () {
+            
+
+        });
+        
+
+    </script>
+
+
+

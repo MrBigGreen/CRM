@@ -1,0 +1,424 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>跟进历史</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="~/Content/css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/app.css" />
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.picker.min.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.poppicker.css" />
+    <style type="text/css">
+        html,
+        body {
+            background-color: #EAF1F7;
+        }
+
+        .mui-search.mui-active:before {
+            margin-top: -10px;
+        }
+
+        .filter-area {
+            height: 50px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+            .filter-area li {
+                flex: 1;
+                font-size: 14px;
+                height: 30px;
+                background: #fff;
+                text-align: center;
+                border-right: 1px solid #e5e5e5;
+            }
+    </style>
+</head>
+
+<body class="processHistory">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"><span class="nav-back-title">返回</span></a>
+        <h1 class="mui-title">跟进历史</h1>
+    </header>
+    <div class="mui-content">
+        <div class="search-area">
+            <div class="mui-input-row mui-search">
+                <input type="search" id="textkey" class="mui-input-clear search-input" placeholder="请输入关键字">
+            </div>
+        </div>
+        <ul class="filter-area">
+            <li id="selSaleStage" data-name="销售阶段"><span>销售阶段</span><span class="mui-icon mui-icon-arrowdown"></span></li>
+            <li id="selFollowType" data-name="跟进方式"><span>跟进方式</span><span class="mui-icon mui-icon-arrowdown"></span></li>
+            <li id="selPlanType" data-name="推荐方案"><span>推荐方案</span><span class="mui-icon mui-icon-arrowdown"></span></li>
+        </ul>
+    </div>
+    <div id="pullrefresh" class="mui-content mui-scroll-wrapper processList" style="margin-top: 90px;">
+        <div class="mui-scroll">
+            <!--数据列表-->
+            <ul class="mui-table-view" id="processList"></ul>
+        </div>
+    </div>
+    <script src="~/Content/Scripts/jquery-1.11.1.js"></script>
+    <script src="~/Content/Scripts/mui.min.js"></script>
+    <script src="~/Content/Scripts/mui.zoom.js"></script>
+    <script src="~/Content/Scripts/mui.previewimage.js"></script>
+    <script src="~/Content/Scripts/utils/offertech-clientdata.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.picker.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.poppicker.js"></script>
+    <script>
+        mui.init();
+        mui.previewImage();
+
+        var Currentpage = 1;
+        var PageSize = 10;
+        var totalpage = 1;
+
+        //页面元素
+        var selSaleStage = document.getElementById("selSaleStage");
+        var selFollowType = document.getElementById("selFollowType");
+        var selPlanType = document.getElementById("selPlanType");
+
+        mui.init({
+            pullRefresh: {
+                container: '#pullrefresh',
+                down: {
+                    callback: pulldownRefresh
+                },
+                up: {
+                    contentrefresh: '正在加载...',
+                    callback: pullupRefresh
+                }
+            }
+        });
+        /**
+         * 下拉刷新具体业务实现
+         */
+        function pulldownRefresh() {
+
+            location.reload();
+
+        }
+
+        function pullupRefresh() {
+
+            mui('#pullrefresh').pullRefresh().endPullupToRefresh(Currentpage > totalpage); //参数为true代表没有更多数据了。
+            var queryJson = {
+                condition: "CustomerName",
+                keyword: $("#textkey").val(),
+                SaleStageId: $("#selSaleStage").attr("data-value"),
+                FollowUpMode: $("#selFollowType").attr("data-value")
+            }
+            LoadData(JSON.stringify(queryJson));
+
+        }
+        if (mui.os.plus) {
+            mui.plusReady(function () {
+
+                mui('#pullrefresh').pullRefresh().pullupLoading();
+
+            });
+        } else {
+            mui.ready(function () {
+                mui('#pullrefresh').pullRefresh().pullupLoading();
+            });
+        }
+
+        $(function () {
+
+            $("body")
+                .on("tap",
+                ".unfold",
+                function () {
+                    if ($(this).text() == "展开") {
+                        $(this).text("收起");
+                        $(this).next("img").attr("src", "/Content/img/arrow-up.png");
+                        $(this).parent().prev(".describe").css("height", "auto");
+                    } else {
+                        $(this).text("展开");
+                        $(this).next("img").attr("src", "/Content/img/arrow-down.png");
+                        $(this).parent().prev(".describe").css("height", "25px");
+                    }
+                });
+            $("body")
+                .on("tap",
+                ".showmorimg",
+                function () {
+                    $(this).parent().addClass("mui-hidden").nextAll().removeClass("mui-hidden");
+                });
+            $("body")
+                .on("tap",
+                ".hidemorimg",
+                function () {
+                    $(this)
+                        .parent()
+                        .parent()
+                        .find(".moreimg")
+                        .eq(0)
+                        .removeClass("mui-hidden")
+                        .nextAll()
+                        .addClass("mui-hidden");
+                });
+            $("body")
+                .on("change",
+                "#textkey",
+                function () {
+
+                    $("#processList").html('');
+                    var queryJson = {
+                        condition: "CustomerName",
+                        keyword: $("#textkey").val(),
+                        SaleStageId: $("#selSaleStage").attr("data-value"),
+                        FollowUpMode: $("#selFollowType").attr("data-value")
+                    }
+                    Currentpage = 1;
+                    LoadData(JSON.stringify(queryJson));
+
+                });
+
+            // 销售阶段
+            selSaleStage.onclick = function () {
+                showPoppicker(this, "Client_SaleStage");
+            };
+            // 跟进方式
+            selFollowType.onclick = function () {
+                showPoppicker(this, [{ text: '电话跟进', value: '1' }, { text: '拜访跟进', value: '2' }, { text: '邮件跟进', value: '3' }])
+            }
+            // 推荐方案
+            selPlanType.onclick = function () {
+                showPoppicker(this, "Client_ProductInfo");
+            }
+        });
+        $("body").on('tap', ".mui-icon-clear", function () {
+            $("#processList").html('');
+            var queryJson = {
+                condition: "CustomerName",
+                keyword: "",
+                SaleStageId: $("#selSaleStage").attr("data-value"),
+                FollowUpMode: $("#selFollowType").attr("data-value")
+            }
+            Currentpage = 1;
+            LoadData(JSON.stringify(queryJson));
+        });
+
+        function LoadData(queryJson) {
+            var param;
+            if (!!queryJson) {
+                param = { rows: PageSize, page: Currentpage, sidx: "StartTime", sord: "desc", queryJson: queryJson };
+            } else {
+                param = { rows: PageSize, page: Currentpage, sidx: "StartTime", sord: "desc" };
+            }
+            $.ajax({
+                type: "get",
+                url: "GetHistoryDataJson",
+                data: param,
+                async: false,
+                dataType: "json",
+                contentType: "application/x-www-form-urlencoded",
+                success: function (data) {
+                    var rows = data.rows;
+                    Currentpage++;
+                    totalpage = data.total;
+                    $.each(rows,
+                        function (i) {
+                            var row = rows[i];
+                            var li;
+                            li = document.createElement('li');
+                            li.className = 'processCell';
+                            var temphtml = "";
+                            temphtml += '<div class="company mui-clearfix">' +
+                                '<img class="companyIcon" src="/Content/img/company-icon.png" />' +
+                                '<p class="companyName">' +
+                                row.customername +
+                                '</p>' +
+                                '</div>' +
+                                '<div class=" processCell-top">' +
+                                '<p class="date">' +
+                                row.starttime +
+                                '</p>' +
+                                '<p class="principal">' +
+                                row.createusername +
+                                '</p>' +
+                                '</div>' +
+                                '<div class="processCell-middle">' +
+                                '<div class="content-header">' +
+                                '<img class="contacter-icon" src="/Content/img/contacter-icon.png"/>' +
+                                '<p class="contacter-name">' +
+                                row.contact +
+                                '</p>' +
+                                '<span class="title-divider"></span>' +
+                                '<p class="contacter-title">' +
+                                (top.clientdataItem["Client_Post"][row.custlevelid] == undefined ? '' : top.clientdataItem["Client_Post"][row.custlevelid]) +
+                                '</p>' +
+                                '<p class="contacter-step">' +
+                                row.salestagename +
+                                '</p>' +
+                                '<span class="divider-line"></span>' +
+                                '</div>' +
+
+
+                                '<div class="content-header">' +
+                                '<p class="contacter-name" style="padding-bottom:5px; padding-left:5px;">';
+
+                            switch (row.followupmode) {
+                                case 1:
+                                    temphtml += "电话跟进";
+
+                                    break;
+                                case 2:
+                                    temphtml += "拜访跟进";
+
+                                    break;
+                                case 3:
+                                    temphtml += "邮件跟进";
+
+                                    break;
+
+                            }
+                            temphtml += '</p>' +
+                                '<p class="contacter-step"  style="padding-bottom:5px;">' +
+                                row.description +
+                                '</p>' +
+                                '<span class="divider-line"></span>' +
+                                '</div>' +
+
+
+                                '<div class="content-describe">';
+                            if (row.trackcontent != null) {
+                                temphtml += '<p class="describe">' +
+                                    row.trackcontent +
+                                    '</p>';
+                                temphtml += '<div class="unfold-control ';
+                                if (row.trackcontent.length < 30) {
+                                    temphtml += "mui-hidden";
+                                }
+                                temphtml += ' "><button class="unfold">展开</button>' +
+                                    '<img class="arrow-down" src="/Content/img/arrow-down.png"/>' +
+                                    '</div>' +
+                                    '</div>';
+                            }
+
+
+                            if (row.filespath != null && row.filespath !== "") {
+                                temphtml += '<div class="content-images"><ul>';
+                                var imglist = row.filespath.split(";");
+                                if (imglist.length > 0) {
+                                    for (var j = 0; j < imglist.length; j++) {
+                                        if (j >= 4) {
+                                            if (j === imglist.length - 1 && j === 4) {
+                                                temphtml += '<li class="imgmodel"><img src="' + imghead + imglist[j] + '" data-preview-src="" data-preview-group="' +
+                                                    row.trailid +
+                                                    '"/></li>';
+                                            } else {
+                                                if (j === 4) {
+                                                    temphtml +=
+                                                        '<li class="imgmodel moreimg"><a class="showmorimg" href="javascript:;">共<i>' + imglist.length + '</i>张</a></li>' +
+                                                        '<li class="imgmodel mui-hidden"><img src="' + imghead + imglist[j] + '" data-preview-src="" data-preview-group="' + row.trailid + '"/></li>';
+                                                } else if (j === imglist.length - 1) {
+                                                    temphtml +=
+                                                        '<li class="imgmodel mui-hidden"><img src="' + imghead + imglist[j] + '" data-preview-src="" data-preview-group="' + row.trailid + '"/></li>' +
+                                                        '<li class="imgmodel mui-hidden moreimg"><a class="hidemorimg" href="javascript:;">收起</a></li>';
+                                                } else {
+                                                    temphtml +=
+                                                        '<li class="imgmodel mui-hidden"><img src="' + imghead + imglist[j] + '" data-preview-src="" data-preview-group="' + row.trailid + '"/></li>';
+                                                }
+
+                                            }
+
+                                        } else {
+                                            temphtml +=
+                                                '<li class="imgmodel"><img id="showimg" src="' + imghead + imglist[j] + '" data-preview-src="" data-preview-group="' + row.trailid + '"/></li>';
+                                        }
+                                    }
+                                } else {
+                                    temphtml +=
+                                        '<li class="imgmodel"><img src="' + imghead + imglist[j] + '" data-preview-src="" data-preview-group="' + row.trailid + '"/></li>';
+                                }
+                                temphtml += '</ul></div><div class="clearfix"></div>';
+                            }
+
+                            temphtml += '</div>';
+                            li.innerHTML = temphtml;
+                            $("#processList").append(li);
+
+                        });
+                },
+                error: function (data) {
+                    mui.toast(data.responseText);
+                }
+            });
+
+        }
+
+        function showPoppicker(obj, datatype) {
+            if (typeof (datatype) === "string") {
+                $.ajax({
+                    type: "get",
+                    url: "/ClientData/GetDataItemListJson",
+                    data: { EnCode: datatype },
+                    async: false,
+                    dataType: "json",
+                    success: function (data) {
+                        var title = $(obj).data("name");
+                        var picker = new mui.PopPicker({ title: title });
+                        var arrayData = [{ text: '不限', value: '' }];
+                        for (var i = 0; i < data.length; i++) {
+                            arrayData.push({ text: data[i].ItemName, value: data[i].ItemDetailId })
+                        }
+
+                        picker.setData(arrayData);
+                        picker.show(function (items) {
+                            $(obj).find("span:eq(0)").text(items[0].text);
+                            obj.setAttribute("data-value", items[0].value);
+                            $("#processList").html('');
+                            var queryJson = {
+                                condition: "CustomerName",
+                                keyword: $("#textkey").val(),
+                                SaleStageId: $("#selSaleStage").attr("data-value"),
+                                FollowUpMode: $("#selFollowType").attr("data-value"),
+                                Description: $("#selPlanType").attr("data-value") != undefined && $("#selPlanType").attr("data-value") != "" ? $("#selPlanType").text() : ""
+                            }
+                            Currentpage = 1;
+                            LoadData(JSON.stringify(queryJson));
+                        });
+                    },
+                    error: function (data) {
+                        mui.toast(data.responseText);
+                    }
+                });
+            } else {
+                var title = $(obj).data("name");
+                var picker = new mui.PopPicker({ title: title });
+                var arrayData = [{ text: '不限', value: '' }];
+                for (var i = 0; i < datatype.length; i++) {
+                    arrayData.push({ text: datatype[i].text, value: datatype[i].value })
+                }
+                picker.setData(arrayData);
+                picker.show(function (items) {
+                    $(obj).find("span:eq(0)").text(items[0].text);
+                    obj.setAttribute("data-value", items[0].value);
+                    $("#processList").html('');
+                    var queryJson = {
+                        condition: "CustomerName",
+                        keyword: $("#textkey").val(),
+                        SaleStageId: $("#selSaleStage").attr("data-value"),
+                        FollowUpMode: $("#selFollowType").attr("data-value"),
+                        Description: $("#selPlanType").attr("data-value") != undefined && $("#selPlanType").attr("data-value") != "" ? $("#selPlanType").text() : ""
+                    }
+                    Currentpage = 1;
+                    LoadData(JSON.stringify(queryJson));
+                });
+            }
+        }
+
+        mui.back = function () {
+            location.href = "Home";
+        };
+    </script>
+</body>
+
+</html>

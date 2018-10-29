@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/BridgehrKit/!svn/ver/23740/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Controllers
+END
+PersonCenterController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Controllers/PersonCenterController.cs
+END
+ClientDataController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/BridgehrKit/!svn/ver/13943/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Controllers/ClientDataController.cs
+END
+HomeController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Controllers/HomeController.cs
+END
+LoginController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/BridgehrKit/!svn/ver/13956/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Controllers/LoginController.cs
+END
+ErrorController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Controllers/ErrorController.cs
+END
+WechatController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/BridgehrKit/!svn/ver/23740/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Controllers/WechatController.cs
+END
+LoginWechatController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/BridgehrKit/!svn/ver/13833/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Controllers/LoginWechatController.cs
+END

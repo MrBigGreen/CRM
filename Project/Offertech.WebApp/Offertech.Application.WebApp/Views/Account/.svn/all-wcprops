@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Account
+END
+_ExternalLoginsListPartial.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Account/_ExternalLoginsListPartial.cshtml
+END
+Login.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Account/Login.cshtml
+END
+ForgotPasswordConfirmation.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Account/ForgotPasswordConfirmation.cshtml
+END
+ResetPasswordConfirmation.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Account/ResetPasswordConfirmation.cshtml
+END
+VerifyCode.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Account/VerifyCode.cshtml
+END
+ExternalLoginFailure.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Account/ExternalLoginFailure.cshtml
+END
+ForgotPassword.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Account/ForgotPassword.cshtml
+END
+ExternalLoginConfirmation.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Account/ExternalLoginConfirmation.cshtml
+END
+Register.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Account/Register.cshtml
+END
+SendCode.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Account/SendCode.cshtml
+END
+ConfirmEmail.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Account/ConfirmEmail.cshtml
+END
+ResetPassword.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Account/ResetPassword.cshtml
+END

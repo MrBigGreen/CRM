@@ -1,0 +1,197 @@
+﻿@{
+    ViewBag.Title = "客户联系人";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+
+<div class="easyui-panel" title="查询栏" iconcls="icon-search" collapsible="true" style="width: 100%; height:auto">
+    <table id="ttSearch" class="record" border="0" cellpadding="0" cellspacing="0" style="width: 100%;height:auto ">
+        <tr>
+            <th style="width:120px; text-align:right; padding-right:10px;height:26px">
+                关键字:
+            </th>
+            <td>
+                <input id="ContactName" name="ContactName" maxlength="100" value="" type="text" placeholder="搜索姓名、电话" style="width:220px" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center">
+                <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                    查 询
+                </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="#" onclick="RemvoeAll()" class="easyui-linkbutton" data-options="iconCls:'icon-clear'">
+                    清 空
+                </a>
+
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" id="CustomerID" name="CustomerID" value="@ViewBag.CustomerID" />
+</div>
+<table id="flexigridData" style="width: 100%;height:auto"></table>
+
+<script type="text/javascript">
+    $(function () {
+        $('#flexigridData').datagrid({
+            title: '客户联系人', //列表的标题
+            iconCls: 'icon-site',
+            width: '100%',
+            height: 'auto',
+            striped: true,
+            collapsible: true,
+            singleSelect: true,
+            url: '/CustomerContact/GetData', //获取数据的url
+            idField: 'CustomerContactID',
+            sortName: 'CreatedTime',
+            sortOrder: 'desc',
+            queryParams: { "id": $("#CustomerID").val() },
+            columns: [[
+                 //{ field: 'ck', title: '全选', checkbox: true, width: 80 },
+                  { field: 'ContactName', title: '联系人', width: 70 }
+                    , {
+                        field: 'IsKP', title: '是否KP', width: 77, formatter: function (value) {
+                            if (value == true) {
+                                return "是";
+                            }
+                            else {
+                                return "否";
+                            }
+                        }
+                    }
+                , { field: 'PostName', title: '职务', width: 90 }
+                , {
+                    field: 'CompanyTel', title: '固定电话', width: 95, formatter: function (value, rowData) {
+                        var PhoneNumber = value;
+                        if (PhoneNumber == null) {
+                            PhoneNumber = "";
+                        }
+                        var Email = rowData.Email1;
+                        if (Email == null) {
+                            Email = "";
+                        }
+
+                        return '<a href=\'javascript:getSelectContact("' + rowData.ContactName + '","' + PhoneNumber + '","' + Email + '","' + rowData.PostID + '","' + rowData.IsKP + '");\'  class="easyui-linkbutton" style="border: none; text-decoration: none;"  >' + PhoneNumber + '</a> ';
+                    }
+                }
+                , {
+                    field: 'PhoneNumber1', title: '手机', width: 95, formatter: function (value, rowData) {
+                        var PhoneNumber = value;
+                        if (PhoneNumber == null) {
+                            PhoneNumber = "";
+                        }
+                        var Email = rowData.Email1;
+                        if (Email == null) {
+                            Email = "";
+                        }
+
+                        return '<a href=\'javascript:getSelectContact("' + rowData.ContactName + '","' + PhoneNumber + '","' + Email + '","' + rowData.PostID + '","' + rowData.IsKP + '");\'  class="easyui-linkbutton" style="border: none; text-decoration: none;"  >' + PhoneNumber + '</a> ';
+                    }
+                }, {
+                    field: 'PhoneNumber2', title: '手机2', width: 95, formatter: function (value, rowData) {
+                        var PhoneNumber = value;
+                        if (PhoneNumber == null) {
+                            PhoneNumber = "";
+                        }
+                        var Email = rowData.Email1;
+                        if (Email == null) {
+                            Email = "";
+                        }
+
+                        return '<a href=\'javascript:getSelectContact("' + rowData.ContactName + '","' + PhoneNumber + '","' + Email + '","' + rowData.PostID + '","' + rowData.IsKP + '");\'  class="easyui-linkbutton" style="border: none; text-decoration: none;"  >' + PhoneNumber + '</a> ';
+                    }
+                }
+                , {
+                    field: 'CompanyTel2', title: '前台电话', width: 95, formatter: function (value, rowData) {
+                        var PhoneNumber = value;
+                        if (PhoneNumber == null) {
+                            PhoneNumber = "";
+                        }
+                        var Email = rowData.Email1;
+                        if (Email == null) {
+                            Email = "";
+                        }
+
+                        return '<a href=\'javascript:getSelectContact("' + rowData.ContactName + '","' + PhoneNumber + '","' + Email + '","' + rowData.PostID + '","' + rowData.IsKP + '");\'  class="easyui-linkbutton" style="border: none; text-decoration: none;"  >' + PhoneNumber + '</a> ';
+                    }
+                }
+                , { field: 'Email1', title: '邮箱1', width: 90 }
+                , { field: 'Email2', title: '邮箱2', width: 90 }
+              
+            ]],
+            pagination: true,
+            rownumbers: true,
+            onDblClickRow: function () { flexiSelect(); }
+        });
+        var parent = window.dialogArguments; //获取父页面
+        if (parent == "undefined" || parent == null) {
+            //首先获取iframe标签的id值
+
+        } else {
+
+            //添加选择按钮
+            $('#flexigridData').datagrid("addToolbarItem", [{ "text": "选择", "iconCls": "icon-ok", handler: function () { flexiSelect(); } }]);
+        }
+    });
+
+    /****************************点击联系方式添加到文本框中****************************************/
+    function getSelectContact(ContactPerson, CallPhone, Email, OtherLevel, IsKP) {
+
+        $("#CustomerContactName", window.parent.document).val(ContactPerson);
+        $("#CallPhone", window.parent.document).val(CallPhone);
+        $("#CustomerEmail", window.parent.document).val(Email);
+        $("#OtherLevel", window.parent.document).val(OtherLevel);
+        $("#IsKP", window.parent.document).val(IsKP);
+        window.parent.$('#myWindow').window('close');
+    }
+
+
+
+    //“查询”按钮，弹出查询框
+    function flexiQuery() {
+
+        //将查询条件按照分隔符拼接成字符串
+        var search = "CustomerID&@ViewBag.CustomerID^";
+        if ($('#ContactName').val() != "") {
+            search = search + 'ContactName' + "&" + $('#ContactName').val() + '^';
+        }
+
+        $("#flexigridData").datagrid("clearSelections");
+        //执行查询
+        $('#flexigridData').datagrid('load', { search: search });
+
+    }
+    //“选择”按钮，在其他（与此页面有关联）的页面中，此页面以弹出框的形式出现，选择页面中的数据
+    function flexiSelect() {
+
+        var rows = $('#flexigridData').datagrid('getSelections');
+        if (rows.length == 0) {
+            $.messager.alert('操作提示', '请选择数据!', 'warning');
+            return false;
+        }
+
+        var ContactPerson = $('#CustomerContactName', window.parent.document);
+        if (ContactPerson != undefined) {
+            ContactPerson.val(rows[0].ContactName);
+        }
+        var OtherLevel = $('#OtherLevel', window.parent.document);
+        if (OtherLevel != undefined) {
+            OtherLevel.val(rows[0].PostID);
+        }
+        var IsKP = $('#IsKP', window.parent.document);
+        if (IsKP != undefined) {
+            IsKP.val(rows[0].IsKP);
+        }
+        var CustomerEmail = $('#CustomerEmail', window.parent.document);
+        if (CustomerEmail != undefined) {
+            var Email = rows[0].Email1;
+            if (Email == null) {
+                Email = "";
+            }
+            CustomerEmail.val(Email);
+        }
+
+
+
+        window.parent.$('#myWindow').window('close');
+    }
+
+</script>

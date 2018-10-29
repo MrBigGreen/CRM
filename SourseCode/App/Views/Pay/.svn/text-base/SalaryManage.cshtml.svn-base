@@ -1,0 +1,1004 @@
+﻿@{ Layout = "~/Views/Shared/Index.cshtml"; }
+@using Common
+@using Models
+<style type="text/css">
+    .div_column {
+        background: none repeat scroll 0 0 #99BBE8;
+        width: 271px;
+        height: 22px;
+        border-width: 0;
+        font-size: 14.5px;
+        color: #FFFFFF;
+        font-weight: 500;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 2px;
+        text-align: left;
+        vertical-align: middle;
+        padding-left: 5px;
+        padding-top: 5px;
+    }
+
+    #divCustomColumns .panel {
+        width: 300px;
+        display: block;
+        margin: 5px;
+        margin-bottom: 0px;
+    }
+
+    #divCustomColumns .panel-header {
+        width: 800px;
+    }
+
+    .select-list {
+        width: 300px;
+        height: 480px;
+        float: left;
+        margin: 5px;
+        overflow-y: auto;
+    }
+
+    .selected {
+        background-color: #4B8BC1;
+    }
+</style>
+
+
+<div class="easyui-panel" id="panelShow" title="查询栏" iconcls="icon-search" collapsible="true" style="height:auto;width:auto">
+    <div id="ttSearch" data-options="region:'center'" style="padding:2px">
+        <table class="record" border="0" cellpadding="0" cellspacing="0" style="width:100%">
+            <tr>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    客户名称 :
+                </th>
+                <td>
+                    <input type='text' id='CustomerName' name="CustomerName" />
+                </td>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    姓名 :
+                </th>
+                <td>
+                    <input type='text' id='EmpName' name="EmpName" />
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    身份证 :
+                </th>
+                <td>
+
+                    <input type='text' id='IDCard' name="IDCard" />
+                </td>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    银行卡 :
+                </th>
+                <td>
+                    <input type='text' id='BankID' name="BankID" />
+                </td>
+
+            </tr>
+            <tr>
+
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    薪资月份 :
+                </th>
+                <td colspan="3">
+                    <select class="easyui-combobox" id="SalaryMonth" name="SalaryMonth" style="width:120px;"></select>
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center">
+                    <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                        查 询
+                    </a>
+                    &nbsp;&nbsp;
+                    <a href="#" onclick="showQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                        高级查询
+                    </a>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<br style="clear: both;" />
+<table id="flexigridData"></table>
+
+<!-- 高级查询弹出层 start-->
+<div id="divAdvancedQuery" class="easyui-dialog" data-options="closed:true">
+
+    @*<table id="dgQueryTools"></table>*@
+    @*http://www.cnblogs.com/sword-successful/p/3395559.html*@
+    <table id="dgQueryTools"></table>
+
+    @*<div id="tb" style="height:auto">
+            <a href="javascript:void(0)" onclick="append()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">增加</a>
+            <a href="javascript:void(0)" onclick="removeit()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
+        </div>*@
+    <br style="clear: both;" />
+    <div style="width:100%; text-align:center;">
+        <a href="#" onclick="GetAdvancedQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+            查 询
+        </a>
+    </div>
+</div>
+
+
+
+<!-- 显示列定制 start-->
+<div id="divCustomColumns" class="easyui-dialog" data-options="closed:true">
+
+    <table border="0" cellpadding="0" cellspacing="0" align="center" style="width:750px">
+        <tr>
+            <td style="width: 300px; vertical-align: top; border: 1px solid #ccc;">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">待选</div>
+                    </div>
+                </div>
+                <div class="select-list" id="divLeftList">
+                </div>
+            </td>
+            <td style="border: 1px solid #ccc; vertical-align: middle; text-align:center ">
+                <a href="#" onclick="RemoveAllToRight()" class="easyui-linkbutton" style="width:65px;margin-bottom:14px">
+                    >>
+                </a>
+
+                <a href="#" onclick="RemoveToRight()" class="easyui-linkbutton" style="width: 65px; margin-bottom: 14px;">
+                    >
+                </a>
+
+                <a href="#" onclick="RemoveToLeft()" class="easyui-linkbutton" style="width: 65px; margin-bottom: 14px;">
+                    <
+                </a>
+
+                <a href="#" onclick="RemoveAllToLeft()" class="easyui-linkbutton" style="width: 65px; margin-bottom: 14px;">
+                    <<
+                </a>
+
+            </td>
+            <td style="width: 300px; vertical-align: top; border: 1px solid #ccc;">
+                <div class="panel">
+                    <div class="panel-header" style="width: 754px;">
+                        <div class="panel-title">已选</div>
+                    </div>
+                </div>
+                <div class="select-list" id="divRightList">
+
+                </div>
+            </td>
+        </tr>
+
+    </table>
+
+    <br style="clear: both;" />
+    <div style="width:100%; text-align:center;">
+        <a href="#" onclick="SaveAndReloadColumns()" class="easyui-linkbutton" data-options="iconCls:'icon-save'">
+            确 定
+        </a>
+    </div>
+</div>
+
+
+<!-- 显示导入 start-->
+<div id="divImportSalary" class="easyui-dialog" data-options="closed:true">
+    <div class="easyui-layout" fit="true">
+        <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
+            <iframe id="importiframe" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+</div>
+
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+
+
+
+
+<script type="text/javascript" language="javascript">
+
+    var iframeid = "";
+    $(function () {
+        //$("#ttSearch").hide();
+
+        $('#SalaryMonth').combobox({
+            valueField: 'Value', //值字段
+            textField: 'Text', //显示的字段
+            editable: false,
+            url: '/Pay/GetAllSalaryMonth',
+        });
+        //然后关闭AJAX相应的缓存
+        $.ajaxSetup({
+            cache: false
+        });
+
+        //首先获取iframe标签的id值
+        iframeid = window.parent.$('#tabs').tabs('getSelected').find('iframe').attr("id");
+
+        //获取列标题
+        $.getJSON("../Home/GetColumns", { id: iframeid }, function (data) {
+            if (data == null) {
+                return;
+            }
+
+
+            $('#flexigridData').datagrid({
+                title: '薪资数据', //列表的标题
+                iconCls: 'icon-site',
+                width: 'auto',
+                height: '600',
+                //nowrap: false,
+                striped: true,
+                collapsible: true,
+                sortName: 'Id',
+                sortOrder: 'desc',
+                idField: 'Id',
+                fitColumns: true,
+                resizable: true,
+                pagination: true,
+                rownumbers: true,
+                singleSelect: true,
+                showFooter: true,//定义是否显示一行页脚。
+                columns: [data],
+                //toolbar: [{
+                //    text: '添加', iconCls: 'icon-add', handler: function () {
+
+                //    }
+                //}],
+
+
+            });
+
+            //如果列表页出现在弹出框中，则只显示查询和选择按钮
+            var parent = window.dialogArguments; //获取父页面
+            //异步获取按钮
+            if (parent == "undefined" || parent == null) {
+
+                //然后关闭AJAX相应的缓存
+                $.ajaxSetup({
+                    cache: false
+                });
+
+                //获取按钮值
+                $.getJSON("../Home/GetToolbar", { id: iframeid }, function (data) {
+                    if (data == null) {
+                        return;
+                    }
+                    $('#flexigridData').datagrid("addToolbarItem", data);
+                });
+
+            } else {
+                //添加选择按钮
+                $('#flexigridData').datagrid("addToolbarItem", [{ "text": "选择", "iconCls": "icon-ok", handler: function () { flexiSelect(); } }]);
+            }
+        });
+
+        //获取获取查询字段
+        $.getJSON("../Home/GetConditionFields", { id: iframeid }, function (data) {
+            if (data == null) {
+                return;
+            }
+            ConditionFields = data;
+
+        });
+    });
+
+    var ConditionFields;
+    var links = [{ "value": " and ", "text": "并且" }, { "value": " or  ", "text": "或者" }];
+    var Operators = [{ "value": " > ", "text": " > " }, { "value": " < ", "text": " < " }, { "value": " = ", "text": " = " }, { "value": " != ", "text": " != " }];
+
+    ////////////////////////////格式化列//////////////////////////////////
+    function GetColumnFormatter(value, rowData, rowIndex) {
+        if (value == 0) {
+            return;
+        }
+        for (var i = 0; i < ConditionFields.length; i++) {
+            if (ConditionFields[i].Value == value) {
+                return ConditionFields[i].Text;
+            }
+        }
+    }
+
+    ////////////////////////////格式化逻辑运算符//////////////////////////////////
+    function GetOperatorsFormatter(value, rowData, rowIndex) {
+        if (value == 0) {
+            return;
+        }
+
+        for (var i = 0; i < Operators.length; i++) {
+            if (Operators[i].value == value) {
+                return Operators[i].text;
+            }
+        }
+    }
+
+
+    ////////////////////////////格式化逻辑连接符//////////////////////////////////
+    function GetLinkFormatter(value, rowData, rowIndex) {
+        if (value == 0) {
+            return;
+        }
+
+        for (var i = 0; i < links.length; i++) {
+            if (links[i].value == value) {
+                return links[i].text;
+            }
+        }
+    }
+
+    //******************************************************初始化高级查询************************************************************
+    function GetAdvancedQueryInfo() {
+        var editRow = undefined;
+
+        $("#dgQueryTools").datagrid({
+            height: 340,
+            width: 'auto',
+            title: '查询条件设置',
+            collapsible: true,
+            singleSelect: true,
+            //url: '/Home/StuList',
+            rowStyler: function () { return 'height: 120px'; },
+            idField: 'ID',
+            columns: [[
+             //{ field: 'ID', title: 'ID', width: 100 },
+                { field: 'ColumnName', title: '查询条件列', width: 260, formatter: GetColumnFormatter, align: 'center', editor: { type: 'combobox', options: { data: ConditionFields, valueField: "Value", textField: "Text", editable: false } } },
+                { field: 'Operators', title: '逻辑运算符', width: 100, formatter: GetOperatorsFormatter, align: 'center', editor: { type: 'combobox', options: { data: Operators, valueField: "value", textField: "text", editable: false } } },
+                { field: 'WhereValue', title: '查询条件值', width: 260, align: 'center', editor: { type: 'text', options: { required: true } } },
+                { field: 'Logical', title: '逻辑连接符', width: 100, formatter: GetLinkFormatter, align: 'center', editor: { type: 'combobox', options: { data: links, valueField: "value", textField: "text", editable: false } } }
+
+            ]],
+            toolbar: [{
+                text: '添加', iconCls: 'icon-add', handler: function () {
+                    if (editRow != undefined) {
+                        $("#dgQueryTools").datagrid('endEdit', editRow);
+                    }
+                    if (editRow == undefined) {
+                        $("#dgQueryTools").datagrid('appendRow', {
+                            //index: 0,
+                            row: {}
+                        });
+                        var data = $('#dgQueryTools').datagrid('getData');
+                        var lastRow = data.rows.length - 1;
+                        $("#dgQueryTools").datagrid('beginEdit', lastRow);
+                        editRow = lastRow;
+                    }
+                }
+            }, '-', {
+                text: '保存', iconCls: 'icon-save', handler: function () {
+                    $("#dgQueryTools").datagrid('endEdit', editRow);
+
+                    //如果调用acceptChanges(),使用getChanges()则获取不到编辑和新增的数据。
+
+                    //使用JSON序列化datarow对象，发送到后台。
+                    var rows = $("#dgQueryTools").datagrid('getChanges');
+
+                    //var rowstr = JSON.stringify(rows);
+                    //$.post('/Home/Create', rowstr, function (data) {
+
+                    //});
+                }
+            }, '-', {
+                text: '撤销', iconCls: 'icon-redo', handler: function () {
+                    editRow = undefined;
+                    $("#dgQueryTools").datagrid('rejectChanges');
+                    $("#dgQueryTools").datagrid('unselectAll');
+                }
+            }, '-', {
+                text: '删除', iconCls: 'icon-remove', handler: function () {
+
+                    if (editRow == undefined) { return }
+                    $('#dgQueryTools').datagrid('cancelEdit', editRow)
+                            .datagrid('deleteRow', editRow);
+                    editRow = undefined;
+
+
+
+                    //var row = $("#dgQueryTools").datagrid('getSelections');
+                    //if (row != null) {
+                    //    var index = $("#dgQueryTools").datagrid('getRowIndex', row);
+                    //    $('#dgQueryTools').datagrid('deleteRow', index);
+                    //}
+
+                }
+            }, '-', {
+                text: '修改', iconCls: 'icon-edit', handler: function () {
+                    var row = $("#dgQueryTools").datagrid('getSelected');
+                    if (row != null) {
+                        if (editRow != undefined) {
+                            $("#dgQueryTools").datagrid('endEdit', editRow);
+                        }
+
+                        if (editRow == undefined) {
+                            var index = $("#dgQueryTools").datagrid('getRowIndex', row);
+                            $("#dgQueryTools").datagrid('beginEdit', index);
+                            editRow = index;
+                            $("#dgQueryTools").datagrid('unselectAll');
+                        }
+                    } else {
+
+                    }
+                }
+            }],
+            onAfterEdit: function (rowIndex, rowData, changes) {
+                editRow = undefined;
+            },
+            onDblClickRow: function (rowIndex, rowData) {
+                if (editRow != undefined) {
+                    $("#dgQueryTools").datagrid('endEdit', editRow);
+                }
+
+                //if (editRow == undefined) {
+                //    $("#dgQueryTools").datagrid('beginEdit', rowIndex);
+                //    editRow = rowIndex;
+                //}
+                $("#dgQueryTools").datagrid('beginEdit', rowIndex);
+                editRow = rowIndex;
+            },
+            onClickRow: function (rowIndex, rowData) {
+                if (editRow != undefined) {
+                    $("#dgQueryTools").datagrid('endEdit', editRow);
+                }
+
+                $("#dgQueryTools").datagrid('beginEdit', rowIndex);
+                editRow = rowIndex;
+
+
+                ///
+
+            }
+
+        });
+    }
+
+</script>
+
+@*自定义列*@
+<script type="text/javascript">
+
+
+    //**********************************************************************弹出-定制显示列**********************************************************************
+    function CustomColumns() {
+
+        ////加载定制菜单
+        GetCustomColumnInfo();
+
+        $('#divCustomColumns').window({
+            title: '定制显示列',
+            width: 820,
+            height: 620,
+            closed: false,
+            cache: false,
+            resizable: true,
+            modal: true,
+            top: 60,
+            left: 60,
+        });
+
+    }
+    //******************************************************加载定制显示列************************************************************
+    function GetCustomColumnInfo() {
+        //获取获取查询字段
+        $.getJSON("../Home/GetCustomColumns", { id: iframeid }, function (data) {
+            if (data == null) {
+                return;
+            }
+            $("#divRightList").empty();
+            $("#divLeftList").empty();
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].CustomShow == 1) {
+                    $("#divRightList").append("<div id='" + data[i].ColumnName + "' class='div_column'>" + data[i].ColumnText + "</div>");
+                }
+                else {
+                    $("#divLeftList").append("<div id='" + data[i].ColumnName + "' class='div_column'>" + data[i].ColumnText + "</div>");
+                }
+
+            }
+            //绑定选项事件
+            $(".select-list").find(".div_column").each(function () {
+                $(this).click(function () {
+                    //单击改变选中
+                    $(this).toggleClass("selected");
+
+                })
+                //$(this).dblclick(function () {
+                //    if ($(this).parent().id == "divRightList") {
+
+                //        $("#divLeftList").append($(this));
+                //    }
+                //    else {
+                //        $("#divRightList").append($(this));
+                //    }
+                //});
+            });
+
+            //getDroppable();
+
+        });
+
+    }
+
+    //******************************************************保存并重新加载薪资数据列************************************************************
+    function SaveAndReloadColumns() {
+
+        var names = [];
+        $('#divRightList>.div_column').each(function (index, domEle) {
+
+            names.push(this.id);
+        });
+        //如果调用acceptChanges(),使用getChanges()则获取不到编辑和新增的数据。
+
+        $.ajax({
+            url: '/Home/SetCustomColumn',
+            data: { SysMenuID: iframeid, sColumnNames: names.join(",") },
+            type: 'POST',
+            datatype: 'json',
+            success: function (data) {
+                if (data.Result == 1) {
+                    //获取列标题
+                    $.getJSON("../Home/GetColumns", { id: iframeid }, function (data) {
+                        if (data == null) {
+                            return;
+                        }
+
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i].hidden) {
+                                //隐藏
+                                $('#flexigridData').datagrid("hideColumn", data[i].field);
+                            }
+                            else {
+                                //显示
+                                $('#flexigridData').datagrid("showColumn", data[i].field);
+                            }
+                        }
+                        $('#divCustomColumns').window("close");
+                    });
+                }
+                else {
+                    $.messager.alert('操作提示', data.Msg, 'error');
+
+                }
+            }
+
+        });
+    }
+
+    //所有移动到左边容器中
+    function RemoveAllToLeft() {
+        $("#divLeftList").append($("#divRightList").html());
+        $("#divRightList").empty();
+        $("#divLeftList").find(".selected").each(function () {
+            $(this).removeClass("selected");
+        });
+    }
+    //移动选中到左边容器中
+    function RemoveToLeft() {
+
+        $("#divRightList").find(".selected").each(function () {
+            $("#divLeftList").append($(this));
+            //$(this).toggleClass("selected");
+        });
+    }
+
+
+    //移动选中到右边容器中
+    function RemoveToRight() {
+
+        $("#divLeftList").find(".selected").each(function () {
+            $("#divRightList").append($(this));
+            //$(this).toggleClass("selected");
+        });
+    }
+    //所有移动到右边容器中
+    function RemoveAllToRight() {
+        $("#divRightList").append($("#divLeftList").html());
+        $("#divLeftList").empty();
+        $("#divRightList").find(".selected").each(function () {
+            $(this).removeClass("selected");
+        });
+    }
+
+    function getDroppable() {
+
+        //绑定拖动选项
+        $('.div_column').draggable({
+            proxy: 'clone',
+            revert: true,
+            cursor: 'auto',
+            onStartDrag: function () {
+                $(this).draggable('options').cursor = 'not-allowed';
+                $(this).draggable('proxy').addClass('dp');
+            },
+            onStopDrag: function () {
+                $(this).draggable('options').cursor = 'auto';
+            }
+        });
+
+        $('#divLeftList ').droppable({
+            accept: '.div_column',
+            onDragEnter: function (e, divLeftList) {
+                $(divLeftList).draggable('options').cursor = 'auto';
+                $(divLeftList).draggable('proxy').css('border', '1px solid red');
+                $(this).addClass('over');
+            },
+            onDragLeave: function (e, divLeftList) {
+                $(divLeftList).draggable('options').cursor = 'not-allowed';
+                $(divLeftList).draggable('proxy').css('border', '1px solid #ccc');
+                $(this).removeClass('over');
+            },
+            onDrop: function (e, divLeftList) {
+                $(this).append(divLeftList)
+                $(this).removeClass('over');
+            }
+        });
+        $('#divRightList').droppable({
+            revert: true,
+            accept: '.div_column',
+            onDragEnter: function (e, divLeftList) {
+                $(divLeftList).draggable('options').cursor = 'auto';
+                $(divLeftList).draggable('proxy').css('border', '1px solid red');
+                $(this).addClass('over');
+            },
+            onDragLeave: function (e, divLeftList) {
+                $(divLeftList).draggable('options').cursor = 'not-allowed';
+                $(divLeftList).draggable('proxy').css('border', '1px solid #ccc');
+                $(this).removeClass('over');
+            },
+            onDrop: function (e, divLeftList) {
+
+                $(this).append(divLeftList);
+                $(this).removeClass('over');
+
+            },
+        });
+    }
+</script>
+
+
+<script type="text/javascript">
+
+    function expand() {
+        if ($("#ttSearch").is(":hidden")) {
+            $("#ttSearch").slideDown("slow");//缓慢显示
+            // $("#ttSearch").show(1500);
+        }
+        else {
+            $("#ttSearch").hide(1000);
+        }
+    }
+
+    //**********************************************************************弹出-导入薪资**********************************************************************
+    function OpenImport() {
+
+        $('#importiframe').attr("src", "../Pay/ImportSalary");
+        $('#divImportSalary').window({
+            title: '薪资导入',
+            //href: "/Pay/ImportSalary",
+            width: 720,
+            height: 380,
+            closed: false,
+            cache: false,
+            resizable: true,
+            modal: true,
+            top: 60,
+            left: 60,
+        });
+
+    }
+    function OpenImportKeFu() {
+
+        $('#importiframe').attr("src", "../Pay/ImportKeFu");
+        $('#divImportSalary').window({
+            title: '客服薪资导入',
+            //href: "/Pay/ImportSalary",
+            width: 720,
+            height: 380,
+            closed: false,
+            cache: false,
+            resizable: true,
+            modal: true,
+            top: 60,
+            left: 60,
+        });
+
+    }
+
+
+    function OpenImportXinChou() {
+
+        $('#importiframe').attr("src", "../Pay/ImportXinChou");
+        $('#divImportSalary').window({
+            title: '薪酬薪资导入',
+            //href: "/Pay/ImportSalary",
+            width: 720,
+            height: 380,
+            closed: false,
+            cache: false,
+            resizable: true,
+            modal: true,
+            top: 60,
+            left: 60,
+        });
+
+    }
+
+    function OpenImportSheBao() {
+
+        $('#importiframe').attr("src", "../Pay/ImportSheBao");
+        $('#divImportSalary').window({
+            title: '社保薪资导入',
+            //href: "/Pay/ImportSalary",
+            width: 720,
+            height: 380,
+            closed: false,
+            cache: false,
+            resizable: true,
+            modal: true,
+            top: 60,
+            left: 60,
+        });
+
+    }
+
+
+    //**********************************************************************导入完成通知**********************************************************************
+    function ImportSuccessKeFu() {
+        $.messager.confirm("提示", "您确认薪资数据已导入完成吗？", function (r) {
+            if (r) {
+                $.ajax({
+                    url: "/SysNotice/CreateByRoleKeFu",
+                    type: "post",
+                    datatype: "json",
+                    success: function (data) {
+                        if (data.Result == 1) {
+                            $.messager.alert("提示", "操作成功", "info");
+                        }
+                        else {
+                            $.messager.alert("提示", "操作失败，" + data.Msg, "info");
+
+                        }
+                    }
+
+                });
+
+            }
+
+        });
+
+
+    }
+
+    function ImportSuccessXinChou() {
+        $.messager.confirm("提示", "您确认薪资数据已导入完成吗？", function (r) {
+            if (r) {
+                $.ajax({
+                    url: "/SysNotice/CreateByRoleXinChou",
+                    type: "post",
+                    datatype: "json",
+                    success: function (data) {
+                        if (data.Result == 1) {
+                            $.messager.alert("提示", "操作成功", "info");
+                        }
+                        else {
+                            $.messager.alert("提示", "操作失败，" + data.Msg, "info");
+
+                        }
+                    }
+
+                });
+
+            }
+
+        });
+
+
+    }
+
+    function ImportSuccessSheBao() {
+
+        $.messager.confirm("提示", "您确认薪资数据已导入完成吗？", function (r) {
+            if (r) {
+                $.ajax({
+                    url: "/SysNotice/CreateByRoleSheBao",
+                    type: "post",
+                    datatype: "json",
+                    success: function (data) {
+                        if (data.Result == 1) {
+                            $.messager.alert("提示", "操作成功", "info");
+                        }
+                        else {
+                            $.messager.alert("提示", "操作失败，" + data.Msg, "info");
+
+                        }
+                    }
+
+                });
+
+            }
+
+        });
+
+    }
+
+    function SuccessCaiWu() {
+
+        $.messager.confirm("提示", "确定财务数据已处理完成吗？", function (r) {
+            if (r) {
+                $.ajax({
+                    url: "/SysNotice/CreateByRoleCaiWu",
+                    type: "post",
+                    datatype: "json",
+                    success: function (data) {
+                        if (data.Result == 1) {
+                            $.messager.alert("提示", "操作成功", "info");
+                        }
+                        else {
+                            $.messager.alert("提示", "操作失败，" + data.Msg, "info");
+
+                        }
+                    }
+
+                });
+
+            }
+
+        });
+
+    }
+
+    //将查询条件按照分隔符拼接成字符串
+    var search = "";
+    //“查询”按钮，弹出查询框
+    function flexiQuery() {
+
+
+        //将查询条件按照分隔符拼接成字符串
+        search = "";
+        var SalaryMonth = $('#SalaryMonth').combobox('getValue');//薪资月份
+        if (SalaryMonth != '') {
+            search = search + "SalaryMonth&" + SalaryMonth + "^";
+        }
+        var EmpName = $("#EmpName").val();//
+        if (EmpName != '') {
+            search = search + "EmpName&" + EmpName + "^";
+        }
+        var CustomerName = $("#CustomerName").val();//
+        if (CustomerName != '') {
+            search = search + "CustomerName&" + CustomerName + "^";
+        }
+
+        var IDCard = $("#IDCard").val();//
+        if (IDCard != '') {
+            search = search + "IDCard&" + IDCard + "^";
+        }
+
+
+        var BankID = $("#BankID").val();//
+        if (BankID != '') {
+            search = search + "BankID&" + BankID + "^";
+        }
+
+
+        $('#flexigridData').datagrid('options').url = "../Pay/GetSalaryData";
+        $("#flexigridData").datagrid("clearSelections");
+        //执行查询
+        $('#flexigridData').datagrid('load', { search: search });
+    };
+
+
+
+    //**********************************************************************弹出-高级查询**********************************************************************
+    function showQuery() {
+
+        //加载高级查询
+        GetAdvancedQueryInfo();
+
+        $('#divAdvancedQuery').window({
+            title: '高级查询',
+            width: 780,
+            height: 500,
+            closed: false,
+            cache: false,
+            resizable: true,
+            modal: true,
+            top: 60,
+            left: 60,
+        });
+    }
+
+    //**********************************************************************执行高级查询**********************************************************************
+    function GetAdvancedQuery() {
+
+
+        //将查询条件按照分隔符拼接成字符串
+        search = "";
+        var SalaryMonth = $('#SalaryMonth').combobox('getValue');//薪资月份
+        if (SalaryMonth != '') {
+            search = search + "SalaryMonth&" + SalaryMonth + "^";
+        }
+        var EmpName = $("#EmpName").val();//
+        if (EmpName != '') {
+            search = search + "EmpName&" + EmpName + "^";
+        }
+        var CustomerName = $("#CustomerName").val();//
+        if (CustomerName != '') {
+            search = search + "CustomerName&" + CustomerName + "^";
+        }
+
+        var IDCard = $("#IDCard").val();//
+        if (IDCard != '') {
+            search = search + "IDCard&" + IDCard + "^";
+        }
+
+
+        var BankID = $("#BankID").val();//
+        if (BankID != '') {
+            search = search + "BankID&" + BankID + "^";
+        }
+        //高级查询
+        var data = $('#dgQueryTools').datagrid('getData');
+        var condition = "";
+
+        if (data != undefined && data != null) {
+            for (var i = 0; i < data.rows.length; i++) {
+
+                if (i == data.rows.length - 1) {
+
+                    condition += " " + data.rows[i].ColumnName + data.rows[i].Operators + "'" + data.rows[i].WhereValue.replace(/(^\s*)|(\s*$)/g, "") + "'";
+                }
+                else if (data.rows[i].Logical == "") {
+
+                    condition += "" + data.rows[i].ColumnName + data.rows[i].Operators + "'" + data.rows[i].WhereValue.replace(/(^\s*)|(\s*$)/g, "") + "'" + " and ";
+                }
+                else {
+
+                    condition += "" + data.rows[i].ColumnName + data.rows[i].Operators + "'" + data.rows[i].WhereValue.replace(/(^\s*)|(\s*$)/g, "") + "'" + data.rows[i].Logical;
+                }
+
+
+            }
+        }
+
+        search = search + "SqlWhere&" + condition + "^";
+        $('#flexigridData').datagrid('options').url = "../Pay/GetSalaryData";
+        $("#flexigridData").datagrid("clearSelections");
+        //执行查询
+        $('#flexigridData').datagrid('load', { search: search });
+    };
+
+    //“导出”按钮     在6.0版本中修改
+    function flexiExport() {
+
+        $.messager.confirm('操作提示', "确定要导出薪资数据吗", function (r) {
+            if (r) {
+
+
+                var p = $('#flexigridData').datagrid('options').columns[0];
+                var field = [];//所有的列名
+                var title = [];//所有的标题名称
+                $(p).each(function () {
+
+                    if (!this.hidden) {
+                        field.push(this.field);
+                        title.push(this.title);
+                    }
+
+                });
+
+                $.post("../Pay/ExportSalaryData",
+                    {
+                        title: title.join(","),
+                        field: field.join(","),
+                        sortName: $('#flexigridData').datagrid('options').sortName,
+                        sortOrder: $('#flexigridData').datagrid('options').sortOrder,
+                        search: search
+                    }, function (res) {
+                        window.location.href = res;
+
+                    });
+            }
+        });
+    };
+
+</script>

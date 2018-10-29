@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Manage
+END
+Index.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Manage/Index.cshtml
+END
+VerifyPhoneNumber.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Manage/VerifyPhoneNumber.cshtml
+END
+ChangePassword.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Manage/ChangePassword.cshtml
+END
+AddPhoneNumber.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Manage/AddPhoneNumber.cshtml
+END
+SetPassword.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Manage/SetPassword.cshtml
+END
+ManageLogins.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/BridgehrKit/!svn/ver/13806/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Manage/ManageLogins.cshtml
+END

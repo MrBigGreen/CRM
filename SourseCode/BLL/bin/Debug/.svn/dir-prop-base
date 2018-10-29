@@ -1,0 +1,14 @@
+K 10
+svn:ignore
+V 84
+BLL.dll
+BLL.pdb
+Common.dll
+Common.pdb
+DAL.dll
+DAL.pdb
+IBLL.dll
+IBLL.pdb
+log4net.dll
+
+END

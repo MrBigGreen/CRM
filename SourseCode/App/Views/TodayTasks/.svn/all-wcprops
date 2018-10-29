@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BridgehrKit/!svn/ver/8600/VISS/solution/WebSrc/CRM/SourseCode/App/Views/TodayTasks
+END
+Index.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BridgehrKit/!svn/ver/8600/VISS/solution/WebSrc/CRM/SourseCode/App/Views/TodayTasks/Index.cshtml
+END
+ShowCallRecording.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BridgehrKit/!svn/ver/5619/VISS/solution/WebSrc/CRM/SourseCode/App/Views/TodayTasks/ShowCallRecording.cshtml
+END
+ShowContactsInfo.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BridgehrKit/!svn/ver/5687/VISS/solution/WebSrc/CRM/SourseCode/App/Views/TodayTasks/ShowContactsInfo.cshtml
+END
+FollowUpEdit.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/6858/VISS/solution/WebSrc/CRM/SourseCode/App/Views/TodayTasks/FollowUpEdit.cshtml
+END
+FollowUpIndex.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/8257/VISS/solution/WebSrc/CRM/SourseCode/App/Views/TodayTasks/FollowUpIndex.cshtml
+END

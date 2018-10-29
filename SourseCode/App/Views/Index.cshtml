@@ -1,0 +1,261 @@
+﻿@model Offer.DAL.SysLog
+@{ Layout = "~/Views/Shared/Index.cshtml"; }
+@using Common
+@using Models
+<div id="divQuery">
+
+    <div class="input_search" style=" height:160px">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td colspan="2">
+                    <div class="input_search-field" style="margin-left:130px">
+                        <input type='text' id='Message' value="请输入关键字" />
+                    </div>
+                    <div class='input_search' style="padding-top:10px;">
+                        <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                            查 询
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            <tr><td style="width:120px; text-align:right; padding-right:10px;height:26px">推荐级别:</td><td style="padding-left:0px"><a href="#">所有</a>&nbsp;<a href="#">绿灯</a>&nbsp;<a href="#">黄灯</a>&nbsp;<a href="#">红灯</a>&nbsp;<a href="#">VIP</a></td></tr>
+            <tr><td style="text-align: right; padding-right: 10px; height: 26px; ">职位类别:</td><td><select><option>请选择</option><option>请选择</option></select></td></tr>
+            <tr>
+                <td style="text-align: right; padding-right: 10px; height: 26px; ">发布日期:</td>
+                <td>
+                    <a href="#">不限</a>&nbsp;&nbsp;<a href="#">最近一周</a>&nbsp;&nbsp;<a href="#">最近一月</a>&nbsp;&nbsp;<a href="#">最近三月</a>&nbsp;&nbsp;
+                    <input type="text" id="CreateTimeStart_Time" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'CreateTimeEnd_Time\');}'})" />
+                    <span>到</span>
+                    <input type="text" id="CreateTimeEnd_Time" onclick="WdatePicker({minDate:'#F{$dp.$D(\'CreateTimeStart_Time\');}'})" />
+                </td>
+            </tr>
+            <tr><td style="text-align: right; padding-right: 10px; height: 26px; ">工作地点:</td><td><select><option>请选择</option></select></td></tr>
+        </table>
+
+    </div>
+</div>
+<br style="clear: both;" />
+
+<script type="text/javascript" language="javascript">
+    $(function () {
+
+        $('#flexigridData').datagrid({
+            title: '职位列表', //列表的标题
+            iconCls: 'icon-site',
+            width: 'auto',
+            height: 'auto',
+            //nowrap: false,
+            striped: true,
+            collapsible: true,
+            url: '../SysLog/GetData', //获取数据的url
+            sortName: 'Id',
+            sortOrder: 'desc',
+            idField: 'Id',
+
+            toolbar: [
+                {
+                    text: '全选',
+                    iconCls: 'icon-search',
+                    handler: function () {
+                        return getView();
+                    }
+                }, {
+                    text: '推荐候选人',
+                    iconCls: 'icon-search',
+                    handler: function () {
+                        return getView();
+                    }
+                }, {
+                   text: '导出',
+                   iconCls: 'icon-excel',
+                   handler: function () {
+                       return flexiExport();
+                   }
+               }],
+            columns: [[
+
+
+             {
+                 field: 'Message', title: '@Html.DisplayNameFor(model => model.Message)', width: 500,
+                 formatter: function (value, row, index) {
+                     var html = "<a href='/SysLog/Details/" + row.Id + "'>" + value + "</a>";
+                     return html;
+                 }
+             }
+
+
+                @*,{ field: 'Remark', title:  '@Html.DisplayNameFor(model => model.Remark)', width: 97 }*@
+                //,{ field: 'State', title:  '@Html.DisplayNameFor(model => model.State)', width: 97 }
+
+                , { field: 'CreatePerson', title: '@Html.DisplayNameFor(model => model.CreatePerson)', width: 97 }
+
+     , {
+         field: 'CreateTime', title: '@Html.DisplayNameFor(model => model.CreateTime)', width: 97
+                , formatter: function (value, rec) {
+                    if (value) {
+                        return dateConvert(value);
+                    }
+                }
+     }
+  , { field: 'Ip', title: '@Html.DisplayNameFor(model => model.Ip)', width: 97 }
+
+ , { field: 'MenuId', title: '@Html.DisplayNameFor(model => model.MenuId)', width: 97 }
+
+            ]],
+            pagination: true,
+            rownumbers: true
+
+        });
+
+        var parent = window.dialogArguments; //获取父页面
+        if (parent == "undefined" || parent == null) {
+            //    不是在iframe中打开的
+        } else {
+            //隐藏所有的按钮和分隔符
+            $(".l-btn.l-btn-plain").hide();
+            $(".datagrid-btn-separator").hide();
+            //添加选择按钮
+            $('#flexigridData').datagrid("addToolbarItem", [{ "text": "选择", "iconCls": "icon-ok", handler: function () { flexiSelect(); } }]);
+        }
+    });
+
+    //“查询”按钮，弹出查询框
+    function flexiQuery() {
+
+        //将查询条件按照分隔符拼接成字符串
+        var search = "";
+        $('#divQuery').find(":text,:selected,select,textarea,:hidden,:checked,:password").each(function () {
+            if (this.id)
+                search = search + this.id + "&" + this.value + "^";
+            else
+                search = search + this.name + "&" + this.value + "^";
+        });
+        //执行查询
+        $('#flexigridData').datagrid('load', { search: search });
+    };
+    //“导出”按钮     在6.0版本中修改
+    function flexiExport() {
+
+        //将查询条件按照分隔符拼接成字符串
+        var search = "";
+        $('#divQuery').find(":text,:selected,select,textarea,:hidden,:checked,:password").each(function () {
+            search = search + this.id + "&" + this.value + "^";
+        });
+
+        var p = $('#flexigridData').datagrid('options').columns[0];
+        var field = [];//所有的列名
+        var title = [];//所有的标题名称
+        $(p).each(function () {
+            field.push(this.field);
+            title.push(this.title);
+        });
+
+        $.post("../SysLog/Export",
+            {
+                title: title.join(","),
+                field: field.join(","),
+                sortName: $('#flexigridData').datagrid('options').sortName,
+                sortOrder: $('#flexigridData').datagrid('options').sortOrder,
+                search: search
+            }, function (res) {
+                window.location.href = res;
+
+            });
+    };
+    //“选择”按钮，在其他（与此页面有关联）的页面中，此页面以弹出框的形式出现，选择页面中的数据
+    function flexiSelect() {
+
+        var rows = $('#flexigridData').datagrid('getSelections');
+        if (rows.length == 0) {
+            $.messager.alert('操作提示', '请选择数据!', 'warning');
+            return false;
+        }
+
+        var arr = [];
+        for (var i = 0; i < rows.length; i++) {
+            arr.push(rows[i].Id);
+        }
+        arr.push("^");
+        for (var i = 0; i < rows.length; i++) {
+            arr.push(rows[i].PersonId);
+        }
+        //主键列和显示列之间用 ^ 分割   每一项用 , 分割
+        if (arr.length > 0) {//一条数据和多于一条
+            returnParent(arr.join("&")); //每一项用 & 分割
+        }
+    }
+    function Detail(id) {
+        window.location.href = "../SysLog/Details/" + id;
+    }
+    //导航到查看详细的按钮
+    function getView() {
+
+        var arr = $('#flexigridData').datagrid('getSelections');
+
+        if (arr.length == 1) {
+            window.location.href = "../SysLog/Details/" + arr[0].Id;
+
+        } else {
+            $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+        }
+        return false;
+    }
+    //导航到创建的按钮
+    function flexiCreate() {
+
+        window.location.href = "../SysLog/Create";
+        return false;
+    }
+    //导航到修改的按钮
+    function flexiModify() {
+
+        var arr = $('#flexigridData').datagrid('getSelections');
+
+        if (arr.length == 1) {
+            window.location.href = "../SysLog/Edit/" + arr[0].Id;
+
+        } else {
+            $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+        }
+        return false;
+
+    };
+    //删除的按钮
+    function flexiDelete() {
+
+        var rows = $('#flexigridData').datagrid('getSelections');
+        if (rows.length == 0) {
+            $.messager.alert('操作提示', '请选择数据!', 'warning');
+            return false;
+        }
+
+        var arr = [];
+        for (var i = 0; i < rows.length; i++) {
+            arr.push(rows[i].Id);
+        }
+
+        $.messager.confirm('操作提示', "确认删除这 " + arr.length + " 项吗？", function (r) {
+            if (r) {
+                $.post("../SysLog/Delete", { query: arr.join(",") }, function (res) {
+                    if (res == "OK") {
+                        //移除删除的数据
+
+                        $.messager.alert('操作提示', '删除成功!', 'info');
+                        $("#flexigridData").datagrid("reload");
+                        $("#flexigridData").datagrid("clearSelections");
+                    }
+                    else {
+                        if (res == "") {
+                            $.messager.alert('操作提示', '删除失败!请查看该数据与其他模块下的信息的关联，或联系管理员。', 'info');
+                        }
+                        else {
+                            $.messager.alert('操作提示', res, 'info');
+                        }
+                    }
+                });
+            }
+        });
+
+    };
+
+</script>

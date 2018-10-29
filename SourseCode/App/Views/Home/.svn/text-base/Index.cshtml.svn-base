@@ -1,0 +1,610 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CRM客户管理系统</title>
+    <link id="easyuiTheme" href="@Url.Content("~/Res/easyui/themes/default/easyui.css")" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/easyui")
+
+    <script type="text/javascript">
+        //循环执行，每隔3秒钟执行一次showalert（）
+        window.setInterval(CheckOnLine, 15000);
+        function CheckOnLine() {
+            $.ajax({
+                url: "/Home/CheckOnLine",
+                data: "",
+                type: "POST",
+                success: function (data) {
+                    if (data.Result == 0) {
+                        $.messager.alert("系统提示", "你的帐号已在别处登陆，你被强迫下线！", "error", function () {
+
+                            location.href = '/Login/LogOff';
+                        });
+
+                    }
+
+                },
+                error: function () {
+                    $.messager.alert("系统提示", "网络异常，请刷新重试", "error");
+                }
+
+            });
+
+        }
+
+
+        //function addTab(subtitle, url, icon, closable, id) {
+            
+        //    if (!$('#tabs').tabs('exists', subtitle)) {
+        //        $('#tabs').tabs('add', {
+        //            title: subtitle,
+        //            content: createFrame(url, id),
+        //            closable: closable
+        //            , icon: icon
+        //        });
+        //    } else {
+        //        $('#tabs').tabs('select', subtitle);
+        //    }
+        //    tabClose();
+        //}
+
+        function createFrame(url, id) {
+            var s = '<iframe id="' + id + '" scrolling="auto" frameborder="0"  src="' + url + '" style="width:100%;height:99%;overflow-y: auto; "></iframe>';
+            return s;
+        }
+        function tabClose() {
+            /*双击关闭TAB选项卡*/
+            $(".tabs-inner").dblclick(function () {
+                var subtitle = $(this).children(".tabs-closable").text();
+                $('#tabs').tabs('close', subtitle);
+            })
+            /*为选项卡绑定右键*/
+            $(".tabs-inner").bind('contextmenu', function (e) {
+                $('#mm').menu('show', {
+                    left: e.pageX,
+                    top: e.pageY
+                });
+
+                var subtitle = $(this).children(".tabs-closable").text();
+
+                $('#mm').data("currtab", subtitle);
+                $('#tabs').tabs('select', subtitle);
+                return false;
+            });
+        }
+        //绑定右键菜单事件
+        function tabCloseEven() {
+            //刷新
+            $('#mm-tabupdate').click(function () {
+                var currTab = $('#tabs').tabs('getSelected');
+                var url = $(currTab.panel('options').content).attr('src');
+                var id = $(currTab.panel('options').content).attr('id');; //获取id
+
+                $('#tabs').tabs('update', {
+                    tab: currTab,
+                    options: {
+                        content: createFrame(url, id)
+                    }
+                })
+            })
+            //关闭
+            $('#mm-tabclose').click(function () {
+                var currtab_title = $('#mm').data("currtab");
+                $('#tabs').tabs('close', currtab_title);
+            })
+            // 关闭其他
+            $('#closeother').click(function () {
+                //所有所有tab对象
+                var allTabs = $('#tabs').tabs('tabs');
+                var currentTab = $('#tabs').tabs('getSelected');
+                var currtab_title = currentTab.panel('options').title;
+
+                for (var i = (allTabs.length - 1) ; i >= 0; i--) {
+
+                    var tab = allTabs[i];
+                    var opt = tab.panel('options');
+                    //获取标题
+                    var title = opt.title;
+                    if (currtab_title == title) {
+                        continue;
+                    }
+                    //是否可关闭 ture:会显示一个关闭按钮，点击该按钮将关闭选项卡
+                    var closable = opt.closable;
+                    if (closable) {
+                        //alert('title' + title + '  curTabTitle:' + curTabTitle);
+                        $('#tabs').tabs('close', title);
+                    }
+
+                }
+            })
+            // 全部关闭
+            $('#mm-tabAllclose').click(function () {
+                //所有所有tab对象
+                var allTabs = $('#tabs').tabs('tabs');
+                for (var i = (allTabs.length - 1) ; i >= 0; i--) {
+                    var tab = allTabs[i];
+                    var opt = tab.panel('options');
+                    //获取标题
+                    var title = opt.title;
+                    //是否可关闭 ture:会显示一个关闭按钮，点击该按钮将关闭选项卡
+                    var closable = opt.closable;
+                    if (closable) {
+                        //alert('title' + title + '  curTabTitle:' + curTabTitle);
+                        $('#tabs').tabs('close', title);
+                    }
+
+                }
+            })
+
+            //退出
+            $("#mm-exit").click(function () {
+                $('#mm').menu('hide');
+            })
+        }
+        //function showMyWindow(title, href, width, height, modal, minimizable, maximizable) {
+        //    
+        //    $('#myWindow').window({
+        //        title: title,
+        //        width: width === undefined ? 600 : width,
+        //        height: height === undefined ? 450 : height,
+        //        content: '<iframe  scrolling="yes" frameborder="0"  src="' + href + '" style="width:100%;height:98%;"></iframe>',
+        //        //        href: href === undefined ? null : href,
+        //        modal: modal === undefined ? true : modal,
+        //        minimizable: minimizable === undefined ? false : minimizable,
+        //        maximizable: maximizable === undefined ? false : maximizable,
+        //        shadow: false,
+        //        cache: false,
+        //        closed: false,
+        //        collapsible: false,
+        //        resizable: false,
+        //        loadingMessage: '正在加载数据，请稍等片刻......'
+        //    });
+
+        //}
+
+
+
+    </script>
+    <script type="text/javascript">
+
+
+        $(function () {
+            $(".window-mask").live("click", function () {
+                 
+                $(".easyui-window").window("close");
+                $(".easyui-dialog").dialog("close");
+                
+            });
+
+
+            if ('@ViewBag.Strength' < 2) {
+                $.messager.alert("系统提示", "系统检测您的密码强度较低！","warning", function () {
+
+                    showWindow("修改密码", "Login/ChangePassword");
+                });
+                
+            }
+            tabCloseEven();
+            addTab("我的工作台", "/HomeRight", "tu1112", false);
+            $('ul li a').click(function () {
+                var tabTitle = $(this).text();
+                var url = $(this).attr("rel"); //获取地址
+                var id = $(this).attr("id"); //获取id
+                var icon = $(this).attr("icon"); //获取图标
+                if (icon == "") {
+                    icon = "icon-save";
+                }
+                addTab(tabTitle, url, icon, true, id);
+
+            });
+            $('#loginOut').click(function () {
+
+                $.messager.confirm('系统提示', '您确定要退出本次登录吗?', function (r) {
+
+                    if (r) {
+                        location.href = '/Login/LogOff';
+                    }
+                });
+            });
+            slide();
+            $('.ChangePassword').click(function () {
+                showWindow("修改密码", "Login/ChangePassword");
+
+            });
+
+        })
+        //右下角弹出框;
+       
+       function slide() {
+
+            var dt = '@ViewData["Show"]';
+            jQuery.messager.show({
+                height: 198,
+                title: '当前登录情况:',
+
+                msg: dt + '温馨提示：为了账户的安全，如果上面的登录情况不正常，建议您马上<a href="#" style="color:red;" class="ChangePassword" >修改密码</a><br /> 登录总次数：<span class="denglu">@ViewBag.LogonNum </span><br />本次登录IP：<span class="denglu">@ViewBag.IP </span>     <br />上次登录IP：<span class="denglu">@ViewBag.LastLogonIP </span>     <br />上次登录时间：<span class="denglu">@ViewBag.LastLogonTime</span> <br />',
+
+                timeout: 8000,
+
+                showType: 'slide'
+
+            });
+
+        }
+        function addTab(subtitle, url, icon, closable, id) {
+
+            if (!$('#tabs').tabs('exists', subtitle)) {
+                $('#tabs').tabs('add', {
+                    title: subtitle,
+                    content: createFrame(url, id),
+                    closable: closable
+                    , icon: icon
+                });
+            } else {
+                $('#tabs').tabs('select', subtitle);
+            }
+            tabClose();
+        }
+        //创建tab 已存在则替换URL
+        function addTabUpdate(subtitle, url, icon, closable, id) {
+
+            if (!$('#tabs').tabs('exists', subtitle)) {
+                $('#tabs').tabs('add', {
+                    title: subtitle,
+                    content: createFrame(url, id),
+                    closable: closable
+                    , icon: icon
+                });
+            } else {
+                //获取tab
+                var currTab = $('#tabs').tabs('getTab', subtitle);
+                //更新替换url
+                $('#tabs').tabs('update', {
+                    tab: currTab,
+                    options: {
+                        content: createFrame(url, id)
+                    }
+                })
+                $('#tabs').tabs('select', subtitle);
+            }
+            tabClose();
+        }
+
+        function createFrame(url, id) {
+            var s = '<iframe name="searchiframe" id="' + id + '" scrolling="auto" frameborder="0"  src="' + url + '" style="width:100%;height:99%;overflow-y: auto; "></iframe>';
+            return s;
+        }
+        function tabClose() {
+            /*双击关闭TAB选项卡*/
+            $(".tabs-inner").dblclick(function () {
+                var subtitle = $(this).children(".tabs-closable").text();
+                $('#tabs').tabs('close', subtitle);
+            })
+            /*为选项卡绑定右键*/
+            $(".tabs-inner").bind('contextmenu', function (e) {
+                $('#mm').menu('show', {
+                    left: e.pageX,
+                    top: e.pageY
+                });
+
+                var subtitle = $(this).children(".tabs-closable").text();
+
+                $('#mm').data("currtab", subtitle);
+                $('#tabs').tabs('select', subtitle);
+                return false;
+            });
+        }
+        //绑定右键菜单事件
+        function tabCloseEven() {
+            //刷新
+            $('#mm-tabupdate').click(function () {
+                var currTab = $('#tabs').tabs('getSelected');
+                var url = $(currTab.panel('options').content).attr('src');
+                var id = $(currTab.panel('options').content).attr('id');; //获取id
+
+                $('#tabs').tabs('update', {
+                    tab: currTab,
+                    options: {
+                        content: createFrame(url, id)
+                    }
+                })
+            })
+            //关闭
+            $('#mm-tabclose').click(function () {
+                var currtab_title = $('#mm').data("currtab");
+                $('#tabs').tabs('close', currtab_title);
+            })
+            // 关闭其他
+            $('#closeother').click(function () {
+                //所有所有tab对象
+                var allTabs = $('#tabs').tabs('tabs');
+                var currentTab = $('#tabs').tabs('getSelected');
+                var currtab_title = currentTab.panel('options').title;
+
+                for (var i = (allTabs.length - 1) ; i >= 0; i--) {
+
+                    var tab = allTabs[i];
+                    var opt = tab.panel('options');
+                    //获取标题
+                    var title = opt.title;
+                    if (currtab_title == title) {
+                        continue;
+                    }
+                    //是否可关闭 ture:会显示一个关闭按钮，点击该按钮将关闭选项卡
+                    var closable = opt.closable;
+                    if (closable) {
+                        //alert('title' + title + '  curTabTitle:' + curTabTitle);
+                        $('#tabs').tabs('close', title);
+                    }
+
+                }
+            })
+            // 全部关闭
+            $('#mm-tabAllclose').click(function () {
+                //所有所有tab对象
+                var allTabs = $('#tabs').tabs('tabs');
+                for (var i = (allTabs.length - 1) ; i >= 0; i--) {
+                    var tab = allTabs[i];
+                    var opt = tab.panel('options');
+                    //获取标题
+                    var title = opt.title;
+                    //是否可关闭 ture:会显示一个关闭按钮，点击该按钮将关闭选项卡
+                    var closable = opt.closable;
+                    if (closable) {
+                        //alert('title' + title + '  curTabTitle:' + curTabTitle);
+                        $('#tabs').tabs('close', title);
+                    }
+
+                }
+            })
+
+            //退出
+            $("#mm-exit").click(function () {
+                $('#mm').menu('hide');
+            })
+        }
+        //////*******************************************关闭当前打开的tab************************************************/
+        function removePanel(title) {
+            $('#tabs').tabs('close', title);
+        }
+
+
+
+        //function showMyWindow(title, href, width, height, modal, minimizable, maximizable) {
+
+        //    $('#myWindow').window({
+        //        title: title,
+        //        width: width === undefined ? 600 : width,
+        //        height: height === undefined ? 450 : height,
+        //        content: '<iframe scrolling="yes" frameborder="0"  src="' + href + '" style="width:100%;height:98%;"></iframe>',
+        //        //        href: href === undefined ? null : href,
+        //        modal: modal === undefined ? true : modal,
+        //        minimizable: minimizable === undefined ? false : minimizable,
+        //        maximizable: maximizable === undefined ? false : maximizable,
+        //        shadow: false,
+        //        cache: false,
+        //        closed: false,
+        //        collapsible: false,
+        //        resizable: false,
+        //        loadingMessage: '正在加载数据，请稍等片刻......'
+        //    });
+
+        //}
+        ////主题
+        //var themes = [
+        //                    { value: 'default', text: '默认' },
+        //                    { value: 'gray', text: '灰' },
+        //                    { value: 'metro', text: '磁贴' },
+        //                    { value: 'bootstrap', text: 'bootstrap' }
+        //];
+        //$(function () {//加载主题
+        //    var th = $.cookie('easyuiThemeName');
+        //    $('#cb-theme').combobox({
+        //        data: themes,
+        //        editable: false,
+        //        panelHeight: 'auto',
+        //        onSelect: onChangeTheme,
+        //        onLoadSuccess: function () {
+        //            if (th != undefined && th != '') {
+        //                $(this).combobox('setValue', $.cookie('easyuiThemeName'));
+        //            } else {
+        //                $(this).combobox('setValue', 'default');
+        //            }
+        //        }
+        //    });
+        //    if (th != undefined && th != '') {
+        //        onChangeTheme($.cookie('easyuiThemeName'));
+        //    }
+        //});
+        //function onChangeTheme(themeName) {
+        //    var themePath;
+        //    if (themeName.value) {
+        //        themePath = themeName.value;
+        //        $.ajax({
+        //            type: "get",
+        //            url: '/Home/SaveTheme/?theme=' + themePath,
+        //            cache: false,
+        //            beforeSend: function (XMLHttpRequest) {
+
+        //            },
+        //            success: function (data, textStatus) {
+        //                console.log("皮肤保存成功");
+        //            },
+        //            complete: function (XMLHttpRequest, textStatus) {
+
+        //            },
+        //            error: function () {
+
+        //            }
+        //        });
+        //    } else {
+        //        themePath = themeName;
+        //    }
+        //    var $easyuiTheme = $('#easyuiTheme');
+        //    var url = $easyuiTheme.attr('href');
+        //    var href = url.substring(0, url.indexOf('themes')) + 'themes/' + themePath + '/easyui.css';
+        //    $easyuiTheme.attr('href', href);
+        //    //$('#mainCss').attr('href', 'Content/default.css');
+        //    var $iframe = $('iframe');
+        //    if ($iframe.length > 0) {
+        //        for (var i = 0; i < $iframe.length; i++) {
+        //            var ifr = $iframe[i];
+        //            $(ifr).contents().find('#easyuiTheme').attr('href', href);
+        //        }
+        //    }
+        //    $.parser.parse();
+        //    $.cookie('easyuiThemeName', themePath, {
+        //        expires: 60
+        //    });
+        //};
+    </script>
+
+    <style type="text/css">
+        body {
+            font-family: 微软雅黑,新宋体;
+        }
+
+        a {
+            color: Black;
+            text-decoration: none;
+        }
+
+        .easyui-tree li {
+            margin: 5px 0px 0px 0px;
+            padding: 1px;
+        }
+
+        #mainlogo {
+            position: absolute;
+            top: 22px;
+            left: 18px;
+            width: 575px;
+            height: 72px;
+        }
+
+
+        #mainctrl {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            height: 72px;
+            width: 425px;
+        }
+
+        .denglu {
+            color: blue;
+        }
+
+
+
+
+
+        .user {
+            color: #464646;
+            float: right;
+            text-align: right;
+            margin: 25px 15px 10px 0px;
+            line-height: 15px;
+        }
+
+            .user a {
+                color: #464646;
+                text-decoration: none;
+            }
+
+                .user a:hover {
+                    color: #F00;
+                }
+
+        .wel {
+            display: inline;
+        }
+
+            .wel em {
+                font-style: normal;
+                color: #06c;
+                margin-right: 10px;
+            }
+
+        .uset {
+            display: inline;
+            margin: 0 0 0 8px;
+        }
+    </style>
+</head>
+<body class="easyui-layout">
+
+    <noscript>
+        <div style="position: absolute; z-index: 100000; height: 2046px; top: 0px; left: 0px;
+            width: 100%; background: white; text-align: center;">
+            <img src="images/noscript.gif" alt='抱歉，请开启脚本支持！' />
+        </div>
+    </noscript>
+    <div region="north" split="true" border="false" style="overflow: hidden; height: 46px;
+        line-height: 0px;   font-family: 微软雅黑,黑体">
+        <div id="mainlogo">
+            您好，<span class="denglu">
+                @ViewBag.PersonName
+            </span>，欢迎进入CRM客户管理系统！
+        </div>
+
+        <div class="user">
+            @*<div class="uset">
+                    <font>皮肤:</font>
+                    <select id="cb-theme" style="width: 150px"></select>
+                </div>*@
+            <div class="uset">
+                <a href="#" class="ChangePassword">修改密码</a>
+            </div>
+
+            <div class="uset">
+                <a href="#" id="loginOut">安全退出</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div region="west" hide="true" split="true" title="导航菜单" style="width: 180px;" id="west">
+        <div id="leftAccordion" class="easyui-accordion" fit="true" border="false">
+            @{
+                if (ViewData["Menu"] != null)
+                {
+                    @Html.Raw(ViewData["Menu"].ToString())
+                }
+            }
+        </div>
+    </div>
+    <div id="mainPanle" region="center" style="background: #eee; overflow-y: hidden;">
+        <div id="tabs" class="easyui-tabs" fit="true" border="false">
+        </div>
+    </div>
+    @*<div region="south" split="true" style="height: 29px;">
+            <div style="padding: 0px; margin-left: 50%;">
+                技术支持 Offer.com
+            </div>
+        </div>*@
+    <div id="mm" class="easyui-menu" style="width: 150px;">
+        <div id="mm-tabupdate">
+            刷新
+        </div>
+        <div class="menu-sep">
+        </div>
+        <div id="mm-tabclose">
+            关闭
+        </div>
+        <div id="closeother">关闭其他</div>
+        <div id="mm-tabAllclose">
+            全部关闭
+        </div>
+    </div>
+    <div id="myWindow">
+    </div>
+
+</body>
+</html>

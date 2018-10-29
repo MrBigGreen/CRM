@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head id="MyHead">
+    <link id="easyuiTheme" href="@Url.Content("~/Res/easyui/themes/default/easyui.css")" rel="stylesheet" type="text/css" />
+    <title></title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/easyui")
+    <style type="text/css">
+        .combo {
+            font-family: 微软雅黑,新宋体;
+            height: 24px;
+            width: 210px;
+            border: 1px solid #CCC;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="myWindow">
+    </div>
+    <input type="hidden" id="CustomerID" name="CustomerID" value="@ViewBag.ID" />
+    <div id="tabs" class="easyui-tabs" style="width:100%;height:650px">
+
+        <div title="客户信息卡" style="padding:1px">
+            @{Html.RenderAction("Edit", "Customer", new { ID = @ViewBag.ID });}
+            <div id="contactDiv"></div>
+        </div>
+         
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+        
+        $.get("/CustomerContact/index?ID=@ViewBag.ID", function (data) {
+            $("#contactDiv").html(data);
+        });
+
+        var CustomerID = '@ViewBag.ID';
+        var FollowType = "@ViewBag.FollowType";
+        var dataType = "@ViewBag.DataType";
+        var selectTab = "@ViewBag.Tab";
+        if (CustomerID != '') {
+
+            //异步加载信用等级列表
+            $('#tabs').tabs('add', {
+                title: "信用等级",
+                selected: false,
+                content: createFrame("/CustomerRating/SingleList?ID=" + CustomerID, "CustomerRating"),
+            });
+            if (FollowType == "2") {
+                //异步加载--跟进记录
+                $('#tabs').tabs('add', {
+                    title: "跟进记录",
+                    selected: false,
+                    content: createFrame("/CustomerFollow/FollowBackHistoryPartial?CustomerID=" + CustomerID + "&FollowType=2&page=1", "KaIframe"),
+                });
+                //异步加载--Sales跟进记录
+                $('#tabs').tabs('add', {
+                    title: "Sales跟进记录",
+                    selected: false,
+                    content: createFrame("/CustomerFollow/FollowBackHistoryPartial?CustomerID=" + CustomerID + "&FollowType=1&page=1", "SalesIframe"),
+                });
+            }
+            else {
+                //异步加载--跟进记录
+                $('#tabs').tabs('add', {
+                    title: "跟进记录",
+                    selected: false,
+                    content: createFrame("/CustomerFollow/FollowBackHistoryPartial?CustomerID=" + CustomerID + "&FollowType=1&page=1", "SalesIframe"),
+                });
+            }
+            if (dataType == "1") {
+
+                //异步加载--客户归属变更记录表
+                $('#tabs').tabs('add', {
+                    title: "客户归属变更记录表",
+                    selected: false,
+                    content: createFrame("/CustomerAttributionChange/Index?ID=" + CustomerID, "CustomerAttributionChange"),
+                });
+
+                //异步加载--客户分享清单
+                $('#tabs').tabs('add', {
+                    title: "客户分享清单",
+                    selected: false,
+                    content: createFrame("/CustomerShare/Index?ID=" + CustomerID, "CustomerShare"),
+                });
+            }
+            //异步加载项目列表
+            $('#tabs').tabs('add', {
+                title: "RPO项目列表",
+                selected: false,
+                content: createFrame("/CustomerProject/SingleList?ID=" + CustomerID, "ProjectList"),
+            });
+
+        }
+        if (selectTab != "" && selectTab != undefined && selectTab != null) {
+            if ($('#tabs').tabs('exists', selectTab)) {
+                $('#tabs').tabs('select', selectTab);
+            }
+            ("#Navigation").hide();
+        }
+
+
+    })
+    function createFrame(url, id) {
+        var s = '<iframe name="searchiframe" id="' + id + '" scrolling="auto" frameborder="0"  src="' + url + '" style="width:100%;height:99%;overflow-y: auto; "></iframe>';
+        return s;
+    }
+</script>

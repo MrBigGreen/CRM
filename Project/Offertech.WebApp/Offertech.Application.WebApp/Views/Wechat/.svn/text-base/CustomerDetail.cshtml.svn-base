@@ -1,0 +1,604 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>客户详情和联系人</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="~/Content/css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/css/app.css" />
+
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.picker.min.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.poppicker.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.dtpicker.css" />
+    <link rel="stylesheet" href="~/Content/css/multipleViews.css" />
+    <style type="text/css">
+        #Contactscroll {
+            margin-top: 50px;
+        }
+
+        #contacterLists {
+            margin-top: 0;
+            margin-bottom: 0
+        }
+
+        .mui-page .mui-table-view.customer-table-view {
+            margin-top: 0;
+            margin-bottom: 0
+        }
+
+        .mui-search.mui-active:before {
+            margin-top: -10px;
+        }
+
+        #addressText {
+            border: 0;
+            padding: 10px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body class="mui-fullscreen customer-contacter">
+    <!--页面主结构开始-->
+    <div id="app" class="mui-views">
+        <div class="mui-view">
+            <div class="mui-navbar">
+            </div>
+            <div class="mui-pages">
+            </div>
+        </div>
+    </div>
+
+    <!--单页面开始-->
+    <div id="setting" class="mui-page">
+        <!--------------------------导航栏区域---------------------->
+        <div class="mui-navbar-inner mui-bar mui-bar-nav">
+            <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+                <span class="mui-icon mui-icon-left-nav"></span>返回
+            </button>
+            <h1 class="mui-center mui-title" id="title">客户详情</h1>
+        </div>
+        <div class="mui-page-content">
+            <!--------------------------选择区域---------------------->
+            <div class="selectArea">
+                <div id="segmentedControl" class="mui-segmented-control segment">
+                    <a class="mui-control-item mui-active" id="segmentedItem1" href="#item1">客户详情</a>
+                    <a class="mui-control-item" id="segmentedItem2" href="#item2">联系人</a>
+                </div>
+                <img src="/Content/img/add-image.png" id="addContacter" class="add dn" />
+            </div>
+            <!----------------------主题内容展示区-------------------->
+            <div class="mui-content">
+                <!----------------------客户详情展示-------------------->
+                <div id="item1" class="mui-control-content mui-active customerDetail">
+                    <div id="Detailscroll" class="mui-scroll-wrapper">
+                        <form class="mui-input-form">
+                            <ul class="mui-table-view customer-table-view">
+                                <li class="mui-table-view-cell">
+                                    <div class="mui-input-row">
+                                        <label class="cell-left">客户名称:</label>
+                                        <input type="text" class="cell-right" id="customerName" value="欧孚科技有限公司" />
+                                    </div>
+                                </li>
+                                <li class="mui-table-view-cell">
+                                    <a class="mui-navigate-right">
+                                        <div class="mui-input-row" id="EstablishDate" data-options='{"type":"date"}'>
+                                            <label class="cell-left">成立日期:</label>
+                                            <p class="cell-right" id="foundingTime">请选择日期</p>
+                                        </div>
+                                    </a>
+
+                                </li>
+                                <li class="mui-table-view-cell">
+                                    <a class="mui-navigate-right" id='customerLevel'>
+                                        <div class="mui-input-row">
+                                            <label class="cell-left">客户级别:</label>
+                                            <p class="cell-right" id="customerLevelText">苏州市</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="mui-table-view-cell">
+                                    <a class="mui-navigate-right" id='companyNature'>
+                                        <div class="mui-input-row">
+                                            <label class="cell-left">企业性质:</label>
+                                            <p class="cell-right" id="companyNatureText">苏州市</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="mui-table-view-cell">
+                                    <a class="mui-navigate-right" id='capital'>
+                                        <div class="mui-input-row">
+                                            <label class="cell-left">注册资金:</label>
+                                            <p class="cell-right" id="capitalText">苏州市</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="mui-table-view-cell">
+                                    <a class="mui-navigate-right" id='income'>
+                                        <div class="mui-input-row">
+                                            <label class="cell-left">销售收入:</label>
+                                            <p class="cell-right" id="incomeText">苏州市</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="mui-table-view-cell">
+                                    <a class="mui-navigate-right" id='industry'>
+                                        <div class="mui-input-row">
+                                            <label class="cell-left">所属行业:</label>
+                                            <p class="cell-right" id="industryText">苏州市</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="mui-table-view-cell">
+                                    <a class="mui-navigate-right" id='companyScale'>
+                                        <div class="mui-input-row">
+                                            <label class="cell-left">公司规模:</label>
+                                            <p class="cell-right" id="companyScaleText">苏州市</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="mui-table-view-cell">
+                                    <a class="mui-navigate-right" id='companyLocation'>
+                                        <div class="mui-input-row">
+                                            <label class="cell-left">公司地址:</label>
+                                            <p class="cell-right" id="locationText">苏州市</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="mui-table-view-cell">
+                                    <a>
+                                        <div class="mui-input-row">
+                                            <input type="text" class="cell-right" id="addressText" placeholder="详细地址" />
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="introduce-cell">
+                                    <div class="mui-input-row introduce-content">
+                                        <span class="introduce-label">公司简介</span>
+                                        <textarea id="introduceText" class="introduce-input" placeholder="可以输入公司简介..."></textarea>
+                                        <button type="button" class="commit-btn" id="save">保存</button>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+                <!----------------------联系人展示-------------------->
+                <div id="item2" class="mui-control-content contacter-list">
+                    <div class="search-area">
+                        <div class="mui-input-row mui-search">
+                            <input type="search" id="contactkey" class="mui-input-clear search-input" placeholder="请输入关键字">
+                        </div>
+                    </div>
+                    <!--客户列表-->
+                    <div id="Contactscroll" class="mui-scroll-wrapper">
+                        <div class="mui-scroll">
+                            <ul class="mui-table-view" id="contacterLists"></ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!------------------------单页面结束-------------------->
+    <!------------------------子页面展示-------------------------->
+    <!--成立日期-->
+
+    <div id="industry_select" class="mui-page">
+        <div class="mui-navbar-inner mui-bar mui-bar-nav">
+            <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+                <span class="mui-icon mui-icon-left-nav"></span>设置
+            </button>
+            <h1 class="mui-center mui-title">账号与安全</h1>
+        </div>
+        <div class="mui-page-content">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">
+                            <a id="head" class="mui-navigate-right">
+                                头像
+                                <span class="mui-pull-right head">
+                                    <img class="head-img mui-action-preview" id="head-img1" src="" />
+                                </span>
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a>姓名<span class="mui-pull-right">Hbuilder</span></a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a>HBuilder账号<span class="mui-pull-right">hbuilder@dcloud.io</span></a>
+                        </li>
+                    </ul>
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">
+                            <a>QQ号<span class="mui-pull-right">88888888</span></a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a>手机号<span class="mui-pull-right">18601234567</span></a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a>邮箱地址<span class="mui-pull-right">hbuilder@dcloud.io</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/Scripts/jquery-1.11.1.js"></script>
+    <script src="~/Content/Scripts/mui.min.js"></script>
+
+    <script type="text/javascript" src="~/Content/Scripts/mui.view.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.picker.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.poppicker.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.dtpicker.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/cityData.js"></script>
+    <script src="~/Content/Scripts/utils/offertech-clientdata.js"></script>
+
+    <script>
+        mui.init({
+
+        });
+
+        //初始化单页view
+        var viewApi = mui('#app').view({
+            defaultPage: '#setting'
+        });
+        //初始化单页的区域滚动
+        mui('.mui-scroll-wrapper').scroll();
+        var view = viewApi.view;
+        (function ($, doc) {
+            //处理view的后退与webview后退
+            var oldBack = $.back;
+            $.back = function () {
+                if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
+                    viewApi.back();
+                } else { //执行webview后退
+                    oldBack();
+                }
+            };
+            //监听页面切换事件方案1,通过view元素监听所有页面切换事件，目前提供pageBeforeShow|pageShow|pageBeforeBack|pageBack四种事件(before事件为动画开始前触发)
+            //第一个参数为事件名称，第二个参数为事件回调，其中e.detail.page为当前页面的html对象
+            view.addEventListener('pageBeforeShow', function (e) {
+
+            });
+            view.addEventListener('pageShow', function (e) {
+
+            });
+            view.addEventListener('pageBeforeBack', function (e) {
+                //				console.log(e.detail.page.id + ' beforeBack');
+
+            });
+            view.addEventListener('pageBack', function (e) {
+
+            });
+        })(mui, document);
+        mui.ready(function () {
+            //获取客户详细信息
+            GetCustomerInfo();
+
+            $("#Contactscroll").height((document.body.offsetHeight - 148) + "px");
+            $("#Detailscroll").height((document.body.offsetHeight - 94) + "px");
+
+        });
+        //获取客户详细信息
+        function GetCustomerInfo() {
+            $.ajax({
+                type: "get",
+                url: "GetCustomerEntityJson",
+                async: false,
+                data: { keyValue: localStorage.getItem("customerid") },
+                dataType: "json",
+                success: function (data) {
+                    if (data && data.resultdata) {
+                        var customerinfo = data.resultdata;
+                        document.getElementById("customerName").value = customerinfo.FullName;
+                        document.getElementById("foundingTime").innerText = customerinfo.EstablishDate;
+                        document.getElementById("customerLevelText").innerText = customerinfo.CustLevelId == "" ? "" : top.clientdataItem["Client_Level"][customerinfo.CustLevelId];
+                        document.getElementById("customerLevelText").setAttribute("data-value", customerinfo.CustLevelId);
+                        document.getElementById("companyNatureText").innerText = customerinfo.NatureCode == "" ? "" : top.clientdataItem["Client_NatureCode"][customerinfo.NatureCode];
+                        document.getElementById("companyNatureText").setAttribute("data-value", customerinfo.NatureCode);
+                        document.getElementById("capitalText").innerText = customerinfo.RegisterCapital == "" ? "" : top.clientdataItem["Client_RegisterCapital"][customerinfo.RegisterCapital];
+                        document.getElementById("capitalText").setAttribute("data-value", customerinfo.RegisterCapital);
+                        document.getElementById("incomeText").innerText = customerinfo.SalesRevenue == "" ? "" : top.clientdataItem["Client_SalesRevenue"][customerinfo.SalesRevenue];
+                        document.getElementById("incomeText").setAttribute("data-value", customerinfo.SalesRevenue);
+                        document.getElementById("industryText").innerText = customerinfo.CustIndustryId == "" ? "" : top.clientdataItem["Client_Trade"][customerinfo.CustIndustryId];
+                        document.getElementById("industryText").setAttribute("data-value", customerinfo.CustIndustryId);
+                        document.getElementById("companyScaleText").innerText = customerinfo.CompanySize == "" ? "" : top.clientdataItem["Client_CompanySize"][customerinfo.CompanySize];
+                        document.getElementById("companyScaleText").setAttribute("data-value", customerinfo.CompanySize);
+                        document.getElementById("locationText").innerText = (customerinfo.ProvinceName.AreaName == "" && customerinfo.CityName.AreaName == "" && customerinfo.CountyName.AreaName == "") ? "" : customerinfo.ProvinceName.AreaName + "-" + customerinfo.CityName.AreaName + "-" + customerinfo.CountyName.AreaName;
+                        document.getElementById("locationText").setAttribute("data-value", (customerinfo.ProvinceId == "" && customerinfo.CityId == "" && customerinfo.CountyId == "") ? "" : customerinfo.ProvinceId + "," + customerinfo.CityId + "," + customerinfo.CountyId);
+                        document.getElementById("addressText").value = customerinfo.CompanyAddress;
+                        document.getElementById("introduceText").value = customerinfo.CompanyDesc;
+                    }
+                },
+                error: function (data) {
+                    mui.toast(data.responseText);
+                }
+            });
+        }
+
+
+
+        //获取联系人
+        function LoadContacterList() {
+            $.ajax({
+                type: "get",
+                url: "GetCustomerContactJson",
+                async: false,
+                data: { customerId: localStorage.getItem("customerid"), keyword: $("#contactkey").val() },
+                dataType: "json",
+                success: function (data) {
+                    var rows = data.resultdata.rows;
+                    $.each(rows,
+                        function (i) {
+                            var row = rows[i];
+                            var li;
+                            li = document.createElement('li');
+                            li.className = 'contacter-cell';
+                            var temphtml = "";
+                            temphtml += '<div class="contacter-cell-top">';
+                            temphtml += '<img class="contacter-icon" src="/Content/img/edit-contacter-icon.png"/>';
+                            temphtml += '<span class="contacer-name">' + row.Contact + '</span>';
+                            temphtml += '<img class="edit-btn" data-contactid="' + row.CustomerContactId + '" src="/Content/img/edit-image.png"/>';
+                            temphtml += '<div class="line"></div>';
+                            temphtml += '</div>';
+                            temphtml += '<div class="contacter-cell-middle">';
+                            if (row.PostId !== "" && row.PostId != null) {
+                                temphtml += '<p>职务：<span id="title">' + row.PostId + '</span></p>';
+                            }
+                            if (row.Mobile !== "" && row.Mobile != null) {
+                                temphtml += '<p>手机：<span id="phone">' + row.Mobile + '</span></p>';
+                            }
+                            if (row.Email !== "" && row.Email != null) {
+                                temphtml += '<p class="contacter-email">邮箱：<span id="email">' + row.Email + '</span></p>';
+                            }
+                            temphtml += '</div>';
+                            temphtml += '<div class="divider"></div>';
+                            li.innerHTML = temphtml;
+                            $("#contacterLists").append(li);
+                        });
+                },
+                error: function (data) {
+                    mui.toast(data.responseText);
+                }
+            });
+
+        }
+
+        $("body")
+            .on("change",
+            "#contactkey",
+            function () {
+                $("#contacterLists").html("");
+                LoadContacterList();
+            });
+
+        $("body").on('tap', ".mui-icon-clear", function () {
+            $("#contacterLists").html("");
+            LoadContacterList();
+        });
+        // 处理事件
+        (function ($) {
+            /*--------------------获取客户详情页面的元素-----------------*/
+            var customerName = document.getElementById("customerName");
+            var establishDate = document.getElementById("EstablishDate");
+            var dateText = document.getElementById("foundingTime");
+            var customerLevel = document.getElementById("customerLevel");
+            var levelText = document.getElementById("customerLevelText");
+            var nature = document.getElementById("companyNature");
+            var natureText = document.getElementById("companyNatureText");
+            var capital = document.getElementById("capital");
+            var capitalText = document.getElementById("capitalText");
+            var income = document.getElementById("income");
+            var incomeText = document.getElementById("incomeText");
+            var industry = document.getElementById("industry");
+            var industryText = document.getElementById("industryText");
+            var scale = document.getElementById("companyScale");
+            var scaleText = document.getElementById("companyScaleText");
+            var companyLocation = document.getElementById("companyLocation");
+            var locationText = document.getElementById("locationText");
+
+
+            /*------------客户详情的响应事件-----------*/
+            // 成立日期
+            establishDate.onclick = function () {
+                var optionsJson = this.getAttribute('data-options') || '{}';
+                var options = JSON.parse(optionsJson);
+                var id = this.getAttribute('id');
+                var picker = new $.DtPicker(options);
+                picker.show(function (rs) {
+                    dateText.innerHTML = rs.text;
+                    picker.dispose();
+                });
+            }
+
+            // 客户级别
+            customerLevel.onclick = function () {
+                showPoppicker(this, "Client_Level");
+            }
+            // 企业性质
+            nature.onclick = function () {
+                showPoppicker(this, "Client_NatureCode");
+            }
+            // 注册资金
+            capital.onclick = function () {
+                showPoppicker(this, "Client_RegisterCapital");
+            }
+            // 销售收入
+            income.onclick = function () {
+                showPoppicker(this, "Client_SalesRevenue");
+            }
+            //公司规模
+            scale.onclick = function () {
+                showPoppicker(this, "Client_CompanySize");
+            }
+            // 所属行业
+            industry.onclick = function () {
+                showPoppicker(this, "Client_Trade");
+            }
+            //公司地址
+            var cityPicker = new $.PopPicker({
+                layer: 3,
+                title: "城市选择"
+            });
+
+            cityPicker.setData(cityData3);
+            companyLocation.onclick = function () {
+
+                cityPicker.show(function (items) {
+                    locationText.innerText = (items[0] || {}).text + "-" + (items[1] || {}).text + "-" + (items[2] || {}).text;
+                    locationText.setAttribute("data-value",
+                        (items[0] || {}).value + "," + (items[1] || {}).value + "," + (items[2] || {}).value);
+                });
+
+            }
+
+            /*------------自定义展示picker-----------*/
+            function showPoppicker(obj, datatype) {
+                $.ajax({
+                    type: "get",
+                    url: "/ClientData/GetDataItemListJson",
+                    data: { EnCode: datatype },
+                    async: false,
+                    dataType: "json",
+                    success: function (data) {
+                        debugger;
+                        var title = obj.getElementsByTagName("label")[0].innerHTML.toString();
+                        title = title.substring(0, title.length - 1);
+                        var picker = new $.PopPicker({ title: title });
+                        var arrayData = [];
+                        for (var i = 0; i < data.length; i++) {
+                            arrayData[i] = { text: data[i].ItemName, value: data[i].ItemDetailId }
+                        }
+
+                        picker.setData(arrayData);
+                        picker.show(function (items) {
+                            obj.getElementsByTagName("p")[0].innerHTML = items[0].text;
+                            obj.getElementsByTagName("p")[0].setAttribute("data-value", items[0].value);
+                        });
+                    },
+                    error: function (data) {
+                        mui.toast(data.responseText);
+                    }
+                });
+
+            }
+
+        })(mui);
+
+
+
+
+        $("body")
+            .on("tap",
+            "#save",
+            function () {
+
+                var param = {
+                    keyValue: localStorage.getItem("customerid"),
+                    FullName: document.getElementById("customerName").value,
+                    EstablishDate: document.getElementById("foundingTime").innerText,
+                    CustLevelId: document.getElementById("customerLevelText").getAttribute("data-value"),
+                    NatureCode: document.getElementById("companyNatureText").getAttribute("data-value"),
+                    RegisterCapital: document.getElementById("capitalText").getAttribute("data-value"),
+                    SalesRevenue: document.getElementById("incomeText").getAttribute("data-value"),
+                    CustIndustryId: document.getElementById("industryText").getAttribute("data-value"),
+                    CompanySize: document.getElementById("companyScaleText").getAttribute("data-value"),
+                    ProvinceId: document.getElementById("locationText").getAttribute("data-value").split(",")[0],
+                    CityId: document.getElementById("locationText").getAttribute("data-value").split(",")[1],
+                    CountyId: document.getElementById("locationText").getAttribute("data-value").split(",")[2],
+                    CompanyAddress: document.getElementById("addressText").value,
+                    CompanyDesc: document.getElementById("introduceText").value
+                };
+
+                $.ajax({
+                    type: "post",
+                    url: "SaveCustomer",
+                    data: param,
+                    async: false,
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.type === 1) {
+                            mui.alert("保存成功",
+                                "提示",
+                                function () {
+                                    location.reload();
+                                });
+                        } else {
+                            mui.toast(data.message);
+                        }
+                    },
+                    error: function (data) {
+                        mui.toast(data.responseText);
+                    }
+                });
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*------------选项卡响应事件-----------*/
+        var segmentItem1 = document.getElementById("segmentedItem1");
+        var segmentItem2 = document.getElementById("segmentedItem2");
+        var title = document.getElementById("title");
+        var add = document.getElementById("addContacter");
+
+
+        //点击选项卡变换主题
+        segmentItem1.addEventListener("tap", function () {
+            title.innerHTML = segmentItem1.innerHTML;
+            add.style.display = "none";
+        });
+        segmentItem2.addEventListener("tap", function () {
+            title.innerHTML = segmentItem2.innerHTML;
+            //获取联系人
+            LoadContacterList();
+            add.style.display = "block";
+        });
+
+        //添加联系人
+        add.addEventListener("tap", function () {
+            localStorage.setItem("contactid", "");
+            window.location.href = "EditContacter";
+
+        });
+        //编辑联系人
+        $("body")
+            .on("tap",
+            ".edit-btn",
+            function () {
+                localStorage.setItem("contactid", $(this).attr("data-contactid"));
+                mui.openWindow({
+                    url: 'EditContacter',
+                    id: 'EditContacter'
+                });
+
+            });
+
+    </script>
+</body>
+
+</html>

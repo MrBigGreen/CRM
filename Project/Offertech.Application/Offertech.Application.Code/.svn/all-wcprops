@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BridgehrKit/!svn/ver/14612/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Code
+END
+Offertech.Application.Code.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/BridgehrKit/!svn/ver/14574/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Code/Offertech.Application.Code.csproj
+END
+LoginMode.cs
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Code/LoginMode.cs
+END
+PermissionMode.cs
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Code/PermissionMode.cs
+END
+packages.config
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/BridgehrKit/!svn/ver/14612/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Code/packages.config
+END
+VerifyCode.cs
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Code/VerifyCode.cs
+END
+SystemInfo.cs
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Code/SystemInfo.cs
+END
+AuthorizeTypeEnum.cs
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Code/AuthorizeTypeEnum.cs
+END
+job_scheduling_data_2_0.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/BridgehrKit/!svn/ver/14612/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Code/job_scheduling_data_2_0.xsd
+END
+OperationType.cs
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Code/OperationType.cs
+END
+AuthorizeDataModel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/BridgehrKit/!svn/ver/13405/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Code/AuthorizeDataModel.cs
+END
+CodeRuleEnum.cs
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Code/CodeRuleEnum.cs
+END
+AuthorizeExtensions.cs
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Code/AuthorizeExtensions.cs
+END

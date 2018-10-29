@@ -1,0 +1,181 @@
+﻿@{ Layout = "~/Views/Shared/Index.cshtml"; }
+
+<form>
+    @if (ViewBag.CustomerInfo != null)
+    {
+        var cc = (List<CRM.DAL.TB_Customer>)ViewBag.CustomerInfo;
+        foreach (var item in cc)
+        {
+            <div>
+                <table class="record">
+                    <tr>
+                        <th> 主联系人：</th>
+                        <td>@item.ContactPerson</td>
+                        <th> 联系电话：</th>
+                        <td>
+                            @if (item.ContactPhone != "")
+                            {
+                                if (item.ContactPhone.Contains('-'))
+                                {
+                                    string a = item.ContactPhone.Split('-')[0];
+                                    string b = item.ContactPhone.Split('-')[1];
+                                    string c = a + b;
+                                    <a href="#" style="border: none; text-decoration: none;" onclick="CallTel(@c)">@item.ContactPhone </a>
+                                }
+                                else
+                                {
+                                    <a href="#" style="border: none; text-decoration: none;" onclick="CallTel(@item.ContactPhone)">@item.ContactPhone </a>
+                                }
+
+                            }
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        }
+    }
+    <br />
+    @if (ViewBag.ContactsInfo != null)
+    {
+        var ci = (List<CRM.DAL.TB_CustomerContact>)ViewBag.ContactsInfo;
+        int i = 0;
+        foreach (var item in ci)
+        {
+            i++;
+            <div class="easyui-panel" id="panelShow" title="联系信息-@i" iconcls="icon-search" collapsible="true" style="height:auto;width:auto">
+                <table class="record">
+                    <tr>
+                        <th>公司前台电话：</th>
+                        <td>
+                            @if (item.CompanyTel2 != "")
+                            {
+                                if (item.CompanyTel2.Contains('-'))
+                                {
+                                    string a = item.CompanyTel2.Split('-')[0];
+                                    string b = item.CompanyTel2.Split('-')[1];
+                                    string c = a + b;
+                                    <a href="#" style="border: none; text-decoration: none;" onclick="CallTel(@c)">@item.CompanyTel2 </a>
+                                }
+                                else
+                                {
+                                    <a href="#" style="border: none; text-decoration: none;" onclick="CallTel(@item.CompanyTel2)">@item.CompanyTel2 </a>
+                                }
+
+                            }
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>联 系 人:</th>
+                        <td>
+                            @item.ContactName
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>生     日:</th>
+                        <td>
+                            @item.BirthDate
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>感兴趣:</th>
+                        <td>
+                            @item.Interested
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>部     门:</th>
+                        <td>
+                            @item.Department
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>职      务:</th>
+                        <td>
+                            @item.Post
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>固定电话:</th>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.CompanyTel))
+                            {
+                                if (item.CompanyTel.Contains('-'))
+                                {
+                                    string a = item.CompanyTel2.Split('-')[0];
+                                    string b = item.CompanyTel2.Split('-')[1];
+                                    string c = a + b;
+                                    <a href="#" style="border: none; text-decoration: none;" onclick="CallTel(@c)">@item.CompanyTel </a>
+                                }
+                                else
+                                {
+                                    <a href="#" style="border: none; text-decoration: none;" onclick="CallTel(@item.CompanyTel)">@item.CompanyTel </a>
+                                }
+
+                            }
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>手     机1:</th>
+                        <td>
+                            <a href="#" style="border: none; text-decoration: none;" onclick="CallTel(@item.PhoneNumber1) ">@item.PhoneNumber1 </a>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>手     机2:</th>
+                        <td>
+                            <a href="#" style="border: none; text-decoration: none;" onclick="CallTel(@item.PhoneNumber2) ">@item.PhoneNumber2 </a>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>邮     箱1:</th>
+                        <td>
+                            @item.Email1
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>邮     箱2:</th>
+                        <td>
+                            @item.Email2
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>QQ号码:</th>
+                        <td>
+                            @item.QQID
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <br>
+        }
+        <div style="text-align:center">
+            <input id="fid" type="hidden" value="@ViewBag.fid" /><a class="easyui-linkbutton" iconcls="icon-cancel" onclick="parent.$('#w_message').window('close')">
+                关闭
+            </a>
+        </div>
+
+    }
+    else
+    {
+        <div style="text-align:center">
+            <span>暂无联系人</span>
+        </div>
+    }
+
+
+</form>
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.watermark.min.js"></script>
+<script src="~/Scripts/jquery.bpopup-0.7.0.min.js"></script>
+<script src="~/Scripts/type-bpopup_fuc.js" type="text/javascript"></script>
+<script src="~/Scripts/TodayTasks/ShowContactsInfo.js"></script>
+
+
+
+

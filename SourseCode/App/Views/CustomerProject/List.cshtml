@@ -1,0 +1,200 @@
+﻿@using Common
+@using Models
+
+@{
+    ViewBag.Title = "项目评估列表";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+<div class="easyui-panel" id="panelShow" title="查询栏" iconcls="icon-search" collapsible="true" style="height:auto;width:auto">
+    <div id="ttSearch" data-options="region:'center'" style="padding:2px">
+        <table class="record" border="0" cellpadding="0" cellspacing="0" style="width:100%">
+            <tr>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    客户名称 :
+                </th>
+                <td>
+                    <input type='text' id='CustomerName' name="CustomerName" />
+                </td>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    职位名称 :
+                </th>
+                <td>
+                    <input type='text' id='ProjectName' name="ProjectName" />
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    评估人 :
+                </th>
+                <td>
+
+                    <input type='text' id='EvaluationPerson' name="EvaluationPerson" />
+                </td>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    评估结果 :
+                </th>
+                <td>
+                    <input id="EvaluationResult" name="EvaluationResult" style="width:150px" value="--请选择--" />
+                </td>
+
+            </tr>
+            <tr>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    开始日期 :
+                </th>
+                <td>
+                    <input type="text" id="StartDate" value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'EndDate\');}', dateFmt: 'yyyy-MM-dd' })" />
+                </td>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    结束日期 :
+                </th>
+                <td>
+                    <input type="text" id="EndDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'StartDate\');}', dateFmt: 'yyyy-MM-dd' })" />
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center">
+                    <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                        查 询
+                    </a>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<br style="clear: both;" />
+<table id="flexigridData"></table>
+
+
+<!-- 项目分配 start-->
+<div id="AllocationDialog" class="easyui-dialog" iconcls="icon-add" style="width: 600px; height: 560px;
+      padding: 5px; overflow: auto; " title="" data-options="closed:true">
+    <div fit="true" style="height:99%;width:99%">
+        <table id="AllocationData" class="easyui-datagrid"></table>
+        <br style="clear: both;" />
+        <hr class="list-inline" />
+
+        <div class="easyui-panel" title="选择分配人" style="width:100%;height:450px;padding:10px;">
+            <div class="easyui-layout" data-options="fit:true">
+                <div data-options="region:'west',split:true" style="width:430px;padding:10px">
+                    <input id="AllocationMyName" name="AllocationMyName" maxlength="100" type="text" placeholder="搜索姓名" style="width:200px" />
+                    <a href="#" onclick="getPerson()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                        查 询
+                    </a>
+                    <table id="AllocationPersonData" class="easyui-datagrid" title="" style="width:99%;height:435px"
+                           data-options="rownumbers:true,singleSelect:true">
+                        <thead>
+                            <tr>
+                                <th data-options="field:'Name',width:80">账号</th>
+                                <th data-options="field:'MyName',width:80">姓名</th>
+                                <th data-options="field:'SysDepartmentId',width:115">部门</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div data-options="region:'center'" style="padding:10px">
+                    <table style=" " cellspacing="10">
+                        <tr>
+                            <th>姓名：</th>
+                            <td>
+                                <input type="text" readonly="readonly" id="AllocationPersonName" name="AllocationPersonName" />
+                                <input type="hidden" id="AllocationPersonID" name="AllocationPersonID" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>部门：</th>
+                            <td>
+                                <input type="text" readonly="readonly" id="AllocationDeptName" name="AllocationDeptName" />
+                            </td>
+                        </tr>
+                        <tr style="text-align:center">
+                            <td colspan="2">
+                                <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+                                   onclick="SaveAllocation();">保存</a>
+                                &nbsp;&nbsp;&nbsp;
+                                <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+                                   onclick="$('.easyui-window').window('close');">关 闭</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="AllocationProjectID" />
+        <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+        </div>
+    </div>
+</div>
+
+<!-- 项目分配 end -->
+
+
+<!-- 项目执行 start-->
+<div id="ExecuteDialog" class="easyui-dialog" iconcls="icon-add" style="width: 600px; height: 560px;
+      padding: 5px; overflow: auto; " title="" data-options="closed:true">
+    <div fit="true" style="height:99%;width:99%">
+        <table id="ExecuteData" class="easyui-datagrid"></table>
+        <br style="clear: both;" />
+        <hr class="list-inline" />
+
+        <div class="easyui-panel" title="选择执行人" style="width:100%;height:450px;padding:10px;">
+            <div class="easyui-layout" data-options="fit:true">
+                <div data-options="region:'west',split:true" style="width:430px;padding:10px">
+                    <input id="ExecuteMyName" name="ExecuteMyName" maxlength="100" type="text" placeholder="搜索姓名" style="width:200px" />
+                    <a href="#" onclick="getExecutePerson()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                        查 询
+                    </a>
+                    <table id="ExecutePersonData" class="easyui-datagrid" title="" style="width:99%;height:435px"
+                           data-options="rownumbers:true,singleSelect:true">
+                        <thead>
+                            <tr>
+                                <th data-options="field:'Name',width:80">账号</th>
+                                <th data-options="field:'MyName',width:80">姓名</th>
+                                <th data-options="field:'SysDepartmentId',width:115">部门</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div data-options="region:'center'" style="padding:10px">
+                    <table style=" " cellspacing="10">
+                        <tr>
+                            <th>姓名：</th>
+                            <td>
+                                <input type="text" readonly="readonly" id="ExecutePersonName" name="ExecutePersonName" />
+                                <input type="hidden" id="ExecutePersonID" name="ExecutePersonID" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>部门：</th>
+                            <td>
+                                <input type="text" readonly="readonly" id="ExecuteDeptName" name="ExecuteDeptName" />
+                            </td>
+                        </tr>
+                        <tr style="text-align:center">
+                            <td colspan="2">
+                                <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+                                   onclick="SaveExecute();">保存</a>
+                                &nbsp;&nbsp;&nbsp;
+                                <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+                                   onclick="$('.easyui-window').window('close');">关 闭</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="ExecuteProjectID" />
+        <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+        </div>
+    </div>
+</div>
+
+<!-- 项目执行 end -->
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script type="text/javascript" language="javascript">$.getScript("/Scripts/CustomerProject/Base.js")</script>
+<script type="text/javascript" language="javascript">$.getScript("/Scripts/CustomerProject/List.js")</script>
+ 

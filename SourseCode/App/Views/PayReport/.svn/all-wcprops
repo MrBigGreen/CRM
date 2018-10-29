@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BridgehrKit/!svn/ver/9635/VISS/solution/WebSrc/CRM/SourseCode/App/Views/PayReport
+END
+SocialReport.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BridgehrKit/!svn/ver/9635/VISS/solution/WebSrc/CRM/SourseCode/App/Views/PayReport/SocialReport.cshtml
+END
+SummaryReport.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/9635/VISS/solution/WebSrc/CRM/SourseCode/App/Views/PayReport/SummaryReport.cshtml
+END
+FundsReport.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BridgehrKit/!svn/ver/9553/VISS/solution/WebSrc/CRM/SourseCode/App/Views/PayReport/FundsReport.cshtml
+END
+SocialSecurityReport.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/BridgehrKit/!svn/ver/9553/VISS/solution/WebSrc/CRM/SourseCode/App/Views/PayReport/SocialSecurityReport.cshtml
+END
+_GetWagesReportPartial.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BridgehrKit/!svn/ver/9635/VISS/solution/WebSrc/CRM/SourseCode/App/Views/PayReport/_GetWagesReportPartial.cshtml
+END
+WagesReport.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BridgehrKit/!svn/ver/9635/VISS/solution/WebSrc/CRM/SourseCode/App/Views/PayReport/WagesReport.cshtml
+END
+_GetSocialReportPartial.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/BridgehrKit/!svn/ver/9464/VISS/solution/WebSrc/CRM/SourseCode/App/Views/PayReport/_GetSocialReportPartial.cshtml
+END

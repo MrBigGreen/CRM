@@ -1,0 +1,111 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_CustomerContact
+
+@{
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<style>
+    .editor-field {
+        width: 201px;
+        height: 24px;
+        float: left;
+        margin: 2px 0 2px 6px;
+        display: inline;
+    }
+
+    .editor-label {
+        width: 100px;
+        height: 24px;
+        float: left;
+        text-align: right;
+        margin: 2px 0 2px;
+        line-height: 24px;
+        display: inline;
+    }
+
+    textarea {
+        width: 457px;
+    }
+</style>
+<div class="easyui-layout" title="" style="width:100%">
+    <div style="padding: 10px 20px 20px 20px; ">
+        @Html.HiddenFor(m => m.CustomerContactID)
+        @Html.HiddenFor(m => m.CustomerID)
+        @Html.HiddenFor(m => m.VersionNo)
+        @Html.HiddenFor(m => m.IsDelete)
+        @Html.HiddenFor(m => m.CreatedTime)
+        @Html.HiddenFor(m => m.CreatedBy)
+        @Html.HiddenFor(m => m.LastUpdatedTime)
+        @Html.HiddenFor(m => m.LastUpdatedBy)
+        <div class="editor-label"><span class="red">*</span>@Html.LabelFor(m => m.ContactName):</div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.ContactName) @Html.CheckBoxFor(m => m.IsKP)<label>KP</label>
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.CompanyTel2):
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.CompanyTel2)
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.BirthDate):</div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.BirthDate, new { @class = "easyui-datebox" })
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.Interested):</div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.Interested)
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.Department):</div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.Department)
+        </div>
+        <div class="editor-label"><span class="red">*</span>@Html.LabelFor(m => m.Post):</div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Post, Models.SysFieldModels.GetSysFieldByParentID("1506121005392690303c5640a411a"), new { @Style = "width:133px;" })
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.CompanyTel):</div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.CompanyTel)
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.QQID):</div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.QQID)
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.PhoneNumber1):</div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.PhoneNumber1)
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.PhoneNumber2):</div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.PhoneNumber2)
+            
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.Email1):</div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.Email1)
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.Email2):</div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.Email2)
+        </div>
+        <br style="clear: both;" />
+        <div class="editor-label">@Html.LabelFor(m => m.Remark):</div>
+        <div class="textarea-box">
+            @Html.TextAreaFor(m => m.Remark)
+        </div>
+        <br style="clear: both;" />
+        <span style="color:red">注：固定电话、手机1、手机2 三者必填一项</span>
+        <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+            <input class="a2 f2" type="submit" id="submit" value="创建" style="display:none" />
+            <a class="easyui-linkbutton" id="ContactSave" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+               onclick="SubmitValidation();">保存</a>
+            &nbsp;&nbsp;&nbsp;
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+               onclick="closeWindow();">取消</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"> $.getScript("/Scripts/CustomerContact/Create.js");</script>

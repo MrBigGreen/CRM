@@ -1,0 +1,221 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables
+END
+dbo.TB_ImportResume.sql
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.TB_ImportResume.sql
+END
+dbo.TB_CallTask.sql
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.TB_CallTask.sql
+END
+dbo.SysMessage.sql
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysMessage.sql
+END
+dbo.SysEmail.sql
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysEmail.sql
+END
+dbo.SysAnnouncement.sql
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysAnnouncement.sql
+END
+dbo.SysException.sql
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysException.sql
+END
+dbo.SysDocumentSysDepartment.sql
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysDocumentSysDepartment.sql
+END
+dbo.TB_JobIndustry.sql
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.TB_JobIndustry.sql
+END
+dbo.SysDepartment.sql
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysDepartment.sql
+END
+dbo.TB_CallLog.sql
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.TB_CallLog.sql
+END
+dbo.TB_Edu.sql
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.TB_Edu.sql
+END
+dbo.TB_ProjectExperience.sql
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.TB_ProjectExperience.sql
+END
+dbo.SysMenu.sql
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysMenu.sql
+END
+dbo.TB_Address.sql
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.TB_Address.sql
+END
+dbo.SysDocument.sql
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysDocument.sql
+END
+dbo.TB_JobNature.sql
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.TB_JobNature.sql
+END
+dbo.TB_WorkExperience.sql
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.TB_WorkExperience.sql
+END
+dbo.SysLog.sql
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysLog.sql
+END
+dbo.SysNotice.sql
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysNotice.sql
+END
+dbo.SysField.sql
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysField.sql
+END
+dbo.TB_PositionRecommend.sql
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.TB_PositionRecommend.sql
+END
+dbo.SysMenuSysOperation.sql
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysMenuSysOperation.sql
+END
+dbo.SysRoleSysPerson.sql
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysRoleSysPerson.sql
+END
+dbo.SysDocumentTalk.sql
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysDocumentTalk.sql
+END
+dbo.TB_AgentyDeliverResumes.sql
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.TB_AgentyDeliverResumes.sql
+END
+dbo.SysOperation.sql
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysOperation.sql
+END
+dbo.SysRole.sql
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysRole.sql
+END
+dbo.SysDocumentSysPerson.sql
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysDocumentSysPerson.sql
+END
+dbo.SysMenuSysRoleSysOperation.sql
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysMenuSysRoleSysOperation.sql
+END
+dbo.SysPerson.sql
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysPerson.sql
+END
+dbo.TB_JobAddress.sql
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.TB_JobAddress.sql
+END
+dbo.TB_JobPost.sql
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.TB_JobPost.sql
+END
+dbo.SysMessageTemp.sql
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysMessageTemp.sql
+END
+dbo.TB_MessageLog.sql
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.TB_MessageLog.sql
+END
+dbo.FileUploader.sql
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.FileUploader.sql
+END
+dbo.SysEmailTemp.sql
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Tables/dbo.SysEmailTemp.sql
+END

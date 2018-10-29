@@ -1,0 +1,92 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_RPOPerformance
+
+@{
+    ViewBag.Title = "项目修改";
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<style>
+    textarea {
+        height: 160px;
+        width: 480px;
+    }
+
+    input {
+        width: 480px;
+    }
+
+    .display-field {
+        height: auto;
+        width: 500px;
+    }
+</style>
+
+<div class="bigdiv">
+    @Html.HiddenFor(model => model.CustomerID)
+    @Html.HiddenFor(model => model.CustomerProjectID)
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.ProjectName)：
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.ProjectName)
+        @Html.ValidationMessageFor(model => model.ProjectName)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.ProjectBudget)：
+    </div>
+    <div class="editor-field" style="width:150px">
+        @Html.TextBoxFor(model => model.ProjectBudget, new { @style = "width:140px;" })
+        @Html.ValidationMessageFor(model => model.ProjectBudget)
+    </div>
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.ProjectPeopleQty)：
+    </div>
+    <div class="editor-field" style="width:150px">
+        @Html.TextBoxFor(model => model.ProjectPeopleQty, new { @style = "width:140px;" })
+        @Html.ValidationMessageFor(model => model.ProjectPeopleQty)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.ProjectBenefits)：
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.ProjectBenefits, Models.SysFieldModels.GetSysFieldByParentID("1606011013433176357f6bf558ef1"))
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.ProjectAddress)：
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.ProjectAddress)
+        @Html.ValidationMessageFor(model => model.ProjectAddress)
+    </div>
+
+
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span> @Html.LabelFor(model => model.ProjectDesc)：
+    </div>
+    <div class="textarea-box">
+        @Html.TextAreaFor(model => model.ProjectDesc)
+        @Html.ValidationMessageFor(model => model.ProjectDesc)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span> @Html.LabelFor(model => model.ProjectRequirements)：
+    </div>
+    <div class="textarea-box">
+        @Html.TextAreaFor(model => model.ProjectRequirements)
+        @Html.ValidationMessageFor(model => model.ProjectRequirements)
+    </div>
+    <br style="clear: both;" />
+    <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+        <input class="a2 f2" type="submit" id="submit" value="修 改" />
+    </div>
+</div>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+@*<script type="text/javascript">$.getScript("/Scripts/CustomerProject/Create.js")</script>*@
+

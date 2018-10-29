@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/packages/EntityFramework.6.1.3/tools
+END
+EntityFramework.psd1
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/packages/EntityFramework.6.1.3/tools/EntityFramework.psd1
+END
+init.ps1
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/packages/EntityFramework.6.1.3/tools/init.ps1
+END
+EntityFramework.PowerShell.dll
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/packages/EntityFramework.6.1.3/tools/EntityFramework.PowerShell.dll
+END
+install.ps1
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/packages/EntityFramework.6.1.3/tools/install.ps1
+END
+migrate.exe
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/packages/EntityFramework.6.1.3/tools/migrate.exe
+END
+EntityFramework.PowerShell.Utility.dll
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/packages/EntityFramework.6.1.3/tools/EntityFramework.PowerShell.Utility.dll
+END
+EntityFramework.psm1
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/packages/EntityFramework.6.1.3/tools/EntityFramework.psm1
+END
+about_EntityFramework.help.txt
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/packages/EntityFramework.6.1.3/tools/about_EntityFramework.help.txt
+END

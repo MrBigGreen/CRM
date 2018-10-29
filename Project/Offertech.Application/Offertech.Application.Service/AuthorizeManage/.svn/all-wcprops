@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/BridgehrKit/!svn/ver/17992/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/AuthorizeManage
+END
+AuthorizeService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/AuthorizeManage/AuthorizeService.cs
+END
+AuthorizeService.T.cs
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/BridgehrKit/!svn/ver/17992/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/AuthorizeManage/AuthorizeService.T.cs
+END
+FilterIPService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/AuthorizeManage/FilterIPService.cs
+END
+ModuleFormInstanceService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/AuthorizeManage/ModuleFormInstanceService.cs
+END
+ModuleButtonService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/AuthorizeManage/ModuleButtonService.cs
+END
+ModuleColumnService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/AuthorizeManage/ModuleColumnService.cs
+END
+FilterTimeService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/AuthorizeManage/FilterTimeService.cs
+END
+ModuleService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/AuthorizeManage/ModuleService.cs
+END
+PermissionService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/AuthorizeManage/PermissionService.cs
+END
+ModuleFormService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/AuthorizeManage/ModuleFormService.cs
+END

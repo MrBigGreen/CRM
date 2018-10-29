@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/MessageManage
+END
+IMsgContentService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/MessageManage/IMsgContentService.cs
+END
+IMsgGroupService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/MessageManage/IMsgGroupService.cs
+END
+IMsgUserService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/MessageManage/IMsgUserService.cs
+END

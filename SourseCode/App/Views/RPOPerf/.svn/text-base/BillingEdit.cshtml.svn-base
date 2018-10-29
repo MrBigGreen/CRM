@@ -1,0 +1,380 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_Billing
+
+@{
+    ViewBag.Title = "开票";
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<style>
+    textarea {
+        height: 160px;
+        width: 480px;
+    }
+
+    input {
+        width: 100px;
+    }
+
+    .display-field {
+        height: auto;
+        width: 500px;
+    }
+</style>
+
+<div class="bigdiv">
+    <br style="clear: both;" />
+    @Html.HiddenFor(model => model.BillingID)
+    @Html.HiddenFor(model => model.SysPersonID)
+
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.TheMonth)：
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.TheMonth, new { @disabled = "disabled" })
+        @Html.ValidationMessageFor(model => model.TheMonth)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.TheWeek)：
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.TheWeek, Models.SysFieldModels.GetSysFieldValueByParentID("1607191358552092906af3a4986f2"), "--请选择--", new { @disabled = "disabled" })
+        @Html.ValidationMessageFor(model => model.TheWeek)
+    </div>
+
+    <br style="clear: both;" /> 
+    <div style="width: 450px;margin:10px; ">
+
+        <table id="dg" class="easyui-datagrid" title="本周实际" style="height:auto">
+            <thead>
+                <tr>
+                    <th data-options=" field:'CustomerName',width:200,editor:'textbox'">
+                        客户
+                    </th>
+                    <th data-options="field:'BillingAmount',width:80,align:'right',editor:{type:'numberbox',options:{precision:1}}">金额</th>
+                </tr>
+            </thead>
+        </table>
+    </div> 
+    <div style="width: 450px;margin:10px; ">
+        <table id="dg2" class="easyui-datagrid" title="下周预计" style=" height: auto; ">
+            <thead>
+                <tr>
+                    <th data-options="field:'CustomerName',width:200,editor:'textbox'">客户</th>
+                    <th data-options="field:'BillingAmount',width:80,align:'right',editor:{type:'numberbox',options:{precision:1}}">金额</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <br style="clear: both;" />
+    <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+         
+    </div>
+</div>
+
+<div id="tb1" style="height:auto">
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="append1()">增加</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit1()">删除</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-undo',plain:true" onclick="reject1()">撤销</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="accept1()">保存</a>
+</div>
+
+<div id="tb2" style="height:auto">
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="append2()">增加</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit2()">删除</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-undo',plain:true" onclick="reject2()">撤销</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="accept2()">保存</a>
+</div>
+
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    /********************************************************本周实际*************************************************************************/
+    var editIndex1 = undefined;
+    function endEditing1() {
+        if (editIndex1 == undefined) { return true }
+        if ($('#dg').datagrid('validateRow', editIndex1)) {
+
+            $('#dg').datagrid('endEdit', editIndex1);
+            editIndex1 = undefined;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function onClickRow1(index) {
+        if (editIndex1 != index) {
+            if (endEditing1()) {
+                $('#dg').datagrid('selectRow', index)
+                        .datagrid('beginEdit', index);
+                editIndex1 = index;
+            } else {
+                $('#dg').datagrid('selectRow', editIndex1);
+            }
+        }
+    }
+    function append1() {
+        if (endEditing1()) {
+            $('#dg').datagrid('appendRow', {
+                //index: 0,
+                row: {}
+            });
+            editIndex1 = $('#dg').datagrid('getRows').length - 1;
+            $('#dg').datagrid('selectRow', editIndex1)
+                    .datagrid('beginEdit', editIndex1);
+        }
+    }
+    //删除
+    function removeit1() {
+        if (editIndex1 == undefined) { return }
+        var rows = $('#dg').datagrid('getRows')//获取当前页的数据行
+        if (rows.length > editIndex1) {
+            //id 不为空，删除数据
+            if (rows[editIndex1].BillingDetailsID != null && rows[editIndex1].BillingDetailsID != "" && rows[editIndex1].BillingDetailsID != undefined) {
+
+                var parm = { "id": rows[editIndex1].BillingDetailsID }
+                $.ajax({
+                    url: "/RPOPerf/DeleteDetails",
+                    type: "Post",
+                    data: parm,
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.Result == 1) {
+                            $.messager.alert("操作提示", "删除成功", "info");
+                        }
+                        else {
+                            $.messager.alert("操作提示", data.Msg, "info");
+                        }
+                        $('#dg').datagrid('cancelEdit', editIndex1)
+               .datagrid('deleteRow', editIndex1);
+                        editIndex1 = undefined;
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(XMLHttpRequest.status);
+                        console.log(XMLHttpRequest.readyState);
+                        console.log(textStatus);
+                    }
+                });
+            }
+            else {
+                $('#dg').datagrid('cancelEdit', editIndex1)
+               .datagrid('deleteRow', editIndex1);
+                editIndex1 = undefined;
+            }
+        }
+
+    }
+
+    ///保存
+    function accept1() {
+        if (endEditing1()) {
+
+            var rows = $('#dg').datagrid('getChanges');
+            var flag = 0;
+            var BillingID = $("#BillingID").val();
+
+            for (var i = 0; i < rows.length; i++) {
+
+                var parm = { "BillingDetailsID": rows[i].BillingDetailsID, "BillingID":BillingID, "Category": 1, "CustomerName": rows[i].CustomerName, "BillingAmount": rows[i].BillingAmount }
+                $.ajax({
+                    url: "/RPOPerf/EditDetails",
+                    type: "Post",
+                    data: parm,
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.Result == 1) {
+                            flag++;
+                        }
+                        else {
+                            $.messager.alert("操作提示", data.Msg + "“" + rows[i].CustomerName + "”", "info");
+
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(XMLHttpRequest.status);
+                        console.log(XMLHttpRequest.readyState);
+                        console.log(textStatus);
+                    }
+                });
+            }
+            if (flag == rows.length) {
+
+                $.messager.alert("操作提示", "保存成功", "info", function () {
+                    $('#dg').datagrid('acceptChanges');
+                });
+            }
+
+
+        }
+    }
+    function reject1() {
+        $('#dg').datagrid('rejectChanges');
+        editIndex1 = undefined;
+    }
+
+
+
+
+
+    /********************************************************下周预计*************************************************************************/
+    var editIndex2 = undefined;
+    function endEditing2() {
+        if (editIndex2 == undefined) { return true }
+        if ($('#dg2').datagrid('validateRow', editIndex2)) {
+
+            $('#dg2').datagrid('endEdit', editIndex2);
+            editIndex2 = undefined;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function onClickRow2(index) {
+        if (editIndex2 != index) {
+            if (endEditing2()) {
+                $('#dg2').datagrid('selectRow', index)
+                        .datagrid('beginEdit', index);
+                editIndex2 = index;
+            } else {
+                $('#dg2').datagrid('selectRow', editIndex2);
+            }
+        }
+    }
+    function append2() {
+        if (endEditing2()) {
+            $('#dg2').datagrid('appendRow', {
+                //index: 0,
+                row: {}
+            });
+            editIndex2 = $('#dg2').datagrid('getRows').length - 1;
+            $('#dg2').datagrid('selectRow', editIndex2)
+                    .datagrid('beginEdit', editIndex2);
+        }
+    }
+    function removeit2() {
+        if (editIndex2 == undefined) { return }
+        var rows = $('#dg2').datagrid('getRows')//获取当前页的数据行
+        if (rows.length > editIndex2) {
+            //id 不为空，删除数据
+            if (rows[editIndex2].BillingDetailsID != null && rows[editIndex2].BillingDetailsID != "" && rows[editIndex2].BillingDetailsID != undefined) {
+
+                var parm = { "id": rows[editIndex2].BillingDetailsID }
+                $.ajax({
+                    url: "/RPOPerf/DeleteDetails",
+                    type: "Post",
+                    data: parm,
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.Result == 1) {
+                            $.messager.alert("操作提示", "删除成功", "info");
+                        }
+                        else {
+                            $.messager.alert("操作提示", data.Msg, "info");
+                        }
+                        $('#dg2').datagrid('cancelEdit', editIndex2)
+               .datagrid('deleteRow', editIndex2);
+                        editIndex2 = undefined;
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(XMLHttpRequest.status);
+                        console.log(XMLHttpRequest.readyState);
+                        console.log(textStatus);
+                    }
+                });
+            }
+            else {
+                $('#dg2').datagrid('cancelEdit', editIndex2)
+               .datagrid('deleteRow', editIndex2);
+                editIndex2 = undefined;
+            }
+        }
+    }
+
+    ///保存
+    function accept2() {
+        if (endEditing2()) {
+
+            var rows = $('#dg2').datagrid('getChanges');
+            var flag = 0;
+            var BillingID = $("#BillingID").val();
+
+            for (var i = 0; i < rows.length; i++) {
+
+                var parm = { "BillingDetailsID": rows[i].BillingDetailsID, "BillingID": BillingID, "Category": 2, "CustomerName": rows[i].CustomerName, "BillingAmount": rows[i].BillingAmount }
+                $.ajax({
+                    url: "/RPOPerf/EditDetails",
+                    type: "Post",
+                    data: parm,
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.Result == 1) {
+                            flag++;
+                        }
+                        else {
+                            $.messager.alert("操作提示", data.Msg + "“" + rows[i].CustomerName + "”", "info");
+
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(XMLHttpRequest.status);
+                        console.log(XMLHttpRequest.readyState);
+                        console.log(textStatus);
+                    }
+                });
+            }
+            if (flag == rows.length) {
+
+                $.messager.alert("操作提示", "保存成功", "info", function () {
+                    $('#dg2').datagrid('acceptChanges');
+                });
+            }
+
+
+        }
+    }
+
+
+    function reject2() {
+        $('#dg2').datagrid('rejectChanges');
+        editIndex2 = undefined;
+    }
+</script>
+
+<script type="text/javascript">
+
+
+    $('#dg').datagrid({
+        title: '本周实际', //列表的标题
+        iconCls: 'icon-edit',
+        width: '100%',
+        height: 'auto',
+        striped: true,
+        singleSelect: true,
+        url: '/RPOPerf/GetBillingDetails?id=@Model.BillingID&Category=1', //获取数据的url
+        idField: 'BillingDetailsID',
+        pagination: false,
+        toolbar: '#tb1',
+        onClickRow: onClickRow1,
+    });
+
+
+
+    $('#dg2').datagrid({
+        title: '下周预计', //列表的标题
+        iconCls: 'icon-edit',
+        width: '100%',
+        height: 'auto',
+        striped: true,
+        singleSelect: true,
+        url: '/RPOPerf/GetBillingDetails?id=@Model.BillingID&Category=2', //获取数据的url
+        idField: 'BillingDetailsID',
+        sortName: 'BillingDetailsID',
+        sortOrder: 'asc',
+        pagination: false,
+        toolbar: '#tb2',
+        onClickRow: onClickRow2,
+    });
+</script>

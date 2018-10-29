@@ -1,0 +1,69 @@
+﻿@model CRM.DAL.SysAnnouncement
+
+@{
+    Layout = "~/Views/Shared/Edit.cshtml";
+}
+@using Common
+@using Models
+ @section CurentPlace {
+    修改  
+}
+@section CurentPlaceJS {
+    var oEditor = CKEDITOR.instances.Message.getData();
+    if(oEditor==null||oEditor=='')
+    {
+    alert('内容不能为空');
+    return false;
+    }
+    $("#Message").val(oEditor);
+
+}
+    <fieldset>
+        <legend>
+            <input class="a2 f2" type="submit" value="修改" />
+            <input class="a2 f2" type="button" onclick="BackList('SysAnnouncement')" value="返回列表" />
+        </legend>
+        <div class="bigdiv">
+            @Html.HiddenFor(model => model.Id ) 
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Title)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.State)：
+            </div>
+            <div class="editor-field">
+                @Html.RadioButtonListFor(model => model.State, Models.SysFieldModels.GetSysField("SysPerson", "State"), true)
+
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Message)：
+            </div>
+               
+            <div class="editor-ckeditor">
+
+                <textarea id="Message" rows="10" name="Message"  class="ckeditor">@Model.Message</textarea>
+
+            </div>
+            @Html.HiddenFor(model => model.CreateTime ) @Html.HiddenFor(model => model.CreatePerson ) 
+        </div>
+    </fieldset>
+
+
+
+
+    <script type="text/javascript">
+
+        $(function () {
+            
+
+        });
+        
+
+    </script>
+
+
+

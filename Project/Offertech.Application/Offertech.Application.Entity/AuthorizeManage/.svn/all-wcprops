@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/AuthorizeManage
+END
+FilterIPEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/AuthorizeManage/FilterIPEntity.cs
+END
+ModuleFormInstanceEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/AuthorizeManage/ModuleFormInstanceEntity.cs
+END
+ModuleButtonEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/AuthorizeManage/ModuleButtonEntity.cs
+END
+ModuleColumnEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/AuthorizeManage/ModuleColumnEntity.cs
+END
+AuthorizeDataEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/AuthorizeManage/AuthorizeDataEntity.cs
+END
+FilterTimeEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/AuthorizeManage/FilterTimeEntity.cs
+END
+ModuleEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/AuthorizeManage/ModuleEntity.cs
+END
+ModuleFormEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/AuthorizeManage/ModuleFormEntity.cs
+END
+AuthorizeEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/AuthorizeManage/AuthorizeEntity.cs
+END

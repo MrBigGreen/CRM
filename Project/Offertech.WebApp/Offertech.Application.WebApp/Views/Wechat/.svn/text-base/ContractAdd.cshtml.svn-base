@@ -1,0 +1,439 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>新增合同</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link href="~/Content/css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/app.css" />
+
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.picker.min.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.poppicker.css" />
+    <link rel="stylesheet" href="~/Content/css/multipleViews.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.dtpicker.css" />
+    <style>
+        .mui-search.mui-active:before{margin-top: -10px;}
+         .search-area {
+             height: 50px;
+             width: 100%;
+             background: #EAF1F8;
+             position: relative;
+             padding-top: 10px;
+             z-index: 10;
+         }
+        .search-area .mui-search {
+            margin: 0px 10px 0px 10px;
+        }
+        .search-area .search-input{
+            background: white;
+            height: 30px;
+            margin-bottom: 0;
+        }
+        .search-area .mui-search .mui-placeholder {
+            font-size: 13px;
+        }
+        #Companylist .mui-table-view-cell{height: auto;}
+    </style>
+</head>
+
+<body class="mui-fullscreen record-plan">
+    <!--页面主结构开始-->
+    <div id="app" class="mui-views">
+        <div class="mui-view">
+            <div class="mui-navbar">
+            </div>
+            <div class="mui-pages">
+            </div>
+        </div>
+    </div>
+
+    <!--单页面开始-->
+    <div id="setting" class="mui-page">
+        <!--------------------------导航栏区域---------------------->
+        <div class="mui-navbar-inner mui-bar mui-bar-nav">
+            <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+                <span class="mui-icon mui-icon-left-nav"></span>返回
+            </button>
+            <h1 class="mui-center mui-title">新增合同</h1>
+        </div>
+
+        <div class="mui-page-content">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <form class="mui-input-form">
+                        <ul class="mui-table-view">
+                            <li class="mui-table-view-cell">
+                                <a >
+                                    <div class="mui-input-row" id="contracttype">
+                                        <label class="cell-left">合同类型</label>
+                                        <p class="cell-right" id="contracttypeText"></p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <a class="mui-navigate-right" href="#CustomerPage">
+                                    <div class="mui-input-row" id="customeName">
+                                        <label class="cell-left">客户名称</label>
+                                        <p class="cell-right mui-ellipsis" id="customeNameText">请选客户名称</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <a class="mui-navigate-right" href="#CompanyPage">
+                                    <div class="mui-input-row" id="signCompany">
+                                        <label class="cell-left">签约公司</label>
+                                        <p class="cell-right mui-ellipsis" id="signCompanyText">请选择联系人</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <a class="mui-navigate-right">
+                                    <div class="mui-input-row" id="signType">
+                                        <label class="cell-left">签约类型</label>
+                                        <p class="cell-right" id="signTypeText">新增</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <a class="mui-navigate-right" href="#servicetypepage">
+                                    <div class="mui-input-row" id="serviceType">
+                                        <label class="cell-left">服务类型</label>
+                                        <p class="cell-right" id="serviceTypeText">请选择联系人</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <a class="mui-navigate-right">
+                                    <div class="mui-input-row" id="contractMony">
+                                        <label class="cell-left">合同金额</label>
+                                        <p class="cell-right" id="contractMonyText">请选择联系人</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <a class="mui-navigate-right">
+                                    <div class="mui-input-row" id="payWay">
+                                        <label class="cell-left">付款方式</label>
+                                        <p class="cell-right" id="payWayText">请选择联系人</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <a class="mui-navigate-right">
+                                    <div class="mui-input-row" id="date-recordstart" data-options=''>
+                                        <label class="cell-left">生效日期:</label>
+                                        <p class="cell-right" id="dateText-recordstart">选择跟进日期</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <a class="mui-navigate-right">
+                                    <div class="mui-input-row" id="date-recordend" data-options=''>
+                                        <label class="cell-left">截止日期</label>
+                                        <p class="cell-right" id="dateText-recordend">选择跟进日期</p>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="activityRecord-cell">
+                                <div class="mui-input-row activityRecord-content">
+                                    <span class="activityRecord-label">备注</span>
+                                    <textarea id="activity-record" class="activityRecord-input" placeholder="可以输入备注内容..."></textarea>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </form>
+ 
+                    <div>
+                        <button class="scommit-btn" id="commitRecord">保&nbsp;存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="servicetypepage" class="mui-page">
+        <div class="mui-navbar-inner mui-bar mui-bar-nav">
+            <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+                <span class="mui-icon mui-icon-left-nav"></span>返回
+            </button>
+            <h1 class="mui-center mui-title">服务类型</h1>
+        </div>
+        <div class="mui-page-content">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <div class="mui-input-group" id="Descriptionlist">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div id="CustomerPage" class="mui-page">
+    <div class="mui-navbar-inner mui-bar mui-bar-nav">
+        <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+            <span class="mui-icon mui-icon-left-nav"></span>返回
+        </button>
+        <h1 class="mui-center mui-title">客户名称</h1>
+    </div>
+    <div class="mui-page-content">
+        <div class="search-area">
+            <div class="mui-input-row mui-search">
+                <input type="search" id="texcustomerkey" class="mui-input-clear search-input" placeholder="请输入关键字查询">
+            </div>
+        </div>
+        <div class="mui-scroll-wrapper" style="margin-top: 35px;">
+            <div class="mui-scroll">
+                <ul class="mui-table-view" id="Customerlist">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="CompanyPage" class="mui-page">
+        <div class="mui-navbar-inner mui-bar mui-bar-nav">
+            <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+                <span class="mui-icon mui-icon-left-nav"></span>返回
+            </button>
+            <h1 class="mui-center mui-title">签约公司</h1>
+        </div>
+        <div class="mui-page-content">
+            <div class="search-area">
+                <div class="mui-input-row mui-search">
+                    <input type="search" id="texCompanykey" class="mui-input-clear search-input" placeholder="请输入关键字查询">
+                </div>
+            </div>
+            <div class="mui-scroll-wrapper" style="margin-top: 35px;">
+                <div class="mui-scroll">
+                    <ul class="mui-table-view" id="Companylist"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="~/Content/Scripts/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.min.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.view.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.picker.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.poppicker.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.dtpicker.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/lrz.mobile.min.js"></script>
+    <script>
+        mui.init();
+        //初始化单页view
+        var viewApi = mui('#app').view({
+            defaultPage: '#setting'
+        });
+        //初始化单页的区域滚动
+        mui('.mui-scroll-wrapper').scroll();
+        var view = viewApi.view;
+        (function ($) {
+            //处理view的后退与webview后退
+            var oldBack = $.back;
+            $.back = function () {
+                if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
+                    viewApi.back();
+                } else { //执行webview后退
+                    oldBack();
+                }
+            };
+            //监听页面切换事件方案1,通过view元素监听所有页面切换事件，目前提供pageBeforeShow|pageShow|pageBeforeBack|pageBack四种事件(before事件为动画开始前触发)
+            //第一个参数为事件名称，第二个参数为事件回调，其中e.detail.page为当前页面的html对象
+            view.addEventListener('pageBeforeShow', function (e) {
+                //				console.log(e.detail.page.id + ' beforeShow');
+                if (e.detail.page.id === "CustomerPage") {
+
+                } else if (e.detail.page.id === "CompanyPage") {
+                    getCompany();
+                } else if (e.detail.page.id === "servicetypepage") {
+                    getcheckbox();
+                }
+            });
+            view.addEventListener('pageShow', function (e) {
+                //				console.log(e.detail.page.id + ' show');
+            });
+            view.addEventListener('pageBeforeBack', function (e) {
+                //				console.log(e.detail.page.id + ' beforeBack');
+                if (e.detail.page.id === "CustomerPage") {
+                    
+                } else if (e.detail.page.id === "servicetypepage") {
+                    getcheckbox();
+                } else if (e.detail.page.id === "servicetypepage") {
+                    getcheckbox();
+                }
+            });
+            view.addEventListener('pageBack', function (e) {
+                //				console.log(e.detail.page.id + ' back');
+            });
+        })(mui);
+        var customerinfo = JSON.parse(localStorage.getItem("customerinfo"));
+        /*----------- 获取页面元素 ----------*/
+        var encode;
+        (function ($, doc) {
+            $.init();
+            $.ready(function () {
+               
+                //合同类型
+                if (localStorage.getItem("ctype") === "1") {
+                    document.getElementById("contracttypeText").innerText = "博尔捷合同";
+                    encode = "Bridge";
+                } else {
+                    document.getElementById("contracttypeText").innerText = "欧孚合同";
+                    encode = "Offer";
+                }
+                var signTypePicker = new $.PopPicker({ title: "签约类型" });
+                signTypePicker.setData([
+                    {
+                        text: '新签',
+                        value: "1"
+                    }, {
+                        text: '续签',
+                        value: "2"
+                    }
+                ]);
+                var communicateRecord = document.getElementById("signType");
+                var signTypeText = document.getElementById("signTypeText");
+                communicateRecord.onclick = function () {
+                    signTypePicker.show(function (items) {
+                        signTypeText.innerText = items[0].text;
+                        signTypeText.setAttribute("data-value", items[0].value);
+                    });
+                };
+                
+            });
+        })(mui, document);
+
+        $("body")
+            .on("keyup",
+                "#texcustomerkey",
+                function() {
+                    //客户名称
+                    $.ajax({
+                        type: "get",
+                        url: "GetCustomerSelectedListJson",
+                        data: {
+                            rows: 30,
+                            page: 1,
+                            sidx: "ModifyDate",
+                            sord: "desc",
+                            condition: "FullName",
+                            keyword: $("#texcustomerkey").val()
+                        },
+                        async: false,
+                        dataType: "json",
+                        success: function(data) {
+                            var rows = data.rows;
+                            var temphtml = "";
+                            $.each(rows,
+                                function(i) {
+                                    var row = rows[i];
+                                    temphtml += '<li class="mui-table-view-cell selectcustomer">' + row.fullname + '</li>';
+                                });
+                            document.getElementById("Customerlist").innerHTML = temphtml;
+                        },
+                        error: function(data) {
+                            mui.toast(data.responseText);
+                        }
+                    });
+                });
+
+        $("body")
+           .on("keyup",
+               "#texCompanykey",
+               function () {
+                   getCompany();
+               });
+
+        $("#Companylist")
+          .on("tap",
+              "li",
+              function () {
+                  debugger;
+                  $("#signCompanyText").text($(this).text());
+              });
+
+
+        /*------------------------------------*/
+        function getCompany() {
+            //签约公司
+            $.ajax({
+                type: "get",
+                url: "/ClientData/GetCompanyListJson",
+                data: {
+                    enCode: encode,
+                    keyword: $("#texCompanykey").val()
+                },
+                async: false,
+                dataType: "json",
+                success: function (data) {
+                    var rows = data;
+                    var temphtml = "";
+                    $.each(rows,
+                        function (i) {
+                            var row = rows[i];
+                            temphtml += '<li class="mui-table-view-cell mui-action-back selectcompany">' + row.FullName + '</li>';
+                        });
+                    document.getElementById("Companylist").innerHTML = temphtml;
+                },
+                error: function (data) {
+                    mui.toast(data.responseText);
+                }
+            });
+        }
+
+
+        /*------------自定义展示picker-----------*/
+        function showPoppicker(obj, datatype) {
+            $.ajax({
+                type: "get",
+                url: "/ClientData/GetDataItemListJson",
+                data: { key: datatype },
+                async: false,
+                dataType: "json",
+                success: function (data) {
+        
+                    var title = obj.getElementsByTagName("label")[0].innerHTML.toString();
+                    var picker = new mui.PopPicker({ title: title });
+                    var arrayData = [];
+                    for (var i = 0; i < data.length; i++) {
+                        arrayData[i] = { text: data[i].ItemName, value: data[i].ItemValue }
+                    }
+
+                    picker.setData(arrayData);
+                    picker.show(function (items) {
+                        obj.getElementsByTagName("p")[0].innerHTML = items[0].text;
+                        obj.getElementsByTagName("p")[0].setAttribute("data-value", items[0].value);
+                    });
+                },
+                error: function (data) {
+                    mui.toast(data.responseText);
+                }
+            });
+
+        }
+
+        function getcheckbox() {
+            var tempvalue = "";
+            $("#Descriptionlist input").each(function () {
+                if (this.checked) {
+                    tempvalue += this.previousElementSibling.innerText+",";
+                }
+            });
+            //document.getElementById("recommendText-record").innerText = tempvalue.substr(0,tempvalue.length-1);
+        }
+        function getcheckbox() {
+            var tempvalue = "";
+            $("#Descriptionlist input").each(function () {
+                if (this.checked) {
+                    tempvalue += this.previousElementSibling.innerText + ",";
+                }
+            });
+            //document.getElementById("recommendText-record").innerText = tempvalue.substr(0,tempvalue.length-1);
+        }
+    </script>
+</body>
+</html>

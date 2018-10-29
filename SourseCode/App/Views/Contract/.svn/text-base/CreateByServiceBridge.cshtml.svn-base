@@ -1,0 +1,446 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_Contract
+
+@{ Layout = "~/Views/Shared/Index.cshtml"; }
+<style>
+    .textbox-text {
+        width: 290px;
+    }
+
+    .editor-field {
+        width: auto;
+    }
+
+    .send1:hover {
+        color: #000000;
+        text-decoration: none;
+        background: #d3cfc2;
+        -webkit-transition: all 0.2s linear;
+        -moz-transition: all 0.2s linear;
+        -ms-transition: all 0.2s linear;
+        -o-transition: all 0.2s linear;
+        transition: all 0.2s linear;
+    }
+
+    .send1 {
+        border: 1px solid rgb(187, 187, 187);
+        height: 26px;
+        text-decoration: none;
+        padding: 2px;
+        width: 120px;
+        background: #fafafa;
+        font-family: '宋体';
+        color: #000000;
+        font-size: 12px;
+        text-align: center;
+        border-radius: 2px;
+        margin-left: 2px;
+        -webkit-transition: all 0.2s linear;
+        -moz-transition: all 0.2s linear;
+        -ms-transition: all 0.2s linear;
+        -o-transition: all 0.2s linear;
+        transition: all 0.2s linear;
+    }
+
+        .send1 [disabled] {
+            color: #939192;
+            background: #f5f5f5 !important;
+            cursor: default;
+            border-radius: 0 !important;
+            border: 1px solid #d5d5d5;
+        }
+
+    .send0 {
+        border: 1px solid #d5d5d5;
+        height: 26px;
+        text-decoration: none;
+        padding: 2px;
+        width: 120px;
+        background: #f5f5f5 !important;
+        font-family: '宋体';
+        color: #939192;
+        font-size: 12px;
+        text-align: center;
+        border-radius: 2px;
+        margin-left: 2px;
+        -webkit-transition: all 0.2s linear;
+        -moz-transition: all 0.2s linear;
+        -ms-transition: all 0.2s linear;
+        -o-transition: all 0.2s linear;
+        transition: all 0.2s linear;
+    }
+</style>
+
+<form id="myForm">
+
+    <div class="easyui-layout" title="" style="width:620px">
+        <div style="padding: 10px 0px;">
+
+            <div class="editor-label">
+                <span class="red">*</span>
+                客户名称:
+            </div>
+            <div class="editor-field" style="width:auto;">
+                <input type="text" class="textbox-text textbox-text-readonly" id="CustomerName" name="CustomerName" required="required" readonly="readonly" />
+                <input type="hidden" id="CustomerID" name="CustomerID" value="" />
+                <a class="easyui-linkbutton" href="javascript:void(0)" onclick="ShowCustomer();">选择</a>
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                <span class="red">*</span>
+                签约公司:
+            </div>
+            <div class="editor-field" style="width:auto;">
+                <input id="cbxSigningCompany" name="cbxSigningCompany" style="width: 290px" />
+                <input type="hidden" id="SigningCompany" name="SigningCompany" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                <span class="red">*</span>
+                服务类型:
+            </div>
+            <div class="editor-field" style="width:350px; height:auto">
+                @*@Html.CheckBoxListFor(model => model.RecommendSolutionID, Models.SysFieldModels.GetSysFieldByParentID("1508071046119479968e30ccf1f9f"))*@
+                @Html.CheckBoxListFor(model => model.RecommendSolutionID, Models.SysFieldModels.GetSysFieldByParentIDByNew("1508071046119479968e30ccf1f9f", "Bridge", 2))
+                <input type="hidden" id="RecommendSolutionIDs" name="RecommendSolutionIDs" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                <span class="red">*</span>
+                合同编号:
+            </div>
+            <div class="editor-field">
+                <input type="text" class="textbox-text" id="ContractNO" name="ContractNO" value="" readonly="readonly" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                <span class="red">*</span>合同金额
+            </div>
+            <div class="editor-field">
+                <input type="text" class="textbox-text" id="ContractMoney" name="ContractMoney" placeholder="请输入合同金额" required="required" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                <span class="red">*</span>付款方式:
+            </div>
+            <div class="editor-field">
+                <input type="text" class="textbox-text" id="PayType" name="PayType" value="" required="required" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                <span class="red">*</span>签约类型:
+            </div>
+            <div class="editor-field">
+                <input type="radio" name="IsNew" value="0" checked="checked"><span>新签</span><input type="radio" name="IsNew" value="1"><span>续签</span>
+            </div>
+            <br style="clear: both;" />
+
+            <div class="editor-label">
+                <span class="red">*</span>生效日期:
+            </div>
+            <div class="editor-field">
+                <input type="text" class="textbox-text" id="EffectiveDate" name="EffectiveDate" required="required" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'Deadline\');}', dateFmt: 'yyyy-MM-dd' })" style="width:130px" />
+            </div>
+            <div class="editor-label">
+                <span class="red">*</span>截止日期:
+            </div>
+            <div class="editor-field">
+                <input type="text" class="textbox-text" id="Deadline" name="Deadline" value="" required="required" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'EffectiveDate\');}', dateFmt: 'yyyy-MM-dd' })" style="width:130px" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                <span class="red">*</span>项目负责人:
+            </div>
+            <div class="editor-field">
+                <input type="text" class="textbox-text" id="ProjectLeader" name="ProjectLeader" placeholder="请输入项目负责人" required="required" style="width: 130px" />
+            </div>
+            <div class="editor-label">
+                <span class="red">*</span>创建人:
+            </div>
+            <div class="editor-field">
+                <input type="text" class="textbox-text" id="CreatedBy" name="CreatedBy" placeholder="请输入创建人" required="required" style="width: 130px" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                <span class="red">*</span>手机号码:
+            </div>
+            <div class="editor-field div-phone">
+                <input type="text" class="textbox-text" id="PhoneNumber" name="PhoneNumber" placeholder="请输入手机号码" required="required" style="width:130px" />
+                <input type="button" class="send1" id="btnSendCode" name="btnSendCode" onclick="sendMessage();" value="发送验证码" />
+                <div class="field-validation-error" id="lblPhone"></div>
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                <span class="red">*</span>验证码:
+            </div>
+            <div class="editor-field">
+                <input type="text" id="SendCode" name="SendCode" class="textbox-text" placeholder="请输入验证码" required="required" style="width:130px" />
+            </div>
+            <br style="clear: both;" />
+            <br style="clear: both;" />
+            <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+                <input class="a2 f2" type="submit" id="submit" value="创建" style="display:none" />
+                <a class="easyui-linkbutton" id="ContactSave" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+                   onclick="SubmitFunc();">保存</a>
+                &nbsp; &nbsp; &nbsp;
+                <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+                   onclick="closeWindow();">取消</a>
+            </div>
+        </div>
+    </div>
+</form>
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script type="text/javascript">$.getScript("/Scripts/Contract/Create.js")</script>
+<script>
+    var sendMessage = function () {
+        debugger;
+        var numbers = /^1\d{10}$/;
+        var val = $('#PhoneNumber').val().replace(/\s+/g, ""); //获取输入手机号码
+
+        if (!numbers.test(val) || val.length == 0) {
+            //$('.div-phone').append('<span class="field-validation-error">手机格式错误</span>');
+            $("#lblPhone").html("手机格式错误");
+            return false;
+        }
+        $("#lblPhone").html("");
+        if (numbers.test(val)) {
+
+            $.ajax({
+                type: "POST", //用POST方式传输
+                dataType: "json", //数据格式:JSON
+                url: '/SysMessage/SendCode', //目标地址
+                data: { "phone": $("#PhoneNumber").val() },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                },
+                success: function (msg) {
+                    $.messager.alert('操作提示', msg, "info");
+                }
+            });
+
+
+
+            var time = 60;
+            $("#btnSendCode").attr("disabled", "true");
+            function timeCountDown() {
+                if (time == 0) {
+                    clearInterval(timer);
+                    $('#btnSendCode').addClass('send1').removeClass("send0");
+                    $("#btnSendCode").removeAttr("disabled");//启用按钮
+                    $("#btnSendCode").val("重新发送验证码");
+
+                    return true;
+                }
+                $("#btnSendCode").val(time + "S后再次发送");
+                time--;
+                return false;
+
+            }
+            $('#btnSendCode').addClass('send0').removeClass("send1");
+            timeCountDown();
+            var timer = setInterval(timeCountDown, 1000);
+        }
+    }
+
+</script>
+<script type="text/javascript">
+    $('#cbxSigningCompany').combobox({
+        required: true,
+        //  url: '/SysField/GetComboBoxList?ParentID=1604121151490315992e569f90a1e',
+        url: '/SysField/GetComboBoxListByNew?ParentID=1604121151490315992e569f90a1e&&type=Bridge',
+        valueField: 'Value',
+        textField: 'Text',
+        //editable: false
+        filter: function (q, row) { //q：文本框内你输入的值，row：列表数据集合；
+            var opts = $(this).combobox('options');
+
+            //统一转换成小写进行比较；==0：匹配首位，>=0：匹配任意位置；
+            return row[opts.textField].indexOf(q) >= 0;
+        },
+        onSelect: function (newValue, oldValue) {
+            $("#SigningCompany").val(newValue.Value);
+        }
+    });
+
+    // 手机号码验证
+    jQuery.validator.addMethod("isMobile", function (value, element) {
+        var length = value.length;
+        var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
+        return this.optional(element) || (length == 11 && mobile.test(value));
+    }, "请正确填写您的手机号码");
+    var validator = $("#myForm").validate({
+        errorElement: 'span',
+        errorClass: 'field-validation-error',
+        focusInvalid: false,
+        rules: {
+            CustomerName: {
+                required: true,
+            },
+            RecommendSolutionID: {
+                required: true,
+            },
+            ContractNO: {
+                required: true,
+            },
+            ContractMoney: {
+                required: true,
+            },
+            EffectiveDate: {
+                required: true,
+            },
+            Deadline: {
+                required: true,
+            },
+            ProjectLeader: {
+                required: true,
+            },
+            CreatedBy: {
+                required: true,
+            },
+            PhoneNumber: {
+                required: true,
+                isMobile: true,
+                maxlength: 11,
+                minlength: 11,
+            },
+            SendCode: {
+                required: true,
+                number: true,
+                maxlength: 6,
+                minlength: 6,
+            },
+        },
+
+        messages: {
+            CustomerName: {
+                required: "请选择",
+            },
+            RecommendSolutionID: {
+                required: "请选择",
+            },
+            ContractNO: {
+                required: "请重新选择服务类型",
+            },
+            ContractMoney: {
+                required: "请输入=",
+            },
+            EffectiveDate: {
+                required: "请选择",
+            },
+            Deadline: {
+                required: "请选择",
+            },
+            ProjectLeader: {
+                required: "请输入",
+            },
+            CreatedBy: {
+                required: "请输入",
+            },
+            PhoneNumber: {
+                required: "请输入手机号码",
+                isMobile: "请正确填写您的手机号码",
+                maxlength: "手机号码长度不符",
+                minlength: "手机号码长度不符",
+            },
+            SendCode: {
+                required: "请输入验证码",
+                number: "请输入正确的验证码",
+                maxlength: "验证码长度不符",
+                minlength: "验证码长度不符",
+            },
+        },
+
+        invalidHandler: function (event, validator) { //display error alert on form submit
+            $('.alert-danger', $('.login-form')).show();
+        },
+
+        highlight: function (e) {
+            //移除当前控件后面所有元素
+
+            $(e).closest('.editor-field input').addClass('input-validation-error');
+        },
+
+        success: function (e) {
+            //移除当前控件后面所有元素
+            //$(e).removeClass('input-validation-error');
+            //$(e).closest('.editor-field').find("input").removeClass('input-validation-error');
+            $(e).prev("input").removeClass('input-validation-error');
+            $(e).remove();
+        },
+
+        errorPlacement: function (error, element) {
+            if (element.is(':checkbox') || element.is(':radio')) {
+                var controls = element.closest('div[class*="col-"]');
+                if (controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+            }
+            else if (element.is('.select2')) {
+                error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+            }
+            else if (element.is('.chosen-select')) {
+                error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+            }
+            else {
+                error.insertAfter(element);
+            }
+
+        },
+
+        submitHandler: function (form) {
+        },
+        invalidHandler: function (form) {
+        }
+    });
+
+    /************************************************创建会员***********************************************/
+
+    var SubmitFunc = function () {
+
+        var ids = "";
+        $("input[name='RecommendSolutionID']:checked").each(function () {
+            ids += $(this).val() + ",";
+        });
+        $("#RecommendSolutionIDs").val(ids);
+
+
+        var SubmitResult = true;
+        // 检测表单是否验证通过 并进行表单验证
+        var validateState = $("#myForm").valid();
+        if ($("#SigningCompany").val() == "") {
+            validateState = false;
+        }
+        if (!validateState) {
+            return false;
+        }
+
+
+        $.ajax({
+            url: "/Contract/CreateByService",
+            type: "Post",
+            data: $("#myForm").serialize(),
+            dataType: "json",
+            success: function (data) {
+                if (data == "创建成功") {
+                    $.messager.alert('操作提示', "创建成功", "info", function (r) {
+                        closeWindow();
+
+                    });
+                }
+                else {
+                    $.messager.alert('操作提示', data, "info", function (r) {
+
+                    });
+                }
+            },
+            error: function () {
+                SubmitResult = false;
+            }
+        });
+        return SubmitResult;
+    };
+    function ShowCustomer() {
+        showWindow("选择客户", "/Customer/SelectedList?type=all", 550, 450);
+    }
+
+</script> 

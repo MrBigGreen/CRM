@@ -1,0 +1,60 @@
+﻿@model CRM.DAL.SysDocumentTalk
+
+@{
+    Layout = "~/Views/Shared/Details.cshtml";
+}
+@using Common
+ @section CurentPlace {
+    详细  
+}
+ 
+    <fieldset>
+        <legend>
+            <input class="a2 f2" type="button" onclick="window.location.href = 'javascript:history.go(-1)';" value="返回" />
+        </legend>
+        <div class="bigdiv">
+            
+                <br style="clear: both;" />
+                <div class="display-label">
+                    @Html.LabelFor(model => model.Content) :
+                </div>
+                <div class="textarea-box">
+                    @Html.TextAreaFor(model => model.Content, new {  @readonly=true})                   
+                </div>        
+                <div class="display-label">
+                      @Html.LabelFor(model => model.SysDocumentId) :
+                </div>
+                <div class="display-field">
+                    @if (Model.SysDocument != null)
+                       {
+                    @Model.SysDocument.Name
+                    } 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.Bad) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Bad) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.Good) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Good) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.CreateTime) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.CreateTime) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.CreatePerson) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.CreatePerson) 
+                </div>
+        </div>
+    </fieldset>
+
+

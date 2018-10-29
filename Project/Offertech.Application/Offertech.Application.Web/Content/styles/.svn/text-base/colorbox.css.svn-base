@@ -1,0 +1,613 @@
+/*
+    Colorbox Core Style:
+    The following CSS is consistent between example themes and should not be altered.
+*/
+#colorbox, #cboxOverlay, #cboxWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+#cboxOverlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+#cboxMiddleLeft, #cboxBottomLeft {
+    clear: left;
+}
+
+#cboxContent {
+    position: relative;
+}
+
+#cboxLoadedContent {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+#cboxTitle {
+    margin: 0;
+}
+
+#cboxLoadingOverlay, #cboxLoadingGraphic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow {
+    cursor: pointer;
+}
+
+.cboxPhoto {
+    float: left;
+    margin: auto;
+    border: 0;
+    display: block;
+    max-width: none;
+    -ms-interpolation-mode: bicubic;
+}
+
+.cboxIframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+}
+
+#colorbox, #cboxContent, #cboxLoadedContent {
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+}
+
+/* 
+    User Style:
+    Change the following styles to modify the appearance of Colorbox.  They are
+    ordered & tabbed in a way that represents the nesting of the generated HTML.
+*/
+#cboxOverlay {
+    background: url(images/overlay.png) repeat 0 0;
+}
+
+#colorbox {
+    outline: 0;
+}
+
+#cboxTopLeft {
+    width: 21px;
+    height: 21px;
+    background: url(images/controls.png) no-repeat -101px 0;
+}
+
+#cboxTopRight {
+    width: 21px;
+    height: 21px;
+    background: url(images/controls.png) no-repeat -130px 0;
+}
+
+#cboxBottomLeft {
+    width: 21px;
+    height: 21px;
+    background: url(images/controls.png) no-repeat -101px -29px;
+}
+
+#cboxBottomRight {
+    width: 21px;
+    height: 21px;
+    background: url(images/controls.png) no-repeat -130px -29px;
+}
+
+#cboxMiddleLeft {
+    width: 21px;
+    background: url(images/controls.png) left top repeat-y;
+}
+
+#cboxMiddleRight {
+    width: 21px;
+    background: url(images/controls.png) right top repeat-y;
+}
+
+#cboxTopCenter {
+    height: 21px;
+    background: url(images/border.png) 0 0 repeat-x;
+}
+
+#cboxBottomCenter {
+    height: 21px;
+    background: url(images/border.png) 0 -29px repeat-x;
+}
+
+#cboxContent {
+    background: #fff;
+    overflow: hidden;
+}
+
+.cboxIframe {
+    background: #fff;
+}
+
+#cboxError {
+    padding: 50px;
+    border: 1px solid #ccc;
+}
+
+#cboxLoadedContent {
+    margin-bottom: 28px;
+}
+
+#cboxTitle {
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    color: #949494;
+}
+
+#cboxCurrent {
+    position: absolute;
+    bottom: 4px;
+    left: 58px;
+    color: #949494;
+}
+
+#cboxLoadingOverlay {
+    background: url(images/loading_background.png) no-repeat center center;
+}
+
+#cboxLoadingGraphic {
+    background: url(images/loading.gif) no-repeat center center;
+}
+
+/* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
+#cboxPrevious, #cboxNext, #cboxSlideshow, #cboxClose {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    width: auto;
+    background: none;
+}
+
+    /* avoid outlines on :active (mouseclick), but preserve outlines on :focus (tabbed navigating) */
+    #cboxPrevious:active, #cboxNext:active, #cboxSlideshow:active, #cboxClose:active {
+        outline: 0;
+    }
+
+#cboxSlideshow {
+    position: absolute;
+    bottom: 4px;
+    right: 30px;
+    color: #0092ef;
+}
+
+#cboxPrevious {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: url(images/controls.png) no-repeat -75px 0;
+    width: 25px;
+    height: 25px;
+    text-indent: -9999px;
+}
+
+    #cboxPrevious:hover {
+        background-position: -75px -25px;
+    }
+
+#cboxNext {
+    position: absolute;
+    bottom: 0;
+    left: 27px;
+    background: url(images/controls.png) no-repeat -50px 0;
+    width: 25px;
+    height: 25px;
+    text-indent: -9999px;
+}
+
+    #cboxNext:hover {
+        background-position: -50px -25px;
+    }
+
+#cboxClose {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: url(images/controls.png) no-repeat -25px 0;
+    width: 25px;
+    height: 25px;
+    text-indent: -9999px;
+}
+
+    #cboxClose:hover {
+        background-position: -25px -25px;
+    }
+
+/*
+  The following fixes a problem where IE7 and IE8 replace a PNG's alpha transparency with a black fill
+  when an alpha filter (opacity change) is set on the element or ancestor element.  This style is not applied to or needed in IE9.
+  See: http://jacklmoore.com/notes/ie-transparency-problems/
+*/
+.cboxIE #cboxTopLeft,
+.cboxIE #cboxTopCenter,
+.cboxIE #cboxTopRight,
+.cboxIE #cboxBottomLeft,
+.cboxIE #cboxBottomCenter,
+.cboxIE #cboxBottomRight,
+.cboxIE #cboxMiddleLeft,
+.cboxIE #cboxMiddleRight {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);
+}
+
+
+.ace-thumbnails {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .ace-thumbnails img {
+        width: 58px;
+        height: 58px;
+    }
+
+    .ace-thumbnails > li {
+        padding-left: 0px;
+        float: left;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        margin: 2px;
+        border: 1px solid #333;
+        width: 60px;
+        height: 60px;
+    }
+
+        .ace-thumbnails > li > :first-child {
+            display: block;
+            position: relative;
+        }
+
+        .ace-thumbnails > li .tags {
+            display: inline-block;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            overflow: visible;
+            direction: rtl;
+            padding: 0;
+            margin: 0;
+            height: auto;
+            width: auto;
+            background-color: transparent;
+            border: 0;
+            vertical-align: inherit;
+        }
+
+            .ace-thumbnails > li .tags > .label-holder {
+                opacity: .92;
+                filter: alpha(opacity=92);
+                display: table;
+                margin: 1px 0 0 0;
+                direction: ltr;
+                text-align: left;
+            }
+
+                .ace-thumbnails > li .tags > .label-holder:hover {
+                    opacity: 1;
+                    filter: alpha(opacity=100);
+                }
+
+        .ace-thumbnails > li > .tools {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -30px;
+            width: 24px;
+            background-color: rgba(0,0,0,0.55);
+            text-align: center;
+            vertical-align: middle;
+            -webkit-transition: all .2s ease;
+            transition: all .2s ease;
+        }
+
+            .ace-thumbnails > li > .tools.tools-right {
+                left: auto;
+                right: -30px;
+            }
+
+            .ace-thumbnails > li > .tools.tools-bottom {
+                width: auto;
+                height: 28px;
+                left: 0;
+                right: 0;
+                top: auto;
+                bottom: -30px;
+            }
+
+            .ace-thumbnails > li > .tools.tools-top {
+                width: auto;
+                height: 28px;
+                left: 0;
+                right: 0;
+                top: -30px;
+                bottom: auto;
+            }
+
+        .ace-thumbnails > li:hover > .tools {
+            left: 0;
+        }
+
+            .ace-thumbnails > li:hover > .tools.tools-bottom {
+                top: auto;
+                bottom: 0;
+            }
+
+            .ace-thumbnails > li:hover > .tools.tools-top {
+                bottom: auto;
+                top: 0;
+            }
+
+            .ace-thumbnails > li:hover > .tools.tools-right {
+                left: auto;
+                right: 0;
+            }
+
+        .ace-thumbnails > li > .tools > a, .ace-thumbnails > li > :first-child .inner a {
+            display: inline-block;
+            color: #FFF;
+            font-size: 18px;
+            font-weight: normal;
+            padding: 0 4px;
+        }
+
+            .ace-thumbnails > li > .tools > a:hover, .ace-thumbnails > li > :first-child .inner a:hover {
+                text-decoration: none;
+                color: #c9e2ea;
+            }
+
+        .ace-thumbnails > li .tools.tools-bottom > a, .ace-thumbnails > li .tools.tools-top > a {
+            display: inline-block;
+        }
+
+        .ace-thumbnails > li > :first-child > .text {
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            text-align: center;
+            color: #FFF;
+            background-color: rgba(0,0,0,0.55);
+            opacity: 0;
+            filter: alpha(opacity=0);
+            -webkit-transition: all .2s ease;
+            transition: all .2s ease;
+        }
+
+            .ace-thumbnails > li > :first-child > .text:before {
+                content: '';
+                display: inline-block;
+                height: 100%;
+                vertical-align: middle;
+                margin-right: 0;
+            }
+
+            .ace-thumbnails > li > :first-child > .text > .inner {
+                padding: 4px 0;
+                margin: 0;
+                display: inline-block;
+                vertical-align: middle;
+                max-width: 90%;
+            }
+
+        .ace-thumbnails > li:hover > :first-child > .text {
+            opacity: 1;
+            filter: alpha(opacity=100);
+        }
+
+    .ace-thumbnails .app-item-add {
+        border: 0px solid #333;
+        text-align: center;
+        cursor: pointer;
+        background: url(../Images/icon_app_add.png) center no-repeat;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+    }
+
+        .ace-thumbnails .app-item-add .app-logo {
+            height: 50px;
+            width: 50px;
+            display: inline-block;
+            position: relative;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 40%;
+            -webkit-background-clip: padding-box;
+            -moz-background-clip: padding-box;
+            background-clip: padding-box;
+            margin-bottom: 9px;
+        }
+
+@media only screen and (max-width:480px) {
+    .ace-thumbnails {
+        text-align: center;
+    }
+
+        .ace-thumbnails > li {
+            float: none;
+            display: inline-block;
+        }
+}
+
+
+#colorbox:focus, #colorbox:active {
+    outline: 0;
+}
+
+#cboxTopLeft, #cboxTopCenter, #cboxTopRight, #cboxMiddleLeft, #cboxMiddleRight, #cboxBottomLeft, #cboxBottomCenter, #cboxBottomRight {
+    background: none !important;
+    opacity: 0;
+}
+
+#cboxContent {
+    border: 12px solid #000;
+    background-color: #FFF;
+    padding: 7px;
+}
+
+#cboxOverlay {
+    background: rgba(0,0,0,0.95);
+    background: #000;
+}
+
+#cboxCurrent {
+    left: 64px;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+#cboxTitle {
+    margin-bottom: 4px;
+    font-size: 14px;
+    color: #777;
+}
+
+#cboxNext, #cboxPrevious, #cboxClose {
+    background: 0;
+    text-indent: 0;
+    width: 26px;
+    height: 26px;
+    line-height: 22px;
+    padding: 0 4px;
+    text-align: center;
+    border: 2px solid #999;
+    border-radius: 16px;
+    color: #666;
+    font-size: 12px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+    #cboxNext:hover, #cboxPrevious:hover {
+        color: #333;
+        border-color: #666;
+    }
+
+#cboxContent {
+    overflow: visible;
+}
+
+#cboxClose {
+    background-color: #000;
+    border: 2px solid #fff;
+    border-radius: 32px;
+    color: #fff;
+    font-size: 21px;
+    height: 28px;
+    width: 28px;
+    padding-bottom: 2px;
+    margin-left: 0;
+    right: -14px;
+    top: -14px;
+}
+
+#cboxLoadingOverlay {
+    background: none !important;
+}
+
+#cboxLoadingGraphic {
+    background: #FFF none !important;
+    text-align: center;
+}
+
+    #cboxLoadingGraphic > [class*="icon-"] {
+        display: inline-block;
+        background-color: #FFF;
+        border-radius: 8px;
+        width: 32px;
+        height: 32px;
+        position: relative;
+        top: 48%;
+        text-align: center;
+        vertical-align: middle;
+        -moz-animation: spin 1.5s infinite linear;
+        -webkit-animation: spin 1.5s infinite linear;
+        -o-animation: spin 1.5s infinite linear;
+        -ms-animation: spin 1.5s infinite linear;
+        animation: spin 1.5s infinite linear;
+        font-size: 24px;
+        color: #fe7e3e;
+    }
+
+.ace-spinner {
+    display: inline-block;
+}
+
+    .ace-spinner .spinner-buttons {
+        min-width: 18px;
+    }
+
+        .ace-spinner .spinner-buttons > .btn {
+            border-radius: 0 !important;
+            font-size: 10px;
+            padding: 0;
+            width: 18px;
+            height: 14px;
+            line-height: 10px;
+        }
+
+            .ace-spinner .spinner-buttons > .btn:first-child {
+                margin-top: 0;
+            }
+
+            .ace-spinner .spinner-buttons > .btn > [class*="icon-"] {
+                margin: 0;
+                padding: 0;
+            }
+
+        .ace-spinner .spinner-buttons > button.btn:active {
+            left: auto;
+            top: auto;
+        }
+
+    .ace-spinner .spinner-input {
+        text-align: center;
+        height: 29px;
+        line-height: 28px;
+        color: #777;
+    }
+
+    .ace-spinner input[type=text].spinner-input.form-control {
+        width: auto\0/ !important;
+        line-height: 1\0/ !important;
+        padding-bottom: 4px\0/ !important;
+    }
+
+    .ace-spinner.touch-spinner .spinner-buttons {
+        margin: 0;
+        font-size: 0;
+    }
+
+        .ace-spinner.touch-spinner .spinner-buttons > .btn {
+            height: 29px;
+            line-height: 20px;
+            width: 24px;
+            font-size: 18px;
+            display: inline-block;
+            vertical-align: sub;
+            margin: 0 1px;
+        }
+
+            .ace-spinner.touch-spinner .spinner-buttons > .btn > [class*="icon-"] {
+                vertical-align: middle;
+                display: inline-block;
+            }

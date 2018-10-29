@@ -1,0 +1,225 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>联系人信息</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="~/Content/css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/css/app.css" />
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.picker.min.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.poppicker.css" />
+    <style type="text/css">
+        html,
+        body {
+            background-color: white;
+        }
+    </style>
+</head>
+
+
+<body class="edit-contacter">
+
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"><span class="nav-back-title">返回</span></a>
+        <h1 class="mui-center mui-title">联系人信息</h1>
+    </header>
+
+    <div class="mui-content">
+        <form class="mui-input-form">
+            <ul class="mui-table-view">
+                <li class="mui-table-view-cell">
+                    <div class="mui-input-row">
+                        <label class="cell-left">姓名:</label>
+                        <input type="text" class="cell-right" id="txtname" value="" />
+                    </div>
+                </li>
+                <li class="mui-table-view-cell">
+                    <a class="mui-navigate-right" id='position'>
+                        <div class="mui-input-row">
+                            <label class="cell-left">职务类型:</label>
+                            <p class="cell-right" id="positionText"></p>
+                        </div>
+                    </a>
+                </li>
+                <li class="mui-table-view-cell">
+                    <div class="mui-input-row">
+                        <label class="cell-left">手机号码:</label>
+                        <input type="text" class="cell-right" id="mobilePhone" value="" />
+                    </div>
+                </li>
+
+                <li class="mui-table-view-cell">
+                    <div class="mui-input-row">
+                        <label class="cell-left">固定电话:</label>
+                        <input type="text" class="cell-right" id="telePhone" value="" />
+                    </div>
+                </li>
+
+                <li class="mui-table-view-cell">
+                    <div class="mui-input-row">
+                        <label class="cell-left">联系邮箱:</label>
+                        <input type="text" class="cell-right" id="email" value="" />
+                    </div>
+                </li>
+                <li class="comment-cell">
+                    <div class="mui-input-row comment-content">
+                        <span class="comment-label">备注：</span>
+                        <textarea id="textarea" class="comment-input" rows="5" placeholder="可以输入备注内容..."></textarea>
+                        <button type="button" class="commit-btn" id="btnsave">保存</button>
+
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+
+    <script src="~/Content/Scripts/jquery-1.11.1.js"></script>
+<script src="~/Content/Scripts/mui.min.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.picker.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.poppicker.js"></script>
+    <script src="~/Content/Scripts/utils/offertech-clientdata.js"></script>
+    <script>
+        mui.init();
+        var type = "add";
+        (function ($, doc) {
+            $.ready(function () {
+                document.getElementById("position").onclick = function () {
+                    $.ajax({
+                        type: "get",
+                        url: "/ClientData/GetDataItemListJson",
+                        data: { EnCode: "Client_Post" },
+                        async: false,
+                        dataType: "json",
+                        success: function (data) {
+                            var picker = new $.PopPicker({ title: "职务类型" });
+                            var arrayData = [];
+                            var contactlist = data;
+                            for (var i = 0; i < contactlist.length; i++) {
+                                arrayData[i] = { text: contactlist[i].ItemValue, value: contactlist[i].ItemDetailId }
+                            }
+
+                            picker.setData(arrayData);
+                            picker.show(function (items) {
+                                document.getElementById("positionText").innerHTML = items[0].text;
+                                document.getElementById("positionText").setAttribute("data-value",items[0].value);
+                            });
+                        },
+                        error: function (data) {
+                            mui.toast(data.responseText);
+                        }
+                    });
+                }
+            });
+        })(mui, document);
+
+        $(function () {
+            if (localStorage.getItem("contactid") != null && localStorage.getItem("contactid") != "") {
+                type = "edit";
+                $.ajax({
+                    type: "get",
+                    url: "GetContactEntityJson",
+                    async: false,
+                    data: { keyValue: localStorage.getItem("contactid") },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.type === 1) {
+                            data = data.resultdata;
+                            $("#txtname").val(data.Contact);
+                            $("#positionText").text(top.clientdataItem["Client_Post"][data.PostId]);
+                            $("#mobilePhone").val(data.Mobile);
+                            $("#telePhone").val(data.Tel);
+                            $("#email").val(data.Email);
+                            $("#textarea").val(data.Description);
+                        } else {
+                            mui.toast(data.message);
+                        }
+
+                    },
+                    error: function (data) {
+                        mui.toast(data.responseText);
+                    }
+                });
+            }
+        });
+
+        $("body")
+            .on("tap",
+                "#btnsave",
+                function () {
+                    if ($("#txtname").val() === "") {
+                        mui.toast("请输入姓名");
+                        return false;
+                    }
+                    if ($("#positionText").text() === "") {
+                        mui.toast("请选择职务类型");
+                        return false;
+                    }
+                    if ($("#mobilePhone").val() === "") {
+                        mui.toast("请输入手机号");
+                        return false;
+                    }
+                    if ($("#telePhone").val() === "") {
+                        mui.toast("请输入固定电话");
+                        return false;
+                    }
+                    if ($("#email").val() === "") {
+                        mui.toast("请输入联系邮箱");
+                        return false;
+                    }
+                    if ($("#textarea").val() === "") {
+                        mui.toast("请输入备注");
+                        return false;
+                    }
+ 
+                    var param;
+                    if (type == "add") {
+                        param = {
+                            CustomerId: localStorage.getItem("customerid"),
+                            Contact: $("#txtname").val(),
+                            PostId: $("#positionText").text(),
+                            Mobile: $("#mobilePhone").val(),
+                            Tel: $("#telePhone").val(),
+                            Email: $("#email").val(),
+                            Description: $("#textarea").val()
+                        };
+                    } else {
+                        param = {
+                            keyValue: localStorage.getItem("contactid"),
+                            Contact:$("#txtname").val(),
+                            PostId:$("#positionText").text(),
+                            Mobile:$("#mobilePhone").val(),
+                            Tel:$("#telePhone").val(),
+                            Email:$("#email").val(),
+                            Description:$("#textarea").val()
+                        };
+                    }
+                    $.ajax({
+                        type: "post",
+                        url: "SaveCustomerContact",
+                        async: false,
+                        data: param,
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.type == 1) {
+                                mui.alert("保存成功",
+                                    "提示",
+                                    function () {
+                                        mui.back();
+                                    });
+                            } else {
+                                mui.toast(data.message);
+                            }
+
+                        },
+                        error: function (data) {
+                            mui.toast(data.responseText);
+                        }
+                    });
+                });
+
+    </script>
+</body>
+
+</html>

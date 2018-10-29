@@ -1,0 +1,311 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BridgehrKit/!svn/ver/13112/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers
+END
+SysEmailTempController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysEmailTempController.cs
+END
+ContractController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BridgehrKit/!svn/ver/13112/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/ContractController.cs
+END
+RPOPerfController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BridgehrKit/!svn/ver/10102/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/RPOPerfController.cs
+END
+SysNoticeController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BridgehrKit/!svn/ver/9535/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysNoticeController.cs
+END
+SysMenuTreeController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysMenuTreeController.cs
+END
+CustomerFollowController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BridgehrKit/!svn/ver/13112/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/CustomerFollowController.cs
+END
+PayReportController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BridgehrKit/!svn/ver/9635/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/PayReportController.cs
+END
+TodayTasksController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BridgehrKit/!svn/ver/8257/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/TodayTasksController.cs
+END
+SysEmailController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysEmailController.cs
+END
+HomeRightController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BridgehrKit/!svn/ver/7745/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/HomeRightController.cs
+END
+HomeController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BridgehrKit/!svn/ver/13112/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/HomeController.cs
+END
+PayController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BridgehrKit/!svn/ver/12701/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/PayController.cs
+END
+SysAnnouncementController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysAnnouncementController.cs
+END
+CustomerAttributionChangeController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/BridgehrKit/!svn/ver/7210/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/CustomerAttributionChangeController.cs
+END
+ExceptionController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/ExceptionController.cs
+END
+ReportsController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BridgehrKit/!svn/ver/12732/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/ReportsController.cs
+END
+SysOperationController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/9646/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysOperationController.cs
+END
+SysRoleController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BridgehrKit/!svn/ver/9646/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysRoleController.cs
+END
+ResumeController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BridgehrKit/!svn/ver/6885/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/ResumeController.cs
+END
+CustomerController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BridgehrKit/!svn/ver/11066/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/CustomerController.cs
+END
+SysFieldTreeController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysFieldTreeController.cs
+END
+SysMenuController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BridgehrKit/!svn/ver/8385/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysMenuController.cs
+END
+CustomerRatingController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BridgehrKit/!svn/ver/9720/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/CustomerRatingController.cs
+END
+CompanyController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BridgehrKit/!svn/ver/6119/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/CompanyController.cs
+END
+JobListController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BridgehrKit/!svn/ver/5608/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/JobListController.cs
+END
+CallRecordingController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BridgehrKit/!svn/ver/7382/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/CallRecordingController.cs
+END
+LoginController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BridgehrKit/!svn/ver/12701/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/LoginController.cs
+END
+SysMessageTempController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysMessageTempController.cs
+END
+PaySheBaoController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BridgehrKit/!svn/ver/10527/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/PaySheBaoController.cs
+END
+FileUploaderController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/7128/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/FileUploaderController.cs
+END
+CallLogController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/CallLogController.cs
+END
+CustomerContactController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BridgehrKit/!svn/ver/12718/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/CustomerContactController.cs
+END
+SysDocumentController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysDocumentController.cs
+END
+SysLogController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BridgehrKit/!svn/ver/6119/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysLogController.cs
+END
+SysDepartmentTreeController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/BridgehrKit/!svn/ver/10066/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysDepartmentTreeController.cs
+END
+SysFieldController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BridgehrKit/!svn/ver/12714/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysFieldController.cs
+END
+SysMessageController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/10649/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysMessageController.cs
+END
+SalesPerfController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BridgehrKit/!svn/ver/11066/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SalesPerfController.cs
+END
+CustomerShareController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BridgehrKit/!svn/ver/8556/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/CustomerShareController.cs
+END
+MessageLogController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BridgehrKit/!svn/ver/9506/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/MessageLogController.cs
+END
+CustomerProjectController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BridgehrKit/!svn/ver/10079/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/CustomerProjectController.cs
+END
+PayEmployeeController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/10562/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/PayEmployeeController.cs
+END
+SysDocumentTalkController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysDocumentTalkController.cs
+END
+AccountController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/AccountController.cs
+END
+SysExceptionController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysExceptionController.cs
+END
+CallTaskController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/CallTaskController.cs
+END
+SysDepartmentController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BridgehrKit/!svn/ver/8600/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysDepartmentController.cs
+END
+PayHousingFundController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BridgehrKit/!svn/ver/10527/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/PayHousingFundController.cs
+END
+SysMenuSysRoleSysOperationController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysMenuSysRoleSysOperationController.cs
+END
+SalaryManageController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/9465/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SalaryManageController.cs
+END
+SysPersonController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BridgehrKit/!svn/ver/10066/VISS/solution/WebSrc/CRM/SourseCode/App/Controllers/SysPersonController.cs
+END

@@ -1,0 +1,127 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_Contract
+
+@{ Layout = "~/Views/Shared/Index.cshtml"; }
+<style>
+    .textbox-text {
+        width: 290px;
+    }
+    .editor-field {
+        width: auto;
+    }
+
+</style>
+<form id="myForm">
+
+    <div class="easyui-layout" title="" style="width:600px">
+        <div style="padding: 10px 20px 20px 20px; ">
+
+            <div class="editor-label">
+                客户名称:
+            </div>
+            <div class="editor-field" style="width:auto;">
+                <input type="text" class="textbox-text textbox-text-readonly" id="CustomerName" name="CustomerName" required="required" readonly="readonly" value="@Model.CustomerName" />
+                <input type="hidden" id="CustomerID" name="CustomerID" value="@Model.CustomerID" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                
+                签约公司:
+            </div>
+            <div class="editor-field" style="width:auto;">
+                <input type="text" class="textbox-text" id="SigningCompany" name="SigningCompany" readonly="readonly" value="@Model.SigningCompanyName" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                
+                服务类型:
+            </div>
+            <div class="editor-field">
+                <input type="hidden" id="RecommendSolutionIDs" name="RecommendSolutionIDs" value="@Model.RecommendSolutionIDs" />
+                <input type="text" class="textbox-text" id="RecommendSolutionIDs" name="RecommendSolutionIDs" readonly="readonly" value="@Model.RecommendSolutionNames" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                
+                合同编号:
+            </div>
+            <div class="editor-field">
+                <input type="text" class="textbox-text" id="ContractNO" name="ContractNO" readonly="readonly" value="@Model.ContractNO" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                合同金额
+            </div>
+            <div class="editor-field">
+                <input type="text" class="textbox-text" id="ContractMoney" name="ContractMoney" readonly="readonly" value="@Model.ContractMoney" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                付款方式:
+            </div>
+            <div class="editor-field">
+                <input type="text" class="textbox-text" id="PayType" name="PayType" value="@Model.PayType" readonly="readonly" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                合同类型:
+            </div>
+            <div class="editor-field">
+                @{
+                    if (Model.IsNew == 0 || Model.IsNew == null)
+                    {
+                        <input type="text" class="textbox-text" id="IsNew" name="IsNew" value="新签" readonly="readonly" />
+                    }
+                    else
+                    {
+                        <input type="text" class="textbox-text" id="IsNew" name="IsNew" value="续签" readonly="readonly" />
+                    }
+                }
+                @*<input type="radio" name="IsNew" value="0" checked="checked"><span>新签</span><input type="radio" name="IsNew" value="1"><span>续签</span>*@
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                生效日期:
+            </div>
+            <div class="editor-field">
+                <input type="text" id="EffectiveDate" name="EffectiveDate" style="width: 130px" value="@Model.EffectiveDate.ToString("yyyy-MM-dd")" readonly="readonly" />
+            </div>
+            <div class="editor-label">
+                截止日期:
+            </div>
+            <div class="editor-field">
+                <input type="text" id="Deadline" name="Deadline" style="width: 130px" value="@Model.Deadline.ToString("yyyy-MM-dd")" readonly="readonly" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                项目负责人:
+            </div>
+            <div class="editor-field">
+                <input type="text" id="ProjectLeader" name="ProjectLeader" style="width: 130px" readonly="readonly" value="@Model.ProjectLeader" />
+            </div>
+            <div class="editor-label">
+                创建人:
+            </div>
+            <div class="editor-field">
+                <input type="text" id="SysPersonID" name="SysPersonID" style="width: 130px" readonly="readonly" value="@Model.CreatedBy" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                手机号码:
+            </div>
+            <div class="editor-field">
+
+                <input type="text" id="SysPersonID" name="SysPersonID" style="width: 130px" readonly="readonly" value="@Model.PhoneNumber" />
+            </div>
+            <br style="clear: both;" />
+            <br style="clear: both;" />
+            <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+
+                <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+                   onclick="closeWindow();">关闭</a>
+            </div>
+        </div>
+    </div>
+</form>
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />

@@ -1,0 +1,192 @@
+﻿@{
+    ViewBag.Title = "编辑批注";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+
+<form>
+    @{
+        int isLeader = int.Parse(ViewBag.IsRole.ToString());
+        if (isLeader > 0)
+        {
+            <table id="ttEdit" class="record">
+                <tr>
+                    <th><span style="color: red">*</span>客户进程</th>
+                    <td>
+                        <input id="callProcess" name="callProcess" style="width: 150px" value="--请选择--" />
+                        <input type="hidden" id="hiddCid" value="@ViewBag.Cid" />
+                        <input type="hidden" id="hiddUrl" value="@ViewBag.Url" />
+                        <input type="hidden" id="hiddFcode" value="@ViewBag.Fcode" />
+                        <input type="hidden" id="hiddisUpdate" value="@ViewBag.isUpdate" />
+                    </td>
+                </tr>
+                <tr>
+                    <th><span style="color: red">*</span>优点</th>
+                    <td>
+                        <textarea id="goodRemark" style="width: 350px; height: 100px; resize: none; padding: 10px;" maxlength="200" onkeyup="checkLengthg(this);"></textarea>
+                        <p style="text-align: left; float: right; width: 180px; height: 122px; vertical-align: bottom; line-height: 228px;">
+                            您可输入剩余字数：<b id="leave_letterg">300</b>
+                        </p>
+
+                </tr>
+                <tr>
+                    <th><span style="color: red">*</span>不足</th>
+                    <td>
+                        <textarea id="badRemark" style="width: 350px; height: 100px; resize: none; padding: 10px;" maxlength="200" onkeyup="checkLengthb(this);"></textarea>
+                        <p style="text-align: left; float: right; width: 180px; height: 122px; vertical-align: bottom; line-height: 228px;">
+                            您可输入剩余字数：<b id="leave_letterb">300</b>
+                        </p>
+                </tr>
+                <tr>
+                    <th><span style="color: red">*</span>改进意见</th>
+                    <td>
+                        <textarea id="improveRemark" style="width: 350px; height: 100px; resize: none; padding: 10px;" maxlength="300" onkeyup="checkLengthi(this);"></textarea>
+                        <p style="text-align: left; float: right; width: 180px; height: 122px; vertical-align: bottom; line-height: 228px;">
+                            您可输入剩余字数：<b id="leave_letteri">300</b>
+                        </p>
+                </tr>
+
+                <tr>
+                    <td colspan="2" style="text-align: center">
+                        <a class="easyui-linkbutton" iconcls="icon-ok" onclick="UpdateEdit()">保存</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="easyui-linkbutton" iconcls="icon-cancel" onclick="parent.$('#w_editComment').window('close')">
+                            关闭
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        }
+        else
+        {
+            <table id="ttEdit" class="record">
+                <tr>
+                    <th>客户进程</th>
+                    <td>
+                        <input id="callProcess" name="callProcess" style="width: 150px" value="--请选择--" />
+
+                    </td>
+                </tr>
+                <tr>
+                    <th>优点</th>
+                    <td>
+                        <label>@ViewBag.GoodRemark</label>
+                </tr>
+                <tr>
+                    <th>缺点</th>
+                    <td>
+                        <label>@ViewBag.BadRemark</label>
+
+                </tr>
+                <tr>
+                    <th>改进意见</th>
+                    <td>
+                        <label>@ViewBag.ImproveRemark</label>
+
+                </tr>
+
+                <tr>
+                    <td colspan="2" style="text-align: center">
+                        <a class="easyui-linkbutton" iconcls="icon-cancel" onclick="parent.$('#w_editComment').window('close')">
+                            关闭
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        }
+    }
+
+
+
+</form>
+
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.watermark.min.js"></script>
+<script src="~/Scripts/jquery.bpopup-0.7.0.min.js"></script>
+<script src="~/Scripts/type-bpopup_fuc.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#callProcess').combobox({
+            url: '../CallRecording/GetCombox?type=1506121008181709094ed4907cf81',
+            valueField: 'id',
+            textField: 'text',
+            editable: false
+        });
+        var callProcess = '@ViewBag.CallProcess';
+        if (callProcess != "") {
+            $('#callProcess').combobox('setValue', callProcess);
+        }
+        $('#goodRemark').val('@ViewBag.GoodRemark');
+        $('#badRemark').val('@ViewBag.BadRemark');
+        $('#improveRemark').val('@ViewBag.ImproveRemark');
+    });
+
+    function checkLengthg(obj) {
+        var maxChars = $(obj).attr("maxlength");
+        if ($(obj).val().length > maxChars)
+            $(obj).val($(obj).val().substring(0, maxChars));
+        var curr = maxChars - $(obj).val().length;
+        $("#leave_letterg").text(curr.toString());
+    }
+    function checkLengthb(obj) {
+        var maxChars = $(obj).attr("maxlength");
+        if ($(obj).val().length > maxChars)
+            $(obj).val($(obj).val().substring(0, maxChars));
+        var curr = maxChars - $(obj).val().length;
+        $("#leave_letterb").text(curr.toString());
+    }
+    function checkLengthi(obj) {
+        var maxChars = $(obj).attr("maxlength");
+        if ($(obj).val().length > maxChars)
+            $(obj).val($(obj).val().substring(0, maxChars));
+        var curr = maxChars - $(obj).val().length;
+        $("#leave_letteri").text(curr.toString());
+    }
+    //填写记录保存
+    function UpdateEdit() {
+
+        var callProcess = $('#callProcess').combobox('getValue');
+        var goodRemark = $('#goodRemark').val();
+        var badRemark = $('#badRemark').val();
+        var improveRemark = $('#improveRemark').val();
+
+        var cid = $('#hiddCid').val();
+        var url = $('#hiddUrl').val();
+        var fcode = $('#hiddFcode').val();
+        var isupdate = $('#hiddisUpdate').val();
+
+
+        if (callProcess.indexOf("请选择") != -1) {
+            $.messager.alert('提示', '请选择客户进程！', "info");
+        }
+        else if ($.trim(goodRemark) == "") {
+            $.messager.alert('提示', '请输入优点！', "info");
+        }
+        else if ($.trim(badRemark) == "") {
+            $.messager.alert('提示', '请输入不足！', "info");
+        }
+        else if ($.trim(improveRemark) == "") {
+            $.messager.alert('提示', '请输入改进意见！', "info");
+        }
+        else {
+            $.messager.confirm('提示', '是否保存本次录音批注?', function (r) {
+                if (r) {
+                    $.post('../CallRecording/AddCommentInfo', {
+                        callProcess: callProcess, goodRemark: goodRemark, badRemark: badRemark, improveRemark: improveRemark, cid: cid,
+                        url: url, fcode: fcode, isupdate: isupdate
+                    }, function (data) {
+
+                        if (data.IsSuccess == true) {
+                            parent.$.messager.alert('提示', '保存成功！', "info");
+                            parent.$('#w_editComment').window('close');
+                        }
+                        else {
+                            $.messager.alert('提示', '保存失败！', "info");
+                        }
+                    });
+                }
+
+            });
+        }
+
+    }
+</script>

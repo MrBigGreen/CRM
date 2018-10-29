@@ -1,0 +1,283 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>跟进记录</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="~/Content/css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/app.css" />
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+    <style type="text/css">
+        html,
+        body {
+            background-color: #EAF1F7;
+        }
+
+        .processHistory .processList .company {
+            height: 50px;
+        }
+
+        .mui-bar .mui-pull-right span {
+            color: #87ceeb;
+        }
+    </style>
+</head>
+
+<body class="processHistory">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"><span class="nav-back-title">返回</span></a>
+        <h1 class="mui-title">跟进记录</h1>
+        <a class="mui-icon mui-pull-right" href="javascript:;" id="addRecord"><span class="nav-back-title">新增</span></a>
+    </header>
+    <div class="mui-content toptitle">
+        <div class="company">
+            <img class="companyIcon" src="/Content/img/company-icon.png" />
+            <p class="companyName mui-ellipsis" id="companyfullname">
+            </p>
+        </div>
+    </div>
+
+    <div id="pullrefresh" class="mui-content mui-scroll-wrapper processList" style="margin-top: 60px;">
+
+        <div class="mui-scroll">
+            <!--数据列表-->
+            <ul class="mui-table-view" id="processList"></ul>
+        </div>
+    </div>
+    <script src="~/Content/Scripts/jquery-1.11.1.js"></script>
+    <script src="~/Content/Scripts/mui.min.js"></script>
+    <script src="~/Content/Scripts/mui.zoom.js"></script>
+    <script src="~/Content/Scripts/mui.previewimage.js"></script>
+    <script src="~/Content/Scripts/utils/offertech-clientdata.js"></script>
+    <script>
+
+        mui.previewImage();
+
+        var Currentpage = 1;
+        var PageSize = 10;
+        var totalpage = 1;
+
+        mui.init({
+            pullRefresh: {
+                container: '#pullrefresh',
+                down: {
+                    callback: pulldownRefresh
+                },
+                up: {
+                    contentrefresh: '正在加载...',
+                    callback: pullupRefresh
+                }
+            }
+        });
+        /**
+		 * 下拉刷新具体业务实现
+		 */
+        function pulldownRefresh() {
+
+            location.reload();
+
+        }
+
+
+        function pullupRefresh() {
+
+            mui('#pullrefresh').pullRefresh().endPullupToRefresh(Currentpage > totalpage); //参数为true代表没有更多数据了。
+            loaddata();
+
+        }
+        if (mui.os.plus) {
+            mui.plusReady(function () {
+
+                mui('#pullrefresh').pullRefresh().pullupLoading();
+
+            });
+        } else {
+            mui.ready(function () {
+                mui('#pullrefresh').pullRefresh().pullupLoading();
+            });
+        }
+
+        $(function () {
+            $("#companyfullname").text(localStorage.getItem("customername"));
+            $("body")
+                .on("tap",
+                    ".unfold",
+                    function () {
+                        if ($(this).text() == "展开") {
+                            $(this).text("收起");
+                            $(this).next("img").attr("src", "/Content/img/arrow-up.png");
+                            $(this).parent().prev(".describe").css("height", "auto");
+                        } else {
+                            $(this).text("展开");
+                            $(this).next("img").attr("src", "/Content/img/arrow-down.png");
+                            $(this).parent().prev(".describe").css("height", "25px");
+                        }
+                    });
+            $("body")
+                .on("tap",
+                    ".showmorimg",
+                    function () {
+                        $(this).parent().addClass("mui-hidden").nextAll().removeClass("mui-hidden");
+                    });
+            $("body")
+                .on("tap",
+                    ".hidemorimg",
+                    function () {
+                        $(this)
+                            .parent()
+                            .parent()
+                            .find(".moreimg")
+                            .eq(0)
+                            .removeClass("mui-hidden")
+                            .nextAll()
+                            .addClass("mui-hidden");
+                    });
+            $("body")
+                .on("tap",
+                    "#addRecord",
+                    function () {
+                        location.href = "RecordAndPlan";
+                    });
+        });
+
+        function loaddata() {
+
+            var param = { objectId: localStorage.getItem("customerid"), rows: PageSize, page: Currentpage, sidx: "StartTime", sord: "desc" };
+
+            $.ajax({
+                type: "get",
+                url: "GetListJson",
+                async: false,
+                dataType: "json",
+                data: param,
+                contentType: "application/x-www-form-urlencoded",
+                success: function (data) {
+                    var rows = data.rows;
+                    Currentpage++;
+                    totalpage = data.total;
+                    $.each(rows,
+                        function (i) {
+                            var row = rows[i];
+                            var li;
+                            li = document.createElement('li');
+                            li.className = 'processCell';
+                            var temphtml = "";
+                            temphtml += '<div class=" processCell-top">' +
+                                '<p class="date">' +
+                                row.StartTime +
+                                '</p>' +
+                                '<p class="principal">' +
+                                row.ObjectName +
+                                '</p>' +
+                                '</div>' +
+                                '<div class="processCell-middle">' +
+                                '<div class="content-header">' +
+                                '<img class="contacter-icon" src="/Content/img/contacter-icon.png"/>' +
+                                '<p class="contacter-name">' +
+                                row.Contact +
+                                '</p>' +
+                                '<p class="contacter-step">' +
+                                row.SaleStageName +
+                                '</p>' +
+                                '<span class="divider-line"></span>' +
+                                '</div>' +
+                           
+                                '<div class="content-header">' +
+                                '<p class="contacter-name" style="padding-bottom:5px; padding-left:5px;">';
+
+                            switch (row.FollowUpMode) {
+                                case 1:
+                                    temphtml += "电话跟进";
+
+                                    break;
+                                case 2:
+                                    temphtml += "拜访跟进";
+
+                                    break;
+                                case 3:
+                                    temphtml += "邮件跟进";
+
+                                    break;
+
+                            }
+                            temphtml += '</p>' +
+                            '<p class="contacter-step"  style="padding-bottom:5px;">' +
+                            row.Description +
+                            '</p>' +
+                            '<span class="divider-line"></span>' +
+                            '</div>' +
+                        
+                            '<div class="content-describe">';
+
+                            if (row.TrackContent != null) {
+                                temphtml += '<p class="describe">' +
+                                    row.TrackContent +
+                                    '</p>';
+                                temphtml += '<div class="unfold-control ';
+                                if (row.TrackContent.length < 30) {
+                                    temphtml += "mui-hidden";
+                                }
+                                temphtml += ' "><button class="unfold">展开</button>' +
+                               '<img class="arrow-down" src="/Content/img/arrow-down.png"/>' +
+                               '</div>' +
+                               '</div>';
+                            }
+                            if (row.FilesPath != null && row.FilesPath !== "") {
+                                temphtml += '<div class="content-images"><ul>';
+                                var imglist = row.FilesPath.split(";");
+ 
+                                if (imglist.length > 0) {
+                                    for (var j = 0; j < imglist.length; j++) {
+                                        if (j >= 4) {
+                                            if (j === imglist.length - 1 && j===4) {
+                                                temphtml += '<li class="imgmodel"><img src="' + imghead + imglist[j] + '" data-preview-src="" data-preview-group="' +
+                                                    row.TrailId +
+                                                    '"/></li>';
+                                            } else {
+                                                if (j === 4) {
+                                                    temphtml +=
+                                                        '<li class="imgmodel moreimg"><a class="showmorimg" href="javascript:;">共<i>' + imglist.length + '</i>张</a></li>' +
+                                                        '<li class="imgmodel mui-hidden"><img src="'+imghead + imglist[j] + '" data-preview-src="" data-preview-group="' + row.TrailId + '"/></li>';
+                                                } else if (j === imglist.length - 1) {
+                                                    temphtml +=
+                                                        '<li class="imgmodel mui-hidden"><img src="' + imghead + imglist[j] + '" data-preview-src="" data-preview-group="' + row.TrailId + '"/></li>' +
+                                                        '<li class="imgmodel mui-hidden moreimg"><a class="hidemorimg" href="javascript:;">收起</a></li>';
+                                                } else {
+                                                    temphtml +=
+                                                        '<li class="imgmodel mui-hidden"><img src="' + imghead + imglist[j] + '" data-preview-src="" data-preview-group="' + row.TrailId + '"/></li>';
+                                                }
+
+                                            }
+                                            
+                                        } else {
+                                            temphtml +=
+                                                '<li class="imgmodel"><img id="showimg" src="' + imghead + imglist[j] + '" data-preview-src="" data-preview-group="' + row.TrailId + '"/></li>';
+                                        }
+                                    }
+                                } else {
+                                    temphtml +=
+                                        '<li class="imgmodel"><img src="' + imghead + imglist[j] + '" data-preview-src="" data-preview-group="' + row.TrailId + '"/></li>';
+                                }
+                                temphtml += '</ul></div><div class="clearfix"></div>';
+                            }
+
+                            temphtml += '</div>';
+                            li.innerHTML = temphtml;
+                            $("#processList").append(li);
+
+                        });
+                },
+                error: function (data) {
+                    mui.toast(data.responseText);
+                }
+            });
+
+        }
+        mui.back = function () {
+            location.href = "MyCustomers";
+        };
+    </script>
+</body>
+
+</html>

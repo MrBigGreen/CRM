@@ -1,0 +1,317 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TP_HousingFund
+
+@{
+    ViewBag.Title = "新增公积金";
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<style>
+    textarea {
+        height: 160px;
+        width: 480px;
+    }
+
+    input {
+        width: 100px;
+    }
+
+    .display-field {
+        height: auto;
+        width: 500px;
+    }
+</style>
+
+<div class="bigdiv">
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>名称：
+    </div>
+    <div class="editor-field">
+        <input type="text" id="HousingFundName" name="HousingFundName" value="" style="width:200px" />
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>编码：
+    </div>
+    <div class="editor-field">
+        <input type="text" id="HousingFundID" name="HousingFundID" value="" style="width:200px" />
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>省份：
+    </div>
+    <div class="editor-field">
+        <select class="easyui-combobox" id="Province" name="Province" style="width:120px;" data-options="required:true" validtype="comboxValidate['Province','请选择']"></select>
+        <input type="hidden" id="ProvinceCode" name="ProvinceCode" />
+        <input type="hidden" id="ProvinceName" name="ProvinceName" />
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>城市：
+    </div>
+    <div class="editor-field">
+        <select class="easyui-combobox" id="City" name="City" style="width:120px;" data-options="required:true" validtype="comboxValidate['City','请选择']"></select>
+        <input type="hidden" id="CityCode" name="CityCode" />
+        <input type="hidden" id="CityName" name="CityName" />
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        行政区：
+    </div>
+    <div class="editor-field">
+        <select class="easyui-combobox" id="District" name="District" style="width:120px;" data-options="required:false"></select>
+        <input type="hidden" id="DistrictCode" name="DistrictCode" />
+        <input type="hidden" id="DistrictName" name="DistrictName" />
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>差异范围：
+    </div>
+    <div class="editor-field">
+        <input type="text" id="DiffBegin" name="DiffBegin" value="" /> ~
+        <input type="text" id="DiffEnd" name="DiffEnd" value="" />
+    </div>
+    <br style="clear: both;" />
+
+    <table class="record" border="0" cellpadding="0" cellspacing="0" style="width:430px;">
+        <tr>
+            <td style="width:50px;">&nbsp;</td>
+            <th style="text-align: center; padding-right: 10px; height: 26px;  ">
+                公司部分
+            </th>
+            <th style="text-align: center; padding-right: 10px; height: 26px; ">
+                个人部分
+            </th>
+        </tr>
+        <tr>
+            <td style="text-align:right">公积金：</td>
+            <td>
+                <input type="text" id="CompanyRatio" name="CompanyRatio" value="" />
+            </td>
+            <td>
+                <input type="text" id="IndiRatio" name="IndiRatio" value="" />
+            </td>
+        </tr>
+       
+    </table>
+
+
+
+    <br style="clear: both;" />
+    <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+        <input class="a2 f2" type="button" id="btnSubmit" onclick="SubmitFunc()" value="提  交" />
+    </div>
+</div>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/City.js"></script>
+<script type="text/javascript">
+    $(function () {
+        BindProvinceCity();
+
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    $(function () {
+
+
+        // ----------------------------------------------------------------------
+        // <summary>
+        // 限制只能输入数字和字母
+        // </summary>
+        // ----------------------------------------------------------------------
+        $.fn.onlyNumAlpha = function () {
+            $(this).keypress(function (event) {
+                var eventObj = event || e;
+                var keyCode = eventObj.keyCode || eventObj.which;
+                if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122))
+                    return true;
+                else
+                    return false;
+            }).focus(function () {
+                this.style.imeMode = 'disabled';
+            }).bind("paste", function () {
+                var clipboard = window.clipboardData.getData("Text");
+                if (/^(\d|[a-zA-Z])+$/.test(clipboard))
+                    return true;
+                else
+                    return false;
+            });
+        };
+
+
+
+        // 限制使用了onlyNumAlpha类样式的控件只能输入数字和字母
+        $("#UserID").onlyNumAlpha();
+
+
+    });
+
+    jQuery.validator.addMethod("phone", function (value, element) {
+        return this.optional(element) || /^((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)$/.test(value);
+    }, "号码格式不正确");
+    //
+    jQuery.validator.addMethod("RegIdCard", function (value, element) {
+        return this.optional(element) || /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/.test(value);
+    }, "身份证格式不正确");
+    //
+    jQuery.validator.addMethod("onlyNumAlpha", function (value, element) {
+        return this.optional(element) || /^[a-zA-Z0-9]+$/.test(value);
+    }, "只能输入包括英文字母和数字");
+
+
+
+    var validator = $("form").validate({
+        errorElement: 'span',
+        errorClass: 'field-validation-error',
+        focusInvalid: false,
+        rules: {
+            HousingFundID: {
+                required: true,
+                onlyNumAlpha: true,
+                minlength: 4
+            },
+            HousingFundName: {
+                required: true,
+                minlength: 4
+            },
+            ProvinceCode: {
+                required: true,
+            },
+            CityCode: {
+                required: true,
+            },
+            DiffBegin: {
+                required: true,
+            },
+            DiffEnd: {
+                required: true,
+            },
+            IndiRatio: {
+                required: true,
+                number: true
+            },
+            CompanyRatio: {
+                required: true,
+                number: true
+            },
+        },
+
+        messages: {
+            HousingFundID: {
+                required: "请输入公积金编码",
+                onlyNumAlpha: "只能输入包括英文字母和数字",
+                minlength: "编码长度不能小于4位",
+            },
+            HousingFundName: {
+                required: "请输入名称",
+                minlength: "名称长度不能小于4位",
+            },
+            ProvinceCode: {
+                required: "请选择省份",
+            },
+            CityCode: {
+                required: "请选择城市",
+            },
+            DiffBegin: {
+                required: "请输入差异金额",
+            },
+            DiffEnd: {
+                required: "请输入差异金额",
+            },
+            IndiRatio: {
+                required: "请输入金额",
+            },
+            CompanyRatio: {
+                required: "请输入金额",
+            },
+        },
+
+        invalidHandler: function (event, validator) { //display error alert on form submit
+            $('.alert-danger', $('.login-form')).show();
+        },
+
+        highlight: function (e) {
+            //移除当前控件后面所有元素
+
+            $(e).closest('.editor-field input').addClass('input-validation-error');
+        },
+
+        success: function (e) {
+            //移除当前控件后面所有元素
+            //$(e).removeClass('input-validation-error');
+            //$(e).closest('.editor-field').find("input").removeClass('input-validation-error');
+            $(e).prev("input").removeClass('input-validation-error');
+            $(e).remove();
+        },
+
+        errorPlacement: function (error, element) {
+            if (element.is(':checkbox') || element.is(':radio')) {
+                var controls = element.closest('div[class*="col-"]');
+                if (controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+            }
+            else if (element.is('.select2')) {
+                error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+            }
+            else if (element.is('.chosen-select')) {
+                error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+            }
+            else error.insertAfter(element);
+
+        },
+
+        submitHandler: function (form) {
+        },
+        invalidHandler: function (form) {
+        }
+    });
+
+    /************************************************创建会员***********************************************/
+
+    var SubmitFunc = function () {
+
+        var SubmitResult = true;
+        // 检测表单是否验证通过 并进行表单验证
+        var validateState = $("form").valid();
+        if (!validateState) {
+            return false;
+        }
+        var ProvinceCode = $("#ProvinceCode").val();
+        var CityCode = $("#CityCode").val();
+        if (ProvinceCode.length == 0 || CityCode.length == 0) {
+
+            $.message.alert('操作提示', '请选择省份和城市', 'error');
+            return false;
+        }
+
+
+
+        $.ajax({
+            url: "/PayHousingFund/GetCreate",
+            type: "Post",
+            data: $("form").serialize(),
+            dataType: "json",
+            success: function (data) {
+                if ($.messager) {
+                    $.messager.alert('操作提示', data, "info", function (r) {
+                        parent.$('.easyui-window').window('close');
+                        parent.$('.easyui-dialog').dialog('close');
+
+                    });
+                }
+
+            },
+            error: function () {
+                SubmitResult = false;
+            }
+        });
+        return SubmitResult;
+    };
+
+</script>

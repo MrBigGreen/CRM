@@ -1,0 +1,140 @@
+﻿@{ Layout = "~/Views/Shared/Index.cshtml"; }
+
+<form>
+    <table id="ttEdit" class="record">
+        @*<tr>
+                <th>记录时间</th>
+                <td>
+                    <label id="recordDate"></label>
+                    <input type="hidden" id="hiddCustomerFollowID" />
+                </td>
+            </tr>*@
+        <tr>
+            <th><span style="color:red">*</span>是否联系上</th>
+            <td>
+                <input type="radio" id="CheckYse" name="ckIsConnect" value="1" checked="checked" onclick="showInfo(0)" />是
+                <input type="radio" id="CheckNo" name="ckIsConnect" value="2" onclick="showInfo(1)" />否
+                <input type="hidden" id="hiddCustomerFollowID" value="@ViewBag.CustomerFollowID" />
+                <input type="hidden" id="hiddCustomerID" value="@ViewBag.CustomerID" />
+                <input type="hidden" id="hiddCityName" value="@ViewBag.CityName" />
+                <input type="hidden" id="hiddCityCode" value="@ViewBag.CityCode" />
+                <input type="hidden" id="hiddAddressDetails" value="@ViewBag.AddressDetails" />
+                <input type="hidden" id="hiddProvinceName" value="@ViewBag.ProvinceName" />
+                <input type="hidden" id="hiddProvinceCode" value="@ViewBag.ProvinceCode" />
+                <input type="hidden" id="hiddDistrictName" value="@ViewBag.DistrictName" />
+                <input type="hidden" id="hiddDistrictCode" value="@ViewBag.DistrictCode" />
+                <input type="hidden" id="hiddFcode" value="@ViewBag.Fcode" />
+
+
+            </td>
+        </tr>
+        <tr id="a">
+            <th><span style="color:red">*</span>联系人</th>
+            <td>
+                <input id="customerPhone" name="customerPhone" style="width:150px" value="--请选择--" />
+
+            </td>
+        </tr>
+        <tr id="b">
+            <th>对方级别</th>
+            <td>
+                <input id="customerLevel" name="customerLevel" style="width:150px" value="--请选择--" />
+
+            </td>
+        </tr>
+        @*<tr id="c">
+                <th><span style="color:red">*</span>客户反馈</th>
+                <td>
+                    <input id="customerFeedback" name="customerFeedback" style="width:150px;vertical-align:central" value="--请选择--" />
+
+                </td>
+            </tr>*@
+        <tr id="d">
+            <th><span style="color:red">*</span>客户进程</th>
+            <td>
+                <input id="customerFunnel" name="customerFunnel" style="width:150px" value="--请选择--" />
+
+            </td>
+        </tr>
+        <tr id="e">
+            <th>商机判断</th>
+            <td>
+                <input id="customerOffer" name="customerOffer" style="width:150px" value="--请选择--" />
+
+            </td>
+        </tr>
+        @*<tr id="f">
+                <th><span style="color:red">*</span>处理方式</th>
+                <td>
+                    <input id="customerHandle" name="customerHandle" style="width:150px" value="--请选择--" />
+
+                </td>
+            </tr>*@
+
+        <tr>
+            <th><span id="sNext" style="color:red">*</span>下次跟进时间</th>
+            <td>
+                <span>
+                    <input type="text" class="Wdate" id="nextCallDate" editable="false" style="width:160px" onfocus="WdatePicker({minDate:CurentTime(), dateFmt: 'yyyy/MM/dd HH:mm:ss' })">
+                    
+                    @*<input type="hidden" id="nextLineDate" name="nextLineDate" />*@
+                </span>
+                @*<span id="sPurpose">
+
+                    </span>*@
+            </td>
+        </tr>
+        <tr>
+            <th><span style="color:red">*</span>跟进其目的</th>
+            <td>
+                <input id="customerPurpose" name="customerPurpose" style="width:150px" value="--请选择--">
+
+            </td>
+        </tr>
+        <tr>
+            <th><span style="color:red">*</span>跟进方式</th>
+            <td>
+                @{
+                    var fm = (List<CRM.DAL.SysField>)ViewBag.FollowMode;
+                    foreach (var item in fm)
+                    {
+                        <input type="radio" id="NextType_@item.Sort" name="ckIsNextType" value="@item.Id" /><label for="NextType_@item.Sort">@item.MyTexts</label><span>&nbsp;&nbsp; &nbsp;</span>
+                    }
+
+                }
+                @*<input type="radio" id="NextCall" name="ckIsNextType" value="1506251032299623134259baff7c9" checked="checked" />电话联系
+                    <input type="radio" id="NextMeet" name="ckIsNextType" value="1506251033338479674bf54656731" />见面约谈*@
+            </td>
+        </tr>
+        <tr id="g">
+            <th><span style="color:red">*</span>客户反馈的需求描述记录</th>
+            <td>
+                <textarea id="editRemark" style=" width: 350px; height: 100px; resize: none; padding: 10px;" maxlength="800" onkeyup="checkLength(this);"></textarea>
+                <p style="text-align: left; float: right; width: 180px; height: 122px; vertical-align: bottom; line-height: 228px; ">
+                    您可输入剩余字数：<b id="leave_letter">800</b>
+                </p>
+
+        </tr>
+
+        <tr>
+            <td colspan="2" style="text-align:center">
+                <a class="easyui-linkbutton" iconcls="icon-ok" onclick="UpdateEdit()">保存</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="easyui-linkbutton" iconcls="icon-cancel" onclick="parent.$('#w_edit').window('close')">
+                    关闭
+                </a>
+            </td>
+        </tr>
+    </table>
+
+
+</form>
+
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.watermark.min.js"></script>
+<script src="~/Scripts/jquery.bpopup-0.7.0.min.js"></script>
+<script src="~/Scripts/type-bpopup_fuc.js" type="text/javascript"></script>
+<script src="~/Scripts/TodayTasks/FollowUpEdit.js" type="text/javascript"></script>
+<link href="~/Content/TodayTasks/FollowUpEdit.css" rel="stylesheet" />
+
+

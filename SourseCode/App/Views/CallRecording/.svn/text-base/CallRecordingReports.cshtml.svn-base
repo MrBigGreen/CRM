@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "呼叫报表";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+@using Common
+@using Models
+@model CRM.DAL.CallRecordingModel
+
+<div class="easyui-panel" id="panelShow" title="查询栏" iconcls="icon-search" collapsible="true" style="height: auto; width: auto">
+    <table id="ttSearch" class="record">
+        <tr>
+            <th>通话日期</th>
+            <td colspan="5">
+                <input class="easyui-datebox" id="beginDate" editable="false" style="width: 100px"/>&nbsp;&nbsp;到&nbsp;&nbsp;
+                <input class="easyui-datebox" id="endDate" editable="false" style="width: 100px"/>
+            </td>
+        </tr>
+        <tr>
+            <th>有效时长</th>
+            <td>
+
+                <label>大于等于：</label>
+                <input type="text" class="easyui-numberbox" id="callseconds" style="width: 100px" min="0" precision="0"/>秒
+            </td>
+
+        </tr>
+        <tr>
+            <th>
+                归属人
+            </th>
+            <td colspan="5">
+
+                @if (ViewBag.PersonList != null)
+                {
+                    <label>
+                        @Html.CheckBoxList("SysPersonIdList", (IEnumerable<SelectListItem>) ViewBag.PersonList, false)
+
+                    </label>
+                }
+                else
+                {
+                    @Html.Action("Selected", "SysDepartmentTree")
+                }
+
+            </td>
+
+        </tr>
+
+        <tr>
+            <td colspan="2" style="text-align: center">
+                <input type="button" id="todaySearch" style="width: 80px;" onclick="SearchCall()" value="搜索">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" id="btnClear" style="width: 80px;" onclick="RemvoeAll()" value="清空">
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="tb" style="padding:3px;height:24px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-excel" plain="true" onclick="ExportInfo()" style="float: left; margin-right: 20px;">导出</a>
+   
+</div>
+
+<div class="easyui-panel" style="height:auto;" collapsible="true">
+    <table id="flexigridData"></table>
+
+</div>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.watermark.min.js"></script>
+<script src="~/Scripts/jquery.bpopup-0.7.0.min.js"></script>
+<script src="~/Scripts/type-bpopup_fuc.js" type="text/javascript"></script>
+<script src="/Scripts/CallRecording/CallRecordingReports.js" type="text/javascript"></script>
+
+
+

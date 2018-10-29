@@ -1,0 +1,120 @@
+﻿@{;
+    ViewBag.Title = "欧孚合同-表单页面";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<link href="~/Content/styles/learun-ckbox-radio.css" rel="stylesheet" />
+<script>
+    var keyValue = request('keyValue');
+    var contractType = request('contractType');
+    $(function () {
+        initControl();
+    });
+    //初始化控件
+    function initControl() {
+        //客户名称
+        $("#CustomerId").ComboBox({
+            url: "../../CustomerManage/Customer/GetMyListJson",
+            id: "customerid",
+            text: "fullname",
+            description: "==请选择==",
+            height: "220px",
+            allowSearch: true
+        });
+        //签约公司
+        $("#SignSubjectId").ComboBox({
+            url: "../../BaseManage/Company/GetListJson",
+            id: "CompanyId",
+            text: "FullName",
+            description: "==请选择==",
+            height: "260px",
+            allowSearch: true
+        });
+
+        //获取表单
+        if (!!keyValue) {
+            $.SetForm({
+                url: "../../CustomerManage/Contract/GetFormJson",
+                param: { keyValue: keyValue },
+                success: function (data) {
+                    $("#form1").SetWebControls(data);
+                    $("input[name=SignType][value=" + data.SignType + "]").attr("checked", "true");
+                    $("#EffectiveDate").val(formatDate(data.EffectiveDate, "yyyy-MM-dd"));
+                    $("#Deadline").val(formatDate(data.Deadline, "yyyy-MM-dd"));
+                    $('#form1').find('input,select,textarea,.ui-select').attr('disabled', 'disabled');
+                }
+            })
+        }
+    }
+</script>
+<div style="margin-top: 20px; margin-right: 30px;">
+    <table class="form">
+        <tr>
+            <td class="formTitle">合同编号<font face="宋体">*</font></td>
+            <td class="formValue" colspan="3">
+                <input id="ContractCode" type="text" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">客户名称<font face="宋体">*</font></td>
+            <td class="formValue" colspan="3">
+                <input id="CustomerName" type="text" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">签约公司<font face="宋体">*</font></td>
+            <td class="formValue" colspan="3">
+                <div id="SignSubjectId" type="select" class="ui-select" isvalid="yes" checkexpession="NotNull"></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">签约类型<font face="宋体">*</font></td>
+            <td class="formValue" colspan="3">
+                <div class="rdio rdio-color_a"><input name="SignType" id="SignType1" value="1" type="radio" /><label for="SignType1">新签</label></div>
+                <div class="rdio rdio-color_b"><input name="SignType" id="SignType2" value="2" type="radio" /><label for="SignType2">续签</label></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">服务类型<font face="宋体">*</font></td>
+            <td class="formValue" colspan="3" id="tdServiceType">
+                <input id="ServiceType" type="text" class="form-control" />
+            </td>
+
+        </tr>
+        <tr>
+            <td class="formTitle">合同金额<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input id="ContractMoney" type="text" class="form-control" />
+            </td>
+            <td class="formTitle">付款方式<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input id="PaymentMethod" type="text" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">生效日期<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input id="EffectiveDate" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker()" />
+            </td>
+            <td class="formTitle">截止日期<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input id="Deadline" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker()" />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">备注</td>
+            <td class="formValue" colspan="3">
+                <textarea id="Description" class="form-control" style="height: 70px;"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">创建用户</td>
+            <td class="formValue">
+                <input id="CreateUserName" type="text" class="form-control" />
+            </td>
+            <td class="formTitle">创建时间</td>
+            <td class="formValue">
+                <input id="CreateDate" type="text" class="form-control" />
+            </td>
+        </tr>
+    </table>
+</div>

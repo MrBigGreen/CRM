@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BridgehrKit/!svn/ver/13650/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.Log
+END
+Offertech.Util.Log.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/BridgehrKit/!svn/ver/13650/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.Log/Offertech.Util.Log.csproj
+END
+packages.config
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.Log/packages.config
+END
+Log.cs
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.Log/Log.cs
+END
+LogMessage.cs
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.Log/LogMessage.cs
+END
+LogFactory.cs
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BridgehrKit/!svn/ver/13650/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.Log/LogFactory.cs
+END
+LogLevel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.Log/LogLevel.cs
+END
+LogFormat.cs
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.Log/LogFormat.cs
+END

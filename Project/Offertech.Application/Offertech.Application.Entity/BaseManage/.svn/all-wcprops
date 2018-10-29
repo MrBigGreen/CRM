@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/BaseManage
+END
+OrganizeEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/BaseManage/OrganizeEntity.cs
+END
+UserEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/BaseManage/UserEntity.cs
+END
+RoleEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/BaseManage/RoleEntity.cs
+END
+Base_AreaEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/BaseManage/Base_AreaEntity.cs
+END
+Base_DataItemEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/BaseManage/Base_DataItemEntity.cs
+END
+DepartmentEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/BaseManage/DepartmentEntity.cs
+END
+Base_DatabaseBackupEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/BaseManage/Base_DatabaseBackupEntity.cs
+END
+CompanyEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/BaseManage/CompanyEntity.cs
+END
+Base_UserEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/BaseManage/Base_UserEntity.cs
+END
+Base_CodeRuleEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/BaseManage/Base_CodeRuleEntity.cs
+END
+UserRelationEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/BaseManage/UserRelationEntity.cs
+END

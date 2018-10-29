@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data.EF/DbContext
+END
+MySqlDbContext.cs
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data.EF/DbContext/MySqlDbContext.cs
+END
+SqlServerDbContext.cs
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data.EF/DbContext/SqlServerDbContext.cs
+END
+IDbContext.cs
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data.EF/DbContext/IDbContext.cs
+END

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/13819/VISS/solution/WebSrc/CRM/Project/Offertech.SOA/Offertech.SOA.SSO/Controllers
+END
+LoginController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.SOA/Offertech.SOA.SSO/Controllers/LoginController.cs
+END
+BasicDataController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/BridgehrKit/!svn/ver/13516/VISS/solution/WebSrc/CRM/Project/Offertech.SOA/Offertech.SOA.SSO/Controllers/BasicDataController.cs
+END
+WeChatController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/BridgehrKit/!svn/ver/13819/VISS/solution/WebSrc/CRM/Project/Offertech.SOA/Offertech.SOA.SSO/Controllers/WeChatController.cs
+END
+ApiControllerBase.cs
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.SOA/Offertech.SOA.SSO/Controllers/ApiControllerBase.cs
+END

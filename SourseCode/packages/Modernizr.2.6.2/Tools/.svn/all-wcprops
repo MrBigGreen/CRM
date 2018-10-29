@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/packages/Modernizr.2.6.2/Tools
+END
+install.ps1
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/packages/Modernizr.2.6.2/Tools/install.ps1
+END
+common.ps1
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/packages/Modernizr.2.6.2/Tools/common.ps1
+END
+uninstall.ps1
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/packages/Modernizr.2.6.2/Tools/uninstall.ps1
+END

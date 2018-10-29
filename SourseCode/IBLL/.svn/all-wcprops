@@ -1,0 +1,299 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/BridgehrKit/!svn/ver/12948/VISS/solution/WebSrc/CRM/SourseCode/IBLL
+END
+ITBRPOPerformanceBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BridgehrKit/!svn/ver/10102/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITBRPOPerformanceBLL.cs
+END
+ITBCustomerShareBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BridgehrKit/!svn/ver/9188/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITBCustomerShareBLL.cs
+END
+ITBCustomerFollowBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BridgehrKit/!svn/ver/8761/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITBCustomerFollowBLL.cs
+END
+ISysDocumentBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ISysDocumentBLL.cs
+END
+ITBCustomerProjectBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BridgehrKit/!svn/ver/9236/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITBCustomerProjectBLL.cs
+END
+ITPSalaryItemBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BridgehrKit/!svn/ver/9465/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITPSalaryItemBLL.cs
+END
+IUnCallBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BridgehrKit/!svn/ver/7345/VISS/solution/WebSrc/CRM/SourseCode/IBLL/IUnCallBLL.cs
+END
+ISysNoticeBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BridgehrKit/!svn/ver/9535/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ISysNoticeBLL.cs
+END
+ISysLogBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ISysLogBLL.cs
+END
+ISysFieldBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ISysFieldBLL.cs
+END
+RecentPlaces.lnk
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/IBLL/RecentPlaces.lnk
+END
+IJobInfoBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BridgehrKit/!svn/ver/5564/VISS/solution/WebSrc/CRM/SourseCode/IBLL/IJobInfoBLL.cs
+END
+IBLL.csproj.user
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BridgehrKit/!svn/ver/8650/VISS/solution/WebSrc/CRM/SourseCode/IBLL/IBLL.csproj.user
+END
+ITPCustomerSalaryItems.cs
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BridgehrKit/!svn/ver/8779/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITPCustomerSalaryItems.cs
+END
+ISysDocumentTalkBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ISysDocumentTalkBLL.cs
+END
+ITBCustomerVerificationBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BridgehrKit/!svn/ver/6885/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITBCustomerVerificationBLL.cs
+END
+ITBCustomerRatingBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BridgehrKit/!svn/ver/10304/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITBCustomerRatingBLL.cs
+END
+ISysOperationBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ISysOperationBLL.cs
+END
+ITPSubjectsAuthorityBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BridgehrKit/!svn/ver/8829/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITPSubjectsAuthorityBLL.cs
+END
+ITPSocialInsurBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BridgehrKit/!svn/ver/10527/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITPSocialInsurBLL.cs
+END
+ISysRoleBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BridgehrKit/!svn/ver/9646/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ISysRoleBLL.cs
+END
+IBaseDAL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BridgehrKit/!svn/ver/5475/VISS/solution/WebSrc/CRM/SourseCode/IBLL/IBaseDAL.cs
+END
+IImportResume.cs
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BridgehrKit/!svn/ver/6885/VISS/solution/WebSrc/CRM/SourseCode/IBLL/IImportResume.cs
+END
+ITBContractBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BridgehrKit/!svn/ver/12948/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITBContractBLL.cs
+END
+ITBCustomerContactBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BridgehrKit/!svn/ver/8600/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITBCustomerContactBLL.cs
+END
+ITBCallLogBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BridgehrKit/!svn/ver/5383/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITBCallLogBLL.cs
+END
+ISysMenuSysRoleSysOperationBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ISysMenuSysRoleSysOperationBLL.cs
+END
+ISysPersonBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BridgehrKit/!svn/ver/8926/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ISysPersonBLL.cs
+END
+ITPSalaryDetailsBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BridgehrKit/!svn/ver/9471/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITPSalaryDetailsBLL.cs
+END
+ITBBillingBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BridgehrKit/!svn/ver/9915/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITBBillingBLL.cs
+END
+ITPEmployeesBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BridgehrKit/!svn/ver/10562/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITPEmployeesBLL.cs
+END
+ITBCustomerServiceBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BridgehrKit/!svn/ver/9646/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITBCustomerServiceBLL.cs
+END
+ISysMessageTempBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ISysMessageTempBLL.cs
+END
+IBLL.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BridgehrKit/!svn/ver/10527/VISS/solution/WebSrc/CRM/SourseCode/IBLL/IBLL.csproj
+END
+IFileUploaderBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/IFileUploaderBLL.cs
+END
+ISysEmailTempBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ISysEmailTempBLL.cs
+END
+ITBSalesPerformanceBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BridgehrKit/!svn/ver/9822/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITBSalesPerformanceBLL.cs
+END
+ITBCustomerAttributionChangeBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BridgehrKit/!svn/ver/5409/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITBCustomerAttributionChangeBLL.cs
+END
+ISysMessageBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BridgehrKit/!svn/ver/10649/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ISysMessageBLL.cs
+END
+IPayReportBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BridgehrKit/!svn/ver/9635/VISS/solution/WebSrc/CRM/SourseCode/IBLL/IPayReportBLL.cs
+END
+ISysEmailBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ISysEmailBLL.cs
+END
+ITBCustomerBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BridgehrKit/!svn/ver/12730/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITBCustomerBLL.cs
+END
+ISysAnnouncementBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ISysAnnouncementBLL.cs
+END
+ITBCompanyBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BridgehrKit/!svn/ver/5494/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITBCompanyBLL.cs
+END
+ITPHousingFundBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BridgehrKit/!svn/ver/10527/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITPHousingFundBLL.cs
+END
+ISysExceptionBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ISysExceptionBLL.cs
+END
+ITBMyColumnFilterBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BridgehrKit/!svn/ver/5383/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ITBMyColumnFilterBLL.cs
+END
+ISysDepartmentBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ISysDepartmentBLL.cs
+END
+ISysMenuBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/ISysMenuBLL.cs
+END

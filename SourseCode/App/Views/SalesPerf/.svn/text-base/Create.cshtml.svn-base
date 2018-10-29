@@ -1,0 +1,140 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.SalesPerfModel
+
+@{
+    ViewBag.Title = "添加销售业绩";
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<style>
+    textarea {
+        height: 160px;
+        width: 480px;
+    }
+
+    input {
+        width: 100px;
+    }
+
+    .display-field {
+        height: auto;
+        width: 500px;
+    }
+</style>
+
+<div class="bigdiv">
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.TheMonth)：
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.TheMonth, new { @class = "Wdate", style = "width:160px", onchange = "getMonthWeek()", onfocus = "WdatePicker({dateFmt: 'yyyy-MM-dd' })" })
+        @Html.ValidationMessageFor(model => model.TheMonth)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.TheWeek)：
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.TheWeek, Models.SysFieldModels.GetSysFieldValueByParentID("1607191358552092906af3a4986f2"), "--请选择--")
+        @Html.ValidationMessageFor(model => model.TheWeek)
+    </div>
+    <br style="clear: both;" />
+
+    <table class="record" border="0" cellpadding="0" cellspacing="0" style="width:98%">
+        <tr>
+            <th colspan="2" style="text-align: center; padding-right: 10px; height: 26px">
+                本周实际
+            </th>
+            <th colspan="2" style="text-align: center; padding-right: 10px; height: 26px">
+                预计下周
+            </th>
+        </tr>
+        <tr>
+            <td style="text-align:right"><span class="red">*</span>@Html.LabelFor(model => model.FollowUpQty1)：</td>
+            <td>
+
+                @Html.TextBoxFor(model => model.FollowUpQty1)
+                @Html.ValidationMessageFor(model => model.FollowUpQty1)
+            </td>
+            <td style="text-align:right"><span class="red">*</span>@Html.LabelFor(model => model.FollowUpQty2)：</td>
+            <td>
+                @Html.TextBoxFor(model => model.FollowUpQty2)
+                @Html.ValidationMessageFor(model => model.FollowUpQty2)
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right"><span class="red">*</span>@Html.LabelFor(model => model.ContractQty1)：</td>
+            <td>
+                @Html.TextBoxFor(model => model.ContractQty1)
+                @Html.ValidationMessageFor(model => model.ContractQty1)
+            </td>
+            <td style="text-align:right"><span class="red">*</span>@Html.LabelFor(model => model.ContractQty2)：</td>
+            <td>
+                @Html.TextBoxFor(model => model.ContractQty2)
+                @Html.ValidationMessageFor(model => model.ContractQty2)
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right"><span class="red">*</span>@Html.LabelFor(model => model.KeyCustomerQty1)：</td>
+            <td>
+                @Html.TextBoxFor(model => model.KeyCustomerQty1)
+                @Html.ValidationMessageFor(model => model.KeyCustomerQty1)
+            </td>
+            <td style="text-align:right"><span class="red">*</span>@Html.LabelFor(model => model.KeyCustomerQty2)：</td>
+            <td>
+                @Html.TextBoxFor(model => model.KeyCustomerQty2)
+                @Html.ValidationMessageFor(model => model.KeyCustomerQty2)
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right"><span class="red">*</span>@Html.LabelFor(model => model.BillingAmount1)：</td>
+            <td>
+                @Html.TextBoxFor(model => model.BillingAmount1)（元）
+                @Html.ValidationMessageFor(model => model.BillingAmount1)
+            </td>
+            <td style="text-align:right"><span class="red">*</span>@Html.LabelFor(model => model.BillingAmount2)：</td>
+            <td>
+                @Html.TextBoxFor(model => model.BillingAmount2 )（元）
+                @Html.ValidationMessageFor(model => model.BillingAmount2)
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right"><span class="red">*</span>@Html.LabelFor(model => model.BudgetAmount1)：</td>
+            <td>
+                @Html.TextBoxFor(model => model.BudgetAmount1 )（元）
+                @Html.ValidationMessageFor(model => model.BudgetAmount1)
+            </td>
+            <td style="text-align:right"><span class="red">*</span>@Html.LabelFor(model => model.BudgetAmount2)：</td>
+            <td>
+                @Html.TextBoxFor(model => model.BudgetAmount2 )（元）
+                @Html.ValidationMessageFor(model => model.BudgetAmount2)
+            </td>
+        </tr>
+    </table>
+
+
+
+    <br style="clear: both;" />
+    <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+        <input class="a2 f2" type="submit" id="submit" value="提  交" />
+    </div>
+</div>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script type="text/javascript">
+    var getMonthWeek = function () {
+        var myDate = new Date($("#TheMonth").val());
+        var w = myDate.getDay(), d = myDate.getDate();
+        var week = Math.ceil((d + 6 - w) / 7);
+        if (week > 4) {
+            $("#TheWeek").val(4);
+        }
+        else {
+            $("#TheWeek").val(week);
+        }
+
+    }
+
+</script>

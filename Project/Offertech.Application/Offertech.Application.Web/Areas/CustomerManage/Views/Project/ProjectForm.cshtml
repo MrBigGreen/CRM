@@ -1,0 +1,220 @@
+@{;
+    ViewBag.Title = "表单页面";
+    Layout = "~/Views/Shared/_OrderForm.cshtml";
+}
+<script>
+    var keyValue = request('keyValue');
+    $(function () {
+        InitialPage();
+        GetOrderEntryGrid();
+        initControl();
+    });
+    //初始化页面
+    function InitialPage() {;
+        //resize重设(表格、树形)宽高
+        $(window).resize(function (e) {
+            window.setTimeout(function () {
+                $('#gridTable').setGridWidth(($('.gridPanel').width()));
+                $('#gridTable').setGridHeight($(window).height() - 240.5);
+            }, 200);
+            e.stopPropagation();
+        });
+    }
+    //加载明细表
+    function GetOrderEntryGrid() {
+        var $grid = $('#gridTable');
+        $grid.jqGrid({
+            unwritten: false,
+            datatype: 'local',
+            height: $(window).height() - 240.5,
+            autowidth: true,
+            colModel: [
+{ label: '项目编号', name: 'ProjectEvalDetailsId', width: 80, align: '', sortable: false, resizable: false },
+{ label: '项目主键', name: 'ProjectId', width: 80, align: '', sortable: false, resizable: false },
+{ label: '评估结果', name: 'EvaluationResult', width: 80, align: '', sortable: false, resizable: false },
+{ label: '评估说明', name: 'EvaluationDesc', width: 80, align: '', sortable: false, resizable: false },
+{ label: '评估人', name: 'EvaluationPerson', width: 80, align: '', sortable: false, resizable: false },
+{ label: '评估时间', name: 'EvaluationTime', width: 80, align: '', sortable: false, resizable: false },
+{ label: '排序码', name: 'SortCode', width: 80, align: '', sortable: false, resizable: false },
+{ label: '删除标记', name: 'DeleteMark', width: 80, align: '', sortable: false, resizable: false },
+{ label: '有效标志', name: 'EnabledMark', width: 80, align: '', sortable: false, resizable: false },
+{ label: '备注', name: 'Description', width: 80, align: '', sortable: false, resizable: false },
+            ],
+            pager: false,
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            footerrow: false,
+            gridComplete: function () {
+            }
+        });
+        //默认添加13行 空行
+        for (var i = 1; i < 13; i++) {
+            var rowdata = {
+                ProjectEvalDetailsId: '<input name="ProjectEvalDetailsId" type="text" class="editable center" />',
+                ProjectId: '<input name="ProjectId" type="text" class="editable center" />',
+                EvaluationResult: '<input name="EvaluationResult" type="text" class="editable center" />',
+                EvaluationDesc: '<input name="EvaluationDesc" type="text" class="editable center" />',
+                EvaluationPerson: '<input name="EvaluationPerson" type="text" class="editable center" />',
+                EvaluationTime: '<input name="EvaluationTime" type="text" class="editable center" />',
+                SortCode: '<input name="SortCode" type="text" class="editable center" />',
+                DeleteMark: '<input name="DeleteMark" type="text" class="editable center" />',
+                EnabledMark: '<input name="EnabledMark" type="text" class="editable center" />',
+                Description: '<input name="Description" type="text" class="editable center" />',
+            }
+            $grid.jqGrid('addRowData', i, rowdata);
+        };
+    }
+    //初始化控件
+    function initControl() {
+        //获取表单
+        if (!!keyValue) {
+            $.SetForm({
+                url: "../../CustomerManage/Project/GetFormJson",
+                param: { keyValue: keyValue },
+                success: function (data) {
+                    $("#form1").SetWebControls(data.entity);
+                    //明细
+                    var childEntity = data.childEntity;
+                    $('#gridTable').find('[role=row]').each(function (i) {
+                        var row = childEntity[i - 1];
+                        if (row != undefined) {
+                            $(this).find('input[name="ProjectEvalDetailsId"]').val(row.ProjectEvalDetailsId);
+                            $(this).find('input[name="ProjectId"]').val(row.ProjectId);
+                            $(this).find('input[name="EvaluationResult"]').val(row.EvaluationResult);
+                            $(this).find('input[name="EvaluationDesc"]').val(row.EvaluationDesc);
+                            $(this).find('input[name="EvaluationPerson"]').val(row.EvaluationPerson);
+                            $(this).find('input[name="EvaluationTime"]').val(row.EvaluationTime);
+                            $(this).find('input[name="SortCode"]').val(row.SortCode);
+                            $(this).find('input[name="DeleteMark"]').val(row.DeleteMark);
+                            $(this).find('input[name="EnabledMark"]').val(row.EnabledMark);
+                            $(this).find('input[name="Description"]').val(row.Description);
+                        }
+                    });
+                }
+            })
+        }
+    }
+    //保存表单;
+    function AcceptClick() {
+        if (!$('#form1').Validform()) {
+            return false;
+        }
+        var postData = $("#form1").GetWebControls(keyValue);
+        var childEntryJson = [];
+        $('#gridTable').find('[role=row]').each(function (i) {
+            if (!!$(this).find('input[name="ProjectEvalDetailsId"]').val()) {
+                childEntryJson.push({
+                    ProjectEvalDetailsId: $(this).find('input[name="ProjectEvalDetailsId"]').val(),
+                    ProjectId: $(this).find('input[name="ProjectId"]').val(),
+                    EvaluationResult: $(this).find('input[name="EvaluationResult"]').val(),
+                    EvaluationDesc: $(this).find('input[name="EvaluationDesc"]').val(),
+                    EvaluationPerson: $(this).find('input[name="EvaluationPerson"]').val(),
+                    EvaluationTime: $(this).find('input[name="EvaluationTime"]').val(),
+                    SortCode: $(this).find('input[name="SortCode"]').val(),
+                    DeleteMark: $(this).find('input[name="DeleteMark"]').val(),
+                    EnabledMark: $(this).find('input[name="EnabledMark"]').val(),
+                    Description: $(this).find('input[name="Description"]').val(),
+                });
+            }
+        });
+        $.SaveForm({
+            url: "../../CustomerManage/Project/SaveFormChild?keyValue=" + keyValue,
+            param: { "strEntity": JSON.stringify(postData), "strChildEntitys": JSON.stringify(childEntryJson) },
+            loading: "正在保存数据...",
+            success: function () {
+                $.currentIframe().$("#gridTable").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+<div class="bills">
+    <div style="height:190px;overflow-y:auto;margin:10px 10px;">
+        <table class="form" style="width: 100%;">
+            <tr>
+                <th class="formTitle" style="width: 60px;">项目主键<font face="宋体">*</font></th>
+                <td class="formValue"><input id="ProjectId" type="text" class="form-control" isvalid="yes" checkexpession="NotNull"></td>
+                <th class="formTitle" style="width: 60px;">项目编号</th>
+                <td class="formValue"><input id="ProjectCode" type="text" class="form-control"></td>
+                <th class="formTitle" style="width: 60px;">项目名称</th>
+                <td class="formValue"><input id="ProjectName" type="text" class="form-control"></td>
+                <th class="formTitle" style="width: 60px;">客户编号</th>
+                <td class="formValue"><input id="CustomerId" type="text" class="form-control"></td>
+            </tr>
+            <tr>
+                <th class="formTitle" style="width: 60px;">项目说明</th>
+                <td class="formValue"><input id="ProjectDesc" type="text" class="form-control"></td>
+                <th class="formTitle" style="width: 60px;">项目要求</th>
+                <td class="formValue"><input id="Requirements" type="text" class="form-control"></td>
+                <th class="formTitle" style="width: 60px;">项目预算</th>
+                <td class="formValue"><input id="ProjectBudget" type="text" class="form-control"></td>
+                <th class="formTitle" style="width: 60px;">招聘人数</th>
+                <td class="formValue"><input id="ProjectPeopleQty" type="text" class="form-control"></td>
+            </tr>
+            <tr>
+                <th class="formTitle" style="width: 60px;">福利待遇</th>
+                <td class="formValue"><input id="ProjectBenefits" type="text" class="form-control"></td>
+                <th class="formTitle" style="width: 60px;">工作地点</th>
+                <td class="formValue"><input id="ProjectAddress" type="text" class="form-control"></td>
+                <th class="formTitle" style="width: 60px;">评估结果</th>
+                <td class="formValue"><input id="EvaluationResult" type="text" class="form-control"></td>
+                <th class="formTitle" style="width: 60px;">评估说明</th>
+                <td class="formValue"><input id="EvaluationDesc" type="text" class="form-control"></td>
+            </tr>
+            <tr>
+                <th class="formTitle" style="width: 60px;">评估人</th>
+                <td class="formValue"><input id="EvaluationPerson" type="text" class="form-control"></td>
+                <th class="formTitle" style="width: 60px;">评估时间</th>
+                <td class="formValue"><input id="EvaluationTime" type="text" class="form-control"></td>
+                <th class="formTitle" style="width: 60px;">排序码</th>
+                <td class="formValue"><input id="SortCode" type="text" class="form-control"></td>
+                <th class="formTitle" style="width: 60px;">删除标记</th>
+                <td class="formValue"><input id="DeleteMark" type="text" class="form-control"></td>
+            </tr>
+            <tr>
+                <th class="formTitle" style="width: 60px;">有效标志</th>
+                <td class="formValue"><input id="EnabledMark" type="text" class="form-control"></td>
+                <th class="formTitle" style="width: 60px;">备注</th>
+                <td class="formValue"><input id="Description" type="text" class="form-control"></td>
+                <th class="formTitle" style="width: 60px;">创建日期</th>
+                <td class="formValue"><input id="CreateDate" type="text" class="form-control"></td>
+                <th class="formTitle" style="width: 60px;">创建用户主键</th>
+                <td class="formValue"><input id="CreateUserId" type="text" class="form-control"></td>
+            </tr>
+            <tr>
+                <th class="formTitle" style="width: 60px;">创建用户</th>
+                <td class="formValue"><input id="CreateUserName" type="text" class="form-control"></td>
+                <th class="formTitle" style="width: 60px;">修改日期</th>
+                <td class="formValue"><input id="ModifyDate" type="text" class="form-control"></td>
+                <th class="formTitle" style="width: 60px;">修改用户主键</th>
+                <td class="formValue"><input id="ModifyUserId" type="text" class="form-control"></td>
+                <th class="formTitle" style="width: 60px;">修改用户</th>
+                <td class="formValue"><input id="ModifyUserName" type="text" class="form-control"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="gridPanel">
+        <table id="gridTable"></table>
+    </div>
+</div>
+<style>
+    body {
+        margin: 0px;
+    }
+
+    .bills {
+        overflow: hidden;
+        border-radius: 0px;
+        position: relative;
+        background: #FFFFFF;
+        border: 0px solid rgb(204, 204, 204);
+        box-shadow: none;
+        padding: 0px;
+    }
+
+    .ui-widget-content {
+        border-left: 0px;
+        border-right: 0px;
+        border-bottom: 0px;
+    }
+</style>

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/BridgehrKit/!svn/ver/20048/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/XmlConfig
+END
+log4net.config
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/BridgehrKit/!svn/ver/15068/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/XmlConfig/log4net.config
+END
+database.config
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/BridgehrKit/!svn/ver/20048/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/XmlConfig/database.config
+END
+system.config
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/BridgehrKit/!svn/ver/13875/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/XmlConfig/system.config
+END
+redis.config
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/XmlConfig/redis.config
+END
+ioc.config
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/XmlConfig/ioc.config
+END

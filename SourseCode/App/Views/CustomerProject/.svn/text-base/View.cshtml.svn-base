@@ -1,0 +1,106 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_CustomerProject
+
+@{
+    ViewBag.Title = "项目评估";
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<style>
+    .display-field {
+        height: auto;
+        width: 400px;
+    }
+    textarea {
+        height: 160px;
+        width: 480px;
+    }
+
+    input {
+        width: 480px;
+    }
+
+    .display-field {
+        height: auto;
+        width: 500px;
+    }
+</style>
+
+<div class="bigdiv">
+    @Html.HiddenFor(model => model.CustomerID)
+    @Html.HiddenFor(model => model.CustomerProjectID)
+    <div class="display-label">
+        @Html.LabelFor(model => model.ProjectName)：
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectName)
+    </div>
+    <br style="clear: both;" />
+    <div class="display-label">
+        @Html.LabelFor(model => model.ProjectBudget)：
+    </div>
+    <div class="display-field" style="width:150px">
+        @Html.DisplayFor(model => model.ProjectBudget)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.ProjectPeopleQty)：
+    </div>
+    <div class="display-field" style="width:150px">
+        @Html.DisplayFor(model => model.ProjectPeopleQty)
+    </div>
+    <br style="clear: both;" />
+    <div class="display-label">
+        @Html.LabelFor(model => model.ProjectBenefits)：
+    </div>
+    <div class="display-field" style="width:150px">
+        @Html.DropDownListFor(model => model.ProjectBenefits, Models.SysFieldModels.GetSysFieldByParentID("1606011013433176357f6bf558ef1"))
+    </div>
+    <br style="clear: both;" />
+    <div class="display-label">
+        @Html.LabelFor(model => model.ProjectAddress)：
+    </div>
+    <div class="display-field" style="width:150px">
+        @Html.DisplayFor(model => model.ProjectAddress)
+    </div>
+    <br style="clear: both;" />
+    <div class="display-label">
+        @Html.LabelFor(model => model.ProjectDesc)：
+    </div>
+    <div class="display-field">
+        @Html.TextAreaFor(model => model.ProjectDesc, new { @readonly = "readonly" })
+    </div>
+    <br style="clear: both;" />
+    <div class="display-label">
+        @Html.LabelFor(model => model.ProjectRequirements)：
+    </div>
+    <div class="display-field">
+        @Html.TextAreaFor(model => model.ProjectRequirements, new { @readonly = "readonly" })
+    </div>
+    <br style="clear: both;" />
+    <div class="display-label">
+        @Html.LabelFor(model => model.EvaluationDesc)：
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EvaluationDesc)
+    </div>
+    <br style="clear: both;" />
+    <div class="display-label">
+        @Html.LabelFor(model => model.EvaluationResult)：
+    </div>
+    <div class="display-field">
+        @Html.DropDownListFor(model => model.EvaluationResult, Models.SysFieldModels.GetSysFieldByParentID("1605111430335445364b63da025d2"), new { @disabled = "disabled" })
+    </div>
+    <br style="clear: both;" />
+    <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+        
+        &nbsp;&nbsp;&nbsp;
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+           onclick="closeWindow();">关 闭</a>
+    </div>
+</div>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+
+<script type="text/javascript" language="javascript">$.getScript("/Scripts/CustomerProject/Evaluation.js")</script>
+

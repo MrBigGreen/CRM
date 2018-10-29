@@ -1,0 +1,83 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_Contract
+
+@{
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+<style>
+     
+    input  {
+        width: 240px;
+    }
+</style>
+ 
+
+
+    <div class="easyui-layout" title=""  >
+        <div style="padding: 10px 20px 20px 20px; ">
+            <br style="clear: both;" />
+            <div class="editor-label">
+                <span class="red">*</span>
+                合同编号:
+            </div>
+            <div class="editor-field">
+                <input type="text" name="ContractNO" id="ContractNO" value="@ViewBag.MaxContractNO"  readonly="readonly" disabled="disabled"/>
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                <span class="red">*</span>
+                客户名称:
+            </div>
+            <div class="editor-field">
+                <input type="text" name="CustomerName" id="CustomerName" value="" />
+            </div>
+
+            <br style="clear: both;" />
+            <br style="clear: both;" />
+            <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+                <a class="easyui-linkbutton" id="ContactSave" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+                   onclick="javascript:checkSubmit();">保存</a>
+                &nbsp; &nbsp; &nbsp;
+                <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+                   onclick="closeWindow();">取消</a>
+            </div>
+        </div>
+    </div>
+
+ 
+<link href="~/Res/PublicCommon.css" rel="stylesheet" /> 
+
+<script type="text/javascript">
+    function checkSubmit() {
+        var CustomerName = $("#CustomerName").val();
+        var ContractNO = $("#ContractNO").val();
+        if (CustomerName == "") {
+
+            $.messager.alert('操作提示', '客户名称不能为空', 'error');
+        }
+        if (CustomerName.lenth < 5) {
+
+            $.messager.alert('操作提示', '客户名称长度不符', 'error');
+        }
+        $.ajax({
+            url: "/Contract/GetCreateNew",
+            data: { CustomerName: CustomerName, ContractNO: ContractNO },
+            type: "post",
+            datatype: "json",
+            success: function (data) {
+
+                $.messager.alert('操作提示', data, "info", function (r) {
+                    parent.$('#flexigridData').datagrid("reload");
+                    parent.$('#flexigridData').datagrid('unselectAll');
+                    closeWindow();
+
+                });
+
+            }
+
+
+        });
+    }
+
+</script>

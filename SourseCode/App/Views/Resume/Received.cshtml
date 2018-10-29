@@ -1,0 +1,253 @@
+﻿@model Offer.DAL.ResumeInfoModel
+@{ Layout = "~/Views/Shared/Index.cshtml"; }
+@using Common
+@using Models
+<!--收到简历列表-->
+<div id="divQuery">
+    <div class="input_search" style=" height:123px">
+        <table id="ttSearch" class="record1" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="width:120px; text-align:right; padding-right:10px;height:36px">查询条件:</td>
+                <td>
+                    <input id="Keyword" name="Keyword" maxlength="100" value="" type="text" placeholder="请输入关键字" />
+                    &nbsp;&nbsp;&nbsp;
+                    <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                        查 询
+                    </a>
+
+                </td>
+            </tr>
+            <tr>
+                <td style="width:120px; text-align:right; padding-right:10px;height:26px">
+                    <a class="anUnderLine" onclick="showModalMany('SysPersonId','../../SysPerson');">
+                        归 属 人
+                    </a>:
+                </td>
+                <td style="padding-left:0px">
+                    <div id="checkSysPersonId">
+
+                    </div>
+                    <input name="SysPersonId" id="SysPersonId" type="hidden" value="">
+                </td>
+            </tr>
+            <tr>
+                <td style="width:120px; text-align:right; padding-right:10px;height:26px">数据来源:</td>
+                <td style="padding-left:0px">
+
+                    <a href="#" class="user_btn easyui-linkbutton" id="uType" rel="dataType" data-value="0">所有</a>&nbsp;
+                    <a href="#" class="user_btn easyui-linkbutton" rel="dataType" data-value="1">猎头推荐</a>&nbsp;
+                    <a href="#" class="user_btn easyui-linkbutton" rel="dataType" data-value="2">系统匹配</a>&nbsp;
+                    <input type="hidden" id="hid_dataType" />
+
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; padding-right: 10px; height: 26px; ">投递日期:</td>
+                <td>
+                    <input type="text" id="ReleaseStartDate" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'ReleaseEndDate\');}', dateFmt: 'yyyyMMdd HH:mm:ss' })" />
+                    <span>到</span>
+                    <input type="text" id="ReleaseEndDate" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'ReleaseStartDate\');}' ,dateFmt:'yyyyMMdd HH:mm:ss' })" />
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+<br style="clear: both;" />
+@*查看个人信息*@
+<div id="w_userInfo" class="easyui-dialog" iconcls="icon-search" style="width:860px; height:380px;
+      padding: 5px;   " closed="true" title=" ">
+    <div class="easyui-layout" fit="true" style="width: 100%; height: 100%; overflow: auto; ">
+        <div region="center" style="padding: 10px; background: #fff; border: 1px solid #ccc; ">
+            <iframe id="userInfoiframe" frameborder="0" style="width: 1160px; height: 600px"></iframe>
+        </div>
+    </div>
+</div>
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.watermark.min.js"></script>
+<script src="~/Scripts/jquery.bpopup-0.7.0.min.js"></script>
+<script src="~/Scripts/type-bpopup_fuc.js" type="text/javascript"></script>
+<script type="text/javascript" language="javascript">
+    $(function () {
+        $("#workAddress").val($('#schosejobaddress').text());
+        $("#workAddressF").val($('#chosejobaddress').text());
+
+        $("#jobType").val($('#schosejobtype').text());
+        $("#jobTypeF").val($('#chosejobtype').text());
+
+        $('#uType').addClass("bgred");
+        $('#releaseDateID').addClass("bgred");
+        $("#select_job").TypeShow("multiple", 27, "post", $("#select_job").val());//职业
+        $("#select_Address").TypeShow("multiple", 27, "city", $("#select_Address").val());//职业
+
+        //选择查询变色
+        $("#ttSearch").find("a").each(function () {
+            $(this).click(function () {
+                if ($(this).attr("class") != "anUnderLine") {
+                    $(this).parent().children("a").removeClass("bgred");
+                    $(this).addClass("bgred");
+                    $("#hid_" + $(this).attr("rel")).val($(this).attr("data-value"));
+
+                }
+            })
+        });
+
+
+        $('#flexigridData').datagrid({
+            title: '收到简历', //列表的标题
+            iconCls: 'icon-site',
+            width: 'auto',
+            height: 'auto',
+            //nowrap: false,
+            striped: true,
+            collapsible: true,
+            url: '../Resume/GetDataReceived?id=@ViewBag.ID&type=@ViewBag.type', //获取数据的url
+            idField: 'ImportResumeID',
+            sortName: 'CreatedTime',
+            sortOrder: 'desc',
+            toolbar: [
+                  {
+                      text: '导出',
+                      iconCls: 'icon-excel',
+                      handler: function () {
+                          return flexiExport();
+                      }
+                  }],
+            columns: [[
+                 { field: 'ck', title: '全选', checkbox: true, width: 80 },
+                  @*{ field: 'CompanyInterviewJobID', title: '@Html.DisplayNameFor(model => model.CompanyInterviewJobID)', width: 300, hidden: true },*@
+                {
+                    field: 'ResumeName', title: '@Html.DisplayNameFor(model => model.ResumeName)', width: 90,
+                    formatter: function (value, rowData, rowIndex) {
+                        var a = '<a href="#"  class="easyui-linkbutton" style="border: none; text-decoration: none;"  OnClick="ShowUserInfo(\'' + rowData.ImportResumeID + '\')">' + rowData.ResumeName + '</a> ';
+                        return a;
+                    }
+                }
+
+                , { field: 'PhoneNumber', title: '@Html.DisplayNameFor(model => model.PhoneNumber)', width: 143 }
+                , { field: 'EmailAddress', title: '@Html.DisplayNameFor(model => model.EmailAddress)', width: 187 }
+                , {
+                    field: 'GenderCode', title: '@Html.DisplayNameFor(model => model.GenderCode)', width: 60, formatter: function (value, rec) {
+                        if (value == 1) {
+                            return "男"
+                        }
+                        else if (value == 2) {
+                            return "女";
+                        }
+                        else {
+                            return "保密";
+                        }
+                    }
+                }
+                , {
+                    field: 'ResumeSource', title: '@Html.DisplayNameFor(model => model.ResumeSource)', width: 77, formatter: function (value, rec) {
+                        if (value == 1) {
+                            return "猎头推荐";
+                        }
+                        else {
+                            return "内部匹配";
+                        }
+                    }
+                }
+                @*, { field: 'WorkYearCode', title: '@Html.DisplayNameFor(model => model.WorkYearCode)', width: 77 }*@
+                , { field: 'EducationName', title: '@Html.DisplayNameFor(model => model.EducationName)', width: 77 }
+                , { field: 'AddressName', title: '@Html.DisplayNameFor(model => model.AddressName)', width: 77 }
+                , { field: 'SysPersonName', title: '@Html.DisplayNameFor(model => model.SysPersonName)', width: 77 }
+                , {
+                    field: 'CreatedTime', title: '投递时间', width: 146, formatter: function (value, rec) {
+                        if (value) {
+                            return datetimeConvert(value, "yyyy-MM-dd hh:mm:ss");
+                        }
+                    }
+                }
+
+            ]],
+            pagination: true,
+            rownumbers: true
+
+        });
+
+        var parent = window.dialogArguments; //获取父页面
+        if (parent == "undefined" || parent == null) {
+            //    不是在iframe中打开的
+        } else {
+            //隐藏所有的按钮和分隔符
+            //$(".l-btn.l-btn-plain").hide();
+            //$(".datagrid-btn-separator").hide();
+            ////添加选择按钮
+            //$('#flexigridData').datagrid("addToolbarItem", [{ "text": "选择", "iconCls": "icon-ok", handler: function () { flexiSelect(); } }]);
+        }
+    });
+
+
+    //“查询”按钮，弹出查询框
+    function flexiQuery() {
+
+        //将查询条件按照分隔符拼接成字符串
+        var search = "";
+        if ($('#Keyword').val() != "") {
+            search = search + 'Keyword' + "&" + $('#Keyword').val() + '^';
+        }
+        if ($('#hid_dataType').val() == "1") {
+            search = search + 'DataType' + "&" + $('#hid_dataType').val() + '^';
+        }
+        var SysPersonId = $("#SysPersonId").val();
+        if (SysPersonId != "" && SysPersonId != undefined) {
+            var arr = SysPersonId.split('^');
+            SysPersonId = "";
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].trim() != "") {
+                    SysPersonId += arr[i].split('&')[0] + ',';
+                }
+            }
+            if (SysPersonId.length > 0) {
+
+                search = search + 'SysPersonID' + "&" + SysPersonId.substring(0, SysPersonId.length - 1) + '^';
+            }
+        }
+        //发布日期
+
+        var releaseValue = $('#hid_releaseDate').val();
+        var ReleaseStartDate = $('#ReleaseStartDate').val();
+
+        var ReleaseEndDate = $('#ReleaseEndDate').val();
+        if (ReleaseStartDate != "" && ReleaseEndDate != "") {
+            search = search + 'StartDate' + "&" + ReleaseStartDate + '^';
+            search = search + 'EndDate' + "&" + ReleaseEndDate + '^';
+
+        }
+        //执行查询
+        $('#flexigridData').datagrid('load', { search: search });
+    }
+
+
+    //清空
+    function RemvoeAll() {
+        $("#ttSearch").find("a").each(function () {
+            $(this).parent().children("a").removeClass("bgred");
+            $("#hid_" + $(this).attr("rel")).val('0');
+        });
+        $('#uType').addClass("bgred");
+        $('#lType').addClass("bgred");
+        $('#eType').addClass("bgred");
+        $('#aType').addClass("bgred");
+        $('#sType').addClass("bgred");
+        $('#ssProvince').combobox('setValue', '--请选择省--');
+        $('#ssCity').combobox('setValue', '--请选择市--');
+        $('#ssArea').combobox('setValue', '--请选择区--');
+        $('#txtSearch').val('');
+
+    }
+
+    //“选择”按钮，在其他（与此页面有关联）的页面中，此页面以弹出框的形式出现，选择页面中的数据
+    function flexiSelect() {
+
+         
+    }
+
+    //显示用户个人信息
+    function ShowUserInfo(id) {
+        $('#w_userInfo').window('open');
+        $('#userInfoiframe').attr("src", "../JobHunterInfo/Index?Id=" + id + "&Index=0");
+    }
+</script>

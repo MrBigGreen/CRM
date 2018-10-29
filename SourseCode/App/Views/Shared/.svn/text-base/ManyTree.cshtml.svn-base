@@ -1,0 +1,66 @@
+﻿ 
+<!DOCTYPE html>
+<html>
+<head id="MyHead">
+   
+    <title></title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/easyui")
+    <style type="text/css">
+        .combo {
+            font-family: 微软雅黑,新宋体;
+            height: 24px;
+            width: 210px;
+            border: 1px solid #CCC;
+        }
+    </style>
+    @RenderSection("HeadContent", false)
+
+    <script type='text/javascript'>
+        function ajaxFrom(form, url) {
+
+            $.ajax({
+                url: url,
+                type: "Post",
+                data: $(form).serialize(),
+                dataType: "json",
+                success: function (data) {
+
+                    if ($.messager) {
+                        $.messager.defaults.ok = '继续';
+                        $.messager.defaults.cancel = '返回';
+
+                        $.messager.confirm('操作提示', data, function (r) {
+                            if (!r) {
+                                window.location.href = 'javascript:history.go(-1)';
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+        $(function () {
+
+            $("form").submit(function (form) {
+                ajaxFrom(this, this.action);
+                return false;
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="mbx">
+        @RenderSection("CurentPlace", false)
+    </div>
+    @using (Html.BeginForm())
+    {
+
+        @Html.ValidationSummary(true)
+        @RenderBody()
+
+    }
+   
+</body>
+</html>

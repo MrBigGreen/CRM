@@ -1,0 +1,306 @@
+﻿@{ Layout = "~/Views/Shared/Index.cshtml"; }
+<style type="text/css">
+    .uploadContainer {
+        float: left;
+        text-align: center;
+        margin-right: 15px;
+    }
+
+    .imgDiv {
+        position: relative;
+        float: left;
+        text-align: center;
+        margin-right: 15px;
+        margin-bottom: 5px;
+        width: 149px;
+        height: 175px;
+    }
+
+        .imgDiv .file-panel {
+            position: absolute;
+            height: 30px;
+            filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#80000000', endColorstr='#80000000')\0;
+            background: rgba( 0, 0, 0, 0.5 );
+            width: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 300;
+        }
+
+            .imgDiv .file-panel span.cancel {
+                background-position: -48px -24px;
+                width: 24px;
+                height: 24px;
+                display: inline;
+                float: right;
+                text-indent: -9999px;
+                overflow: hidden;
+                background: url(/images/icons.png) no-repeat;
+                margin: 5px 1px 1px;
+                cursor: pointer;
+            }
+
+    #imgContainer img {
+        width: 149px;
+        height: 175px;
+    }
+
+    .webuploader-pick {
+        position: absolute;
+        top: 0px;
+        left: 86px;
+        width: 68px;
+        overflow: hidden;
+        bottom: auto;
+        right: auto;
+    }
+
+    .webuploader-container {
+        margin-top: 4px;
+        margin-left: -85px;
+        margin-right: 500px;
+    }
+</style>
+<form id="ff" method="POST" data-options="novalidate:true">
+    @{
+        var list = (CRM.DAL.TPEmployees)ViewBag.info;
+
+        <table id="ttAdd" class="record">
+            <tr>
+                <th>公司名称</th>
+                <td colspan="3">
+                    <input id="txtCompanyName" name="CompanyName" class="easyui-textbox" style="width: 200px" value="@list.CompanyName" readonly="readonly" />
+                </td>
+            </tr>
+            <tr>
+                <th>员工姓名</th>
+                <td colspan="3">
+                    <input id="txtEmployessName" name="EmployessName" class="easyui-textbox" style="width: 150px" value="@list.EmpName" readonly="readonly" />
+                </td>
+            </tr>
+            <tr>
+                <th>性别</th>
+                <td colspan="3">
+                    @if (list.Gender == 1)
+                    {
+                        <input type="radio" name="Gender" id="male" value="1" checked="checked" /><label for="male">男</label>
+                        <input type="radio" name="Gender" id="female" value="0" /><label for="female">女</label>
+                    }
+                    else
+                    {
+                        <input type="radio" name="Gender" id="male" value="1" /><label for="male">男</label>
+                        <input type="radio" name="Gender" id="female" value="0" checked="checked" /><label for="female">女</label>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>证件类型</th>
+                <td>
+                    <input id="comCardType" name="comCardType" style="width:150px" value="--请选择--" />
+                    <input type="hidden" id="txtCardType" name="txtCardType" />
+
+                </td>
+                <th>证件号</th>
+                <td>
+                    <input id="txtCardID" class="easyui-textbox" name="CardID" maxlength="18" style="width: 150px" value="@list.IDCard" readonly="readonly" />
+                </td>
+            </tr>
+            <tr>
+                <th>银行</th>
+                <td>
+                    <input id="comBankName" name="comBankName" style="width:200px" value="--请选择--" />
+                    <input type="hidden" id="txtBankName" name="txtBankName" />
+                </td>
+                <th>银行开户市</th>
+                <td>
+                    <input id="txtBankCity" class="easyui-textbox" name="BankCity" maxlength="18" style="width: 150px" value="@list.BankCity" readonly="readonly" />
+                </td>
+            </tr>
+            <tr>
+                <th>银行卡号</th>
+                <td colspan="3">
+                    <input id="txtBankID" class="easyui-textbox" name="BankID" maxlength="18" style="width: 150px" value="@list.BankID" readonly="readonly" />
+                </td>
+            </tr>
+            <tr>
+                <th><span style="color: red">*</span>大合同主体</th>
+                <td>
+                    <input id="comContractType" name="comContractType" style="width: 200px" value="--请选择--" />
+                    <input type="hidden" id="txtContractType" name="ContractType" />
+                </td>
+                <th><span style="color: red">*</span>工资发放主体</th>
+                <td>
+                    <input id="comWagesType" name="comWagesType" style="width: 200px" value="--请选择--" />
+                    <input type="hidden" id="txtWagesType" name="WagesType" />
+                </td>
+            </tr>
+            <tr>
+                <th><span style="color: red">*</span>社保缴纳主体</th>
+                <td>
+                    <input id="comSocialSecurityType" name="comSocialSecurityType" style="width: 200px" value="--请选择--" />
+                    <input type="hidden" id="txtSocialSecurityType" name="SocialSecurityType" />
+                </td>
+                <th><span style="color: red">*</span>个税申报主体</th>
+                <td>
+                    <input id="comTaxType" name="comTaxType" style="width: 200px" value="--请选择--" />
+                    <input type="hidden" id="txtTaxType" name="TaxType" />
+                </td>
+            </tr>
+            <tr>
+                <th>手机号码</th>
+                <td colspan="3">
+                    <input id="txtPhoneNum" type="text" name="PhoneNum" class="easyui-numberbox" precision="0" style="width: 150px" value="@list.PhoneNumber" readonly="readonly" />
+                </td>
+            </tr>
+            <tr>
+                <th> 国籍</th>
+                <td>
+                    <input id="txtNation" class="easyui-textbox" name="Nation" style="width: 150px" value="@list.Nation" readonly="readonly" />
+                </td>
+                @*<th>生日</th>
+                    <td>
+                        @if (list.Birthday.ToString() != "1900/1/1 0:00:00")
+                        {
+                            <input class="easyui-datebox" id="Birthday" name="Birthday" editable="false" style="width: 100px" value="@list.Birthday" readonly="readonly" />
+                        }
+                        else
+                        {
+                            <input class="easyui-datebox" id="Birthday" name="Birthday" editable="false" style="width: 100px" readonly="readonly" />
+                        }
+                    </td>*@
+                <th> 邮箱</th>
+                <td>
+                    <input id="txtEmail" class="easyui-textbox" name="Email" style="width: 150px" value="@list.EmailAddress" readonly="readonly" />
+                </td>
+            </tr>
+
+            <tr>
+                <th>状态</th>
+                <td colspan="3">
+                    @if (list.JobStatus == 1)
+                    {
+                        <label>在职</label>
+                    }
+                    else
+                    {
+                        <label>离职</label>
+                    }
+
+                </td>
+            </tr>
+            <tr>
+                <th>证件照</th>
+                <td colspan="3">
+                    <div id="imgContainer">
+                        @{
+                            if (!string.IsNullOrEmpty(list.IDCardPic1))
+                            {
+                                <img src="@list.IDCardPic1" />
+                            }
+                            else
+                            {
+                                <img src="/Images/noPic.jpg" />
+                            }
+                            if (!string.IsNullOrEmpty(list.IDCardPic2))
+                            {
+                                <img src="@list.IDCardPic2" />
+                            }
+                            else
+                            {
+                                <img src="/Images/noPic.jpg" />
+                            }
+                            if (!string.IsNullOrEmpty(list.IDCardPic3))
+                            {
+                                <img src="@list.IDCardPic3" />
+                            }
+                            else
+                            {
+                                <img src="/Images/noPic.jpg" />
+                            }
+                        }
+
+                    </div>
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center">
+
+                    <a class="easyui-linkbutton" iconcls="icon-cancel" onclick="parent.$('#w_look').window('close')">
+                        关闭
+                    </a>
+                </td>
+            </tr>
+        </table>
+    }
+</form>
+
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.watermark.min.js"></script>
+<script src="~/Scripts/jquery.bpopup-0.7.0.min.js"></script>
+<script src="~/Scripts/type-bpopup_fuc.js" type="text/javascript"></script>
+<script src="~/Scripts/TodayTasks/FollowUpEdit.js" type="text/javascript"></script>
+<link href="~/Content/TodayTasks/FollowUpEdit.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/Res/webuploader/css/webuploader.css")" />
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/Res/webuploader/images/style.css")" />
+<script type="text/javascript" src="@Url.Content("~/Res/webuploader/js/webuploader.nolog.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/UploadFileMuti.js")"></script>
+<script type="text/javascript">
+
+    $('#comCardType').combobox({
+        url: '/SysField/GetComboBoxList?ParentID=1604141503590239432048f5e2282',
+        valueField: 'id',
+        textField: 'text',
+        editable: false
+    });
+    $('#comBankName').combobox({
+        url: '/SysField/GetComboBoxList?ParentID=1604141504524710001e45c171551',
+        valueField: 'id',
+        textField: 'text',
+        editable: false
+    });
+
+    $('#comContractType').combobox({
+        url: '/SysField/GetComboBoxList?ParentID=1604121151490315992e569f90a1e',
+        valueField: 'id',
+        textField: 'text',
+        editable: false
+    });
+
+    $('#comWagesType').combobox({
+        url: '/SysField/GetComboBoxList?ParentID=1604121151490315992e569f90a1e',
+        valueField: 'id',
+        textField: 'text',
+        editable: false
+    });
+
+    $('#comSocialSecurityType').combobox({
+        url: '/SysField/GetComboBoxList?ParentID=1604121151490315992e569f90a1e',
+        valueField: 'id',
+        textField: 'text',
+        editable: false
+    });
+
+    $('#comTaxType').combobox({
+        url: '/SysField/GetComboBoxList?ParentID=1604121151490315992e569f90a1e',
+        valueField: 'id',
+        textField: 'text',
+        editable: false
+
+    });
+
+    $('#comCardType').combobox('setValue', '@list.IDType');
+
+    $('#comBankName').combobox('setValue', '@list.BankType');
+
+    $('#comContractType').combobox('setValue', '@list.ContractSubject');
+
+    $('#comWagesType').combobox('setValue', '@list.WagesSubject');
+
+    $('#comSocialSecurityType').combobox('setValue', '@list.SocialSecuritySubject');
+
+    $('#comTaxType').combobox('setValue', '@list.TaxSubject');
+
+</script>

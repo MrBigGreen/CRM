@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Stored%20Procedures
+END
+dbo.P_SearchReceivedResume_S.sql
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Stored%20Procedures/dbo.P_SearchReceivedResume_S.sql
+END
+dbo.P_SearchPersonInfoByToday.sql
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Stored%20Procedures/dbo.P_SearchPersonInfoByToday.sql
+END
+dbo.P_SearchRetrieveOfflineJob_S_test.sql
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Stored%20Procedures/dbo.P_SearchRetrieveOfflineJob_S_test.sql
+END
+dbo.P_PageShow.sql
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/DBScripts/Stored%20Procedures/dbo.P_PageShow.sql
+END

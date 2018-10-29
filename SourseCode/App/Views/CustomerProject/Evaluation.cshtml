@@ -1,0 +1,106 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_CustomerProject
+
+@{
+    ViewBag.Title = "项目评估";
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<style>
+    textarea {
+        height: 160px;
+        width: 480px;
+    }
+
+    input {
+        width: 480px;
+    }
+
+    .display-field {
+        height: auto;
+        width: 500px;
+    }
+</style>
+
+<div class="bigdiv">
+    @Html.HiddenFor(model => model.CustomerID)
+    @Html.HiddenFor(model => model.CustomerProjectID)
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ProjectName)：
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.ProjectName, new { @disabled = "disabled" }) 
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ProjectBudget)：
+    </div>
+    <div class="editor-field" style="width:150px">
+        @Html.TextBoxFor(model => model.ProjectBudget, new { @disabled = "disabled", style = "width:140px;" })
+    </div>
+    <div class="editor-label">
+       @Html.LabelFor(model => model.ProjectPeopleQty)：
+    </div>
+    <div class="editor-field" style="width:150px">
+        @Html.TextBoxFor(model => model.ProjectPeopleQty, new { @disabled = "disabled", style = "width:140px;" })
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+         @Html.LabelFor(model => model.ProjectBenefits)：
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.ProjectBenefits, Models.SysFieldModels.GetSysFieldByParentID("1606011013433176357f6bf558ef1"), new { @disabled = "disabled" })
+    
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ProjectAddress)：
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.ProjectAddress, new { @disabled = "disabled" }) 
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ProjectDesc)：
+    </div>
+    <div class="textarea-box">
+        @Html.TextAreaFor(model => model.ProjectDesc, new { @readonly = "readonly" })
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label"> 
+        @Html.LabelFor(model => model.ProjectRequirements)：
+    </div>
+    <div class="textarea-box" >
+        @Html.TextAreaFor(model => model.ProjectRequirements, new { @readonly = "readonly" })
+    </div>
+    <div class="editor-label">
+        <span class="red">*</span> @Html.LabelFor(model => model.EvaluationDesc)：
+    </div>
+    <div class="textarea-box">
+        @Html.TextAreaFor(model => model.EvaluationDesc, new { @Style = "height:80px" })
+        @Html.ValidationMessageFor(model => model.EvaluationDesc)
+    </div>
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.EvaluationResult)：
+    </div>
+    <div class="editor-field">
+        <label style="margin: 0px 10px 0px 0px;"><input name="rdoResult" type="radio" value="1605111432278446688fe51d4a449" style="width:30px">可执行</label>
+        <label style="margin: 0px 10px 0px 0px;"><input name="rdoResult" type="radio" value="16051114333565032083a4dd438db" style="width:30px">不执行</label>
+        @Html.HiddenFor(model => model.EvaluationResult)
+    </div>
+    <br style="clear: both;" />
+    <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+        <input class="a2 f2" type="submit" id="btnSubmit" value="保 存" style="display:none" />
+        <a class="easyui-linkbutton" id="submit" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+           onclick="javascript: checkSubmit();">保存</a>
+        &nbsp;&nbsp;&nbsp;
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+           onclick="closeWindow();">取消</a>
+    </div>
+</div>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+
+<script type="text/javascript" language="javascript">$.getScript("/Scripts/CustomerProject/Evaluation.js")</script>
+

@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/BridgehrKit/!svn/ver/13839/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/BaseManage
+END
+JobService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/BaseManage/JobService.cs
+END
+UserGroupService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/BaseManage/UserGroupService.cs
+END
+Base_CodeRuleService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/BaseManage/Base_CodeRuleService.cs
+END
+OrganizeService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/BaseManage/OrganizeService.cs
+END
+UserService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/BridgehrKit/!svn/ver/13839/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/BaseManage/UserService.cs
+END
+RoleService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/BaseManage/RoleService.cs
+END
+Base_DataItemService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/BaseManage/Base_DataItemService.cs
+END
+DepartmentService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/BaseManage/DepartmentService.cs
+END
+Base_DatabaseBackupService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/BaseManage/Base_DatabaseBackupService.cs
+END
+PostService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/BaseManage/PostService.cs
+END
+CompanyService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/BridgehrKit/!svn/ver/13624/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/BaseManage/CompanyService.cs
+END
+Base_UserService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/BaseManage/Base_UserService.cs
+END

@@ -1,0 +1,119 @@
+﻿@{;
+    ViewBag.Title = "所有客户池-列表页面";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<script>
+    ;
+    $(function () {
+        InitialPage();
+        GetGrid();
+    });
+    //初始化页面
+    function InitialPage() {
+        //resize重设布局;
+        $(window).resize(function (e) {
+            window.setTimeout(function () {
+                $('#gridTable').setGridWidth(($('.gridPanel').width()));
+                $('#gridTable').setGridHeight($(window).height() - 136.5);
+            }, 200);
+            e.stopPropagation();
+        });
+    }
+    //加载表格
+    function GetGrid() {
+        var selectedRowIndex = 0;
+        var $gridTable = $('#gridTable');
+        $gridTable.jqGrid({
+            autowidth: true,
+            height: $(window).height() - 136.5,
+            url: "../../CustomerManage/Customer/GetAllListJson",
+            datatype: "json",
+            colModel: [
+                { label: '客户主键', name: 'CustomerId', index: 'CustomerId', width: 100, align: 'left', sortable: true, hidden: true },
+                { label: '客户编号', name: 'EnCode', index: 'EnCode', width: 100, align: 'left', sortable: true },
+                { label: '客户名称', name: 'FullName', index: 'FullName', width: 300, align: 'left', sortable: true },
+                {
+                    label: '客户级别', name: 'CustLevelId', index: 'CustLevelId', width: 80, align: 'center', sortable: true,
+                    formatter: function (cellvalue, options, rowObject) {
+                        return top.clientdataItem["Client_Level"][cellvalue];
+                    }
+                },
+                {
+                    label: '企业性质', name: 'NatureCode', index: 'NatureCode', width: 80, align: 'center', sortable: true,
+                    formatter: function (cellvalue, options, rowObject) {
+                        return top.clientdataItem["Client_NatureCode"][cellvalue];
+                    }
+                },
+                {
+                    label: '所在城市', name: 'CityId', index: 'CityId', width: 80, align: 'center', sortable: true,
+                    formatter: function (cellvalue, options, rowObject) {
+                        return top.clientAreaData[cellvalue].AreaName;
+                    }
+                },
+                { label: '联系人', name: 'Contact', index: 'Contact', width: 80, align: 'left', sortable: true },
+                { label: '状态', name: 'Contact', index: 'Contact', width: 80, align: 'left', sortable: true },
+
+            ],
+            viewrecords: true,
+            rowNum: 30,
+            rowList: [30, 50, 100],
+            pager: "#gridPager",
+            sortname: 'FullName',
+            sortorder: 'asc',
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            onSelectRow: function () {
+                selectedRowIndex = $('#' + this.id).getGridParam('selrow');
+            },
+            gridComplete: function () {
+                $('#' + this.id).setSelection(selectedRowIndex, false);
+            }
+        });
+        //查询条件
+        $("#queryCondition .dropdown-menu li").click(function () {
+            var text = $(this).find('a').html();
+            var value = $(this).find('a').attr('data-value');
+            $("#queryCondition .dropdown-text").html(text).attr('data-value', value)
+        });
+        //查询事件
+        $("#btn_Search").click(function () {
+            //var queryJson = {
+            //    condition: "FullName",
+            //    keyword: $("#txt_Keyword").val()
+            //}
+            $gridTable.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_Keyword").val() },
+                page: 1
+            }).trigger('reloadGrid');
+        });
+        //查询回车
+        $('#txt_Keyword').bind('keypress', function (event) {
+            if (event.keyCode == "13") {
+                $('#btn_Search').trigger("click");
+            }
+        });
+    }
+
+</script>
+<div class="titlePanel">
+    <div class="title-search">
+        <table>
+            <tr>
+                <td>
+                    客户名称
+                </td>
+                <td style="padding-left: 2px;">
+                    <input id="txt_Keyword" type="text" class="form-control" placeholder="请输入要查询关键字" style="width: 200px;" />
+                </td>
+                <td style="padding-left: 5px;">
+                    <a id="btn_Search" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp;查询</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridTable"></table>
+    <div id="gridPager"></div>
+</div>

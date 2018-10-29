@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/Model
+END
+OperationResultsBase.cs
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/Model/OperationResultsBase.cs
+END
+HttpPostFileRequest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/Model/HttpPostFileRequest.cs
+END
+HttpPostRequest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/Model/HttpPostRequest.cs
+END
+Token.cs
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/Model/Token.cs
+END
+IHttpSend.cs
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/Model/IHttpSend.cs
+END
+ISend.cs
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/Model/ISend.cs
+END
+OperationRequestBase.cs
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/Model/OperationRequestBase.cs
+END
+HttpGetFileRequest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/Model/HttpGetFileRequest.cs
+END
+HttpGetRequest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/Model/HttpGetRequest.cs
+END

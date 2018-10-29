@@ -1,0 +1,263 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService
+END
+CRM.App.UnCallWebService.kickOffResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.kickOffResponse.datasource
+END
+index.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/index.wsdl
+END
+CRM.App.UnCallWebService.restoreCallingResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.restoreCallingResponse.datasource
+END
+CRM.App.UnCallWebService.transferCallResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.transferCallResponse.datasource
+END
+CRM.App.UnCallWebService.delReordingFilesResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.delReordingFilesResponse.datasource
+END
+CRM.App.UnCallWebService.meetMemberResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.meetMemberResponse.datasource
+END
+CRM.App.UnCallWebService.cfPhoneResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.cfPhoneResponse.datasource
+END
+Reference.svcmap
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/Reference.svcmap
+END
+CRM.App.UnCallWebService.SendPhoneResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.SendPhoneResponse.datasource
+END
+CRM.App.UnCallWebService.callQualityResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.callQualityResponse.datasource
+END
+CRM.App.UnCallWebService.getIncomingIVRResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.getIncomingIVRResponse.datasource
+END
+CRM.App.UnCallWebService.getReordingFilesListResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.getReordingFilesListResponse.datasource
+END
+CRM.App.UnCallWebService.OnClickCallMeetResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.OnClickCallMeetResponse.datasource
+END
+CRM.App.UnCallWebService.listenCallResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.listenCallResponse.datasource
+END
+CRM.App.UnCallWebService.addIvrTaskResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.addIvrTaskResponse.datasource
+END
+CRM.App.UnCallWebService.SendPhoneEncryptionResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.SendPhoneEncryptionResponse.datasource
+END
+CRM.App.UnCallWebService.delPhoneResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.delPhoneResponse.datasource
+END
+Reference.cs
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/Reference.cs
+END
+CRM.App.UnCallWebService.updateTaskResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.updateTaskResponse.datasource
+END
+CRM.App.UnCallWebService.addPhoneToTaskResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.addPhoneToTaskResponse.datasource
+END
+CRM.App.UnCallWebService.kickMemberResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.kickMemberResponse.datasource
+END
+configuration.svcinfo
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/configuration.svcinfo
+END
+CRM.App.UnCallWebService.getRecordingResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.getRecordingResponse.datasource
+END
+CRM.App.UnCallWebService.OnClickCallResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.OnClickCallResponse.datasource
+END
+CRM.App.UnCallWebService.keepCallingResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.keepCallingResponse.datasource
+END
+CRM.App.UnCallWebService.addQueueTaskResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.addQueueTaskResponse.datasource
+END
+CRM.App.UnCallWebService.getAllExtenStatusResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.getAllExtenStatusResponse.datasource
+END
+CRM.App.UnCallWebService.hangUpResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.hangUpResponse.datasource
+END
+CRM.App.UnCallWebService.forceInsertResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.forceInsertResponse.datasource
+END
+configuration91.svcinfo
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/configuration91.svcinfo
+END
+CRM.App.UnCallWebService.cfbPhoneResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.cfbPhoneResponse.datasource
+END
+CRM.App.UnCallWebService.DebugResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.DebugResponse.datasource
+END
+CRM.App.UnCallWebService.UncallWorldResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.UncallWorldResponse.datasource
+END
+CRM.App.UnCallWebService.getExtenStatusResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.getExtenStatusResponse.datasource
+END
+CRM.App.UnCallWebService.delTaskResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.delTaskResponse.datasource
+END
+CRM.App.UnCallWebService.setIdleResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.setIdleResponse.datasource
+END
+CRM.App.UnCallWebService.getIncomingQueuesResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.getIncomingQueuesResponse.datasource
+END
+CRM.App.UnCallWebService.getAllTaskResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.getAllTaskResponse.datasource
+END
+CRM.App.UnCallWebService.setBuysResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.setBuysResponse.datasource
+END
+CRM.App.UnCallWebService.getTrunkListResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.getTrunkListResponse.datasource
+END
+CRM.App.UnCallWebService.popEventResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.popEventResponse.datasource
+END
+CRM.App.UnCallWebService.threeCallResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.threeCallResponse.datasource
+END
+CRM.App.UnCallWebService.cfuPhoneResponse.datasource
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/BridgehrKit/!svn/ver/5617/VISS/solution/WebSrc/CRM/SourseCode/App/Service%20References/UnCallWebService/CRM.App.UnCallWebService.cfuPhoneResponse.datasource
+END

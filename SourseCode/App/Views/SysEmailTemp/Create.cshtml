@@ -1,0 +1,93 @@
+﻿@model CRM.DAL.SysEmailTemp
+
+@{
+    Layout = "~/Views/Shared/Create.cshtml";
+}
+@using Common
+@using Models
+
+@section CurentPlace {
+
+    创建
+
+}
+@section CurentPlaceJS {
+    var oEditor = CKEDITOR.instances.Content.getData();
+    if(oEditor==null||oEditor=='')
+    {
+    alert('内容不能为空');
+    return false;
+    }
+    $("#Content").val(oEditor);
+
+}
+<fieldset>
+    <legend>
+        <input class="a2 f2" type="submit" value="创建" />
+        <input class="a2 f2" type="button" onclick="BackList('SysEmailTemp')" value="返回" />
+    </legend>
+    <div class="bigdiv">
+
+        <div class="editor-label">
+            <span>*</span>@Html.LabelFor(model => model.Mail_name)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Mail_name)
+            @Html.ValidationMessageFor(model => model.Mail_name)
+        </div> <div class="editor-label">
+            @Html.LabelFor(model => model.IsDefault)：
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonListFor(model => model.IsDefault, Models.SysFieldModels.GetSysField("SysEmailTemp", "IsDefault"), true)
+        </div>
+        <div class="editor-label">
+            <span>*</span>   @Html.LabelFor(model => model.Subject)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Subject)
+            @Html.ValidationMessageFor(model => model.Subject)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Reply_email)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Reply_email)
+            @Html.ValidationMessageFor(model => model.Reply_email)
+        </div>
+
+        <br style="clear: both;" />
+
+
+        <div class="editor-label">
+            <span>*</span> @Html.LabelFor(model => model.Content)：
+
+        </div>
+        <div class="editor-ckeditor">
+            <span style=" color: #999;"> 限1500个字符 可内嵌如下动态信息：</span>
+            <br />
+            <a id="Link2" href="javascript:ecode('{{用户名}}')">↓用户名</a> &nbsp;&nbsp;&nbsp;&nbsp; <a id="Link2" href="javascript:ecode('{{密码}}')">↓密码</a>
+            <textarea id="Content" rows="10" name="Content" class="ckeditor"></textarea>
+            
+        </div>
+        <br style="clear: both;" />
+
+    </div>
+</fieldset>
+
+
+
+<script type="text/javascript">
+    function ecode(text) {
+
+        var oEditor = CKEDITOR.instances.Content;
+        var oldContent = oEditor.getData(); //内容
+        if (oEditor.mode == 'wysiwyg') {
+            oEditor.insertText(text);
+
+        }
+
+    }
+    
+</script>
+
+

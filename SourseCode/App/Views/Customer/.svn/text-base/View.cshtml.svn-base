@@ -1,0 +1,175 @@
+﻿@model CRM.DAL.TB_Customer
+@using Common
+@using Models
+
+@{
+    Layout = "~/Views/Shared/Details.cshtml";
+}
+
+@section CurentPlace {
+    详细
+}
+@using (Html.BeginForm())
+{
+    <div class="bigdiv">
+
+        <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+            <tr>
+                <td class="td-label">@Html.LabelFor(model => model.CustomerName)：</td>
+                <td class="td-field">
+                    @Html.DisplayFor(model => model.CustomerName)
+
+                </td>
+                <td class="td-label">
+                    @Html.LabelFor(model => model.CompanyNatureCode)：
+                </td>
+                <td class="td-field"> 
+                    @Html.DropDownListFor(model => model.CompanyNatureCode, Models.SysFieldModels.GetSysFieldByParentID("1506121504159700965a90aed8b10"), new { @disabled = "disabled" })
+                </td>
+                <td rowspan="6" align="center" style="">
+                    <!--营业执照-->
+                    <div style="float:initial; width:196px;height:184px;">
+                        <img id="showPic" src="~/Images/noPic.jpg" width="149" height="175" />
+                        <div style="float:left">
+                            <div id="uploader-demo">
+                                <!--用来存放item-->
+                                <div id="fileList" style="display:none;" class="uploader-list"></div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="td-label">@Html.LabelFor(model => model.CompanyName)：</td>
+                <td class="td-field">
+                    @Html.DisplayFor(m => m.CompanyName, new { @readOnly = "true", Class = "text-box single-line", style = "background-color: rgba(226, 226, 226, 1);" })
+
+                </td>
+                <td class="td-label">                    
+                    @Html.LabelFor(model => model.SysPersonID)：
+                </td>
+                <td class="td-field">
+                    <div id="checkSysPersonID">
+                        @if (Model != null)
+                        {
+                            if (null != Model.SysPersonID)
+                            {
+                                <table id="@Model.SysPersonID"
+                                       class="deleteStyle">
+                                    <tr>
+                                        <td>
+                                            @*<img alt="删除" title="点击删除" style=" cursor:pointer;" onclick="deleteTable('@Model.SysPersonID','SysPersonID');" src="../../../Images/deleteimge.png" />*@
+                                        </td>
+                                        <td>
+                                            @Model.SysPerson.MyName
+                                        </td>
+                                    </tr>
+                                </table>
+                            }
+                        }
+                    </div>
+                    @Html.HiddenFor(model => model.SysPersonID)
+                </td>
+            </tr>
+            <tr>
+
+                <td class="td-label">@Html.LabelFor(model => model.EstablishDate)：</td>
+                <td class="td-field">
+                    @Html.DisplayFor(model => model.EstablishDate)
+                </td>
+                <td class="td-label">@Html.LabelFor(model => model.HomePage)：</td>
+                <td class="td-field">
+                    @Html.DisplayFor(model => model.HomePage)
+                </td>
+            </tr>
+            <tr>
+                <td class="td-label">@Html.LabelFor(model => model.VocationName)：</td>
+                <td class="td-field">
+                    @Html.HiddenFor(model => model.VocationCode)
+                    @Html.DisplayFor(model => model.VocationName)
+                </td>
+                <td class="td-label">@Html.LabelFor(model => model.CustomerLevel)：</td>
+                <td class="td-field">
+                @Html.DropDownListFor(model => model.CustomerLevel, Models.SysFieldModels.GetSysFieldByParentID("1506121613241983616c78e696559"), new { @disabled = "disabled" })</td>
+            </tr>
+            <tr>
+
+                <td class="td-label">@Html.LabelFor(model => model.ProvinceCode)：</td>
+                <td class="td-field">
+                    @Html.HiddenFor(model => model.ProvinceCode)
+                    @Html.DisplayFor(model => model.ProvinceName)
+
+                </td>
+                <td class="td-label">@Html.LabelFor(model => model.CityCode)：</td>
+                <td class="td-field">
+                    @Html.HiddenFor(model => model.CityCode)
+                    @Html.DisplayFor(model => model.CityName)
+                </td>
+            </tr>
+            <tr>
+                <td class="td-label">@Html.LabelFor(model => model.DistrictCode)：</td>
+                <td class="td-field">
+                    @Html.HiddenFor(model => model.DistrictCode)
+                    @Html.DisplayFor(model => model.DistrictName)
+                </td>
+                <td class="td-label">@Html.LabelFor(model => model.AddressDetails)：</td>
+                <td class="td-field">
+                    @Html.DisplayFor(model => model.AddressDetails)
+                </td>
+            </tr>
+            <tr>
+                <td class="td-label">@Html.LabelFor(model => model.ContactPerson)：</td>
+                <td class="td-field">
+                    @Html.DisplayFor(model => model.ContactPerson) 
+                </td>
+                <td class="td-label">@Html.LabelFor(model => model.ContactPhone)：</td>
+                <td class="td-field">
+                    @Html.DisplayFor(model => model.ContactPhone) 
+                </td>
+            </tr>
+            <tr>
+
+                <td class="td-label">@Html.LabelFor(model => model.IsRegister)：</td>
+                <td class="td-field">
+                    @if ((bool)Model.IsRegister)
+                    {
+                        @Html.Raw("是");
+                    }
+                    else
+                    {
+                        @Html.Raw("否")
+                    }
+
+                </td>
+                <td class="td-label">@Html.LabelFor(model => model.IsCertification)：</td>
+                <td class="td-field">
+                    @if ((bool)Model.IsCertification)
+                    {
+                        @Html.Raw("是");
+                    }
+                    else
+                    {
+                        @Html.Raw("否")
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td class="td-label">@Html.LabelFor(model => model.Comments)：</td>
+                <td class="textarea-box" colspan="3">
+                    @Html.TextAreaFor(model => model.Comments, new { @readonly = true,style="width:517px" })
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align:center; padding-top:16px;">
+                    <a class="easyui-linkbutton" iconcls="icon-cancel" onclick="parent.$('.easyui-dialog').window('close');">
+                        关闭
+                    </a>
+                </td>
+
+            </tr>
+        </table>
+
+        <br style="clear: both;" />
+    </div>
+}
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />

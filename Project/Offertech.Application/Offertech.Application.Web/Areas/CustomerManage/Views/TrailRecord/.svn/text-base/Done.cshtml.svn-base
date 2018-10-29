@@ -1,0 +1,239 @@
+﻿@{
+    ViewBag.Title = "跟进记录页面";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<link href="~/Content/styles/font-awesome.full.min.css" rel="stylesheet" />
+<link href="~/Content/styles/colorbox.css" rel="stylesheet" />
+<script src="~/Content/scripts/bootstrap/jquery.colorbox-min.js"></script>
+<script src="~/Content/scripts/plugins/uploadify/ajaxfileupload.js"></script>
+<link href="~/Content/styles/learun-ckbox-radio.css" rel="stylesheet" />
+<style>
+    .app-logo {
+        position: relative;
+        padding: 4px 12px;
+        overflow: hidden;
+        color: #1E88C7;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+    }
+
+        .app-logo input {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .app-logo:hover {
+            text-decoration: none;
+        }
+</style>
+<script>
+    var keyValue = request('keyValue');//跟进记录Id
+    var objectId = request('objectId');//相关Id
+    //var objectName = request('objectName');//相关名称
+    var objectSort = request('objectSort');//对象分类（1-商机、2-客户）
+
+    $(function () {
+        initControl();
+        initFrmCotent();
+    });
+    //初始化控件
+    function initControl() {
+        //联系人
+        $("#Contact").ComboBox({
+            url: "../../CustomerManage/Customer/GetContactJson",
+            param: { customerId: objectId },
+            id: "contact",
+            text: "contact",
+            description: "==请选择==",
+            height: "200px"
+        });
+        //销售阶段
+        $("#SaleStageId").ComboBox({
+            url: "../../SystemManage/DataItemDetail/GetDataItemListJson",
+            param: { EnCode: "Client_SaleStage" },
+            id: "ItemDetailId",
+            text: "ItemName",
+            description: "==请选择==",
+            height: "200px"
+        });
+
+        //上传文件初始化
+        uploadify();
+
+
+        //获取表单
+        if (!!keyValue) {
+            $.SetForm({
+                url: "../../CustomerManage/TrailRecord/GetFormJson",
+                param: { keyValue: keyValue },
+                success: function (data) {
+                    $("#form1").SetWebControls(data);
+                    $("#Contact").ComboBoxSetValue(data.Contact);
+                    $("#SaleStageId").ComboBoxSetValue(data.SaleStageId);
+                    $("#StartTime").val(formatDate(data.StartTime, "yyyy-MM-dd hh:mm"));
+                    $("#EndTime").val(formatDate(data.EndTime, "yyyy-MM-dd hh:mm"));
+                    $("input[name='FollowUpMode'][value='" + data.FollowUpMode + "']").attr("checked")
+                }
+            })
+        }
+    }
+    function initFrmCotent() {
+        var ckName = "ServiceType";
+        $.ajax({
+            url: "../../SystemManage/DataItemDetail/GetDataItemListJson",
+            data: { EnCode: "Client_ProductInfo" },
+            type: "get",
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                var rowdata = '';
+                $.each(data, function (i, item) {
+                    if (item.ItemCode == "Bridge") {
+                        rowdata += '<div class="ckbox ckbox-color_a">';
+                        rowdata += '<input id="' + item.ItemDetailId + '" data-value="' + item.ItemName + '" name="' + ckName + '" value="' + item.ItemDetailId + '" type="checkbox"><label for="' + item.ItemDetailId + '">' + item.ItemName + '</label>';
+                        rowdata += '</div>';
+                    }
+                });
+                $('#tdServiceType').html(rowdata);
+            }
+        });
+    }
+
+    //上传文件
+    function uploadify() {
+
+        $(".app-item-add").on("change", "input[type='file']", function () {
+            var filename = $(this).val();
+            $("#originalTargetFileName").val(filename);
+            var f = document.getElementById('uploadFile').files[0]
+            var src = window.URL.createObjectURL(f);
+            //上传应用图标
+            $.ajaxFileUpload({
+                url: "/CustomerManage/TrailRecord/UploadFile",
+                secureuri: false,
+                fileElementId: 'uploadFile',
+                dataType: 'json',
+                success: function (data, status) {
+                    dialogMsg(data.message, 1);
+                    if (data.type == 1) {//上传成功
+                        $("#uploadfilelist").append('<li><input name="FileIds" type="hidden" value="' + data.FilePath + '" /><a href="' + top.ImgServerUrl + data.FilePath + '" data-rel="colorbox"><img src="' + top.ImgServerUrl + data.FilePath + '"></a></li>');
+                    }
+
+                },
+                error: function (data, status, e) {
+                }
+            });
+        });
+    }
+    //保存表单
+    function AcceptClick() {
+        if (!$('#form1').Validform()) {
+            return false;
+        }
+        var postData = $("#form1").GetWebControls("");
+        var FileIds = "";
+        $('input[name = FileIds]').each(function () {
+            FileIds += $(this).val() + ";";
+        });
+        postData["FilesPath"] = FileIds;
+
+        var _FollowUpMode = $('input[name = FollowUpMode]:checked').val();
+        delete postData["FollowUpMode1"];
+        delete postData["FollowUpMode2"];
+        delete postData["FollowUpMode3"];
+        postData["FollowUpMode"] = _FollowUpMode;
+        postData["TrailType"] = 2;
+        postData["ObjectSort"] = objectSort;
+        postData["SaleStageName"] = $("#SaleStageId").attr('data-text');
+
+        //推荐方案
+        var _ServiceType = "";
+        $("input[type='checkbox'][name='ServiceType']").each(function () {
+            var id = $(this).attr('id');
+            delete postData[id];
+            if ($("#" + id).is(":checked")) {;
+                _ServiceType += $("#" + id).attr("data-value") + ",";
+            }
+        });
+        postData["Description"] = _ServiceType;
+
+        $.SaveForm({
+            url: "../../CustomerManage/TrailRecord/UpdateForm?keyValue=" + keyValue,
+            param: postData,
+            loading: "正在保存数据...",
+            close: false,
+            success: function () {
+                $.currentIframe().reloadGrid();
+                dialogClose();
+            }
+        })
+    }
+</script>
+<div style="margin-top: 20px; margin-right: 30px;">
+    <table class="form">
+        <tr>
+            <th class="formTitle">跟进方式<font face="宋体">*</font></th>
+            <td class="formValue" colspan="3">
+                <div class="rdio rdio-color_a"><input name="FollowUpMode" id="FollowUpMode1" value="1" type="radio" checked="checked" /><label for="FollowUpMode1">电话</label></div>
+                <div class="rdio rdio-color_b"><input name="FollowUpMode" id="FollowUpMode2" value="2" type="radio" /><label for="FollowUpMode2">拜访</label></div>
+                <div class="rdio rdio-color_e"><input name="FollowUpMode" id="FollowUpMode3" value="3" type="radio" /><label for="FollowUpMode3">邮件</label></div>
+            </td>
+        </tr>
+        <tr>
+            <th class="formTitle">联系人<font face="宋体">*</font></th>
+            <td class="formValue">
+                <div id="Contact" type="select" class="ui-select" isvalid="yes" checkexpession="NotNull">
+                </div>
+            </td>
+            <th class="formTitle">销售阶段<font face="宋体">*</font></th>
+            <td class="formValue">
+                <div id="SaleStageId" type="select" class="ui-select" isvalid="yes" checkexpession="NotNull"></div>
+            </td>
+        </tr>
+        <tr id="trServiceType">
+            <th class="formTitle">推荐方案</th>
+            <td class="formValue" colspan="3" id="tdServiceType"></td>
+        </tr>
+        <tr>
+            <th class="formTitle">开始时间<font face="宋体">*</font></th>
+            <td class="formValue">
+                <input id="StartTime" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm'})" value="@DateTime.Now.AddHours(-1).ToString("yyyy-MM-dd HH:mm")" />
+            </td>
+            <th class="formTitle">结束时间<font face="宋体">*</font></th>
+            <td class="formValue">
+                <input id="EndTime" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm")" />
+            </td>
+        </tr>
+        <tr>
+            <th class="formTitle">跟进内容<font face="宋体">*</font></th>
+            <td class="formValue" colspan="3">
+                <textarea id="TrackContent" maxlength="200" placeholder="活动记录内容" class="form-control" isvalid="yes" checkexpession="NotNull" style="height: 60px; border-radius: 5px;"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th class="formTitle">上传图片</th>
+            <td class="formValue" colspan="2">
+                <input id="FilesPath" type="hidden" />
+                <div style="padding-right:0">
+                    <ul id="uploadfilelist" class="ace-thumbnails"></ul>
+                    <ul class="ace-thumbnails">
+                        <li class="app-item-add" title="添加应用">
+                            <a class="app-logo">
+                                <input id="uploadFile" name="uploadFile" type="file" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </td>
+            <td class="formValue" style="text-align: right;">
+                <a id="btn_Search" class="btn btn-success" onclick="AcceptClick()"><i class="fa fa-paper-plane"></i>&nbsp;保存内容</a>
+            </td>
+        </tr>
+    </table>
+</div>

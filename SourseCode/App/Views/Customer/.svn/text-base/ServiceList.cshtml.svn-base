@@ -1,0 +1,53 @@
+﻿@using Common
+@using Models
+@{
+    ViewBag.Title = "客服的客户信息 - 薪酬管理";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/Customer/ServiceList.js"></script>
+<div id="divQuery">
+    <div class="easyui-panel" title="查询栏" iconcls="icon-search" collapsible="true" data-options="collapsed:false" style="height:auto;width:auto">
+        <table id="ttSearch" class="record" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <th style="width:120px; text-align:right; padding-right:10px;height:26px">
+                        客户名称:
+                    </th>
+                    <td>
+                        <input type='text' id='CustomerName' name="CustomerName" />
+                        <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="margin-left:30px">
+                            查 询
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<br style="clear: both;" />
+<table id="customerDatagrid" class="easyui-datagrid" title="数据列表" style="width:auto;height:250px"
+       data-options="idField: 'CustomerID',singleSelect:true,collapsible:true,url:'../Customer/GetServiceList',method:'post',pagination:true,rownumbers: true">
+    <thead>
+        <tr>
+            <th data-options="field:'ck',width:80,checkbox:true">全选</th>
+            <th data-options="field:'CustomerName',width:230">客户名称</th>
+            <th data-options="field:'OwnershipPerson',width:100">归属人</th>
+            <th data-options="field:'ProvinceName',width:130, formatter: function (value, rec) {
+                    var str = value;
+                    if (rec.CityName != '') {
+                        str += ' - ' + rec.CityName;
+                    }
+                    if (rec.DistrictName != '' && rec.DistrictName != null && rec.DistrictName != undefined) {
+                        str += ' - '+ rec.DistrictName;
+                    }
+                    return str;
+                }">地区</th>
+        </tr>
+    </thead>
+</table>
+
+
+

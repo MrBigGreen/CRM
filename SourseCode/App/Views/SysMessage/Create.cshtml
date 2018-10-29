@@ -1,0 +1,83 @@
+﻿@model CRM.DAL.SysMessage
+
+@{
+    Layout = "~/Views/Shared/Create.cshtml";
+}
+@using Common
+@using Models
+ 
+@section CurentPlace {
+ 
+      创建  
+ 
+ }
+    <fieldset>
+        <legend>
+            <input class="a2 f2" type="submit" value="创建" />
+            <input class="a2 f2" type="button" onclick="BackList('SysMessage')" value="返回" />
+        </legend>
+        <div class="bigdiv">
+            
+            <br style="clear: both;" />
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Content)：
+            </div>
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.Content) 
+                @Html.ValidationMessageFor(model => model.Content) 
+            </div>
+        <div class="editor-label">
+            <a class="anUnderLine" onclick="showModalOnly('SysMessageTempId','../../SysMessageTemp');">
+                @Html.LabelFor(model => model.SysMessageTempId) 
+            </a>：
+        </div>
+        <div class="editor-field">
+            <div id="checkSysMessageTempId">            
+            </div>
+            @Html.HiddenFor(model => model.SysMessageTempId)
+        </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MessageType)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.MessageType)
+                @Html.ValidationMessageFor(model => model.MessageType)
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Remark)：
+            </div>
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.Remark) 
+                @Html.ValidationMessageFor(model => model.Remark) 
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.State)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.State)
+                @Html.ValidationMessageFor(model => model.State)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ReadTime)：
+            </div>
+            <div class="editor-field">
+                @Html.TextBox("ReadTime", ((Model != null && Model.ReadTime != null) ? Model.ReadTime.ToString().AsDateTime().ToString("yyyy-MM-dd") : ""), new { style = "width: 244px;", @class="easyui-datebox" })
+                @Html.ValidationMessageFor(model => model.ReadTime)
+            </div>
+        </div>
+    </fieldset>
+ 
+
+    
+    <script type="text/javascript">
+
+        $(function () {
+            
+
+        });
+              
+
+    </script>
+
+

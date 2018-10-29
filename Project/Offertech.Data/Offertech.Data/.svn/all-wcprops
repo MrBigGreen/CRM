@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data
+END
+DatabaseCommon.cs
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data/DatabaseCommon.cs
+END
+IDatabase.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data/IDatabase.cs
+END
+packages.config
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data/packages.config
+END
+DbHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data/DbHelper.cs
+END
+Offertech.Data.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Data/Offertech.Data/Offertech.Data.csproj
+END

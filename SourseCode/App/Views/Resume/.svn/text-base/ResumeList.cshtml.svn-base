@@ -1,0 +1,481 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class=" ie11" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link id="easyuiTheme" href="/Res/easyui/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+
+    <title></title>
+    @*@Styles.Render("~/Content/css")
+
+        @Scripts.Render("~/bundles/easyui")*@
+    <link href="/Res/easyui/themes/icon.css" rel="stylesheet" />
+    <link href="/Content/StyleSheet.css" rel="stylesheet" />
+
+    <script src="/Scripts/jquery-1.7.1.js"></script>
+
+    <script src="/Scripts/jquery.validate.min.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/Res/easyui/jquery.easyui.min.js"></script>
+    <script src="/Scripts/jquery.cookie.js"></script>
+    <script src="/Scripts/JScriptCommon.js"></script>
+    <script src="/Res/easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script src="/Res/My97DatePicker/WdatePicker.js"></script>
+
+
+    <link href="~/Content/css/common.css" rel="stylesheet" />
+    <link href="~/Content/css/Style.css" rel="stylesheet" />
+
+
+</head>
+<body>
+    <div class="wrap">
+
+        <div class="post-jobs-info">
+            <div class="wrap_right">
+                <div class="jobs-resume-search jobs-list-mar24">
+                    <form id="searchForm" action="/CMResumeManage/ResumeSearch" method="post">
+                        <table width="100%" class="table-resume-search" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td>关键字搜索</td>
+                                    <td>
+                                        <input name="key" id="key" class="jobs-list-txt fl" style="border-radius: 0px; border: 1px solid rgb(116, 181, 242); border-image: none; width: 265px; height: 32px; color: rgb(0, 0, 0); line-height: 32px; padding-left: 5px; margin-right: 0px;" type="text" />
+                                        <a class="jobs-list-link fl" onclick="Search()" href="#">搜索</a>
+
+                                    </td>
+                                    <td width="82" align="right" valign="middle" colspan="2">行业类别</td>
+                                    <td align="left" valign="middle">
+                                        <input name="industry_type_btn" class="search_type_btn" id="industry_type_btn" style="min-width: 185px;" type="text" value="请选择行业类别" />
+                                        <input name="vocationType" id="vocationType" type="hidden" value="" />
+                                        <input name="vocationTypeF" id="vocationTypeF" type="hidden" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="82" valign="middle">期望城市</td>
+                                    <td width="378" valign="middle">
+                                        <input name="city_type_btn" class="search_type_btn" id="city_type_btn" style="min-width: 185px;" type="text" value="请选择工作地点" />
+                                        <input name="workAddress" id="workAddress" type="hidden" />
+                                        <input name="workAddressF" id="workAddressF" type="hidden" />
+                                    </td>
+                                    <td align="right" valign="middle" colspan="2">职位类别</td>
+                                    <td align="left" valign="middle">
+                                        <input name="job_type_btn" class="search_type_btn" id="job_type_btn" style="min-width: 185px;" type="text" value="请选择职位类别" />
+                                        <input name="jobType" id="jobType" type="hidden" value="" />
+                                        <input name="jobTypeF" id="jobTypeF" type="hidden" value="" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="selectarea">
+                            <div class="myselect">
+                                <dl id="sex">
+                                    <dt>性别：</dt>
+                                    <dd class="selectgreen select-all selected" data-value="0" data-role="sex"><a href="javascript:;">不限</a></dd>
+                                    <dd data-value="1" data-role="sex"><a href="javascript:;">男</a></dd>
+                                    <dd data-value="2" data-role="sex"><a href="javascript:;">女</a></dd>
+                                </dl>
+                                <dl id="we">
+                                    <dt>工作年限：</dt>
+                                    <dd class="selectgreen select-all selected" data-value="0" data-role="we"><a href="javascript:;">不限</a></dd>
+                                    <dd data-value="1" data-role="we"><a href="javascript:;">在读学生</a></dd>
+                                    <dd data-value="2" data-role="we"><a href="javascript:;">应届毕业生</a></dd>
+                                    <dd data-value="3" data-role="we"><a href="javascript:;">1年以上</a></dd>
+                                    <dd data-value="4" data-role="we"><a href="javascript:;">2年以上</a></dd>
+                                    <dd data-value="5" data-role="we"><a href="javascript:;">3年以上</a></dd>
+                                    <dd data-value="6" data-role="we"><a href="javascript:;">5年以上</a></dd>
+                                    <dd data-value="7" data-role="we"><a href="javascript:;">8年以上</a></dd>
+                                    <dd data-value="8" data-role="we"><a href="javascript:;">10年以上</a></dd>
+                                </dl>
+                                <a id="morecontent" style="background: none; top: 12px; color: rgb(255, 102, 0); font-size: 12px; margin-right: 15px; float: right; position: relative; z-index: 999; cursor: pointer;">更多查询条件∨</a>
+                                <dl id="ec">
+                                    <dt>学历：</dt>
+                                    <dd class="selectgreen select-all selected" data-value="0" data-role="ec"><a href="javascript:;">不限</a></dd>
+                                    <dd data-value="1" data-role="ec"><a href="javascript:;">初中</a></dd>
+                                    <dd data-value="2" data-role="ec"><a href="javascript:;">高中</a></dd>
+                                    <dd data-value="3" data-role="ec"><a href="javascript:;">中专</a></dd>
+                                    <dd data-value="4" data-role="ec"><a href="javascript:;">大专</a></dd>
+                                    <dd data-value="5" data-role="ec"><a href="javascript:;">本科</a></dd>
+                                    <dd data-value="6" data-role="ec"><a href="javascript:;">硕士研究生</a></dd>
+                                    <dd data-value="7" data-role="ec"><a href="javascript:;">博士研究生</a></dd>
+                                    <dd data-value="9" data-role="ec"><a href="javascript:;">MBA</a></dd>
+                                    <dd data-value="9" data-role="ec"><a href="javascript:;">EMBA</a></dd>
+                                </dl>
+                                <dl class="hidcontent" id="vcr">
+                                    <dt>视频：</dt>
+                                    <dd class="selectgreen select-all selected" data-value="0" data-role="vcr"><a href="javascript:;">不限</a></dd>
+                                    <dd data-value="1" data-role="vcr"><a href="javascript:;">有</a></dd>
+                                    <dd data-value="-1" data-role="vcr"><a href="javascript:;">无</a></dd>
+                                </dl>
+                                <dl class="hidcontent" id="sc" style="display: none;">
+                                    <dt>岗位适合：</dt>
+                                    <dd class="selectgreen select-all selected" data-value="0" data-role="sc"><a href="javascript:;">不限</a></dd>
+                                    <dd data-value="1" data-role="sc"><a href="javascript:;">适合</a></dd>
+                                    <dd data-value="-1" data-role="sc"><a href="javascript:;">不适合</a></dd>
+                                </dl>
+                                <dl class="hidcontent" id="pd">
+                                    <dt>更新时间：</dt>
+                                    <dd class="selectgreen select-all selected" data-value="0" data-role="pd"><a href="javascript:;">不限</a></dd>
+                                    <dd data-value="3" data-role="pd"><a href="javascript:;">最近三天</a></dd>
+                                    <dd data-value="7" data-role="pd"><a href="javascript:;">最近一周</a></dd>
+                                    <dd data-value="21" data-role="pd"><a href="javascript:;">最近三周</a></dd>
+                                    <dd data-value="30" data-role="pd"><a href="javascript:;">最近一月</a></dd>
+                                </dl>
+                                <dl class="hidcontent" id="js">
+                                    <dt>工作状态：</dt>
+                                    <dd class="selectgreen select-all selected" data-value="0" data-role="js"><a href="javascript:;">不限</a></dd>
+                                    <dd data-value="1" data-role="js"><a href="javascript:;">离职</a></dd>
+                                    <dd data-value="2" data-role="js"><a href="javascript:;">在职观望</a></dd>
+                                    <dd data-value="3" data-role="js"><a href="javascript:;">不找工作</a></dd>
+                                    <dd data-value="4" data-role="js"><a href="javascript:;">应届生</a></dd>
+                                    <dd data-value="5" data-role="js"><a href="javascript:;">在读可兼职</a></dd>
+                                </dl>
+                                <div class="select-result">
+                                    <dl>
+                                        <dt>已选条件：</dt>
+                                        <dd class="select-no">暂时没有选择过滤条件</dd>
+                                        <dd class="clearall" style="display: none;">清除所选条件</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                        <input name="GenderCode" id="GenderCode" type="hidden" value="" />
+                        <input name="WorkYearCode" id="WorkYearCode" type="hidden" value="" />
+                        <input name="EducationCode" id="EducationCode" type="hidden" value="" />
+                        <input name="IsVCR" id="IsVCR" type="hidden" value="" />
+                        <input name="IsMatch" id="IsMatch" type="hidden" value="" />
+                        <input name="UpdatedTimeCode" id="UpdatedTimeCode" type="hidden" value="" />
+                        <input name="JobStatusCode" id="JobStatusCode" type="hidden" value="" />
+                    </form>
+                </div>
+                <table id="flexigridData"></table>
+            </div>
+
+        </div>
+
+    </div>
+    @*通用弹出层*@
+    <div id="myDialog" class="easyui-dialog" iconcls="icon-search" style="width:980px; height: 550px;
+      padding: 5px; overflow: auto; " closed="true">
+        <iframe frameborder="0" width="100%" height="100%"></iframe>
+    </div>
+    @*通用弹出层*@
+    <script src="~/Scripts/jquery.bpopup-0.7.0.min.js"></script>
+    <script src="~/Scripts/type-bpopup_fuc.js"></script>
+    <script type="text/javascript" language="javascript">
+        $(function () {
+            $(".window-mask").live("click", function () {
+                $("#myDialog").dialog("close");
+
+            });
+
+            $('#flexigridData').datagrid({
+                title: '简历列表', //列表的标题
+                iconCls: 'icon-site',
+                width: '100%',
+                height: 'auto',
+                striped: true,
+                collapsible: true,
+                url: '/Resume/GetResumeData', //获取数据的url
+                idField: 'ResumeID',
+                sortName: 'LastUpdatedTime',
+                sortOrder: 'desc',
+                columns: [[
+                     { field: 'ck', title: '全选', checkbox: true, width: 80 },
+                    {
+                        field: 'DisplayName', title: '姓名', width: 90,
+                        formatter: function (value, row, index) {
+                            var html = "<a id=" + row.ResumeID
+                                + " href='/Resume/PreviewResume?ResumeID=" + row.ResumeID + "' target='_blank'>" + value + "</a>";
+                            return html;
+                        }
+                    },
+                    { field: 'UserId', title: '用户ID', width: 90, hidden: true },
+
+                    //, { field: 'Mobile', title: '电话', width: 143 }
+                    //, { field: 'Email', title: '邮箱', width: 187 }
+                     {
+                         field: 'Gender', title: '性别', width: 60
+                         //, formatter: function (value, rec) {
+                         //    if (value == 1) {
+                         //        return "男"
+                         //    }
+                         //    else if (value == 2) {
+                         //        return "女";
+                         //    }
+                         //    else {
+                         //        return "保密";
+                         //    }
+                         //}
+                     }
+                    , { field: 'Education', title: '学历', width: 90 }
+                    , { field: 'WorkYear', title: '工作年限', width: 90 }
+                    , { field: 'JobAddress', title: '意向地', width: 90 }
+                    , {
+                        field: 'LastUpdatedTime', title: '更新日期', width: 187, formatter: function (value, rec) {
+                            if (value) {
+                                return datetimeConvert(value, "yyyy-MM-dd hh:mm:ss");
+                            }
+                        }
+                    }
+                    , { field: 'JobIndustry', title: '行业', width: 187 }
+                    , { field: 'JobPost', title: '职位', width: 187 }
+                ]],
+                onDblClickRow: function (rowIndex, rowData, rowIndex) {
+                    //双击行 备注简历信息
+                    $('#myDialog').find("iframe").attr("src", "/Resume/Remark?ResumeID=" + rowData.UserId);
+                    $('#myDialog').dialog({
+                        title: rowData.ResumeName + "--简历备注",
+                        // href: "/Resume/Remark?ResumeID=" + rowData.ResumeID,
+                        width: 530,
+                        height: 600,
+                        closed: false,
+                        cache: false,
+                        resizable: true,
+                        modal: true,
+                        top: 0,
+                        left: $(document.body).width() - 560,
+                    });
+
+                },
+                pagination: true,
+                rownumbers: true
+
+            });
+            //添加选择按钮
+            $('#flexigridData').datagrid("addToolbarItem", [{ "text": "加入本地", "iconCls": "icon-ok", handler: function () { flexiSelect(); } }]);
+        });
+
+        //“选择”按钮，在其他（与此页面有关联）的页面中，此页面以弹出框的形式出现，选择页面中的数据
+        function flexiSelect() {
+
+            var rows = $('#flexigridData').datagrid('getSelections');
+            if (rows.length == 0) {
+                $.messager.alert('操作提示', '请选择数据!', 'warning');
+                return false;
+            }
+
+            var arr = [];
+            for (var i = 0; i < rows.length; i++) {
+                arr.push(rows[i].ResumeID);
+            }
+            arr.push("^");
+            var parm = "ResumeIDs=" + arr.join(";");
+            $.ajax({
+                type: "POST",
+                url: "../Resume/AddTalentLool/",
+                data: parm,
+                async: false,
+                success: function (data) {
+                    if (data.Flag > 0) {
+                        $.messager.alert('错误', '添加成功！', "error");
+                    }
+                    else {
+                        $.messager.alert('错误', '添加失败,' + data.Msg, "error");
+                    }
+                }
+
+            });
+
+            //主键列和显示列之间用 ^ 分割   每一项用 , 分割
+            if (arr.length > 0) {//一条数据和多于一条
+                returnParent(arr.join("&")); //每一项用 & 分割
+            }
+        }
+
+        //“查询”按钮，弹出查询框
+        function flexiQuery() {
+
+            //将查询条件按照分隔符拼接成字符串
+            var search = "";
+            $('#divQuery').find(":text,:selected,select,textarea,:hidden,:checked,:password").each(function () {
+                if (this.id)
+                    search = search + this.id + "&" + this.value + "^";
+                else
+                    search = search + this.name + "&" + this.value + "^";
+            });
+            //执行查询
+            $('#flexigridData').datagrid('load', { search: search });
+        };
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            if (window.location.href.indexOf("?") > 0) {
+                var path = window.location.href.split("?")[1];
+                var pathlist = path.split('&');
+                if (pathlist.length > 0) {
+                    $(".select-no").hide();
+                    $(".clearall").show();
+                    for (var i = 0; i < pathlist.length; i++) {
+                        var selectmodel = pathlist[i].split('=');
+                        if (selectmodel[1] != '' && selectmodel[1] != '0') {
+                            setselect(selectmodel[0], selectmodel[1]);
+
+                        }
+                    }
+                }
+            }
+
+
+            $("#industry_type_btn").TypeShow("multiple", 36, "industry", $("#industry_type_btn").val()); //单选“single”，多选“multiple”,第二个参数为允许显示的字符个数,第三个参数代表弹框类型
+            $("#job_type_btn").TypeShow("multiple", 36, "post", $("#job_type_btn").val());//单选“single”，多选“multiple”,第二个参数为允许显示的字符个数
+            $("#city_type_btn").TypeShow("single", 30, "city", $("#city_type_btn").val());//单选“single”，多选“multiple”,第二个参数为允许显示的字符个数
+            //条件选择
+            $(".myselect").children("dl").children("dd").each(function () {
+                $(this).click(function () {
+                    $(this).addClass("selected").siblings().removeClass("selected");
+                    if ($(this).hasClass("select-all")) {
+                        $("#al_" + $(this).attr("data-role")).remove();
+                    } else {
+                        var copyThis = $(this).clone();
+                        if ($("#al_" + $(this).attr("data-role")).length > 0) {
+                            $("#al_" + $(this).attr("data-role") + " a").html($(this).text());
+                        } else {
+                            $(".select-result dt").after(copyThis.attr("id", "al_" + $(this).attr("data-role")));
+                            $("#" + $(this).attr("data-role")).hide();
+                        }
+                    }
+                    $(".clearall").css("display", "block");
+                    GoSearch($(this).attr("data-role"), $(this).attr("data-value"));
+
+                });
+            });
+            $(".select-result dl dd").live("click", function () {
+                $("#" + $(this).attr("id").replace("al_", "") + " .select-all").addClass("selected").siblings().removeClass("selected");
+                $("#" + $(this).attr("id").replace("al_", "")).show();
+                $(this).remove();
+                GoSearch($(this).attr("id").replace("al_", ""), "0");
+                if ($(".select-result .selected").length == 0) {
+                    $(".clearall").css("display", "none");
+                    $(".select-no").css("display", "block");
+                }
+            });
+            $(".clearall").click(function () {
+                $(".select-result dl dd").not(".select-no,.clearall").each(function () {
+                    if ($(this).attr("id") != undefined) {
+                        $("#" + $(this).attr("id").replace("al_", "") + " .select-all").addClass("selected").siblings().removeClass("selected");
+                        $("#" + $(this).attr("id").replace("al_", "")).show();
+                        $(this).remove();
+                        $(".select-no").show();
+                        $(".clearall").hide();
+                    }
+                });
+                GoSearch("", "0");
+            });
+            $(".myselect dd").live("click", function () {
+                if ($(".select-result dd").length > 1) {
+                    $(".select-no").hide();
+                    if ($(".select-result .selected").length == 0) {
+                        $(".clearall").css("display", "none");
+                        $(".select-no").css("display", "block");
+                    }
+                    //$(".clearall").show();
+                } else {
+                    $(".select-no").show();
+                    //$(".clearall").hide();
+                }
+            });
+            $("#morecontent").toggle(function () {
+                //设置选中的不出现
+                $(".hidcontent").each(function () {
+                    if ($("#al_" + $(this).attr("id")).length > 0) {
+                        $(this).hide();
+                    } else {
+                        if ($(this).attr("id") == "sc") {
+                            if ($("#pagecate").val() == "ReceiveResume") {
+                                $(this).show();
+                            } else {
+                                $(this).hide();
+                            }
+                        } else {
+                            $(this).show();
+                        }
+                    }
+                });
+                $("#morecontent").text("收起条件∧");
+            }, function () {
+                $("#morecontent").text("更多查询条件∨");
+                $(".hidcontent").hide();
+            });
+        });
+
+        //设置选中
+        function setselect(type, value) {
+            $(".select-no").hide();
+            var copyThis = $($("#" + type).children("dd")[value]).clone();
+            if ($("#al_" + copyThis.attr("data-role")).length > 0) {
+                $("#al_" + copyThis.attr("data-role") + " a").html($(this).text());
+            } else {
+                $(".select-result dl").append(copyThis.attr("id", "al_" + copyThis.attr("data-role")).addClass("selected"));
+            }
+            $("#" + type).hide();
+        }
+
+        function GoSearch(type, value) {
+            if (type == "sex") {
+                $("#GenderCode").val(value);
+            } else if (type == "we") {
+                $("#WorkYearCode").val(value);
+            } else if (type == "ec") {
+                $("#EducationCode").val(value);
+            } else if (type == "vcr") {
+                $("#IsVCR").val(value);
+            } else if (type == "sc") {
+                $("#IsMatch").val(value);
+            } else if (type == "pd") {
+                $("#UpdatedTimeCode").val(value);
+            } else if (type == "js") {
+                $("#JobStatusCode").val(value);
+            } else {
+                $("#GenderCode").val(value);
+                $("#WorkYearCode").val(value);
+                $("#EducationCode").val(value);
+                $("#IsVCR").val(value);
+                $("#IsMatch").val(value);
+                $("#UpdatedTimeCode").val(value);
+                $("#JobStatusCode").val(value);
+            }
+            //将查询条件按照分隔符拼接成字符串
+            Search();
+        }
+
+        function Search() {
+            //将查询条件按照分隔符拼接成字符串
+            var search = "";
+            if ($("#key").val() != "") {
+                search += "key&" + $("#key").val() + "^";
+            }
+            if ($("#vocationType").val() != "") {
+                search += "vocationType&" + $("#vocationType").val() + "^";
+            }
+            if ($("#jobType").val() != "") {
+                search += "jobType&" + $("#jobType").val() + "^";
+            }
+            if ($("#workAddress").val() != "") {
+                search += "workAddress&" + $("#workAddress").val() + "^";
+            }
+            if ($("#GenderCode").val() != "") {
+                search += "GenderCode&" + $("#GenderCode").val() + "^";
+            }
+            if ($("#WorkYearCode").val() != "") {
+                search += "WorkYearCode&" + $("#WorkYearCode").val() + "^";
+            }
+            if ($("#EducationCode").val() != "") {
+                search += "EducationCode&" + $("#EducationCode").val() + "^";
+            }
+            if ($("#IsVCR").val() != "") {
+                search += "IsVCR&" + $("#IsVCR").val() + "^";
+            }
+            if ($("#UpdatedTimeCode").val() != "") {
+                search += "UpdatedTimeCode&" + $("#UpdatedTimeCode").val() + "^";
+            }
+            if ($("#JobStatusCode").val() != "") {
+                search += "JobStatusCode&" + $("#JobStatusCode").val() + "^";
+            }
+
+            //执行查询
+            $('#flexigridData').datagrid('load', { search: search });
+        }
+    </script>
+</body>
+
+</html>

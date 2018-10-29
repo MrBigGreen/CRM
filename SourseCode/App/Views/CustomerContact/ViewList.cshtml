@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "联系人管理";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+
+<input type="hidden" id="CustomerID" name="CustomerID" value="@ViewBag.CustomerID" />
+<table id="flexigridData"></table>
+<div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+    
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+       onclick="closeWindow();">取消</a>
+</div>
+ 
+<script type="text/javascript">$.getScript("/Scripts/CustomerContact/ViewList.js");</script>

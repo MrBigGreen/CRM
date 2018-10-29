@@ -1,0 +1,113 @@
+﻿@using Common
+@using Models
+@model IList<CRM.DAL.CustomerFollowModel>
+@{
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+
+<style>
+    .editor-field {
+        width: 181px;
+        height: 24px;
+        float: left;
+        display: inline;
+    }
+
+    .editor-label {
+        width: 100px;
+        height: 24px;
+        float: right;
+        text-align: right;
+        line-height: 24px;
+        display: inline;
+    }
+</style>
+<div class="bigdiv" style="margin-left:10px;width:96%; height :100%">
+    <div class="easyui-panel" title="历史跟进反馈"></div>
+    <div style="height:auto">
+        @{
+            if (Model != null && Model.Count > 0)
+            {
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    <table>
+                        <tr>
+                            <td align="left" style="width:122px;"><label style="font-weight:bolder">@Model[i].MyName</label>  跟进日期：</td>
+                            <td style="width:133px;">
+                                <input type="text" readonly="readonly" class="text-box single-line" style="background-color:#ccc;width:123px" value="@Model[i].FollowUpDate" />
+                            </td>
+                            <td align="left" style="width:62px;">联系人：</td>
+                            <td style="width:73px;">
+                                <input type="text" readonly="readonly" class="text-box single-line" style="background-color:#ccc;width:60px" value="@Model[i].ContactName" />
+                            </td>
+                            <td align="left" style="width:62px;">对方级别：</td>
+                            <td style="width:133px;">
+                                <input type="text" readonly="readonly" class="text-box single-line" style="background-color:#ccc;width:123px" value="@Model[i].CustomerLevel" />
+                            </td>
+                            <td align="left" style="width:62px;">客户进程：</td>
+                            <td style="width:163px;">
+                                <input type="text" readonly="readonly" class="text-box single-line" style="background-color:#ccc;width:153px" value="@Model[i].CustomerFunnel" />
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="easyui-panel" style="margin-bottom:20px;">
+                        <div class="easyui-layout" data-options="fit:true" style="width: auto;min-height: 30px; ">
+                            <div style="width: auto;  max-height:160px;min-height:62px; overflow-y: auto;">
+                                @if (Model[i].ContactState == 2)
+                                {
+                                    <div style="padding:5px">
+                                        未联系上
+                                    </div>
+                                }
+                                else
+                                {
+                                    if (i == 0)
+                                    {
+                                        <input id="hidCustomerFollowID" name="hidCustomerFollowID" value="@Model[i].CustomerFollowID" type="hidden" />
+                                        <textarea id="Remark" name="Remark" style=" width: 650px; height: 100px; resize: none; padding: 10px;" maxlength="800">@Model[i].Remark</textarea>
+                                        <a class="easyui-linkbutton" id="submit" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+                                           onclick="javascript: UpdateFollowBack();">修改</a>
+                                    }
+                                    else
+                                    {
+                                        <div style="padding:5px">
+                                            @Html.Raw(Model[i].Remark)
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+        }
+    </div>
+</div>
+<script type="text/javascript">
+    function UpdateFollowBack() {
+        $.messager.confirm('提示', '您确定修改反馈内容吗?', function (r) {
+            if (r) {
+                $.ajax({
+                    url: "/CustomerFollow/GetUpdateFollowBack",
+                    type: "POST",
+                    data: { CustomerFollowID: $("#hidCustomerFollowID").val(), Remark: $("#Remark").val() },
+                    success: function (data) {
+                        if (data.Result == 1) {
+                            //刷新整个表格
+                            $.messager.alert('操作提示', '修改成功。', 'info');
+                        }
+                        else {
+                            $.messager.alert('操作提示', '修改失败，' + data.Msg, 'info');
+                        }
+                    },
+                    error: function () {
+                        $.messager.alert('操作提示', '修改失败，网络异常！', 'info');
+                    }
+                });
+            }
+        });
+    }
+</script>

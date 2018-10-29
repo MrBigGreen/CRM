@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    <section name="unity" type="Microsoft.Practices.Unity.Configuration.UnityConfigurationSection,Microsoft.Practices.Unity.Configuration" />
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+  </configSections>
+  <unity>
+    <typeAliases>
+      <typeAlias alias="IDatabase" type="Offertech.Data.IDatabase,Offertech.Data" />
+      <typeAlias alias="EFDatabase" type="Offertech.Data.EF.Database,Offertech.Data.EF" />
+      <typeAlias alias="IDbContext" type="Offertech.Data.EF.IDbContext,Offertech.Data.EF" />
+      <typeAlias alias="MySql" type="Offertech.Data.EF.MySqlDbContext,Offertech.Data.EF" />
+      <typeAlias alias="SqlServer" type="Offertech.Data.EF.SqlServerDbContext,Offertech.Data.EF" />
+    </typeAliases>
+    <containers>
+      <container name="DBcontainer">
+        <type type="IDatabase" mapTo="EFDatabase">
+        </type>
+        <!-- 默认数据库软件类型：SqlServer,MySql,Oracle,Access,SQLite-->
+        <type type="IDbContext" mapTo="SqlServer">
+        </type>
+        <type type="IDbContext" mapTo="SqlServer" name="SqlServer">
+        </type>
+        <type type="IDbContext" mapTo="MySql" name="MySql">
+        </type>
+      </container>
+    </containers>
+  </unity>
+  <connectionStrings>
+    <add name="BaseDb" connectionString="Server=192.168.1.17;Initial Catalog=Offertech_DB;User ID=sa;Password=Password0" providerName="System.Data.SqlClient" />
+    <add name="AccountDb" connectionString="Server=192.168.1.17;Initial Catalog=Learun_account;User ID=sa;Password=Password0" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <appSettings>
+    <!-- 是否启动运行日志-->
+    <add key="IsLog" value="true" />
+    <!-- 即使通信服务地址 -->
+    <add key="SignalRURI" value="http://localhost:8081" />
+    <add key="ClientSettingsProvider.ServiceUri" value="" />
+  </appSettings>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+  </startup>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.1.0" newVersion="3.0.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin.Security" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.1.0" newVersion="2.1.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-10.0.0.0" newVersion="10.0.0.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="v11.0" />
+      </parameters>
+    </defaultConnectionFactory>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+  <system.web>
+    <membership defaultProvider="ClientAuthenticationMembershipProvider">
+      <providers>
+        <add name="ClientAuthenticationMembershipProvider" type="System.Web.ClientServices.Providers.ClientFormsAuthenticationMembershipProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" />
+      </providers>
+    </membership>
+    <roleManager defaultProvider="ClientRoleProvider" enabled="true">
+      <providers>
+        <add name="ClientRoleProvider" type="System.Web.ClientServices.Providers.ClientRoleProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" cacheTimeout="86400" />
+      </providers>
+    </roleManager>
+  </system.web>
+</configuration>

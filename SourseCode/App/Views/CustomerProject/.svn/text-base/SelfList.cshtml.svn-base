@@ -1,0 +1,53 @@
+﻿@using Common
+@using Models
+
+@{
+    ViewBag.Title = "我的评估列表";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+<div class="easyui-panel" id="panelShow" title="查询栏" iconcls="icon-search" collapsible="true" style="height:auto;width:auto">
+    <div id="ttSearch" data-options="region:'center'" style="padding:2px">
+        <table class="record" border="0" cellpadding="0" cellspacing="0" style="width:100%">
+            <tr>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    客户名称 :
+                </th>
+                <td>
+                    <input type='text' id='CustomerName' name="CustomerName" />
+                </td>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    职位名称 :
+                </th>
+                <td>
+                    <input type='text' id='ProjectName' name="ProjectName" />
+                </td>
+            </tr>
+            <tr>  
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    评估结果 :
+                </th>
+                <td colspan="3">
+                    @*<select class="easyui-combobox" id="EvaluationResult" name="EvaluationResult" style="width:120px;" ></select>*@
+                    <input id="EvaluationResult" name="EvaluationResult" style="width:150px" value="--请选择--" />
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center">
+                    <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                        查 询
+                    </a>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<br style="clear: both;" />
+<table id="flexigridData"></table>
+ 
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script type="text/javascript" language="javascript">$.getScript("/Scripts/CustomerProject/Base.js")</script>
+<script type="text/javascript" language="javascript">$.getScript("/Scripts/CustomerProject/SelfList.js")</script>
+

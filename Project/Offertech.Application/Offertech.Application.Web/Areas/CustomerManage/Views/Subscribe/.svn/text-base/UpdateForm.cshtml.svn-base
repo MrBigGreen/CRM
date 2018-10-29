@@ -1,0 +1,114 @@
+@{;
+    ViewBag.Title = "表单页面";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<script src="~/Content/scripts/bootstrap/jquery.colorbox-min.js"></script>
+<link href="~/Content/styles/learun-ckbox-radio.css" rel="stylesheet" />
+<script>
+    var keyValue = request('keyValue');
+    var customerId = request('customerId');
+    $(function () {
+        if (!!customerId) {
+            $("#CustomerId").val(customerId);
+        }
+
+        initControl();
+    });
+    //初始化控件
+    function initControl() {
+        //获取表单
+        if (!!keyValue) {
+            $.SetForm({
+                url: "../../CustomerManage/Subscribe/GetFormJson",
+                param: { keyValue: keyValue },
+                success: function (data) {
+                    $("#form1").SetWebControls(data);
+                    $("#SubscribeDate").val(formatDate(data.SubscribeDate, "yyyy-MM-dd"));
+                    $('input[name = Intention][value=' + data.Intention + ']').attr('checked', 'true');
+                    $('input[name = IsCome][value=' + data.IsCome + ']').attr('checked', 'true'); s
+
+                }
+            })
+        }
+    }
+    //保存表单;
+    function AcceptClick() {
+        var _Intention = $('input[name = Intention]:checked').val();
+        if (_Intention == undefined) {
+            dialogTop("请选择意向", "error");
+            return false;
+        }
+
+        var _IsCome = $('input[name = IsCome]:checked').val();
+        if (_IsCome == undefined) {
+            dialogTop("请选择意向", "error");
+            return false;
+        }
+        if (!$('#form1').Validform()) {
+            return false;
+        }
+        var postData = $("#form1").GetWebControls(keyValue);
+
+        delete postData["Intention1"];
+        delete postData["Intention2"];
+        postData["Intention"] = _Intention;
+
+        delete postData["IsCome1"];
+        delete postData["IsCome2"];
+        postData["IsCome"] = _IsCome;
+
+        $.SaveForm({
+            url: "../../CustomerManage/Subscribe/SaveForm?keyValue=" + keyValue,
+            param: postData,
+            loading: "正在保存数据...",
+            success: function () {
+                $.currentIframe().$("#gridTable").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+<div style="margin-top: 20px; margin-right: 30px;">
+    <input type="hidden" id="CustomerId" value="" />
+    <table class="form">
+        <tr>
+            <td class="formTitle">主题</td>
+            <td class="formValue" colspan="3">
+                <input id="SubscribeName" type="text" class="form-control" placeholder="请输入主题" isvalid="yes" checkexpession="NotNull" />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">时间</td>
+            <td class="formValue" colspan="3">
+                <input id="SubscribeDate" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', qsEnabled: false, isShowClear: false, isShowOK: false, isShowToday: false })" isvalid="yes" checkexpession="Date" />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">地点</td>
+            <td class="formValue" colspan="3">
+                <input id="Address" type="text" class="form-control" isvalid="yes" checkexpession="NotNull" />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">意向</td>
+            <td class="formValue" colspan="3">
+                <div class="rdio rdio-color_a"><input name="Intention" id="Intention1" value="1" type="radio" /><label for="Intention1">来</label></div>
+                <div class="rdio rdio-color_b"><input name="Intention" id="Intention2" value="2" type="radio" /><label for="Intention2">不来</label></div>
+                <div class="rdio rdio-color_f"><input name="Intention" id="Intention3" value="3" type="radio" /><label for="Intention3">待定</label></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">实际情况</td>
+            <td class="formValue" colspan="3">
+                <div class="rdio rdio-color_a"><input name="IsCome" id="IsCome1" value="1" type="radio" /><label for="IsCome1">履约</label></div>
+                <div class="rdio rdio-color_b"><input name="IsCome" id="IsCome2" value="2" type="radio" /><label for="IsCome2">失约</label></div>
+                
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">备注</td>
+            <td class="formValue" colspan="3">
+                <textarea id="Description" class="form-control" style="height: 70px;"></textarea>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/PublicInfoManage
+END
+EmailContentEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/PublicInfoManage/EmailContentEntity.cs
+END
+SmsLogEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/PublicInfoManage/SmsLogEntity.cs
+END
+EmailCategoryEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/PublicInfoManage/EmailCategoryEntity.cs
+END
+EmailAddresseeEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/PublicInfoManage/EmailAddresseeEntity.cs
+END
+FileFolderEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/PublicInfoManage/FileFolderEntity.cs
+END
+FileInfoEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/PublicInfoManage/FileInfoEntity.cs
+END
+NewsEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/PublicInfoManage/NewsEntity.cs
+END
+ScheduleEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/PublicInfoManage/ScheduleEntity.cs
+END

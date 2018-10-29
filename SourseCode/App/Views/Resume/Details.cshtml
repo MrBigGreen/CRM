@@ -1,0 +1,639 @@
+﻿@using Common
+@using Models
+@model Offer.DAL.TB_ImportResume
+
+
+<div>
+    <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; table-layout: fixed">
+        <tr>
+            <td align="left" valign="top" style="width:700px ">
+                <fieldset>
+                    <legend>
+                        <label>基本信息</label>
+                    </legend>
+                    <div class="divStyle tdClass">
+                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%; line-height:31px; ">
+                            <tr>
+                                <td align="right">@Html.LabelFor(model => model.ResumeName)：</td>
+                                <td align="left">
+                                    @Html.TextBoxFor(mode => mode.ResumeName)
+                                    @Html.ValidationMessageFor(model => model.ResumeName)
+                                </td>
+                                <td align="right">性别：</td>
+                                <td align="left">
+                                    @Html.DropDownListFor(model => model.GenderCode, new List<SelectListItem>() { new SelectListItem() { Text = "男", Value = "1" }, new SelectListItem() { Text = "女", Value = "2" } }, "请选择")
+                                </td>
+                                <td align="right">出生日期：</td>
+                                <td align="left">
+                                    @Html.TextBoxFor(model => model.BOB, "{0:yyyy-MM-dd}")
+                                </td>
+
+
+                            </tr>
+                            <tr>
+                                <td align="right">工作年限：</td>
+                                <td align="left">@Html.DropDownListFor(model => model.WorkYearCode, Models.CodeFieldModels.GetCodeField("WorkExperenceCategory"), "请选择", new { style = "width:130px;" })</td>
+                                <td align="right">婚姻状况：</td>
+                                <td align="left">
+                                    @Html.DropDownListFor(model => model.MarrigeCode, Models.CodeFieldModels.GetCodeField("MarrayCategory"), "请选择")
+                                </td>
+
+                                <td align="right">政治面貌：</td>
+                                <td align="left">
+                                    @Html.DropDownListFor(model => model.PoliticalCode, Models.CodeFieldModels.GetCodeField("PoliticalCategory"), "请选择")
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td align="right">联系方式：</td>
+                                <td align="left">
+                                    @Html.TextBoxFor(model => model.PhoneNumber)
+                                    @Html.ValidationMessageFor(model => model.PhoneNumber)
+                                </td>
+                                <td align="right">QQ：</td>
+                                <td align="left">@Html.TextBoxFor(model => model.QQID)</td>
+                                <td align="right">邮箱：</td>
+                                <td align="left">@Html.TextBoxFor(model => model.EmailAddress, new { style = " width:190px;" })</td>
+
+                            </tr>
+                            <tr>
+                                <td align="right">毕业院校：</td>
+                                <td align="left">@Html.TextBoxFor(model => model.Graduated)</td>
+                                <td align="right">学历：</td>
+                                <td align="left">
+                                    @Html.DropDownListFor(model => model.EducationCode, Models.CodeFieldModels.GetCodeField("EducationCategory"), "请选择")
+                                </td>
+                                <td align="right">专业：</td>
+                                <td align="left">
+                                    @{
+                                        if (Model != null)
+                                        {
+                                            <input type="button" class="select_btn" id="btnSpecialtyCode" name="btnSpecialtyCode" value="@Model.SpecialtyName" />
+                                        }
+                                        else
+                                        {
+                                            <input type="button" class="select_btn" id="btnSpecialtyCode" name="btnSpecialtyCode" value="请选择专业" />
+                                        }
+                                    }
+                                    @Html.HiddenFor(model => model.SpecialtyCode)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">证件号码：</td>
+                                <td align="left">@Html.TextBoxFor(model => model.CredentialsCode)</td>
+                                <td align="right">现居住地：</td>
+                                <td align="left" colspan="4">@Html.TextBoxFor(model => model.AddressText)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </fieldset>
+                <fieldset>
+                    <legend>
+                        <label>求职意向</label>
+                    </legend>
+                    <div class="divStyle tdClass">
+                        <table border="0" style="width: 100%; line-height: 31px;">
+                            <tr>
+                                <td align="right">求职状态：</td>
+                                <td align="left">
+                                    @Html.DropDownListFor(model => model.JobStatusCode, Models.CodeFieldModels.GetCodeField("CurrentJobStatusCategory"), "请选择", new { style = "width:120px;" })
+                                </td>
+                                <td align="right">期望薪资：</td>
+                                <td align="left">
+                                    @Html.DropDownListFor(model => model.JobSalaryCode, Models.CodeFieldModels.GetCodeField("SalaryCategory"), "请选择", new { style = "width:120px;" })
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td align="right">期望行业：</td>
+                                <td align="left">
+                                    @{
+                                        string jobIndustryName = "请选择行业";
+                                        string jobIndustryCode = "";
+                                        if (Model != null && Model.TB_JobIndustry.Count > 0)
+                                        {
+                                            jobIndustryName = string.Join("+", (from c in Model.TB_JobIndustry select new { c.JobIndustryName }.JobIndustryName));
+                                            jobIndustryCode = string.Join(",", (from c in Model.TB_JobIndustry select new { c.JobIndustryCode }.JobIndustryCode));
+                                        }
+                                    }
+                                    <input type="button" class="select_btn" id="btnJobIndustryName" name="btnJobIndustryName" value="@jobIndustryName" />
+                                    <input type="hidden" id="JobIndustryCode" name="JobIndustryCode" value="@jobIndustryCode" />
+                                    <input type="hidden" id="JobIndustryName" name="JobIndustryName" value="@jobIndustryName" />
+
+                                </td>
+
+                                <td align="right">期望职位：</td>
+                                <td align="left">
+                                    @{
+                                        string sJobPostName = "请选择职业";
+                                        string sJobPostCode = "";
+                                        if (Model != null && Model.TB_JobPost.Count > 0)
+                                        {
+                                            sJobPostName = string.Join("+", (from c in Model.TB_JobPost select new { c.JobPostName }.JobPostName));
+                                            sJobPostCode = string.Join(",", (from c in Model.TB_JobPost select new { c.JobPostCode }.JobPostCode));
+                                        }
+
+                                    }
+                                    <input type="button" class="select_btn" id="btnJobPostName" name="btnJobPostName" value="@sJobPostName" />
+                                    <input type="hidden" id="JobPostCode" name="JobPostCode" value="@sJobPostCode" />
+                                    <input type="hidden" id="JobPostName" name="JobPostName" value="@sJobPostName" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td align="right">期望工作地：</td>
+                                <td align="left" colspan="3">
+                                    @{
+                                        string sJobAddressCode = "";
+                                        string sJobAddressName = "请选择工作地";
+                                        if (Model != null && Model.TB_JobAddress.Count > 0)
+                                        {
+                                            sJobAddressName = string.Join("+", (from c in Model.TB_JobAddress select new { c.CityName }.CityName));
+                                            sJobAddressCode = string.Join(",", (from c in Model.TB_JobAddress select new { c.CityCode }.CityCode));
+                                        }
+                                    }
+                                    <input type="button" class="select_btn" id="btnCityName" name="btnCityName" value="@sJobAddressName" />
+                                    <input type="hidden" id="CityCode" name="CityCode" value="@sJobAddressCode" />
+                                    <input type="hidden" id="CityName" name="CityName" value="@sJobAddressName" />
+
+                                </td>
+
+                            </tr>
+
+                        </table>
+                    </div>
+
+                </fieldset>
+                <fieldset>
+                    <legend>
+                        <label>自我评价</label>
+                    </legend>
+                    <div class="divStyle tdClass">
+                        @Html.TextAreaFor(model => model.Selfevaluation, new { style = "width:507px;margin:0px 0px 0px 0px;" })
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>
+                        <label>教育经历</label> <input type="button" value="添加" onclick="getAddEdu()" /> &nbsp;&nbsp;<input type="button" value="删除" onclick="getDelEdu();" />
+                    </legend>
+                    <div class="divStyle tdClass" id="divEdu">
+                        <input type="hidden" id="EduJson" name="EduJson" value="" />
+
+                        <table id="tblEdu" border="0" cellpadding="5" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>学校</th>
+                                    <th> 专业</th>
+                                    <th>学历</th>
+                                    <th>时间</th>
+                                </tr>
+                            </thead>
+                            @{
+                                if (Model != null && Model.TB_Edu != null && Model.TB_Edu.Count > 0)
+                                {
+                                    {
+                                        int index = 0;
+                                        foreach (var item in Model.TB_Edu)
+                                        {
+                                            index++;
+
+
+                                            <tr>
+                                                <td style="text-align:right;vertical-align:top">
+                                                    <input type="checkbox" name="cbEdu" />
+                                                </td>
+                                                <td>@Html.TextBoxFor(edu => item.ShoolName)</td>
+                                                <td>
+                                                    <input type="button" style=" width:160px" class="select_btn" id="btnMajor_@index" name="btnMajor" value="@item.MajorName" />
+
+                                                    <input type="hidden" name="btnMajorCode" value="@item.MajorCode" id="hidMajor_@index">
+
+                                                </td>
+                                                <td>
+                                                    @Html.DropDownListFor(Degree => item.Degree, new SelectList(Models.CodeFieldModels.GetCodeField("EducationCategory"), "value", "Text", item.Degree == null ? string.Empty : item.Degree), "请选择", new { style = "width:80px;" })
+
+                                                </td>
+                                                <td>
+
+                                                    @Html.DropDownListFor(edu => item.FromYear, new SelectList(Enumerable.Range(0, 80).Select(x => new SelectListItem { Value = (DateTime.Now.Year - x).ToString(), Text = (DateTime.Now.Year - x).ToString() }), "Value", "Text", item.FromYear == null ? string.Empty : item.FromYear), "年", new { style = "width:60px", onchange = "selected()" })
+                                                    @Html.DropDownListFor(edu => item.FromMonth, new SelectList(Enumerable.Range(1, 12).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Value", "Text", item.FromMonth == null ? string.Empty : item.FromMonth), "月", new { style = "width:40px", onchange = "selected()" })
+                                                    - <br />
+                                                    @Html.DropDownListFor(edu => item.ToYear, new SelectList(Enumerable.Range(0, 80).Select(x => new SelectListItem { Value = (DateTime.Now.Year - x).ToString(), Text = (DateTime.Now.Year - x).ToString() }), "Value", "Text", item.ToYear == null ? string.Empty : item.ToYear), "年", new { style = "width:60px", onchange = "selected()" })
+                                                    @Html.DropDownListFor(edu => item.ToMonth, new SelectList(Enumerable.Range(1, 12).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Value", "Text", item.ToMonth == null ? string.Empty : item.ToMonth), "月", new { style = "width:40px", onchange = "selected()" })
+                                                    <span class="red"><label id="lblday" style="display: none;">请输入时间</label></span>
+                                                </td>
+
+                                            </tr>
+
+                                        }
+                                    }
+                                }
+
+                            }
+                        </table>
+                    </div>
+
+                </fieldset>
+                <fieldset style="  ">
+                    <legend>
+                        <label>工作经验</label> <input type="button" value="添加" onclick="getAddWorkExp()" /> &nbsp;&nbsp;<input type="button" value="删除" onclick="getDelWorkExp();" />
+                    </legend>
+
+
+                    <div class="divStyle tdClass" style="" id="divWorkExperience">
+                        <input type="hidden" id="WorkExperienceJosn" name="WorkExperienceJosn" value="" />
+                        @{
+                            if (Model != null && Model.TB_WorkExperience != null && Model.TB_WorkExperience.Count > 0)
+                            {
+
+                                foreach (var item in Model.TB_WorkExperience)
+                                {
+                                    <table border="0" cellpadding="0" cellspacing="0" style=" padding-bottom:10px;">
+                                        <tr style="padding-bottom:10px;">
+                                            <td style="text-align:right;vertical-align:top">
+                                                <input type="checkbox" name="workExperience" />
+                                            </td>
+                                            <td align="center" valign="bottom">
+                                                @Html.TextBoxFor(work => item.FromYear, new { style = "width:50px" }) 年
+
+                                                @Html.TextBoxFor(work => item.FromMonth, new { style = "width:30px" }) 月
+                                                -
+                                                @Html.TextBoxFor(work => item.ToYear, new { style = "width:50px;" })年
+                                                @Html.TextBoxFor(work => item.ToMonth, new { style = "width:30px;" })月 &nbsp;&nbsp;
+                                                公司:@Html.TextBoxFor(work => item.CompanyName, new { style = "width:190px" })
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>经历：</td>
+                                            <td align="left" valign="top">
+                                                @Html.TextAreaFor(work => item.WorkDescription, new { style = "width:507px;margin:0px 0px 0px 0px;" })
+                                                @Html.ValidationMessageFor(work => item.WorkDescription)
+                                            </td>
+                                        </tr>
+                                    </table>
+                                }
+                            }
+                        }
+                    </div>
+                </fieldset>
+                <fieldset style="  ">
+                    <legend>
+                        <label>项目经验</label> <input type="button" value="添加" onclick="getAddPrjExp()" /> &nbsp;&nbsp;<input type="button" value="删除" onclick="getDelPrjExp();" />
+                    </legend>
+
+                    <div class="divStyle tdClass" id="divPrjExperience" style="">
+                        <input type="hidden" id="ProjectExperienceJosn" name="ProjectExperienceJosn" value="" />
+                        @{
+                            if (Model != null && Model.TB_ProjectExperience != null && Model.TB_ProjectExperience.Count > 0)
+                            {
+                                foreach (var item in Model.TB_ProjectExperience)
+                                {
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tr style="padding-bottom:10px;">
+                                            <td style="text-align:right;vertical-align:top">
+                                                <input name='prjExperience' type='checkbox'>
+                                            </td>
+                                            <td align="center" valign="bottom">
+                                                @Html.HiddenFor(prj => item.ProjectID)
+                                                @Html.TextBoxFor(prj => item.FromYear, new { style = "width:50px" }) 年
+                                                @Html.TextBoxFor(prj => item.FromMonth, new { style = "width:30px" }) 月
+                                                -
+                                                @Html.TextBoxFor(prj => item.ToYear, new { style = "width:50px;" }) 年
+                                                @Html.TextBoxFor(prj => item.ToMonth, new { style = "width:30px;" }) &nbsp;&nbsp;
+                                                项目名:@Html.TextBoxFor(prj => item.ProjectName, new { style = "width:190px" })
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>项目：</td>
+                                            <td align="left" valign="top">
+                                                @Html.TextAreaFor(prj => item.ProjectDescription, new { style = "width:507px;margin:0px 0px 0px 0px;" })
+                                            </td>
+                                        </tr>
+                                    </table>
+                                }
+                            }
+                        }
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>
+                        <label>其它信息</label>
+                    </legend>
+                    <div class="divStyle tdClass">
+                        @Html.TextAreaFor(model => model.OtherInfo, new { style = "width:507px;margin:0px 0px 0px 0px;" })
+                    </div>
+                </fieldset>
+            </td>
+            <td width="10px" style="background-color: rgba(247, 232, 166, 1)">&nbsp;</td>
+            <td id="tdOldResume" align="left" valign="top" style="width:auto">
+                <fieldset style="width: 100%">
+                    <legend>
+                        <label>原简历</label>
+                    </legend>
+                    <div id="divOldResume" class="divStyle" style=" overflow:auto; height:700px; width:100%;">
+                        @{
+                            string oldResume = "";
+                            if (Model != null)
+                            {
+                                oldResume = Model.OldResume;
+                            }
+                        }
+                        @Html.Raw(oldResume)
+
+                    </div>
+                </fieldset>
+            </td>
+        </tr>
+    </table>
+    <link href="~/Res/PublicCommon.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.watermark.min.js"></script>
+    <script src="~/Scripts/jquery.bpopup-0.7.0.min.js"></script>
+    <script src="~/Scripts/type-bpopup_fuc.js" type="text/javascript"></script>
+    @*<script src="~/Res/My97DatePicker/WdatePicker.js" type="text/javascript"></script>*@
+
+    <script>
+
+        //“选择”按钮，在其他（与此页面有关联）的页面中，此页面以弹出框的形式出现，选择页面中的数据
+        function flexiSelect() {
+
+            var rows = $('#flexigridData').datagrid('getSelections');
+            if (rows.length == 0) {
+                $.messager.alert('操作提示', '请选择数据!', 'warning');
+                return false;
+            }
+
+            var arr = [];
+            for (var i = 0; i < rows.length; i++) {
+                arr.push(rows[i].CompanyInterviewJobID);
+            }
+            arr.push("^");
+            for (var i = 0; i < rows.length; i++) {
+                arr.push(rows[i].JobTitle);
+            }
+            arr.push("^");
+            for (var i = 0; i < rows.length; i++) {
+                arr.push(rows[i].CompanyName);
+            }
+
+            var parm = "strPosition=" + arr.join("$");
+            $.ajax({
+                type: "POST",
+                url: "../PeopleMatch/AddPosition/",
+                data: parm,
+                success: function (msg) {
+                    if (!msg.IsSuccess) {
+                        $.messager.alert('错误', '添加失败！', "error");
+                    }
+                }
+
+            });
+
+
+            //主键列和显示列之间用 ^ 分割   每一项用 , 分割
+            if (arr.length > 0) {//一条数据和多于一条
+                returnParent(arr.join("&")); //每一项用 & 分割
+            }
+        }
+        //教育经历日期判断
+        function selected() {
+            var y = $("#FromYear").val();
+            var m = $("#FromMonth").val();
+
+            var yy = $("#ToYear").val();
+            var mm = $("#ToMonth").val();
+            if (y == "" || m == "" || yy == "" || mm == "") {
+                $("#lblday").show();
+                // return false;
+            }
+            if (y != "" && m != "" && yy != "" && mm != "") {
+                $("#lblday").hide();
+            }
+
+        }
+
+        //*******************************************添加教育经历*******************************************//
+        function getAddEdu() {
+            var fullYear = new Date().getFullYear();
+            var itemYear = "";
+            for (var i = 0; i < 80; i++) {
+                itemYear += "<option value='" + (fullYear - i) + "'>" + (fullYear - i) + "</option>";
+            }
+
+            var $tr = $("#tblEdu tr").eq(-1);
+            if ($tr.size() == 0) {
+                alert("指定的table id或行数不存在！");
+                return;
+            }
+            var sMajor = "Major" + parseInt(100 * Math.random());
+            var tr = "";
+            tr += '<tr><td style="text-align: right; vertical-align: top;">';
+            tr += '<input name="cbEdu" type="checkbox">';
+            tr += '</td><td><input name="item.ShoolName" id="item_ShoolName" type="text" value=""></td><td>';
+
+            tr += '<input name="btnMajor" class="select_btn" id="btn' + sMajor + '" style="width: 160px;" type="button" value="">';
+            tr += '<input name="btnMajorCode" id="hid' + sMajor + '" type="hidden" value=""></td><td>';
+
+            tr += '<select name="item.Degree" id="item_Degree" style="width: 80px;"><option value="">请选择</option>';
+            tr += '<option value="9a0c7537-f79a-47bb-9489-b5d2e87acb8c">初中</option>';
+            tr += '<option value="3d1fd4fe-4dd2-4c7e-82b3-99e067031e27">高中</option>';
+            tr += '<option value="da367906-d55a-43c5-a7a5-a5be9839fc20">中专</option>';
+            tr += '<option value="6df9c398-1521-4938-8b0b-bf4644c0225d">大专</option>';
+            tr += '<option value="e9bc7c4f-eaae-483d-991c-d0613a3ac120">本科</option>';
+            tr += '<option value="07f27c80-4a1b-46ed-b417-4ca4f58710e9">硕士研究生</option>';
+            tr += '<option value="321962c5-9e9d-4cd3-ac86-851ff0b08670">博士研究生</option>';
+            tr += '<option value="0de0b8f7-d99f-4574-aef6-998226bd903d">MBA</option>';
+            tr += '<option value="cbb26e6b-c3bb-4138-8b0b-f79d6e30c7e2">EMBA</option>';
+            tr += '</select></td><td>';
+            tr += '<select name="item.FromYear" id="item_FromYear" style="width: 60px;" onchange="selected()"><option value="">年</option>';
+            //tr+='<option value="2015">2015</option>
+            tr += itemYear;
+            tr += '</select>';
+            tr += '<select name="item.FromMonth" id="item_FromMonth" style="width: 40px;" onchange="selected()"><option value="">月</option>';
+            tr += '<option value="1">1</option>';
+            tr += '<option value="2">2</option>';
+            tr += '<option value="3">3</option>';
+            tr += '<option value="4">4</option>';
+            tr += '<option value="5">5</option>';
+            tr += '<option value="6">6</option>';
+            tr += '<option value="7">7</option>';
+            tr += '<option value="8">8</option>';
+            tr += '<option value="9">9</option>';
+            tr += '<option value="10">10</option>';
+            tr += '<option value="11">11</option>';
+            tr += '<option value="12">12</option>';
+            tr += '</select>- <br>';
+            tr += '<select name="item.ToYear" id="item_ToYear" style="width: 60px;" onchange="selected()"><option value="">年</option>';
+            //tr+='<option value="2015">2015</option>';
+            tr += itemYear;
+            tr += '</select>';
+            tr += '<select name="item.ToMonth" id="item_ToMonth" style="width: 40px;" onchange="selected()"><option value="">月</option>';
+            tr += '<option value="1">1</option>';
+            tr += '<option value="2">2</option>';
+            tr += '<option value="3">3</option>';
+            tr += '<option value="4">4</option>';
+            tr += '<option value="5">5</option>';
+            tr += '<option value="6">6</option>';
+            tr += '<option value="7">7</option>';
+            tr += '<option value="8">8</option>';
+            tr += '<option value="9">9</option>';
+            tr += '<option value="10">10</option>';
+            tr += '<option value="11">11</option>';
+            tr += '<option value="12">12</option>';
+            tr += '</select>';
+            tr += '<span class="red"><label id="lblday" style="display: none;">请输入时间</label></span>';
+            tr += '</td></tr>';
+
+            $tr.after(tr);
+            $("#bpopupDomain").remove();
+            $("#btn" + sMajor).TypeShowByID("btn" + sMajor, "single", 27, "domain", "");
+        }
+        //*******************************************删除选中教育经历*******************************************//
+        function getDelEdu() {
+            $("#tblEdu").find("input[type='checkbox']:checked").each(function () {
+                $(this).parent().parent().remove();
+            });
+        }
+
+
+        //*******************************************添加工作经验*******************************************//
+        function getAddWorkExp() {
+            var table = "";
+            table += " <table style='padding-bottom: 10px;' border='0' cellspacing='0' cellpadding='0'>";
+            table += " <tbody><tr>";
+            table += " <td style='text-align: right; vertical-align: top;'>";
+            table += " <input name='workExperience' type='checkbox'>";
+            table += " </td><td align='center' valign='bottom'>";
+            table += " <input name='item.FromYear'   style='width: 42px;' type='text' value=''> 年";
+            table += " <input name='item.FromMonth'   style='width: 30px;' type='text' value=''> 月-";
+            table += "  <input name='item.ToYear'   style='width: 42px;' type='text' value=''> 年";
+            table += " <input name='item.ToMonth'   style='width: 30px;' type='text' value=''> &nbsp;&nbsp;";
+            table += " 公司:<input name='item.CompanyName'   style='width: 190px;' type='text' value=''>";
+            table += " </td></tr><tr>";
+            table += " <td>经历：</td>";
+            table += " <td align='left' valign='top'>";
+            table += " <textarea name='item.WorkDescription' class='valid' style='margin: 0px; width: 507px;' rows='2' cols='20'>";
+            table += " </textarea></td></tr></tbody></table>";
+            $("#divWorkExperience").append(table);
+        }
+        //*******************************************删除选中工作经验*******************************************//
+        function getDelWorkExp() {
+            $("#divWorkExperience").find("input[type='checkbox']:checked").each(function () {
+                $(this).parent().parent().parent().parent().remove();
+            });
+        }
+
+
+        //*******************************************添加项目经验*******************************************//
+        function getAddPrjExp() {
+            var table = "";
+            table += " <table style='padding-bottom: 10px;' border='0' cellspacing='0' cellpadding='0'>";
+            table += " <tbody><tr>";
+            table += " <td style='text-align: right; vertical-align: top;'>";
+            table += " <input name='prjExperience' type='checkbox'>";
+            table += " </td><td  align='center' valign='bottom'>";
+            table += " <input name='item.FromYear'   style='width: 42px;' type='text' value=''> 年";
+            table += " <input name='item.FromMonth'   style='width: 30px;' type='text' value=''> 月-";
+            table += "  <input name='item.ToYear'   style='width: 42px;' type='text' value=''> 年";
+            table += " <input name='item.ToMonth'   style='width: 30px;' type='text' value=''> &nbsp;&nbsp;";
+            table += " 项目名:<input name='item.ProjectName'   style='width: 190px;' type='text' value=''>";
+            table += " </td></tr><tr>";
+            table += " <td>项目：</td>";
+            table += " <td align='left' valign='top'>";
+            table += " <textarea name='item.ProjectDescription' class='valid' style='margin: 0px; width: 507px;' rows='2' cols='20'>";
+            table += " </textarea></td></tr></tbody></table>";
+            $("#divPrjExperience").append(table);
+        }
+        //*******************************************删除选中项目经验*******************************************//
+        function getDelPrjExp() {
+            $("#divPrjExperience").find("input[type='checkbox']:checked").each(function () {
+                $(this).parent().parent().parent().parent().remove();
+            });
+        }
+
+
+    </script>
+
+
+    <script>
+
+        $(function () {
+
+            //教育经历下专业
+            // $("#Major").TypeShow("single", 27, "domain", $("#Major").val());//单选“single”，多选“multiple”,第二个参数为允许显示的字符个数
+
+            $("#divEdu").find("input[name='btnMajor']").each(function (i) {
+                $("#bpopupDomain").remove();
+                $(this).TypeShowByID("", "single", 27, "domain", $(this).val());
+            });
+
+
+            $('#uType').addClass("bgred");
+            $('#releaseDateID').addClass("bgred");
+
+            $("#btnJobIndustryName").TypeShow("multiple", 27, "industry", $("#btnJobIndustryName").val());//行业
+            //$("#JobIndustryCode").val($('#schosejobindustry').text());
+            //$("#hidJobIndustryF").val($('#chosejobindustry').text());
+
+            $("#btnJobPostName").TypeShow("multiple", 27, "post", $("#btnJobPostName").val());//职业
+            // $("#JobPostCode").val($('#schosejobtype').text());
+            //$("#hidJobPostF").val($('#chosejobtype').text());
+
+            $("#btnCityName").TypeShow("multiple", 27, "city", $("#btnCityName").val());//地址
+            //$("#CityCode").val($('#schosejobaddress').text());
+            //$("#hidJobAddressF").val($('#chosejobaddress').text());
+            //专业
+            $("#bpopupDomain").remove();
+            $("#btnSpecialtyCode").TypeShowByID("", "single", 27, "domain", $("#btnSpecialtyCode").val());//单选“single”，多选“multiple”,第二个参数为允许显示的字符个数
+
+            //$("#hidSpecialty").val($('#schosejobaddress').text());
+            //$("#hidSpecialtyF").val($('#chosejobaddress').text());
+
+
+            //教育经历按钮选择时间
+            //$("#divEdu").find("input").each(function () {
+            //    $(this).click(function () {
+            //        //$(this).parent().children("a").removeClass("bgred");
+            //        //$(this).addClass("bgred");
+            //        //$("#hid_" + $(this).attr("rel")).val($(this).attr("data-value"));
+            //        //专业
+            //        if ($(this).attr("name") == "btnMajor") {
+            //            $("#bpopupDomain").remove();
+            //            //教育经历下专业
+            //            $(this).TypeShow("single", 27, "domain", $(this).val());//单选“single”，多选“multiple”,第二个参数为允许显示的字符个数
+            //        }
+
+
+            //    })
+            //});
+            //$("#btnSpecialtyCode").click(function () {
+            //    $("#bpopupDomain").remove();
+            //    //基本信息--专业
+            //    $(this).TypeShow("single", 27, "domain", $(this).val());//单选“single”，多选“multiple”,第二个参数为允许显示的字符个数
+
+            //})
+
+
+            var parent = window.dialogArguments; //获取父页面
+            if (parent == "undefined" || parent == null) {
+                //    不是在iframe中打开的
+            } else {
+                //隐藏所有的按钮和分隔符
+                $(".l-btn.l-btn-plain").hide();
+                $(".datagrid-btn-separator").hide();
+                //添加选择按钮
+                $('#flexigridData').datagrid("addToolbarItem", [{ "text": "选择", "iconCls": "icon-ok", handler: function () { flexiSelect(); } }]);
+            }
+
+
+
+        });
+
+
+    </script>
+
+</div>

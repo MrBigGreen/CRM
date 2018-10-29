@@ -1,0 +1,59 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_CustomerFollow
+
+@{
+    ViewBag.Title = "客户跟进反馈";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+<div id="divQuery">
+    <div class="easyui-panel" title="查询栏" iconcls="icon-search" collapsible="true" style="width: 99%; height:auto">
+        <table id="ttSearch" class="record" border="0" cellpadding="0" cellspacing="0" style="width: 99%;height:auto ">
+            <tr>
+                <th style="width:120px; text-align:right; padding-right:10px;height:26px">
+                    日期:
+                </th>
+                <td>
+                    <input type="text" id="StartDate" class="easyui-datebox" style="width:200px;padding:0px;" />
+                    <span>到</span>
+                    <input type="text" id="EndDate" class="easyui-datebox" style="width: 200px; padding: 0px;" />
+                </td>
+            </tr>
+            <tr>
+                <th style="width:120px; text-align:right; padding-right:10px;height:26px">
+                    是否联系上:
+                </th>
+                <td>
+                    <label style="margin: 0px 10px 0px 0px;"><input name="ContactState" type="radio" checked="checked" value="">全部</label>
+                    <label style="margin: 0px 10px 0px 0px;"><input name="ContactState" type="radio" value="1">已联系上</label>
+                    <label style="margin: 0px 10px 0px 0px;"><input name="ContactState" type="radio" value="2">未联系上</label>
+
+                </td>
+            </tr>
+            <tr>
+                <th style="width:120px; text-align:right; padding-right:10px;height:26px">
+                    跟进方式:
+                </th>
+                <td>
+                    @Html.DropDownListFor(model => model.FollowUpMode, Models.SysFieldModels.GetSysFieldByParentID("1506251032089851135c18a57f429"), "--请选择--")
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                        查 询
+                    </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" onclick="RemvoeAll()" class="easyui-linkbutton" data-options="iconCls:'icon-clear'">
+                        清 空
+                    </a>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<br style="clear: both;" />
+@Html.HiddenFor(m => m.CustomerID)
+<table id="flexigridData" style="width: 100%;height:auto"></table>
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script type="text/javascript" language="javascript">$.getScript("/Scripts/CustomerFollow/Index.js")</script>

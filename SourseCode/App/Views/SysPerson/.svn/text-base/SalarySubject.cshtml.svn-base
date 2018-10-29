@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<div style="width:99%;height:99%">
+    <input type="hidden" id="SysPersonID" name="SysPersonID" value="@ViewBag.SysPersonID" />
+    <div class="easyui-panel" title="">
+        @MvcHtmlString.Create(ViewBag.SalarySubject)
+    </div>
+
+    <br style="clear: both;" />
+
+
+    <br style="clear: both;" />
+
+    <div style="width:100%;text-align:center;">
+        @*<a href="javascript: void(0);" onclick="getClose()" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">
+            关 闭
+        </a>*@
+        <a href="#" onclick="SaveSalarySubject();" class="easyui-linkbutton" data-options="iconCls:'icon-save'">
+            保 存
+        </a>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    function SaveSalarySubject() {
+        var id = $("#SysPersonID").val();
+        var SubjectIDs = "";
+        $("input[name='SalarySubjectID']:checked").each(function () {
+            SubjectIDs += $(this).val() + ",";
+        });
+
+
+        $.ajax({
+            url: "/SysPerson/SetSalarySubjectSysPerson",
+            type: "POST",
+            data: { id: id, SubjectIDs: SubjectIDs },
+            success: function (data) {
+                if (data.Result == 1) {
+                    $.messager.alert("操作提示", "保存成功", "info", function () {
+                        parent.$('.easyui-window').window('close');
+
+                    });
+                }
+                else {
+                    $.messager.alert('操作提示', '错误：' + data.Msg, 'info');
+                }
+            },
+            error: function () {
+                $.messager.alert('操作提示', '数据异常', 'error');
+            }
+
+        });
+    }
+
+
+    function getClose() {
+        $('.easyui-window').window('close');
+        parent.$('.easyui-window').window('close');
+
+    }
+</script>

@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BridgehrKit/!svn/ver/13149/VISS/solution/WebSrc/CRM/SourseCode/App/Views/CustomerContact
+END
+ViewList.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BridgehrKit/!svn/ver/11298/VISS/solution/WebSrc/CRM/SourseCode/App/Views/CustomerContact/ViewList.cshtml
+END
+Index.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BridgehrKit/!svn/ver/5515/VISS/solution/WebSrc/CRM/SourseCode/App/Views/CustomerContact/Index.cshtml
+END
+ListReadOnly.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BridgehrKit/!svn/ver/12915/VISS/solution/WebSrc/CRM/SourseCode/App/Views/CustomerContact/ListReadOnly.cshtml
+END
+MinList.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/13149/VISS/solution/WebSrc/CRM/SourseCode/App/Views/CustomerContact/MinList.cshtml
+END
+Create.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/13146/VISS/solution/WebSrc/CRM/SourseCode/App/Views/CustomerContact/Create.cshtml
+END
+Details.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/11298/VISS/solution/WebSrc/CRM/SourseCode/App/Views/CustomerContact/Details.cshtml
+END
+Edit.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BridgehrKit/!svn/ver/13146/VISS/solution/WebSrc/CRM/SourseCode/App/Views/CustomerContact/Edit.cshtml
+END

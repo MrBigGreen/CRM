@@ -1,0 +1,66 @@
+﻿@model CRM.DAL.SysMenuSysRoleSysOperation
+
+@{
+    Layout = "~/Views/Shared/Create.cshtml";
+}
+@using Common
+@using Models
+ 
+@section CurentPlace {
+ 
+      创建  
+ 
+ }
+    <fieldset>
+        <legend>
+            <input class="a2 f2" type="submit" value="创建" />
+            <input class="a2 f2" type="button" onclick="BackList('SysMenuSysRoleSysOperation')" value="返回" />
+        </legend>
+        <div class="bigdiv">
+            
+        <div class="editor-label">
+            <a class="anUnderLine" onclick="showModalOnly('SysMenuId','../../SysMenu');">
+                @Html.LabelFor(model => model.SysMenuId) 
+            </a>：
+        </div>
+        <div class="editor-field">
+            <div id="checkSysMenuId">            
+            </div>
+            @Html.HiddenFor(model => model.SysMenuId)
+        </div>
+        <div class="editor-label">
+            <a class="anUnderLine" onclick="showModalOnly('SysOperationId','../../SysOperation');">
+                @Html.LabelFor(model => model.SysOperationId) 
+            </a>：
+        </div>
+        <div class="editor-field">
+            <div id="checkSysOperationId">            
+            </div>
+            @Html.HiddenFor(model => model.SysOperationId)
+        </div>
+        <div class="editor-label">
+            <a class="anUnderLine" onclick="showModalOnly('SysRoleId','../../SysRole');">
+                @Html.LabelFor(model => model.SysRoleId) 
+            </a>：
+        </div>
+        <div class="editor-field">
+            <div id="checkSysRoleId">            
+            </div>
+            @Html.HiddenFor(model => model.SysRoleId)
+        </div>
+        </div>
+    </fieldset>
+ 
+
+    
+    <script type="text/javascript">
+
+        $(function () {
+            
+
+        });
+              
+
+    </script>
+
+

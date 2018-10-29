@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/App_Start
+END
+FilterConfig.cs
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/App_Start/FilterConfig.cs
+END
+WebApiConfig.cs
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/App_Start/WebApiConfig.cs
+END
+BundleConfig.cs
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/App_Start/BundleConfig.cs
+END
+RouteConfig.cs
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/App_Start/RouteConfig.cs
+END

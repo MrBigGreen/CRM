@@ -1,0 +1,537 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>合同管理</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="~/Content/css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/css/app.css" />
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.picker.min.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.poppicker.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.dtpicker.css" />
+    <link rel="stylesheet" href="~/Content/css/multipleViews.css" />
+    <style type="text/css">
+        #bridgecontractlist, #offercontractlist {
+            margin-top: 0
+        }
+
+        #signCompany {
+            white-space: pre-wrap;
+            width: 75%;
+            text-align: right;
+        }
+
+        #customerName {
+            white-space: pre-wrap;
+            width: 75%;
+            text-align: right;
+        }
+
+        .mui-search.mui-active:before {
+            margin-top: -10px;
+        }
+
+        .filter-area {
+            height: 30px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+            .filter-area li {
+                flex: 1;
+                font-size: 14px;
+                height: 30px;
+                background: #fff;
+                text-align: center;
+                border-right: 1px solid #e5e5e5;
+            }
+    </style>
+</head>
+
+<body class="mui-fullscreen customer-contacter">
+    <!--页面主结构开始-->
+    <div id="app" class="mui-views">
+        <div class="mui-view">
+            <div class="mui-navbar">
+            </div>
+            <div class="mui-pages">
+            </div>
+        </div>
+    </div>
+
+    <!--单页面开始-->
+    <div id="setting" class="mui-page">
+        <!--------------------------导航栏区域---------------------->
+        <div class="mui-navbar-inner mui-bar mui-bar-nav">
+            <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+                <span class="mui-icon mui-icon-left-nav"></span>返回
+            </button>
+            <h1 class="mui-center mui-title" id="title">合同管理</h1>
+        </div>
+
+        <div class="mui-page-content">
+            <!--------------------------选择区域---------------------->
+            <div class="selectArea">
+                <div id="segmentedControl" class="mui-segmented-control segment">
+                    <a class="mui-control-item mui-active" id="segmentedItem1" href="#item1">博尔捷合同</a>
+                    <a class="mui-control-item" id="segmentedItem2" href="#item2">欧孚合同</a>
+                </div>
+
+                <img src="/Content/img/add-image.png" id="addContract" class="add mui-hidden" />
+            </div>
+            <div class="search-area">
+                <div class="mui-input-row mui-search">
+                    <input type="search" id="textkey" class="mui-input-clear search-input" placeholder="请输入关键字">
+                </div>
+            </div>
+            <ul class="filter-area">
+                <li id="selServiceType" data-name="服务类型"><span>服务类型</span><span class="mui-icon mui-icon-arrowdown"></span></li>
+                <li id="selSignType" data-name="签约类型"><span>签约类型</span><span class="mui-icon mui-icon-arrowdown"></span></li>
+            </ul>
+            <!----------------------主题内容展示区-------------------->
+            <div class="mui-content">
+                <!----------------------博尔捷合同-------------------->
+                <div id="item1" class="mui-control-content mui-active contacter-list autoheight">
+
+                    <!--博尔捷合同-->
+                    <div class="mui-scroll-wrapper">
+                        <div class="mui-scroll">
+                            <ul class="mui-table-view" id="bridgecontractlist"></ul>
+                        </div>
+                    </div>
+                </div>
+                <!----------------------欧孚合同-------------------->
+                <div id="item2" class="mui-control-content contacter-list autoheight">
+
+                    <!--欧孚合同-->
+
+                    <div class="mui-scroll-wrapper ">
+                        <div class="mui-scroll">
+                            <ul class="mui-table-view" id="offercontractlist"></ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------------------------单页面结束-------------------->
+    <!------------------------子页面展示-------------------------->
+    <!------------- 合同详情  -------------->
+    <div id="contracter_detail" class="mui-page">
+        <div class="mui-navbar-inner mui-bar mui-bar-nav">
+            <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+                <span class="mui-icon mui-icon-left-nav"></span>返回
+            </button>
+            <h1 class="mui-center mui-title">合同详细</h1>
+        </div>
+        <div class="mui-page-content">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll contract-detail">
+                    <ul class="mui-table-view ">
+                        <li class="mui-table-view-cell">
+                            <a>客户<span class="mui-pull-right " id="customerName"></span></a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a>签约公司<span class="mui-pull-right" id="signCompany"></span></a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a>签约类型<span class="mui-pull-right" id="signType"></span></a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a>服务类型<span class="mui-pull-right" id="ServiceType"></span></a>
+                        </li>
+                    </ul>
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">
+                            <a>合同金额<span class="mui-pull-right" id="contractMoney"></span></a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a>付款方式<span class="mui-pull-right" id="paytype"></span></a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a>生效日期<span class="mui-pull-right" id="effectiveDate"></span></a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a>截止日期<span class="mui-pull-right" id="deadline"></span></a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a>备注</a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a><span style="color: #999;" id="demo"></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Content/Scripts/jquery-1.11.1.js"></script>
+    <script src="~/Content/Scripts/mui.min.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.view.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.picker.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.poppicker.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.dtpicker.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/cityData.js"></script>
+
+    <script>
+        var PageSize = 10;
+        var bridgeCurrentpage = 1;
+        var bridgetotalpage = 1;
+        var offerCurrentpage = 1;
+        var offertotalpage = 1;
+
+        //初始化单页view
+        var viewApi = mui('#app').view({
+            defaultPage: '#setting'
+        });
+        //初始化单页的区域滚动
+        mui('.mui-scroll-wrapper').scroll();
+        var view = viewApi.view;
+        // 定义变量，保存合同id
+        var contractId = '';
+
+        // 取读合同详情页面元素
+        var customerText = document.getElementById("customerName");
+        var companyText = document.getElementById("signCompany");
+        var signTypeText = document.getElementById("signType");
+        var serviceTypeText = document.getElementById("ServiceType");
+        var contractMoneyText = document.getElementById("contractMoney");
+        var effectiveDateText = document.getElementById("effectiveDate");
+        var deadlineText = document.getElementById("deadline");
+        var paytype = document.getElementById("paytype");
+        var demo = document.getElementById("demo");
+        var selServiceType = document.getElementById("selServiceType");
+        var selSignType = document.getElementById("selSignType");
+
+        (function ($) {
+            //处理view的后退与webview后退
+            var oldBack = $.back;
+            $.back = function () {
+                if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
+                    viewApi.back();
+                } else { //执行webview后退
+                    location.href = "Home";
+                }
+            };
+
+            //监听页面切换事件方案1,通过view元素监听所有页面切换事件，目前提供pageBeforeShow|pageShow|pageBeforeBack|pageBack四种事件(before事件为动画开始前触发)
+            //第一个参数为事件名称，第二个参数为事件回调，其中e.detail.page为当前页面的html对象
+            view.addEventListener('pageBeforeShow', function (e) {
+                //				console.log(e.detail.page.id + ' beforeShow');
+            });
+            view.addEventListener('pageShow', function (e) {
+                if (e.detail.page.id == "contracter_detail") {
+
+                }
+            });
+            view.addEventListener('pageBeforeBack', function (e) {
+                //				console.log(e.detail.page.id + ' beforeBack');
+                // getcheckbox();
+            });
+            view.addEventListener('pageBack', function (e) {
+                //				console.log(e.detail.page.id + ' back');
+            });
+
+            // 添加点击事件，跳转到合同详情
+
+            $("#bridgecontractlist").on('tap', '.viewDetail', function () {
+                contractId = this.getAttribute('data');
+                LoadContractDetail(contractId);
+
+            });
+            $("#offercontractlist").on('tap', '.viewDetail', function () {
+                contractId = this.getAttribute('data');
+                LoadContractDetail(contractId);
+
+            });
+
+            // 服务类型
+            selServiceType.onclick = function () {
+                showPoppicker(this, "Client_ProductInfo");
+            };
+            // 签约类型
+            selSignType.onclick = function () {
+                showPoppicker(this, [{ text: '新签', value: '1' }, { text: '续签', value: '2' }])
+            }
+
+        })(mui);
+
+        mui.ready(function () {
+            LoadBridgeList();
+            LoadOfferList();
+            $(".autoheight").height((document.body.offsetHeight - 148) + "px");
+        });
+
+
+        //获取博尔捷合同
+        function LoadBridgeList(queryJson) {
+            if (!!queryJson) {
+                param = { rows: 50, page: 1, sidx: "CreateDate", sord: "desc", queryJson: queryJson };
+            } else {
+                param = { rows: 50, page: 1, sidx: "CreateDate", sord: "desc" };
+            }
+            $.ajax({
+                type: "get",
+                url: "GetBridgeDataBySaleJson",
+                data: param,
+                async: false,
+                dataType: "json",
+                contentType: "application/x-www-form-urlencoded",
+                success: function (data) {
+                    var rows = data;
+
+                    $.each(rows,
+                        function (i) {
+                            var row = rows[i];
+                            var li;
+                            li = document.createElement('li');
+
+                            li.className = 'contacter-cell';
+                            var temphtml = "";
+                            temphtml += '<a href="#contracter_detail" class="viewDetail" data=' + row.contractid + ' ><div class="contacter-cell-top">';
+
+                            temphtml += '<img class="contacter-icon" src="/Content/img/company-icon.png"/>';
+                            temphtml += '<span class="contacer-name mui-ellipsis">' + row.customername + '</span>';
+                            temphtml += '<div class="line"></div>';
+                            temphtml += '</div>';
+                            temphtml += '<div class="contacter-cell-middle">';
+                            temphtml += '<p>合同编号：<span>' + row.contractcode + '</span></p>';
+                            temphtml += '<p>合同金额：<span >' + row.contractmoney + '</span></p>';
+                            temphtml += '<p>服务类型：<span>' + row.servicetype + '</span></p>';
+                            temphtml += '<p>合同时间：<span>' + row.effectivedate + '&nbsp到&nbsp' + row.deadline + '</span></p>';
+                            temphtml += '</div>';
+                            temphtml += '<div class="divider"></div></a>';
+                            li.innerHTML = temphtml;
+                            $("#bridgecontractlist").append(li);
+
+                        });
+                },
+                error: function (data) {
+                    mui.toast(data.responseText);
+                }
+            });
+        }
+        //获取欧孚合同
+        function LoadOfferList(queryJson) {
+            if (!!queryJson) {
+                param = { rows: 50, page: 1, sidx: "CreateDate", sord: "desc", queryJson: queryJson };
+            } else {
+                param = { rows: 50, page: 1, sidx: "CreateDate", sord: "desc" };
+            }
+            $.ajax({
+                type: "get",
+                url: "GetOfferDataBySaleJson",
+                data: param,
+                async: false,
+                dataType: "json",
+                contentType: "application/x-www-form-urlencoded",
+                success: function (data) {
+                    var rows = data;
+
+                    $.each(rows,
+                        function (i) {
+                            var row = rows[i];
+                            var li;
+                            li = document.createElement('li');
+
+                            li.className = 'contacter-cell';
+                            var temphtml = "";
+                            temphtml += '<a href="#contracter_detail"  class="viewDetail" data=' + row.contractid + '><div class="contacter-cell-top">';
+                            temphtml += '<img class="contacter-icon" src="/Content/img/company-icon.png"/>';
+                            temphtml += '<span class="contacer-name mui-ellipsis">' + row.customername + '</span>';
+                            temphtml += '<div class="line"></div>';
+                            temphtml += '</div>';
+                            temphtml += '<div class="contacter-cell-middle">';
+                            temphtml += '<p>合同编号：<span>' + row.contractcode + '</span></p>';
+                            temphtml += '<p>合同金额：<span >' + row.contractmoney + '</span></p>';
+                            temphtml += '<p>服务类型：<span>' + row.servicetype + '</span></p>';
+                            temphtml += '<p>合同时间：<span>' + row.effectivedate + '&nbsp到&nbsp' + row.deadline + '</span></p>';
+                            temphtml += '</div>';
+                            temphtml += '<div class="divider"></div></a>';
+                            li.innerHTML = temphtml;
+                            $("#offercontractlist").append(li);
+
+                        });
+                },
+                error: function (data) {
+                    mui.toast(data.responseText);
+                }
+            });
+        }
+
+        //获取合同详情
+        function LoadContractDetail(contract) {
+
+            param = { keyValue: contract }
+            $.ajax({
+                type: "get",
+                url: "GetContractJson",
+                data: param,
+                async: false,
+                dataType: "json",
+                contentType: "application/x-www-form-urlencoded",
+                success: function (data) {
+                    //console.log(data);
+                    customerText.innerHTML = data.CustomerName;
+                    companyText.innerHTML = data.SignSubject;
+                    signTypeText.innerHTML = data.SignType === 1 ? "新签" : "续签";
+                    serviceTypeText.innerHTML = data.ServiceType;
+                    contractMoneyText.innerHTML = data.ContractMoney;
+                    effectiveDateText.innerHTML = data.EffectiveDate;
+                    deadlineText.innerHTML = data.Deadline;
+                    paytype.innerHTML = data.PaymentMethod;
+                    demo.innerHTML = data.Description;
+                },
+                error: function (data) {
+                    mui.toast(data.responseText);
+                }
+            });
+        }
+
+        function showPoppicker(obj, datatype) {
+            if (typeof (datatype) === "string") {
+                $.ajax({
+                    type: "get",
+                    url: "/ClientData/GetDataItemListJson",
+                    data: { EnCode: datatype },
+                    async: false,
+                    dataType: "json",
+                    success: function (data) {
+                        var title = $(obj).data("name");
+                        var picker = new mui.PopPicker({ title: title });
+                        var arrayData = [{ text: '不限', value: '' }];
+                        for (var i = 0; i < data.length; i++) {
+                            arrayData.push({ text: data[i].ItemName, value: data[i].ItemDetailId })
+                        }
+
+                        picker.setData(arrayData);
+                        picker.show(function (items) {
+                            $(obj).find("span:eq(0)").text(items[0].text);
+                            obj.setAttribute("data-value", items[0].value);
+                            LoadData();
+                        });
+                    },
+                    error: function (data) {
+                        mui.toast(data.responseText);
+                    }
+                });
+            } else {
+                var title = $(obj).data("name");
+                var picker = new mui.PopPicker({ title: title });
+                var arrayData = [{ text: '不限', value: '' }];
+                for (var i = 0; i < datatype.length; i++) {
+                    arrayData.push({ text: datatype[i].text, value: datatype[i].value })
+                }
+                picker.setData(arrayData);
+                picker.show(function (items) {
+                    $(obj).find("span:eq(0)").text(items[0].text);
+                    obj.setAttribute("data-value", items[0].value);
+                    LoadData();
+                });
+            }
+        }
+
+        var tapindex = 1;
+        localStorage.setItem("ctype", tapindex);
+        /*------------选项卡响应事件-----------*/
+        var segmentItem1 = document.getElementById("segmentedItem1");
+        var segmentItem2 = document.getElementById("segmentedItem2");
+        var add = document.getElementById("addContract");
+
+        //点击选项卡变换主题
+        segmentItem1.addEventListener("tap", function () {
+            tapindex = 1;
+            localStorage.setItem("ctype", tapindex);
+            LoadData();
+        });
+        segmentItem2.addEventListener("tap", function () {
+            tapindex = 2;
+            localStorage.setItem("ctype", tapindex);
+            LoadData();
+        });
+
+        function LoadData() {
+            //var type = $("#segmentedControl").find("a.mui-active").text();
+            var queryJson = {
+                condition: "customername",
+                keyword: $("#textkey").val(),
+                ServiceType: $("#selServiceType").attr("data-value") != undefined && $("#selServiceType").attr("data-value") != "" ? $("#selServiceType").text() : "",
+                SignType: $("#selSignType").attr("data-value")
+            };
+            if (tapindex === 1) {
+                $("#bridgecontractlist").html('');
+                bridgeCurrentpage = 1;
+                LoadBridgeList(JSON.stringify(queryJson));
+            } else {
+                $("#offercontractlist").html('');
+                offerCurrentpage = 1;
+                LoadOfferList(JSON.stringify(queryJson));
+            }
+        }
+
+        ////添加合同
+        //add.addEventListener("tap", function () {
+
+        //    location.href = "ContractAdd";
+
+        //});
+
+        $("body")
+            .on("change",
+            "#textkey",
+            function () {
+
+                //if (tapindex === 1) {
+                //    $("#bridgecontractlist").html('');
+                //    var queryJson1 = {
+                //        condition: "customername",
+                //        keyword: $("#textkey").val()
+                //    }
+                //    bridgeCurrentpage = 1;
+                //    LoadBridgeList(JSON.stringify(queryJson1));
+
+                //} else {
+                //    $("#offercontractlist").html('');
+                //    var queryJson2 = {
+                //        condition: "customername",
+                //        keyword: $("#textkey").val()
+                //    }
+                //    offerCurrentpage = 1;
+                //    LoadOfferList(JSON.stringify(queryJson2));
+                //}
+                LoadData();
+
+            });
+        $("body").on('tap', ".mui-icon-clear", function () {
+            if (tapindex === 1) {
+                $("#bridgecontractlist").html('');
+                var queryJson1 = {
+                    condition: "customername",
+                    keyword: ""
+                }
+                bridgeCurrentpage = 1;
+                LoadBridgeList(JSON.stringify(queryJson1));
+
+            } else {
+                $("#offercontractlist").html('');
+                var queryJson2 = {
+                    condition: "customername",
+                    keyword: ""
+                }
+                offerCurrentpage = 1;
+                LoadOfferList(JSON.stringify(queryJson2));
+            }
+        });
+
+    </script>
+</body>
+
+</html>

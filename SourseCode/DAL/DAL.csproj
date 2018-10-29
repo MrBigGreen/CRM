@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D1AC05A2-96AF-4124-AD40-AD0A05C84F5C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CRM.DAL</RootNamespace>
+    <AssemblyName>DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseEntity.cs" />
+    <Compile Include="CallRecordingModel.cs" />
+    <Compile Include="cdr.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommonEntity\CompanyJob.cs" />
+    <Compile Include="CommonEntity\CustomerShareEntity.cs" />
+    <Compile Include="CommonEntity\JobhunterResume.cs" />
+    <Compile Include="CommonEntity\JobInfoEntity.cs" />
+    <Compile Include="CommonEntity\JobInfoRepository.cs" />
+    <Compile Include="CommonEntity\PersonEntity.cs" />
+    <Compile Include="CommonEntity\ResumeInfoModel.cs" />
+    <Compile Include="CommonEntity\SalaryDetails.cs" />
+    <Compile Include="CompanyMeta.cs" />
+    <Compile Include="CompanyRepository.cs" />
+    <Compile Include="ContractModel.cs" />
+    <Compile Include="CustomerContactModel.cs" />
+    <Compile Include="CustomerFollowModel.cs" />
+    <Compile Include="CustomerModel.cs" />
+    <Compile Include="CustomerReportModel.cs" />
+    <Compile Include="FileUploader.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\BaseRepository.cs" />
+    <Compile Include="Framework\BaseViewRepository.cs" />
+    <Compile Include="Framework\IBaseEntity.cs" />
+    <Compile Include="Framework\SysAnnouncementRepository.cs" />
+    <Compile Include="Framework\SysCodeTableRepository.cs" />
+    <Compile Include="Framework\SysColumnFilterRepository.cs" />
+    <Compile Include="Framework\SysEmailTempMeta.cs" />
+    <Compile Include="Framework\SysMenuSysRoleSysOperationRepository.cs" />
+    <Compile Include="Framework\SysMessageTempMeta.cs" />
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model2.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model2.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model2.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="PayReportMeta.cs" />
+    <Compile Include="PayReportRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SysAnnouncement.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysCodeTable.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysColumnFilter.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysColumnFilterMeta.cs" />
+    <Compile Include="SysDepartment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysDocument.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysDocumentTalk.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysEmail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysEmailMeta.cs" />
+    <Compile Include="SysEmailRepository.cs" />
+    <Compile Include="SysEmailTemp.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysEmailTempMeta.cs" />
+    <Compile Include="SysEmailTempRepository.cs" />
+    <Compile Include="SysException.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysField.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysMenu.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysMenuSysRoleSysOperation.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysMessage.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysMessageMeta.cs" />
+    <Compile Include="SysMessageRepository.cs" />
+    <Compile Include="SysMessageTemp.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysMessageTempMeta.cs" />
+    <Compile Include="SysMessageTempRepository.cs" />
+    <Compile Include="SysNotice.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysOperation.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysPerson.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysPersonMeta.cs" />
+    <Compile Include="SysPersonRepository.cs" />
+    <Compile Include="SysMenuMeta.cs" />
+    <Compile Include="SysMenuRepository.cs" />
+    <Compile Include="SysRole.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysRoleMeta.cs" />
+    <Compile Include="SysRoleRepository.cs" />
+    <Compile Include="SysLogMeta.cs" />
+    <Compile Include="SysLogRepository.cs" />
+    <Compile Include="SysExceptionMeta.cs" />
+    <Compile Include="SysExceptionRepository.cs" />
+    <Compile Include="SysFieldMeta.cs" />
+    <Compile Include="SysFieldRepository.cs" />
+    <Compile Include="FileUploaderMeta.cs" />
+    <Compile Include="FileUploaderRepository.cs" />
+    <Compile Include="SysOperationMeta.cs" />
+    <Compile Include="SysOperationRepository.cs" />
+    <Compile Include="SysMenuSysRoleSysOperationMeta.cs" />
+    <Compile Include="SysMenuSysRoleSysOperationRepository.cs" />
+    <Compile Include="SysDepartmentMeta.cs" />
+    <Compile Include="SysDepartmentRepository.cs" />
+    <Compile Include="SysAnnouncementMeta.cs" />
+    <Compile Include="SysAnnouncementRepository.cs" />
+    <Compile Include="SysDocumentMeta.cs" />
+    <Compile Include="SysDocumentRepository.cs" />
+    <Compile Include="SysDocumentTalkMeta.cs" />
+    <Compile Include="SysDocumentTalkRepository.cs" />
+    <Compile Include="SysNoticeMeta.cs" />
+    <Compile Include="SysNoticeRepository.cs" />
+    <Compile Include="TBBillingMeta.cs" />
+    <Compile Include="TBBillingRepository.cs" />
+    <Compile Include="TBCallLogMeta.cs" />
+    <Compile Include="TBCallLogRepository.cs" />
+    <Compile Include="TBCompanyRepository.cs" />
+    <Compile Include="TBContractMeta.cs" />
+    <Compile Include="TBContractRepository.cs" />
+    <Compile Include="TBCustomerAttributionChangeMeta.cs" />
+    <Compile Include="TBCustomerAttributionChangeRepository.cs" />
+    <Compile Include="TBCustomerContactMeta.cs" />
+    <Compile Include="TBCustomerContactRepository.cs" />
+    <Compile Include="TBCustomerFollowMeta.cs" />
+    <Compile Include="TBCustomerFollowRepository.cs" />
+    <Compile Include="TBCustomerMeta.cs" />
+    <Compile Include="TBCustomerProjectRepository.cs" />
+    <Compile Include="TBCustomerRatingMeta.cs" />
+    <Compile Include="TBCustomerRepository.cs" />
+    <Compile Include="TBCustomerServiceMeta.cs" />
+    <Compile Include="TBCustomerServiceRepository.cs" />
+    <Compile Include="TBCustomerShareMeta.cs" />
+    <Compile Include="TBCustomerShareRepository.cs" />
+    <Compile Include="TBCustomerVerificationMeta.cs" />
+    <Compile Include="TBCustomerVerificationRepository.cs" />
+    <Compile Include="TBMyColumnFilterMeta.cs" />
+    <Compile Include="TBMyColumnFilterRepository.cs" />
+    <Compile Include="TBRecommendSolutionMeta.cs" />
+    <Compile Include="TBRecommendSolutionRepository.cs" />
+    <Compile Include="TBCompanyMeta.cs" />
+    <Compile Include="SoundCommentModel.cs" />
+    <Compile Include="TBRPOPerformanceRepository.cs" />
+    <Compile Include="TBSalesPerformanceMeta.cs" />
+    <Compile Include="TBSalesPerformanceRepository.cs" />
+    <Compile Include="TBCustomerProjectMeta.cs" />
+    <Compile Include="TBCustomerRatingRepository.cs" />
+    <Compile Include="TBRPOPerformanceMeta.cs" />
+    <Compile Include="TB_Address.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_Billing.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_BillingDetails.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_CallLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_Company.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_CompanyInterviewJob.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_Contract.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_ContractSolution.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_Customer.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_CustomerAttributionChange.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_CustomerContact.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_CustomerFollow.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_CustomerFollowSolution.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_CustomerProject.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_CustomerProjectEvalDetails.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_CustomerRating.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_CustomerService.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_CustomerShare.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_CustomerShareLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_CustomerVerification.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_ImportResume.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_JobhunterResumeInterview.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_RecommendSolution.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_RPOPerformance.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_SalesPerformance.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_SoundComment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TPHousingFundMeta.cs" />
+    <Compile Include="TPHousingFundRepository.cs" />
+    <Compile Include="TPSalaryItemMeta.cs" />
+    <Compile Include="TPSalaryItemRepository.cs" />
+    <Compile Include="TPSocialInsurMeta.cs" />
+    <Compile Include="TPSocialInsurRepository.cs" />
+    <Compile Include="TPSubjectsAuthorityMeta.cs" />
+    <Compile Include="TPEmployeesMeta.cs" />
+    <Compile Include="TPEmployeesRepository.cs" />
+    <Compile Include="TPSalaryDetailsMeta.cs" />
+    <Compile Include="TPSalaryDetailsRepository.cs" />
+    <Compile Include="TPSubjectsAuthorityRepository.cs" />
+    <Compile Include="TP_Employees.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TP_HousingFund.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TP_SalaryDetails.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TP_SalaryItem.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TP_SalarySubjectSysPerson.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TP_SocialInsur.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TP_SubjectsAuthority.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnCallMeta.cs" />
+    <Compile Include="UnCallRecordingRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{ade2ca10-f91e-4312-ba9d-5d264291e549}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="Model2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model2.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model2.edmx</DependentUpon>
+      <LastGenOutput>Model2.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Model2.edmx.diagram">
+      <DependentUpon>Model2.edmx</DependentUpon>
+    </None>
+    <None Include="Model2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model2.edmx</DependentUpon>
+      <LastGenOutput>Model2.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\EntityFramework.dll" />
+    <Content Include="bin\Debug\EntityFramework.SqlServer.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

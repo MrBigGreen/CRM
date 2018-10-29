@@ -1,0 +1,119 @@
+﻿
+@{
+    Layout = null;
+}
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+    <link href="~/Content/css/mui.css" rel="stylesheet" />
+    <link href="~/Content/css/app.css" rel="stylesheet" />
+    <style type="text/css">
+        .login .input-text {
+            width: 75%;
+            margin-top: 4px;
+        }
+
+        .login .input-icon {
+            width: 20%;
+            padding-right: 0px;
+        }
+
+        .login .loginBtn {
+            color: white;
+            background: #3593F1;
+            margin-top: 10px;
+            height: 40px;
+            width: 90%;
+        }
+    </style>
+</head>
+<body class="login">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <h1 class="mui-title">登&nbsp;录</h1>
+    </header>
+
+    <div class="mui-content">
+        <div style="margin-top: 30px; text-align: center;">
+            <span class="mui-icon mui-icon-person" style="font-size: 4em; border: 2px solid gray; border-radius: 50%; color: gray;"></span>
+        </div>
+        <div class="mui-card" style="margin-top: 30px;">
+            <form class="mui-input-group">
+                <div class="mui-input-row">
+                    <label class="input-icon"><span class="mui-icon mui-icon-contact"></span></label>
+                    <input type="text" class="mui-input-clear input-text" id="account" placeholder="请输入账号" />
+                </div>
+                <div class="mui-input-row">
+                    <label class="input-icon"><span class="mui-icon mui-icon-locked"></span></label>
+                    <input type="password" class="mui-input-clear input-text" id="password" placeholder="请输入密码" />
+                </div>
+            </form>
+        </div>
+        <div class="mui-button-row">
+            <button id="loginButton" type="button" class="loginBtn">登&nbsp;录</button>
+        </div>
+    </div>
+
+
+    <script src="~/Content/Scripts/mui.js"></script>
+    <script src="~/Content/Scripts/jquery-1.11.1.js"></script>
+    <script src="~/Content/Scripts/mui.min.js"></script>
+    <script src="~/Content/Scripts/plugins/jquery.md5.js"></script>
+    <script>
+        mui.init();
+
+
+        $(function () {
+            accountText = document.getElementById("account");
+            passwordText = document.getElementById("password");
+            loginBtn = document.getElementById("loginButton");
+            loginBtn.addEventListener('tap', function () {
+
+                if (accountText.value == "") {
+                    accountText.focus();
+                    mui.toast("账号不能为空");
+                    return false;
+                } else if (passwordText.value == "") {
+                    passwordText.focus();
+                    mui.toast("密码不能为空");
+                    return false;
+                } else {
+                   // var dialog = showLog("正在登录中……", false);
+                    //网络请求开始
+                    password = $.md5(passwordText.value);
+                    $.ajax({
+                        type: "post",
+                        url: "/WechatCheckLogin",
+                        async: false,
+                        dataType: "json",
+                        contentType: "application/x-www-form-urlencoded",
+                        data: {
+                            username: accountText.value,
+                            password: password,
+                            verifycode: '344', //登录IP
+                            autologin:1,
+                        },
+                        success: function (data) {
+                            mui.toast("请求成功");
+                            if (data.type == 1) {
+                                window.location.href = '/Wechat/Home';
+                            }
+                        },
+                        error: function (data) {
+                            //dialog.hide();
+                            mui.toast(data.responseText);
+                        }
+                    });
+                    //网络请求结束
+                }
+
+            });
+        });
+
+    </script>
+</body>
+</html>

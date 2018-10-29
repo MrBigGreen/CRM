@@ -1,0 +1,153 @@
+﻿@model CRM.DAL.TB_Customer
+@using Common
+@using Models
+@{ Layout = "~/Views/Shared/Index.cshtml"; }
+<style>
+    .textbox-text {
+        width: 260px;
+    }
+
+    input {
+        width: 210px !important;
+        font-size: 12px !important;
+    }
+
+    select {
+        width: 220px !important;
+        font-size: 12px;
+    }
+</style>
+
+<div class="bigdiv">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td class="td-label">@Html.LabelFor(model => model.CustomerName)：</td>
+            <td class="td-field">
+                <div style="display: inline-block">
+                    @Html.HiddenFor(model => model.CustomerID)
+                    @Html.TextBoxFor(model => model.CustomerName, new { @readOnly = "true" })
+                    @Html.ValidationMessageFor(model => model.CustomerName)
+                </div>
+            </td>
+
+
+            <td class="td-label">@Html.LabelFor(model => model.EstablishDate)：</td>
+            <td class="td-field">
+                @Html.TextBox("EstablishDate", ((Model != null && Model.EstablishDate != null) ? Model.EstablishDate.ToString().AsDateTime().ToString("yyyy-MM-dd") : ""), new { @readOnly = "true", style = "width: 220px;", @class = "easyui-datebox" })
+                @Html.ValidationMessageFor(model => model.EstablishDate)
+            </td>
+        </tr>
+
+        <tr>
+            <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.CustomerLevel)：</td>
+            <td class="td-field">
+                @Html.DropDownListFor(model => model.CustomerLevel, Models.SysFieldModels.GetSysFieldByParentID("1506121613241983616c78e696559"), "--请选择--", new { @disabled = "disabled", })
+                @Html.ValidationMessageFor(model => model.CustomerLevel)
+            </td>
+            <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.CompanyNatureCode)：</td>
+            <td class="td-field">
+                @Html.DropDownListFor(model => model.CompanyNatureCode, Models.SysFieldModels.GetSysFieldByParentID("160713095717572021040ac383027"), "--请选择--", new { @disabled = "disabled", })
+                @Html.ValidationMessageFor(model => model.CompanyNatureCode)
+            </td>
+        </tr>
+        <tr>
+            <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.RegisterCapital)：</td>
+            <td class="td-field">
+                @Html.DropDownListFor(model => model.RegisterCapital, Models.SysFieldModels.GetSysFieldByParentID("1607131000531739012f5b0912c4e"), "--请选择--", new { @disabled = "disabled", })
+                @Html.ValidationMessageFor(model => model.RegisterCapital)
+            </td>
+            <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.SalesRevenue)：</td>
+            <td class="td-field">
+                @Html.DropDownListFor(model => model.SalesRevenue, Models.SysFieldModels.GetSysFieldByParentID("160713105050333696171810f2300"), "--请选择--", new { @disabled = "disabled", })
+                @Html.ValidationMessageFor(model => model.SalesRevenue)
+
+            </td>
+        </tr>
+        <tr>
+            <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.VocationCode)：</td>
+            <td class="td-field">
+                @Html.DropDownListFor(model => model.VocationCode, Models.SysFieldModels.GetSysFieldByParentID("1607131049411558386f229d2e7c5"), "--请选择--", new { @disabled = "disabled", })
+                @Html.ValidationMessageFor(model => model.VocationCode)
+            </td>
+            <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.CompanySize)：</td>
+            <td class="td-field">
+                @Html.DropDownListFor(model => model.CompanySize, Models.SysFieldModels.GetSysFieldByParentID("1607131044342478062a35dfcf219"), "--请选择--", new { @disabled = "disabled", })
+                @Html.ValidationMessageFor(model => model.CompanySize)
+            </td>
+
+        </tr>
+        <tr>
+
+            <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.ProvinceCode)：</td>
+            <td class="td-field">
+                <select class="easyui-combobox" id="Province" name="Province" style="width:220px;" data-options="required:true" validtype="comboxValidate['Province','请选择']"></select>
+                @Html.HiddenFor(model => model.ProvinceCode)
+                @Html.HiddenFor(model => model.ProvinceName)
+                @Html.ValidationMessageFor(model => model.ProvinceCode)
+
+            </td>
+            <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.CityCode)：</td>
+            <td class="td-field">
+                <select class="easyui-combobox" id="City" name="City" style="width:220px;" data-options="required:true" validtype="comboxValidate['City','请选择']"></select>
+                @Html.HiddenFor(model => model.CityCode)
+                @Html.HiddenFor(model => model.CityName)
+                @Html.ValidationMessageFor(model => model.CityCode)
+            </td>
+        </tr>
+        <tr>
+            <td class="td-label">@Html.LabelFor(model => model.DistrictCode)：</td>
+            <td class="td-field">
+                <select class="easyui-combobox" id="District" name="District" style="width:220px;" data-options="required:false"></select>
+                @Html.HiddenFor(model => model.DistrictCode)
+                @Html.HiddenFor(model => model.DistrictName)
+                @Html.ValidationMessageFor(model => model.DistrictCode)
+            </td>
+            <td class="td-label">@Html.LabelFor(model => model.AddressDetails)：</td>
+            <td class="td-field">
+                @Html.TextBoxFor(model => model.AddressDetails, new { @readOnly = "true" })
+                @Html.ValidationMessageFor(model => model.AddressDetails)
+            </td>
+        </tr>
+        <tr>
+            <td class="td-label">@Html.LabelFor(model => model.CustomerSource)：</td>
+            <td class="td-field">
+                @Html.DropDownListFor(model => model.CustomerSource, Models.SysFieldModels.GetSysFieldById("TB_Customer", "CustomerSource"), "--请选择--", new { @disabled = "disabled", })
+                @Html.ValidationMessageFor(model => model.CustomerSource)
+            </td>
+            <td class="td-label">@Html.LabelFor(model => model.PositionLink)：</td>
+            <td class="td-field">
+                @Html.TextBoxFor(model => model.PositionLink, new { @readOnly = "true" })
+                @Html.ValidationMessageFor(model => model.PositionLink)
+            </td>
+        </tr>
+        <tr>
+            <td class="td-label">@Html.LabelFor(model => model.HomePage)：</td>
+            <td class="td-field" colspan="3">
+                @Html.TextBoxFor(model => model.HomePage, new { style = "width:80%;", @readOnly = "true" })
+                @Html.ValidationMessageFor(model => model.HomePage)
+            </td>
+        </tr>
+        <tr>
+            <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.Comments)：</td>
+            <td class="textarea-box" colspan="3">
+                @Html.TextAreaFor(model => model.Comments, new { style = "width:80%;", @readOnly = "true" })
+                @Html.ValidationMessageFor(model => model.Comments)
+            </td>
+        </tr>
+
+    </table>
+    <div id="contactDiv"></div>
+    <iframe id="ifm_contact" frameborder="0" scrolling="no" style="width: 99%; height: 98%;"></iframe>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var customerID = $("#CustomerID").val();
+        $("#ifm_contact").attr("src", "/CustomerContact/ListReadOnly?ID=" + customerID);
+
+        //$.get("/CustomerContact/ListReadOnly?ID=" + customerID, function (data) {
+        //    $("#contactDiv").html(data);
+        //});
+    })
+
+
+</script>

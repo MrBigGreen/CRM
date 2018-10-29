@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:Uncall" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:Uncall" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="urn:Uncall">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="UncallWorldRequest">
+    <wsdl:part name="username" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="UncallWorldResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="OnClickCallRequest">
+    <wsdl:part name="strExten" type="xsd:string" />
+    <wsdl:part name="strToTel" type="xsd:string" />
+    <wsdl:part name="strActionID" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="OnClickCallResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="setBuysRequest">
+    <wsdl:part name="strAgent" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="setBuysResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="setIdleRequest">
+    <wsdl:part name="strAgent" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="setIdleResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getExtenStatusRequest">
+    <wsdl:part name="strAgent" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getExtenStatusResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getAllExtenStatusRequest">
+    <wsdl:part name="strAgent" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getAllExtenStatusResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="transferCallRequest">
+    <wsdl:part name="strAgent" type="xsd:string" />
+    <wsdl:part name="strExten" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="transferCallResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="popEventRequest">
+    <wsdl:part name="strAgent" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="popEventResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getRecordingRequest">
+    <wsdl:part name="strUid" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getRecordingResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="hangUpRequest">
+    <wsdl:part name="strAgent" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="hangUpResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="OnClickCallMeetRequest">
+    <wsdl:part name="strExten" type="xsd:string" />
+    <wsdl:part name="phone" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="OnClickCallMeetResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="meetMemberRequest">
+    <wsdl:part name="strMeetNum" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="meetMemberResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="kickMemberRequest">
+    <wsdl:part name="strMeetNum" type="xsd:string" />
+    <wsdl:part name="strId" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="kickMemberResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="keepCallingRequest">
+    <wsdl:part name="strExten" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="keepCallingResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="restoreCallingRequest">
+    <wsdl:part name="strAgent" type="xsd:string" />
+    <wsdl:part name="strExten" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="restoreCallingResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="callQualityRequest">
+    <wsdl:part name="strExten" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="callQualityResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="listenCallRequest">
+    <wsdl:part name="strExtenTo" type="xsd:string" />
+    <wsdl:part name="strExtenFrom" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="listenCallResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="threeCallRequest">
+    <wsdl:part name="strExten" type="xsd:string" />
+    <wsdl:part name="phone" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="threeCallResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="forceInsertRequest">
+    <wsdl:part name="strExtenTo" type="xsd:string" />
+    <wsdl:part name="strExtenFrom" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="forceInsertResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="kickOffRequest">
+    <wsdl:part name="strToExten" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="kickOffResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getReordingFilesListRequest">
+    <wsdl:part name="strAgent" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getReordingFilesListResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="delReordingFilesRequest">
+    <wsdl:part name="name" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="delReordingFilesResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getTrunkListRequest">
+    <wsdl:part name="strAgent" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getTrunkListResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getIncomingIVRRequest">
+    <wsdl:part name="strAgent" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getIncomingIVRResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getIncomingQueuesRequest">
+    <wsdl:part name="strAgent" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getIncomingQueuesResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="addIvrTaskRequest">
+    <wsdl:part name="create_users" type="xsd:string" />
+    <wsdl:part name="task_name" type="xsd:string" />
+    <wsdl:part name="task_out_line" type="xsd:string" />
+    <wsdl:part name="incoming_ivr_values" type="xsd:string" />
+    <wsdl:part name="call_max" type="xsd:string" />
+    <wsdl:part name="task_callerid" type="xsd:string" />
+    <wsdl:part name="start_time" type="xsd:string" />
+    <wsdl:part name="end_time" type="xsd:string" />
+    <wsdl:part name="recording_files" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="addIvrTaskResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="addQueueTaskRequest">
+    <wsdl:part name="create_users" type="xsd:string" />
+    <wsdl:part name="task_name" type="xsd:string" />
+    <wsdl:part name="task_out_line" type="xsd:string" />
+    <wsdl:part name="incoming_queue_values" type="xsd:string" />
+    <wsdl:part name="call_max" type="xsd:string" />
+    <wsdl:part name="task_cortrol_type" type="xsd:string" />
+    <wsdl:part name="task_override" type="xsd:string" />
+    <wsdl:part name="task_callerid" type="xsd:string" />
+    <wsdl:part name="start_time" type="xsd:string" />
+    <wsdl:part name="end_time" type="xsd:string" />
+    <wsdl:part name="recording_files" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="addQueueTaskResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="delTaskRequest">
+    <wsdl:part name="id" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="delTaskResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="updateTaskRequest">
+    <wsdl:part name="id" type="xsd:string" />
+    <wsdl:part name="task_status" type="xsd:string" />
+    <wsdl:part name="call_max" type="xsd:string" />
+    <wsdl:part name="task_override" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="updateTaskResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="SendPhoneRequest">
+    <wsdl:part name="strExten" type="xsd:string" />
+    <wsdl:part name="strCallnum" type="xsd:string" />
+    <wsdl:part name="strTaskid" type="xsd:string" />
+    <wsdl:part name="strTableid" type="xsd:string" />
+    <wsdl:part name="strDbName" type="xsd:string" />
+    <wsdl:part name="strDid" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="SendPhoneResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="SendPhoneEncryptionRequest">
+    <wsdl:part name="strExten" type="xsd:string" />
+    <wsdl:part name="strCallnum" type="xsd:string" />
+    <wsdl:part name="strTaskid" type="xsd:string" />
+    <wsdl:part name="strTableid" type="xsd:string" />
+    <wsdl:part name="strDbName" type="xsd:string" />
+    <wsdl:part name="strDid" type="xsd:string" />
+    <wsdl:part name="strMark" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="SendPhoneEncryptionResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getAllTaskRequest">
+    <wsdl:part name="id" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getAllTaskResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="addPhoneToTaskRequest">
+    <wsdl:part name="TaskID" type="xsd:string" />
+    <wsdl:part name="Phones" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="addPhoneToTaskResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="cfPhoneRequest">
+    <wsdl:part name="exten" type="xsd:string" />
+    <wsdl:part name="phones" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="cfPhoneResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="cfuPhoneRequest">
+    <wsdl:part name="exten" type="xsd:string" />
+    <wsdl:part name="phones" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="cfuPhoneResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="cfbPhoneRequest">
+    <wsdl:part name="exten" type="xsd:string" />
+    <wsdl:part name="phones" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="cfbPhoneResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="delPhoneRequest">
+    <wsdl:part name="exten" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="delPhoneResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="DebugRequest">
+    <wsdl:part name="strPars" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="DebugResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:portType name="UncallAPIPortType">
+    <wsdl:operation name="UncallWorld">
+      <documentation>Uncall Services Test Function</documentation>
+      <wsdl:input message="tns:UncallWorldRequest" />
+      <wsdl:output message="tns:UncallWorldResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="OnClickCall">
+      <documentation>OnClickCall: Click to dial</documentation>
+      <wsdl:input message="tns:OnClickCallRequest" />
+      <wsdl:output message="tns:OnClickCallResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="setBuys">
+      <documentation>setBuys Function  ... </documentation>
+      <wsdl:input message="tns:setBuysRequest" />
+      <wsdl:output message="tns:setBuysResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="setIdle">
+      <documentation>setIdle Function  ... </documentation>
+      <wsdl:input message="tns:setIdleRequest" />
+      <wsdl:output message="tns:setIdleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getExtenStatus">
+      <documentation>getExtenStatus Function  ... </documentation>
+      <wsdl:input message="tns:getExtenStatusRequest" />
+      <wsdl:output message="tns:getExtenStatusResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllExtenStatus">
+      <documentation>getAllExtenStatus Function  ... </documentation>
+      <wsdl:input message="tns:getAllExtenStatusRequest" />
+      <wsdl:output message="tns:getAllExtenStatusResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="transferCall">
+      <documentation>transferCall </documentation>
+      <wsdl:input message="tns:transferCallRequest" />
+      <wsdl:output message="tns:transferCallResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="popEvent">
+      <documentation>popEvent </documentation>
+      <wsdl:input message="tns:popEventRequest" />
+      <wsdl:output message="tns:popEventResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getRecording">
+      <documentation>popEvent </documentation>
+      <wsdl:input message="tns:getRecordingRequest" />
+      <wsdl:output message="tns:getRecordingResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="hangUp">
+      <documentation>hangUp </documentation>
+      <wsdl:input message="tns:hangUpRequest" />
+      <wsdl:output message="tns:hangUpResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="OnClickCallMeet">
+      <documentation>OnClickCallMeet: Click to meeting</documentation>
+      <wsdl:input message="tns:OnClickCallMeetRequest" />
+      <wsdl:output message="tns:OnClickCallMeetResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="meetMember">
+      <documentation>meetMember Function  ... </documentation>
+      <wsdl:input message="tns:meetMemberRequest" />
+      <wsdl:output message="tns:meetMemberResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="kickMember">
+      <documentation>kickMember Function  ... </documentation>
+      <wsdl:input message="tns:kickMemberRequest" />
+      <wsdl:output message="tns:kickMemberResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="keepCalling">
+      <documentation>keepCalling Function  ... </documentation>
+      <wsdl:input message="tns:keepCallingRequest" />
+      <wsdl:output message="tns:keepCallingResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="restoreCalling">
+      <documentation>restoreCalling Function  ... </documentation>
+      <wsdl:input message="tns:restoreCallingRequest" />
+      <wsdl:output message="tns:restoreCallingResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="callQuality">
+      <documentation>callQuality Function  ... </documentation>
+      <wsdl:input message="tns:callQualityRequest" />
+      <wsdl:output message="tns:callQualityResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="listenCall">
+      <documentation>listenCall Function  ... </documentation>
+      <wsdl:input message="tns:listenCallRequest" />
+      <wsdl:output message="tns:listenCallResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="threeCall">
+      <documentation>threeCall Function  ... </documentation>
+      <wsdl:input message="tns:threeCallRequest" />
+      <wsdl:output message="tns:threeCallResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="forceInsert">
+      <documentation>forceInsert Function  ... </documentation>
+      <wsdl:input message="tns:forceInsertRequest" />
+      <wsdl:output message="tns:forceInsertResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="kickOff">
+      <documentation>kickOff Function  ... </documentation>
+      <wsdl:input message="tns:kickOffRequest" />
+      <wsdl:output message="tns:kickOffResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getReordingFilesList">
+      <documentation>getReordingFilesList Function  ... </documentation>
+      <wsdl:input message="tns:getReordingFilesListRequest" />
+      <wsdl:output message="tns:getReordingFilesListResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="delReordingFiles">
+      <documentation>delReordingFiles Function  ... </documentation>
+      <wsdl:input message="tns:delReordingFilesRequest" />
+      <wsdl:output message="tns:delReordingFilesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getTrunkList">
+      <documentation>getTrunkList Function  ... </documentation>
+      <wsdl:input message="tns:getTrunkListRequest" />
+      <wsdl:output message="tns:getTrunkListResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getIncomingIVR">
+      <documentation>getIncomingIVR Function  ... </documentation>
+      <wsdl:input message="tns:getIncomingIVRRequest" />
+      <wsdl:output message="tns:getIncomingIVRResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getIncomingQueues">
+      <documentation>getIncomingQueues Function  ... </documentation>
+      <wsdl:input message="tns:getIncomingQueuesRequest" />
+      <wsdl:output message="tns:getIncomingQueuesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="addIvrTask">
+      <documentation>addIvrTask Function  ... </documentation>
+      <wsdl:input message="tns:addIvrTaskRequest" />
+      <wsdl:output message="tns:addIvrTaskResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="addQueueTask">
+      <documentation>addQueueTask Function  ... </documentation>
+      <wsdl:input message="tns:addQueueTaskRequest" />
+      <wsdl:output message="tns:addQueueTaskResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="delTask">
+      <documentation>delTask Function  ... </documentation>
+      <wsdl:input message="tns:delTaskRequest" />
+      <wsdl:output message="tns:delTaskResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="updateTask">
+      <documentation>updateTask Function  ... </documentation>
+      <wsdl:input message="tns:updateTaskRequest" />
+      <wsdl:output message="tns:updateTaskResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendPhone">
+      <documentation>updateTask Function  ... </documentation>
+      <wsdl:input message="tns:SendPhoneRequest" />
+      <wsdl:output message="tns:SendPhoneResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendPhoneEncryption">
+      <documentation>SendPhoneEncryption Function  ... </documentation>
+      <wsdl:input message="tns:SendPhoneEncryptionRequest" />
+      <wsdl:output message="tns:SendPhoneEncryptionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllTask">
+      <documentation>getAllTask Function  ... </documentation>
+      <wsdl:input message="tns:getAllTaskRequest" />
+      <wsdl:output message="tns:getAllTaskResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="addPhoneToTask">
+      <documentation>addPhoneToTask Function  ... </documentation>
+      <wsdl:input message="tns:addPhoneToTaskRequest" />
+      <wsdl:output message="tns:addPhoneToTaskResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="cfPhone">
+      <documentation>cfPhone Function  ... </documentation>
+      <wsdl:input message="tns:cfPhoneRequest" />
+      <wsdl:output message="tns:cfPhoneResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="cfuPhone">
+      <documentation>cfuPhone Function  ... </documentation>
+      <wsdl:input message="tns:cfuPhoneRequest" />
+      <wsdl:output message="tns:cfuPhoneResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="cfbPhone">
+      <documentation>cfbPhone Function  ... </documentation>
+      <wsdl:input message="tns:cfbPhoneRequest" />
+      <wsdl:output message="tns:cfbPhoneResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="delPhone">
+      <documentation>delPhone Function  ... </documentation>
+      <wsdl:input message="tns:delPhoneRequest" />
+      <wsdl:output message="tns:delPhoneResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="Debug">
+      <documentation>popDebug </documentation>
+      <wsdl:input message="tns:DebugRequest" />
+      <wsdl:output message="tns:DebugResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UncallAPIBinding" type="tns:UncallAPIPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="UncallWorld">
+      <soap:operation soapAction="urn:UncallWorld#UncallWorld" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:UncallWorldwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:UncallWorldwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnClickCall">
+      <soap:operation soapAction="urn:OnClickCallwsdl#OnClickCall" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:OnClickCallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:OnClickCallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setBuys">
+      <soap:operation soapAction="urn:setBuyswsdl#setBuys" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="setBuys" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="setBuys" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setIdle">
+      <soap:operation soapAction="urn:setIdlewsdl#setIdle" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="setIdle" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="setIdle" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getExtenStatus">
+      <soap:operation soapAction="urn:getExtenStatuswsdl#getExtenStatus" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="getExtenStatus" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="getExtenStatus" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllExtenStatus">
+      <soap:operation soapAction="urn:getAllExtenStatuswsdl#getAllExtenStatus" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="getAllExtenStatus" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="getAllExtenStatus" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transferCall">
+      <soap:operation soapAction="urn:transferCallwsdl#transferCall" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:transferCall" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:transferCall" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="popEvent">
+      <soap:operation soapAction="urn:popEventwsdl#popEvent" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:popEvent" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:popEvent" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRecording">
+      <soap:operation soapAction="urn:popEventwsdl#popEvent" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:popEvent" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:popEvent" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hangUp">
+      <soap:operation soapAction="urn:hangUpwsdl#hangUp" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:hangUp" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:hangUp" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnClickCallMeet">
+      <soap:operation soapAction="urn:OnClickCallMeetwsdl#OnClickCallMeet" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:OnClickCallMeetwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:OnClickCallMeetwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="meetMember">
+      <soap:operation soapAction="urn:meetMemberwsdl#meetMember" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="meetMember" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="meetMember" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="kickMember">
+      <soap:operation soapAction="urn:kickMemberwsdl#kickMember" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="kickMember" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="kickMember" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="keepCalling">
+      <soap:operation soapAction="urn:keepCallingwsdl#keepCalling" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="keepCalling" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="keepCalling" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="restoreCalling">
+      <soap:operation soapAction="urn:restoreCallingwsdl#restoreCalling" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="restoreCalling" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="restoreCalling" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="callQuality">
+      <soap:operation soapAction="urn:callQualitywsdl#callQuality" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="callQuality" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="callQuality" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listenCall">
+      <soap:operation soapAction="urn:listenCallwsdl#listenCall" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="listenCall" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="listenCall" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="threeCall">
+      <soap:operation soapAction="urn:threeCallwsdl#threeCall" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="threeCall" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="threeCall" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="forceInsert">
+      <soap:operation soapAction="urn:forceInsertwsdl#forceInsert" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="forceInsert" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="forceInsert" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="kickOff">
+      <soap:operation soapAction="urn:kickOffwsdl#kickOff" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="kickOff" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="kickOff" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReordingFilesList">
+      <soap:operation soapAction="urn:getReordingFilesListwsdl#getReordingFilesList" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="restoreCalling" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="restoreCalling" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delReordingFiles">
+      <soap:operation soapAction="urn:delReordingFileswsdl#delReordingFiles" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="delReordingFiles" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="delReordingFiles" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTrunkList">
+      <soap:operation soapAction="urn:getTrunkListwsdl#getTrunkList" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="getTrunkList" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="getTrunkList" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIncomingIVR">
+      <soap:operation soapAction="urn:getIncomingIVRwsdl#getIncomingIVR" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="getIncomingIVR" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="getIncomingIVR" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIncomingQueues">
+      <soap:operation soapAction="urn:getIncomingQueueswsdl#getIncomingQueues" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="getIncomingQueues" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="getIncomingQueues" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addIvrTask">
+      <soap:operation soapAction="urn:addIvrTaskwsdl#addIvrTask" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="addIvrTask" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="addIvrTask" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addQueueTask">
+      <soap:operation soapAction="urn:addQueueTaskwsdl#addQueueTask" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="addQueueTask" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="addQueueTask" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delTask">
+      <soap:operation soapAction="urn:delTaskwsdl#delTask" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="delTask" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="delTask" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateTask">
+      <soap:operation soapAction="urn:updateTaskwsdl#updateTask" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="updateTask" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="updateTask" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendPhone">
+      <soap:operation soapAction="urn:updateTaskwsdl#updateTask" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="updateTask" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="updateTask" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendPhoneEncryption">
+      <soap:operation soapAction="urn:SendPhoneEncryptionwsdl#SendPhoneEncryption" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="SendPhoneEncryption" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="SendPhoneEncryption" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllTask">
+      <soap:operation soapAction="urn:getAllTaskwsdl#getAllTask" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="getAllTask" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="getAllTask" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addPhoneToTask">
+      <soap:operation soapAction="urn:addPhoneToTaskwsdl#addPhoneToTask" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="addPhoneToTask" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="addPhoneToTask" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cfPhone">
+      <soap:operation soapAction="urn:cfPhonewsdl#cfPhone" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="cfPhone" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="cfPhone" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cfuPhone">
+      <soap:operation soapAction="urn:cfuPhonewsdl#cfuPhone" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="cfuPhone" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="cfuPhone" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cfbPhone">
+      <soap:operation soapAction="urn:cfbPhonewsdl#cfbPhone" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="cfbPhone" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="cfbPhone" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delPhone">
+      <soap:operation soapAction="urn:delPhonewsdl#delPhone" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="delPhone" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="delPhone" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Debug">
+      <soap:operation soapAction="urn:popDebug#popDebug" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:Debug" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:Debug" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UncallAPI">
+    <wsdl:port name="UncallAPIPort" binding="tns:UncallAPIBinding">
+      <soap:address location="http://192.168.1.254:80/uncall_api/index.php" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

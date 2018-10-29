@@ -1,0 +1,169 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_CustomerFollow
+
+@{
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+<style>
+    .editor-field {
+        width: 181px;
+        height: 24px;
+        float: left;
+        display: inline;
+    }
+
+    .editor-label {
+        width: 100px;
+        height: 24px;
+        float: right;
+        text-align: right;
+        line-height: 24px;
+        display: inline;
+    }
+</style>
+
+
+<div class="bigdiv" style="margin-left:10px;width:98%;">
+    @Html.HiddenFor(model => model.CustomerFollowID)
+    @Html.HiddenFor(model => model.CustomerID)
+
+    <input id="FollowUpCategory" name="FollowUpCategory" type="hidden" value="FollowUpCategory" />
+    <input id="FollowUpPurpose" name="FollowUpPurpose" type="hidden" value="FollowUpPurpose" />
+    <input id="FollowUpMode" name="FollowUpMode" type="hidden" value="FollowUpMode" />
+    <table id="ttEdit" class="record">
+        <tr>
+            <th><span style="color:red">*</span>是否联系上</th>
+            <td>
+                <label style="margin: 0px 10px 0px 0px;">
+                    <input name="ContactState" id="CheckYse" type="radio" value="1" checked="checked" onclick="showInfo(0)">是
+                </label>
+                <label style="margin: 0px 10px 0px 0px;">
+                    <input name="ContactState" id="CheckNo" type="radio" value="2" onclick="showInfo(1)">否
+                </label>
+
+            </td>
+            <th><span style="color:red">*</span>联系人</th>
+            <td>
+                <select class="easyui-combobox" id="customerPhone" name="customerPhone" style="width:90%;" data-options="required:false"></select>
+                <input type="hidden" id="CustomerContactName" name="CustomerContactName" value="@ViewBag.ContactPerson" />
+            </td>
+        </tr>
+        <tr id="a">
+            <th>邮箱</th>
+            <td>
+                <input id="CustomerEmail" name="CustomerEmail" class="text-box single-line" style="width: 123px; background-color: rgb(204, 204, 204);" type="text" readonly="readonly" value="@ViewBag.EmailAddress">
+            </td>
+            <th>联系电话</th>
+            <td>
+                <input type="text" id="CallPhone" name="CallPhone" value="@ViewBag.ContactPhone" />
+                <a class="easyui-linkbutton" data-options="iconCls:'icon-call'" href="javascript:void(0)" onclick="javascript: CallTel();"></a>
+            </td>            
+        </tr>
+        <tr id="b">
+            <th>对方级别</th>
+            <td>
+                @Html.DropDownListFor(model => model.OtherLevel, Models.SysFieldModels.GetSysFieldByParentID("1506121005392690303c5640a411a"), "--请选择--", new { @Style = "width:133px;" })
+            </td>
+            <th>预计成单金额</th>
+            <td>
+                @Html.TextBoxFor(model => model.ExpectedMoney)
+            </td>
+
+        </tr>
+        <tr id="c">
+            <th>预计成单日期</th>
+            <td>
+                @Html.TextBoxFor(model => model.ExpectedDate, new { @class = "easyui-datebox", editable = "true", style = "width:150px" })
+            </td>
+
+            <th>商机判断</th>
+            <td>
+                @Html.DropDownListFor(model => model.Opportunities, Models.SysFieldModels.GetSysFieldByParentID("150612100955842681016eb929de8"), "--请选择--", new { @Style = "width:133px;" })
+            </td>
+
+        </tr>
+        <tr id="d">
+            <th>可推荐方案</th>
+            <td colspan="3">
+                @Html.CheckBoxListFor(model => model.RecommendSolutionID, Models.SysFieldModels.GetSysFieldByParentID("1508071046119479968e30ccf1f9f"))
+                @Html.HiddenFor(model => model.RecommendSolutionIDNew)
+            </td>
+        </tr>
+        <tr id="e">
+            <th> 下次跟进时间</th>
+            <td>
+                <span>
+                    @*@Html.TextBoxFor(model => model.NextFollowDate, new { @class = "easyui-datetimebox", editable = "true", style = "width:150px" })*@
+                    @Html.TextBoxFor(model => model.NextFollowDate, new { @class = "Wdate", style = "width:160px", onfocus = "WdatePicker({minDate:CurentTime(), dateFmt: 'yyyy/MM/dd HH:mm:ss' })" })
+                </span>
+            </td>
+            <th> 跟进方式</th>
+            <td>
+                @Html.RadioButtonListFor(model => model.NextFollowUpMode, Models.SysFieldModels.GetSysFieldByParentID("1506251032089851135c18a57f429"), true)
+
+            </td>
+        </tr>
+        <tr id="f">
+
+            <th> 下次跟进目的</th>
+            <td>
+                @Html.DropDownListFor(model => model.NextFollowUpPurpose, Models.SysFieldModels.GetSysFieldByParentID("15061210014976927076a3fd215ab"), "--请选择--", new { @Style = "width:133px;" })
+
+            </td>
+            <th><span style="color:red">*</span>客户进程</th>
+            <td>
+                @Html.DropDownListFor(model => model.CustomerFunnel, Models.SysFieldModels.GetSysFieldByParentID("1506121008181709094ed4907cf81"), "--请选择--", new { @Style = "width:133px;" })
+
+            </td>
+        </tr>
+        <tr id="g">
+            <td colspan="4">
+                <div>
+                    <span style="color:red">*</span>客户反馈的需求描述记录
+                    <span style="text-align: left; float: right; width: 190px;  vertical-align: bottom;  ">
+                        您可输入剩余字数：<b class="red" id="leave_letter">800</b>
+                    </span>
+                </div>
+                <textarea id="Remark" name="Remark" style=" width: 673px; height: 53px; resize: none;  " maxlength="800" onkeyup="checkLength(this);"></textarea>
+
+
+        </tr>
+        <tr>
+            <td colspan="6">
+                <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+                    <input class="a2 f2" type="submit" id="btnSubmit" value="创建" style="display:none" />
+                    <a class="easyui-linkbutton" id="submit" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+                       onclick="javascript: checkSubmit();">保存</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+                       onclick="javascript: parent.$('.easyui-dialog').window('close');">取消</a>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <br style="clear: both;" />
+    @*<div class="easyui-panel" title="历史跟进反馈"></div>*@
+
+    <div class="easyui-tabs" style="width:100%;height:400px">
+        @if (ViewBag.FollowType == 2)
+        {
+            <div title="跟进记录" style="padding:1px">
+                <iframe id="KaIframe" src="/CustomerFollow/FollowBackHistoryPartial2?CustomerID=@Model.CustomerID&FollowType=2&page=1" frameborder="0" scrolling="yes" style="width: 99%; height: 98%; overflow-y: auto;"></iframe>
+            </div>
+            <div title="Sales跟进记录" style="padding:1px">
+                <iframe id="SalesIframe" src="/CustomerFollow/FollowBackHistoryPartial2?CustomerID=@Model.CustomerID&FollowType=1&page=1" frameborder="0" scrolling="yes" style="width: 99%; height: 98%; overflow-y: auto;"></iframe>
+            </div>
+        }
+        else
+        {
+            <div title="跟进记录" style="padding:1px">
+                <iframe id="SalesIframe" src="/CustomerFollow/FollowBackHistoryPartial2?CustomerID=@Model.CustomerID&FollowType=1&page=1" frameborder="0" scrolling="yes" style="width: 99%; height: 98%; overflow-y: auto;"></iframe>
+            </div>
+        }
+    </div>
+</div>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.watermark.min.js"></script>
+<script type="text/javascript">$.getScript("/Scripts/CustomerFollow/FollowBack.js")</script>

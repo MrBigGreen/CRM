@@ -1,0 +1,266 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_Customer
+<!DOCTYPE html>
+<html>
+<head id="MyHead">
+
+    <title></title>
+
+    <link id="easyuiTheme" href="@Url.Content("~/Res/easyui/themes/default/easyui.css")" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/easyui")
+    <link href="~/Res/PublicCommon.css" rel="stylesheet" />
+    <script type="text/javascript" src="/Scripts/jquery.bpopup-0.7.0.min.js"></script>
+    <script type="text/javascript" src="/Scripts/type-bpopup_fuc.js"></script>
+    <script type="text/javascript" src="/Scripts/Customer/Create.js"></script>
+    <script type="text/javascript" src="/Scripts/Customer/Basic.js"></script>
+
+    <style type="text/css">
+        .combo {
+            font-family: 微软雅黑,新宋体;
+            height: 24px;
+            width: 210px;
+            border: 1px solid #CCC;
+        }
+
+        .fieldset {
+            width: 924px;
+            margin-left: 4px;
+            padding: 1em;
+            border: 1px solid #CCC;
+        }
+        .editor-field {
+            margin: 4px 0px 4px 6px;
+        }
+         .editor-label {
+            margin: 4px 0px 4px 0px;
+        }
+         textarea {
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.SysPersonID)
+        @Html.HiddenFor(model => model.VerificationCode)
+        <fieldset>
+            <legend>
+                客户基本信息
+            </legend>
+            <div>
+                <div class="editor-label">
+                    <span class="red">*</span> @Html.LabelFor(model => model.CustomerName)：
+                </div>
+                <div class="editor-field">
+                    <input name="CustomerName" class="valid" id="CustomerName" style="width: 200px;" type="text" value="" data-val-required="请填写" data-val="true" data-val-length-max="200" data-val-length="长度不可超过200" data-val-regex-pattern="^([\u4e00-\u9fa5]*[(（]?[\u4e00-\u9fa5]+[)）]?[\u4e00-\u9fa5]*)$" data-val-regex="客户名称只能包含汉子和括弧。">
+                    <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="CustomerName"></span>
+                    <a class="easyui-linkbutton" id="checkCustomerRepeat" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+                       onclick="return checkRepeat();">查重</a>
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.EstablishDate)：
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.EstablishDate, new { @class = "easyui-datebox", editable = "true" })
+                    @Html.ValidationMessageFor(model => model.EstablishDate)
+                </div>
+
+                <div class="editor-label">
+                    <span class="red">*</span>@Html.LabelFor(model => model.CustomerLevel)：
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.CustomerLevel, Models.SysFieldModels.GetSysFieldByParentID("1506121613241983616c78e696559"),"--请选择--")
+                    @Html.ValidationMessageFor(model => model.CustomerLevel)
+                </div>
+                    
+                <div class="editor-label">
+                    <span class="red">*</span>@Html.LabelFor(model => model.CompanyNatureCode)：
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.CompanyNatureCode, Models.SysFieldModels.GetSysFieldByParentID("160713095717572021040ac383027"), "--请选择--")
+                    @Html.ValidationMessageFor(model => model.CompanyNatureCode)
+                </div>
+                <div class="editor-label">
+                    <span class="red">*</span>@Html.LabelFor(model => model.RegisterCapital)：
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.RegisterCapital, Models.SysFieldModels.GetSysFieldByParentID("1607131000531739012f5b0912c4e"), "--请选择--")
+                    @Html.ValidationMessageFor(model => model.RegisterCapital)
+                </div>
+                <div class="editor-label">
+                    <span class="red">*</span>@Html.LabelFor(model => model.SalesRevenue)：
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.SalesRevenue, Models.SysFieldModels.GetSysFieldByParentID("160713105050333696171810f2300"), "--请选择--")
+                    @Html.ValidationMessageFor(model => model.SalesRevenue)
+                </div>
+                <div class="editor-label">
+                    <span class="red">*</span> @Html.LabelFor(model => model.VocationCode)：
+                </div>
+                <div class="editor-field">
+                    @*<input type="button" class="select_btn" id="btnJobIndustryName" name="btnJobIndustryName" value="选择行业类别" />
+                    @Html.HiddenFor(model => model.VocationCode)
+                    @Html.HiddenFor(model => model.VocationName)*@
+
+                    @Html.DropDownListFor(model => model.VocationCode, Models.SysFieldModels.GetSysFieldByParentID("1607131049411558386f229d2e7c5"), "--请选择--")
+                    @Html.ValidationMessageFor(model => model.VocationCode)
+                </div>
+                <div class="editor-label">
+                    <span class="red">*</span>@Html.LabelFor(model => model.CompanySize)：
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.CompanySize, Models.SysFieldModels.GetSysFieldByParentID("1607131044342478062a35dfcf219"), "--请选择--")
+                </div>
+                <div class="editor-label">
+                    <span class="red">*</span> @Html.LabelFor(model => model.ProvinceCode)：
+                </div>
+                <div class="editor-field">
+
+                    <select class="easyui-combobox" id="Province" name="Province" style="width:120px;" data-options="required:true" validtype="comboxValidate['Province','请选择']"></select>
+                    @Html.HiddenFor(model => model.ProvinceCode)
+                    @Html.HiddenFor(model => model.ProvinceName)
+                    @Html.ValidationMessageFor(model => model.ProvinceCode)
+                </div>
+                <div class="editor-label">
+                    <span class="red">*</span> @Html.LabelFor(model => model.CityCode)：
+                </div>
+                <div class="editor-field">
+
+                    <select class="easyui-combobox" id="City" name="City" style="width:120px;" data-options="required:true" validtype="comboxValidate['City','请选择']"></select>
+                    @Html.HiddenFor(model => model.CityCode)
+                    @Html.HiddenFor(model => model.CityName)
+                    @Html.ValidationMessageFor(model => model.CityCode)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.DistrictCode)：
+                </div>
+                <div class="editor-field">
+                    <select class="easyui-combobox" id="District" name="District" style="width:120px;" data-options="required:false"></select>
+                    @Html.HiddenFor(model => model.DistrictCode)
+                    @Html.HiddenFor(model => model.DistrictName)
+                    @Html.ValidationMessageFor(model => model.DistrictCode)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AddressDetails)：
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.AddressDetails)
+                    @Html.ValidationMessageFor(model => model.AddressDetails)
+                </div>              
+                
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CustomerSource)：
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.CustomerSource, Models.SysFieldModels.GetSysField("TB_Customer", "CustomerSource"), "--请选择--")
+                    @Html.ValidationMessageFor(model => model.CustomerSource)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PositionLink)：
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.PositionLink)
+                    @Html.ValidationMessageFor(model => model.PositionLink)
+                </div>
+                <br style="clear: both;" />
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.HomePage)：
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.HomePage, new { style = "width:650px;" })
+                    @Html.ValidationMessageFor(model => model.HomePage)
+                </div>
+                <br style="clear: both;" />
+                <div class="editor-label">
+                    <span class="red">*</span>@Html.LabelFor(model => model.Comments)：
+                </div>
+                <div class="textarea-box">
+                    @Html.TextAreaFor(model => model.Comments)
+                    <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="Comments">请填写</span>
+
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>
+                主联系人
+            </legend>
+            <div class="editor-label">
+                <span class="red">*</span>@Html.LabelFor(model => model.ContactPerson)：
+            </div>
+            <div class="editor-field">
+                <input name="ContactPerson" class="text-box single-line" id="ContactPerson" type="text" value="" data-val-required="请填写" data-val="true" data-val-length-max="50" data-val-length="长度不可超过50">
+                <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="ContactPerson"></span>
+            </div>
+            <div class="editor-label"><span class="red">*</span>@Html.LabelFor(m => m.Post):</div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Post, Models.SysFieldModels.GetSysFieldByParentID("1506121005392690303c5640a411a"),new { @Style = "width:133px;" })
+                <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="Post">请选择</span>
+            </div>
+            <div class="editor-label">@Html.LabelFor(m => m.Department):</div>
+            <div class="editor-field">
+                @Html.EditorFor(m => m.Department)
+            </div>
+            <div class="editor-label">
+                <span class="red">*</span>@Html.LabelFor(model => model.ContactPhone)：
+            </div>
+            <div class="editor-field">
+                <input name="ContactPhone" title="" class="text-box single-line tooltip-f" id="ContactPhone" type="text" value="" data-val-length-max="50" data-val-length="长度不可超过50" data-val-regex-pattern="^((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)$" data-val-regex="手机号码格式有误。">
+                <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="ContactPhone">请填写</span>
+            </div>
+            <div class="editor-label">
+                <span class="red">*</span>@Html.LabelFor(model => model.ContactTel)：
+            </div>
+            <div class="editor-field">
+                <input name="ContactTel" title="" class="text-box single-line tooltip-f" id="ContactTel" type="text" data-val-length-max="50" data-val-length="长度不可超过50" data-val-regex-pattern="^((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)$" data-val-regex="电话格式有误。">
+                <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="ContactTel">请填写</span>
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.EmailAddress)：
+            </div>
+            <div class="editor-field">
+                <input name="EmailAddress" title="" class="text-box single-line tooltip-f" id="EmailAddress" type="text" data-val-length-max="50" data-val-length="长度不可超过50" data-val-regex-pattern="^[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?$" data-val-regex="邮箱格式有误。">
+                <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="EmailAddress"></span>
+            </div>
+            <span style="color:red">注：固定电话、手机1、手机2 三者必填一项</span>
+        </fieldset>
+
+
+        <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0; width:854px">
+            <input class="a2 f2" type="submit" id="submit" value="创建" style="display:none" />
+            <a class="easyui-linkbutton" style="width:90px;height:40px;" id="btnCustomerCreate" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+               onclick="return create(false);">创建</a>
+
+        </div>
+
+    }
+    <br style="clear: both;" />
+    <br style="clear: both;" />
+
+    <!-- 客户查重验证 start-->
+    <div id="repeatDialog" class="easyui-dialog" iconcls="icon-edit" style="width: 600px; height: 560px;
+      padding: 5px; overflow: auto; " title="" data-options="closed:true">
+        <div fit="true" style="height:auto ;width:95%">
+            <table id="RepeatData" class="easyui-datagrid" title="客户查重验证" style="width:700px;height:auto"></table>
+            @*<a class="easyui-linkbutton" id="ContactSave" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+                onclick="SendVerification()">发送验证码</a>*@
+
+        </div>
+        <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+            <a class="easyui-linkbutton" id="btnConfirmCreate" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+               onclick="create(true)">确认创建</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+               onclick="$('.easyui-dialog').window('close');">取消</a>
+        </div>
+
+
+    </div>
+    <!-- 客户查重验证 end -->
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head id="MyHead">
+
+    <title> 菜单 </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/easyui")
+  
+<script type="text/javascript">
+
+        $(function () {
+          
+                $('#myTree').tree({
+                    checkbox: true,
+                    url: '../SysMenuTree/GetTree',
+                    onClick: function (node) {
+                        //  $(this).tree('toggle', node.target);
+                    },
+                    onBeforeLoad: function (node, param) {
+                        if (node) {
+                            param.parentid = node.id;
+                        }
+                    }
+                });
+           
+        });
+        function getchecked() {
+            //取得所有选中的节点，返回节点对象的集合
+            var checkes = $("#myTree").tree("getChecked");
+            var arr = new Array(0); //放置id和名称的数组
+            if (checkes != null) {
+                if (checkes.length > 0) {
+                    for (var i = 0; i < checkes.length; i++) {
+                        arr.push(checkes[i].id);
+                    }
+                    arr.push("^"); //主键列和显示列的分割符 ^
+
+                    for (var i = 0; i < checkes.length; i++) {
+                        arr.push(checkes[i].text);
+                    }
+                    //先是用 ^ 分割开主键和名称列，再使用 & 分割开主键之间
+                    returnParent(arr.join("&")); // 返回值
+                } else {
+                    alert("请至少选择一个");
+                }
+            }
+        }
+</script>
+</head>
+<body>
+    <fieldset style="margin: 10px 3px 0px 3px">
+        <legend>
+            <a class="easyui-linkbutton" iconcls="icon-ok" onclick="getchecked()">选择</a>
+        </legend>
+        <ul style="margin-top: 6px;" id="myTree"></ul>
+    </fieldset>
+</body>
+</html>
+

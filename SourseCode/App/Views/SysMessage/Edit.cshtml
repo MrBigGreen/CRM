@@ -1,0 +1,99 @@
+﻿@model CRM.DAL.SysMessage
+
+@{
+    Layout = "~/Views/Shared/Edit.cshtml";
+}
+@using Common
+@using Models
+ @section CurentPlace {
+    修改  
+}
+
+    <fieldset>
+        <legend>
+            <input class="a2 f2" type="submit" value="修改" />
+            <input class="a2 f2" type="button" onclick="BackList('SysMessage')" value="返回列表" />
+        </legend>
+        <div class="bigdiv">
+            @Html.HiddenFor(model => model.Id ) 
+            <br style="clear: both;" />
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Content)：
+            </div>
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.Content) 
+                @Html.ValidationMessageFor(model => model.Content) 
+            </div>      
+            <div class="editor-label">
+                <a class="anUnderLine" onclick="showModalOnly('SysMessageTempId','../../SysMessageTemp');">
+                    @Html.LabelFor(model => model.SysMessageTempId) 
+                </a>：
+            </div>
+            <div class="editor-field">
+                <div id="checkSysMessageTempId">
+                        @if(Model!=null)
+                        {
+                        if (null != Model.SysMessageTempId)                      
+                        { 
+                    <table id="@Model.SysMessageTempId"
+                        class="deleteStyle">
+                        <tr>
+                            <td>
+                                <img alt="删除"  title="点击删除" onclick="deleteTable('@Model.SysMessageTempId','SysMessageTempId');" src="../../../Images/deleteimge.png" />
+                            </td>
+                            <td>
+                                @Model.SysMessageTemp.MessageName
+                            </td>
+                        </tr>
+                    </table>
+                    }} 
+                </div>
+                @Html.HiddenFor(model => model.SysMessageTempId)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MessageType)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.MessageType)
+                @Html.ValidationMessageFor(model => model.MessageType)
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Remark)：
+            </div>
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.Remark) 
+                @Html.ValidationMessageFor(model => model.Remark) 
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.State)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.State)
+                @Html.ValidationMessageFor(model => model.State)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ReadTime)：
+            </div>
+            <div class="editor-field">
+                @Html.TextBox("ReadTime", ((Model != null && Model.ReadTime != null) ? Model.ReadTime.ToString().AsDateTime().ToString("yyyy-MM-dd") : ""), new { style = "width: 244px;", @class="easyui-datebox" })
+                @Html.ValidationMessageFor(model => model.ReadTime)
+            </div>@Html.HiddenFor(model => model.CreateTime ) @Html.HiddenFor(model => model.CreatePerson ) 
+        </div>
+    </fieldset>
+
+
+
+
+    <script type="text/javascript">
+
+        $(function () {
+            
+
+        });
+        
+
+    </script>
+
+
+

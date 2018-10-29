@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/FlowManage
+END
+WFProcessOperationHistoryEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/FlowManage/WFProcessOperationHistoryEntity.cs
+END
+WFDelegateRuleEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/FlowManage/WFDelegateRuleEntity.cs
+END
+WFDelegateRuleSchemeInfoEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/FlowManage/WFDelegateRuleSchemeInfoEntity.cs
+END
+WFProcessInstanceEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/FlowManage/WFProcessInstanceEntity.cs
+END
+WFProcessSchemeEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/FlowManage/WFProcessSchemeEntity.cs
+END
+WFDelegateRecordEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/FlowManage/WFDelegateRecordEntity.cs
+END
+WFFrmMainEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/FlowManage/WFFrmMainEntity.cs
+END
+WFProcessTransitionHistoryEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/FlowManage/WFProcessTransitionHistoryEntity.cs
+END
+WFSchemeInfoAuthorizeEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/FlowManage/WFSchemeInfoAuthorizeEntity.cs
+END
+WFSchemeContentEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/FlowManage/WFSchemeContentEntity.cs
+END
+WFSchemeInfoEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Entity/FlowManage/WFSchemeInfoEntity.cs
+END

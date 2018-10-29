@@ -1,0 +1,214 @@
+﻿@{
+    ViewBag.Title = "销售报表-部门";
+    Layout = "~/Views/Shared/_ReportIndex.cshtml";
+}
+<script>
+    $(function () {
+        initControl();
+        GetGrid();
+    })
+    //初始化控件
+    function initControl() {
+
+    }
+    function GetGrid() {
+        var $gridTable = $('#gridTable');
+        $gridTable.jqGrid({
+            url: "../../ReportManage/Customer/GetSummaryDeptJson",
+            datatype: "json",
+            height: $(window).height() - 230.5,
+            autowidth: true,
+            colModel: [
+                { name: "departmentname", label: "部门", align: "center" },
+                { name: "customerfunnel1", label: "1-初步建立联系", width: 80 },
+                { name: "customerfunnel2", label: "2-需求沟通", width: 80 },
+                { name: "customerfunnel3", label: "3-方案推进", width: 80 },
+                { name: "customerfunnel4", label: "4-合同阶段", width: 80 },
+                { name: "customerfunnel5", label: "5-回款阶段", width: 80 },
+                { name: "customerfunnel6", label: "6-日常维护", width: 80 },
+                { name: "customerfunnel7", label: "冰冻客户", width: 80 },
+                { name: "facefollow", label: "拜访", width: 80, align: "center" },
+                { name: "telfollow", label: "电话", width: 80, align: "center" },
+                { name: "customernewcount", label: "客户新进数", width: 80, align: "center" },
+                { name: "customertotal", label: "客户总数", width: 80, align: "center" },
+
+            ],
+            viewrecords: true,
+            rowNum: 30,
+            rowList: [30, 50, 100],
+            pager: "#gridPager",
+            sortname: 'customerfunnel4',
+            sortorder: 'desc',
+            footerrow: true,
+            rownumbers: true,
+            gridview: true,
+            gridComplete: function () {
+                var customerfunnel1 = $(this).getCol("customerfunnel1", false, "sum");
+                var customerfunnel2 = $(this).getCol("customerfunnel2", false, "sum");
+                var customerfunnel3 = $(this).getCol("customerfunnel3", false, "sum");
+                var customerfunnel4 = $(this).getCol("customerfunnel4", false, "sum");
+                var customerfunnel5 = $(this).getCol("customerfunnel5", false, "sum");
+                var customerfunnel6 = $(this).getCol("customerfunnel6", false, "sum");
+                var customerfunnel7 = $(this).getCol("customerfunnel7", false, "sum");
+                var facefollow = $(this).getCol("facefollow", false, "sum");
+                var telfollow = $(this).getCol("telfollow", false, "sum");
+                var customernewcount = $(this).getCol("customernewcount", false, "sum");
+                var customertotal = $(this).getCol("customertotal", false, "sum");
+                //合计
+                $(this).footerData("set", {
+                    "departmentname": "合计：",
+                    "customerfunnel1": customerfunnel1,
+                    "customerfunnel2": customerfunnel2,
+                    "customerfunnel3": customerfunnel3,
+                    "customerfunnel4": customerfunnel4,
+                    "customerfunnel5": customerfunnel5,
+                    "customerfunnel6": customerfunnel6,
+                    "customerfunnel7": customerfunnel7,
+                    "facefollow": facefollow,
+                    "telfollow": telfollow,
+                    "customernewcount": customernewcount,
+                    "customertotal": customertotal,
+                });
+                $('table.ui-jqgrid-ftable td').prevUntil().css("border-right-color", "#fff");
+            }
+        });
+        //点击时间范围（今天、近7天、近一个月、近三个月）
+        $("#time_horizon a.btn-default").click(function () {
+            $("#time_horizon a.btn-default").removeClass("active");
+            $(this).addClass("active");
+            switch ($(this).attr('data-value')) {
+                case "1"://今天
+                    $("#StartTime").val("@DateTime.Now.ToString("yyyy-MM-dd")");
+                    $("#EndTime").val("@DateTime.Now.ToString("yyyy-MM-dd")");
+                    break;
+                case "2"://近7天
+                    $("#StartTime").val("@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")");
+                    $("#EndTime").val("@DateTime.Now.ToString("yyyy-MM-dd")");
+                    break;
+                case "3"://近一个月
+                    $("#StartTime").val("@DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd")");
+                    $("#EndTime").val("@DateTime.Now.ToString("yyyy-MM-dd")");
+                    break;
+                case "4"://近三个月
+                    $("#StartTime").val("@DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd")");
+                    $("#EndTime").val("@DateTime.Now.ToString("yyyy-MM-dd")");
+                    break;
+                default:
+                    break;
+            }
+            $("#SelectedStartTime").html($("#StartTime").val());
+            $("#SelectedEndTime").html($("#EndTime").val());
+            $(".grid-subtitle").html("日期: " + $("#StartTime").val() + " 至 " + $("#EndTime").val());
+            $('#btn_Search').trigger("click");
+        });
+        //查询条件
+        $("#queryCondition .dropdown-menu li").click(function () {
+            var text = $(this).find('a').html();
+            var value = $(this).find('a').attr('data-value');
+            $("#queryCondition .dropdown-text").html(text).attr('data-value', value)
+        });
+        //查询事件
+        $("#btn_Search").click(function () {
+            if (!$(".ui-filter-text").next('.ui-filter-list').is(":hidden")) {
+                $(".ui-filter-text").trigger("click");
+            }
+            if ($("#StartTime").val() != "") {
+                $("#SelectedStartTime").html($("#StartTime").val());
+                $("#SelectedEndTime").html($("#EndTime").val());
+                $(".grid-subtitle").html("日期: " + $("#StartTime").val() + " 至 " + $("#EndTime").val());
+            }
+            var queryJson = $("#filter-form").GetWebControls();
+            $gridTable.jqGrid('setGridParam', {
+                postData: { queryJson: JSON.stringify(queryJson) },
+                page: 1
+            }).trigger('reloadGrid');
+        });
+        //查询回车
+        $('#txt_Keyword').bind('keypress', function (event) {
+            if (event.keyCode == "13") {
+                $('#btn_Search').trigger("click");
+            }
+        });
+    }
+    //打印
+    function btn_print() {
+        $("#gridPanel").printTable();
+    }
+    //导出
+    function btn_export() {
+        dialogOpen({
+            id: "ExcelIExportDialog",
+            title: '导出客户汇总',
+            url: '/Utility/ExcelExportForm?gridId=gridTable',
+            width: "500px",
+            height: "380px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].AcceptClick();
+            }, btn: ['导出Excel', '关闭']
+        });
+    }
+</script>
+<div class="ui-report">
+    <div class="titlePanel">
+        <div class="title-search">
+            <table>
+                <tr>
+                    <td>查询条件</td>
+                    <td style="padding-left: 10px;">
+                        <div class="ui-filter" style="width: 200px;">
+                            <div class="ui-filter-text">
+                                <strong id="SelectedStartTime">@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")</strong> 至 <strong id="SelectedEndTime">@DateTime.Now.ToString("yyyy-MM-dd")</strong>
+                            </div>
+                            <div class="ui-filter-list" style="width: 350px;">
+                                <table class="form" id="filter-form">
+                                    <tr>
+                                        <th class="formTitle">日期：</th>
+                                        <td class="formValue">
+                                            <input id="Category" type="hidden" value="1" />
+                                            <div style="float: left; width: 45%;">
+                                                <input id="StartTime" readonly type="text" value="@Offertech.Util.Time.GetDate(-7)" class="form-control input-wdatepicker" onfocus="WdatePicker({maxDate:'%y-%M-%d'})">
+                                            </div>
+                                            <div style="float: left; width: 10%; text-align: center;">至</div>
+                                            <div style="float: left; width: 45%;">
+                                                <input id="EndTime" readonly type="text" value="@Offertech.Util.Time.GetToday()" class="form-control input-wdatepicker" onfocus="WdatePicker({maxDate:'%y-%M-%d'})">
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                                <div class="ui-filter-list-bottom">
+                                    <a id="btn_Reset" class="btn btn-default">&nbsp;重&nbsp;&nbsp;置</a>
+                                    <a id="btn_Search" class="btn btn-primary">&nbsp;查&nbsp;&nbsp;询</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <div id="time_horizon" class="btn-group">
+                            <a class="btn btn-default" data-value="1">今天</a>
+                            <a class="btn btn-default active" data-value="2">近7天</a>
+                            <a class="btn btn-default" data-value="3">近1个月</a>
+                            <a class="btn btn-default" data-value="4">近3个月</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="toolbar">
+            <div class="btn-group">
+                <a id="lr-replace" class="btn btn-default" onclick="reload();"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
+                <a id="lr-print" class="btn btn-default" onclick="btn_print()"><i class="fa fa-print"></i>&nbsp;打印</a>
+                <a id="lr-export" class="btn btn-default" onclick="btn_export()"><i class="fa fa-sign-out"></i>&nbsp;导出</a>
+            </div>
+            <script>$('.toolbar').authorizeButton()</script>
+        </div>
+    </div>
+    <div class="gridPanel" id="gridPanel">
+        <div class="printArea">
+            <div class="grid-title">客户汇总表</div>
+            <div class="grid-subtitle">日期: @Offertech.Util.Time.GetDate(-7) 至 @Offertech.Util.Time.GetToday()</div>
+            <table id="gridTable"></table>
+            <div id="gridPager"></div>
+        </div>
+    </div>
+</div>

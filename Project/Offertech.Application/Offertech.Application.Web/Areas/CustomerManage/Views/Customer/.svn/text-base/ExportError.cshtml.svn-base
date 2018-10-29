@@ -1,0 +1,69 @@
+﻿@{;
+ViewBag.Title = "客户导入结果页面";
+Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<div style="margin: 5px;">
+    <div class="alert alert-danger" style="margin-bottom: 5px;">
+        <i class="fa fa-question-circle" style="position: relative; top: 1px; font-size: 15px; padding-right: 5px;"></i>
+        导入返回结果
+    </div>
+</div>
+<div style="margin: 5px;">
+    <input id="ItemClass" name="ItemClass" type="hidden" value="1">
+    <table class="form">
+        <tr>
+            <th class="formTitle">成功数量</th>
+            <td class="formValue">
+                @if (ViewBag.SuccessCount != null)
+                {
+                    <label>@ViewBag.SuccessCount</label>
+                    if (int.Parse(ViewBag.SuccessCount.ToString()) == -1)
+                    {
+                        <label class="red">数据不存在</label>
+                    }
+                }
+                else
+                {
+                    <label>0</label>
+                }
+
+            </td>
+        </tr>
+        <tr>
+            <th class="formTitle">失败数量</th>
+            <td class="formValue">
+                @if (ViewBag.ErrorCount != null)
+                {
+                    <label>@ViewBag.ErrorCount</label>
+                }
+                else
+                {
+                    <label>0</label>
+                }
+
+            </td>
+        </tr>
+        <tr>
+            <th class="formTitle">导入明细</th>
+            <td class="formValue">
+                <a id="lr-download" class="btn btn-default" onclick="downloadFile()"><i class="fa fa-download"></i>&nbsp;下载</a>
+            </td>
+        </tr>
+        
+
+    </table>
+</div>
+
+<script>
+    function downloadFile() {
+        try {
+            var elemIF = document.createElement("iframe");
+            elemIF.src = '@Url.Content(ViewBag.Url)';
+            elemIF.style.display = "none";
+            document.body.appendChild(elemIF);
+        } catch (e) {
+
+        }
+    }
+</script>

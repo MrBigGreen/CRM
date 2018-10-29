@@ -1,0 +1,285 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_Contract
+
+@{ Layout = "~/Views/Shared/Index.cshtml"; }
+<style>
+    .textbox-text {
+        width: 290px;
+    }
+</style>
+<form id="myForm">
+
+    <div class="easyui-layout" title="" style="width: 520px">
+        <div style="padding: 10px 20px 20px 20px; ">
+
+            <div class="editor-label">
+                <span class="red">*</span>
+                客户名称:
+            </div>
+            <div class="editor-field" style="width:auto;">
+                <input type="text" class="textbox-text textbox-text-readonly" id="CustomerName" name="CustomerName" required="required" readonly="readonly" />
+                <input type="hidden" id="CustomerID" name="CustomerID" value="" />
+                <a class="easyui-linkbutton" href="javascript:void(0)" onclick="ShowCustomer();">选择</a>
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                <span class="red">*</span>
+                签约公司:
+            </div>
+            <div class="editor-field" style="width:auto;">
+                <input id="cbxSigningCompany" name="cbxSigningCompany" style="width: 290px" />
+                <input type="hidden" id="SigningCompany" name="SigningCompany" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                <span class="red">*</span>
+                服务类型:
+            </div>
+            <div class="editor-field" style="width:350px; height:auto">
+                @Html.CheckBoxListFor(model => model.RecommendSolutionID, Models.SysFieldModels.GetSysFieldByParentID("1508071046119479968e30ccf1f9f"))
+                <input type="hidden" id="RecommendSolutionIDs" name="RecommendSolutionIDs" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                <span class="red">*</span>
+                合同编号:
+            </div>
+            <div class="editor-field">
+                <input type="text" class="textbox-text" id="ContractNO" name="ContractNO" value="" readonly="readonly" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                <span class="red">*</span>合同金额
+            </div>
+            <div class="editor-field">
+                <input type="text" class="textbox-text" id="ContractMoney" name="ContractMoney" value="" required="required" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                <span class="red">*</span>生效日期:
+            </div>
+            <div class="editor-field">
+                <input type="text" class="easyui-datebox" id="EffectiveDate" name="EffectiveDate" value="" required="required" editable="true" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                <span class="red">*</span>截止日期:
+            </div>
+            <div class="editor-field">
+                <input type="text" class="easyui-datebox" id="Deadline" name="Deadline" value="" required="required" editable="true" />
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                客服:
+            </div>
+            <div class="editor-field">
+                <input id="selPerson" class="easyui-combobox" name="language" data-options="multiple:true, multiline:true, method:'post',valueField:'SysPersonID',textField:'SysPersonName', panelHeight:'auto'  ">
+                <input type="hidden" id="SysPersonID" name="SysPersonID" />
+                <input type="hidden" id="SysPersonIDOld" name="SysPersonIDOld" />
+            </div>
+            <br style="clear: both;" />
+            <br style="clear: both;" />
+            <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+                <input class="a2 f2" type="submit" id="submit" value="创建" style="display:none" />
+                <a class="easyui-linkbutton" id="ContactSave" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+                   onclick="SubmitFunc();">保存</a>
+                &nbsp; &nbsp; &nbsp;
+                <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+                   onclick="closeWindow();">取消</a>
+            </div>
+        </div>
+    </div>
+</form>
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script type="text/javascript">$.getScript("/Scripts/Contract/Create.js")</script>
+<script type="text/javascript">
+
+    $(function () {
+        $('#selPerson').combobox({
+            url: '/SysRole/GetKeFuPerson',
+            formatter: function (row) {
+                return '<span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">' + row.SysPersonName + '</span></span>';
+            },
+            onLoadSuccess: function () {
+            },
+            onSelect: function (row) {
+                var newSysOperationId = $("#SysPersonID").val();
+                $("#SysPersonID").val(newSysOperationId + (newSysOperationId.length > 0 ? "^" : "") + row.SysPersonID + "&" + row.SysPersonName);
+            },
+            onUnselect: function (row) {
+                var newSysOperationId = $("#SysPersonID").val();
+                var delVal = row.SysPersonID + "&" + row.SysPersonName;
+                if (newSysOperationId.indexOf("^" + delVal) >= 0)
+                    newSysOperationId = newSysOperationId.replace("^" + delVal, "");
+                else if (newSysOperationId.indexOf(delVal + "^") >= 0)
+                    newSysOperationId = newSysOperationId.replace(delVal + "^", "");
+                else
+                    newSysOperationId = newSysOperationId.replace(delVal, "");
+                $("#SysPersonID").val(newSysOperationId);
+            }
+        });
+    });
+
+    $('#cbxSigningCompany').combobox({
+        required: true,
+        url: '/SysField/GetComboBoxList?ParentID=1604121151490315992e569f90a1e',
+        valueField: 'Value',
+        textField: 'Text',
+        //editable: false
+        filter: function (q, row) { //q：文本框内你输入的值，row：列表数据集合；
+            var opts = $(this).combobox('options');
+
+            //统一转换成小写进行比较；==0：匹配首位，>=0：匹配任意位置；
+            return row[opts.textField].indexOf(q) >= 0;
+        },
+        onSelect: function (newValue, oldValue) {
+            $("#SigningCompany").val(newValue.Value);
+        }
+    });
+
+
+    var validator = $("#myForm").validate({
+        errorElement: 'span',
+        errorClass: 'field-validation-error',
+        focusInvalid: false,
+        rules: {
+            CustomerName: {
+                required: true,
+            },
+            RecommendSolutionID: {
+                required: true,
+            },
+            ContractNO: {
+                required: true,
+            },
+            ContractMoney: {
+                required: true,
+            },
+            EffectiveDate: {
+                required: true,
+            },
+            Deadline: {
+                required: true,
+            },
+        },
+
+        messages: {
+            CustomerName: {
+                required: "请选择客户",
+            },
+            RecommendSolutionID: {
+                required: "请选择服务类型",
+            },
+            ContractNO: {
+                required: "请重新选择服务类型",
+            },
+            ContractMoney: {
+                required: "请输入合同金额",
+            },
+            EffectiveDate: {
+                required: "请选择生效日期",
+            },
+            Deadline: {
+                required: "请选择截止日期",
+            },
+        },
+
+        invalidHandler: function (event, validator) { //display error alert on form submit
+            $('.alert-danger', $('.login-form')).show();
+        },
+
+        highlight: function (e) {
+            //移除当前控件后面所有元素
+
+            $(e).closest('.editor-field input').addClass('input-validation-error');
+        },
+
+        success: function (e) {
+            //移除当前控件后面所有元素
+            //$(e).removeClass('input-validation-error');
+            //$(e).closest('.editor-field').find("input").removeClass('input-validation-error');
+            $(e).prev("input").removeClass('input-validation-error');
+            $(e).remove();
+        },
+
+        errorPlacement: function (error, element) {
+            if (element.is(':checkbox') || element.is(':radio')) {
+                var controls = element.closest('div[class*="col-"]');
+                if (controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+            }
+            else if (element.is('.select2')) {
+                error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+            }
+            else if (element.is('.chosen-select')) {
+                error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+            }
+            else error.insertAfter(element);
+
+        },
+
+        submitHandler: function (form) {
+        },
+        invalidHandler: function (form) {
+        }
+    });
+
+    /************************************************创建会员***********************************************/
+
+    var SubmitFunc = function () {
+
+        var ids = "";
+        $("input[name='RecommendSolutionID']:checked").each(function () {
+            ids += $(this).val() + ",";
+        });
+        $("#RecommendSolutionIDs").val(ids);
+
+
+        var SubmitResult = true;
+        // 检测表单是否验证通过 并进行表单验证
+        var validateState = $("#myForm").valid();
+        if ($("#SigningCompany").val() == "") {
+            validateState = false;
+        }
+        if (!validateState) {
+            return false;
+        }
+        var CustomerID = $("#CustomerID").val();
+        $.ajax({
+            url: "/Contract/GetRatingScore",
+            data: { id: CustomerID },
+            type: "post",
+            datatype: "json",
+            success: function (data) {
+                if (data.Result == "") {
+                    $.messager.alert("提示", "请完善客户基本信息，才能创建合同！", "info");
+                    return false;
+                }
+                else {
+                    $.ajax({
+                        url: "/Contract/Create",
+                        type: "Post",
+                        data: $("#myForm").serialize(),
+                        dataType: "json",
+                        success: function (data) {
+                            if ($.messager) {
+                                $.messager.alert('操作提示', data, "info", function (r) {
+                                    closeWindow();
+                                });
+                            }
+                        },
+                        error: function () {
+                            SubmitResult = false;
+                        }
+                    });
+                }
+            }
+        });
+        return SubmitResult;
+    };
+    function ShowCustomer() {
+        showWindow("选择客户", "/Customer/SelectedList?type=contract", 450, 410);
+    }
+
+</script> 

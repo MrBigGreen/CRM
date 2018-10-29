@@ -1,0 +1,68 @@
+﻿@model CRM.DAL.SysDocumentTalk
+
+@{
+    Layout = "~/Views/Shared/Create.cshtml";
+}
+@using Common
+@using Models
+ 
+@section CurentPlace {
+ 
+      创建  
+ 
+ }
+    <fieldset>
+        <legend>
+            <input class="a2 f2" type="submit" value="创建" />
+            <input class="a2 f2" type="button" onclick="BackList('SysDocumentTalk')" value="返回" />
+        </legend>
+        <div class="bigdiv">
+            
+            <br style="clear: both;" />
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Content)：
+            </div>
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.Content) 
+                @Html.ValidationMessageFor(model => model.Content) 
+            </div>
+        <div class="editor-label">
+            <a class="anUnderLine" onclick="showModalOnly('SysDocumentId','../../SysDocument');">
+                @Html.LabelFor(model => model.SysDocumentId) 
+            </a>：
+        </div>
+        <div class="editor-field">
+            <div id="checkSysDocumentId">            
+            </div>
+            @Html.HiddenFor(model => model.SysDocumentId)
+        </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Bad) ：
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Bad, new {  onkeyup = "isInt(this)", @class="text-box single-line" })
+                @Html.ValidationMessageFor(model => model.Bad) 
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Good) ：
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Good, new {  onkeyup = "isInt(this)", @class="text-box single-line" })
+                @Html.ValidationMessageFor(model => model.Good) 
+            </div>
+        </div>
+    </fieldset>
+ 
+
+    
+    <script type="text/javascript">
+
+        $(function () {
+            
+
+        });
+              
+
+    </script>
+
+

@@ -1,0 +1,219 @@
+﻿@using Common
+@using CRM.DAL
+@using Models
+@model List<PayReportEntity>
+<div id="WagesDiv">
+    <table class="record" id="tableInfo">
+        <tr>
+            <td colspan="6" style="text-align: center;font-size:larger">派遣/外包项目员工工资发放审批单</td>
+        </tr>
+        <tr>
+            <td style="text-align:center">客户名称</td>
+            <td colspan="2">@ViewBag.CustomerName</td>
+            <td style="text-align:center">所属月份</td>
+            <td colspan="2">@ViewBag.Month </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">项目</td>
+            <td style="text-align:center">人数</td>
+            <td style="text-align:center">金额</td>
+            <td colspan="3" style="text-align:center">银行支付明细</td>
+        </tr>
+        <tr>
+            <td style="text-align: center">应付工资</td>
+            <td>@ViewBag.CustomerPayPersonsNums</td>
+            <td>@ViewBag.CustomerPayPersonsAmount</td>
+            <td style="text-align: center">银行名称</td>
+            <td style="text-align: center">人数</td>
+            <td style="text-align: center">金额</td>
+        </tr>
+        @{
+
+            int bankpersonCounts = 0;
+            double bankmoney = 0;
+
+            if (Model != null || Model.Count() == 0)
+            {
+                for (int i = 0; i < Model.Count(); i++)
+                {
+                    bankpersonCounts += int.Parse(Model[i].BankPayPersons.ToString());
+                    bankmoney += double.Parse(Model[i].BankPayAmount.ToString());
+                    if (i == 0)
+                    {
+                        <tr>
+                            <td style="text-align: center">扣个人社保</td>
+                            <td style="text-align: center">@ViewBag.PayPersonsSocialSecurityNums </td>
+                            <td style="text-align: center">@ViewBag.PayPersonsSocialSecurityAmount</td>
+                            <td style="text-align: center">@Model[i].BankName</td>
+                            <td style="text-align: center">@Model[i].BankPayPersons</td>
+                            <td style="text-align: center">@Model[i].BankPayAmount</td>
+                        </tr>
+                    }
+                    else if (i == 1)
+                    {
+                        <tr>
+                            <td style="text-align: center">扣个人公积金</td>
+                            <td style="text-align: center">@ViewBag.PayPersonsFundsNums</td>
+                            <td style="text-align: center">@ViewBag.PayPersonsFundsAmount</td>
+                            <td style="text-align: center">@Model[i].BankName</td>
+                            <td style="text-align: center">@Model[i].BankPayPersons</td>
+                            <td style="text-align: center">@Model[i].BankPayAmount</td>
+                        </tr>
+                    }
+                    else if (i == 2)
+                    {
+                        <tr>
+                            <td style="text-align: center">扣个税</td>
+                            <td style="text-align: center">@ViewBag.PayPersonsTaxNums</td>
+                            <td style="text-align: center">@ViewBag.PayPersonsTaxAmount</td>
+                            <td style="text-align: center">@Model[i].BankName</td>
+                            <td style="text-align: center">@Model[i].BankPayPersons</td>
+                            <td style="text-align: center">@Model[i].BankPayAmount</td>
+                        </tr>
+                    }
+                    else
+                    {
+
+                        <tr>
+                            <td>&nbsp;&nbsp;&nbsp;</td>
+                            <td style="text-align: center"></td>
+                            <td style="text-align: center"></td>
+                            <td style="text-align: center">@Model[i].BankName</td>
+                            <td style="text-align: center">@Model[i].BankPayPersons</td>
+                            <td style="text-align: center">@Model[i].BankPayAmount</td>
+                        </tr>
+                    }
+
+
+                }
+            }
+            else
+            {
+                <tr>
+                    <td style="text-align: center">扣个人社保</td>
+                    <td style="text-align: center">@ViewBag.PayPersonsSocialSecurityNums </td>
+                    <td style="text-align: center">@ViewBag.PayPersonsSocialSecurityAmount</td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">扣个人公积金</td>
+                    <td style="text-align: center">@ViewBag.PayPersonsFundsNums</td>
+                    <td style="text-align: center">@ViewBag.PayPersonsFundsAmount</td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">扣个税</td>
+                    <td style="text-align: center">@ViewBag.PayPersonsTaxNums</td>
+                    <td style="text-align: center">@ViewBag.PayPersonsTaxAmount</td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                </tr>
+                for (int i = 0; i < 5; i++)
+                {
+                    <td style="text-align: center">&nbsp;&nbsp;&nbsp; </td>
+                    <td style="text-align: center"> &nbsp;&nbsp;&nbsp;</td>
+                    <td style="text-align: center">&nbsp;&nbsp;&nbsp; </td>
+                    <td style="text-align: center"> &nbsp;&nbsp;&nbsp;</td>
+                    <td style="text-align: center">&nbsp;&nbsp;&nbsp; </td>
+                }
+            }
+
+        }
+
+        <tr>
+            <td style="text-align:center">实付工资</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align:center">其中银行支付</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: center">现金支付</td>
+            <td></td>
+            <td></td>
+            <td style="text-align: center">合计</td>
+            <td>@bankpersonCounts</td>
+            <td>@bankmoney</td>
+        </tr>
+
+        <tr><td colspan="6">&nbsp;&nbsp;&nbsp;</td></tr>
+        <tr>
+            <td style="text-align: center">合同主体公司：</td>
+            <td colspan="5">@ViewBag.CompanyName </td>
+
+        </tr>
+        <tr>
+            <td style="text-align: center">工资发放主体：</td>
+            <td colspan="5"></td>
+
+        </tr>
+        <tr>
+            @{
+                for (int i = 0; i < 5; i++)
+                {
+                <tr>
+                    <td style="text-align: center">@(i + 1)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2"></td>
+
+                </tr>
+                }
+            }
+            </tr>
+            <tr><td colspan="6">&nbsp;&nbsp;&nbsp;</td></tr>
+            <tr>
+                <td style="text-align:center">审批</td>
+                <td style="text-align:center" colspan="2">财务审核</td>
+                <td style="text-align:center">薪酬部审核</td>
+                <td style="text-align:center" colspan="2">制单</td>
+            </tr>
+            <tr>
+                <td style="text-align:center"></td>
+                <td colspan="2" style="text-align:center">&nbsp;&nbsp;&nbsp;</td>
+                <td></td>
+                <td colspan="2" style="text-align:center">&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+        </table>
+
+    </div>
+    <div align="center">
+        <input type="button" id="btnExportExcel" style="widtd: 80px;" onclick="ExportExcel()" value="导出">
+    </div>
+
+    <link href="~/Res/PublicCommon.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.watermark.min.js"></script>
+    <script src="~/Scripts/jquery.bpopup-0.7.0.min.js"></script>
+    <script src="~/Scripts/type-bpopup_fuc.js" type="text/javascript"></script>
+    <script src="/Scripts/Employees/Index.js" type="text/javascript"></script>
+    <link href="~/Content/TodayTasks/Index.css" rel="stylesheet" />
+    <script src="~/Scripts/tableExport.js"></script>
+    <script src="~/Scripts/jquery.base64.js"></script>
+    <script type="text/javascript">
+
+        function ExportExcel() {
+            $('#tableInfo').tableExport({
+                type: 'excel',
+                separator: ';',
+                escape: 'false',
+                fileName: '工资支付审批表',
+                worksheetName: 'sheet1'
+            });
+        }
+
+    </script>

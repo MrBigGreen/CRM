@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/Model/Attribute
+END
+IsNotNullAttribute.cs
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/Model/Attribute/IsNotNullAttribute.cs
+END
+IAttribute.cs
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/Model/Attribute/IAttribute.cs
+END
+LengthAttribute.cs
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util.WeChat/Model/Attribute/LengthAttribute.cs
+END

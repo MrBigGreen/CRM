@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6d2906fd5fea47c4af52891d9b2f572d" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="DB_CRMModel.FileUploader" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysAnnouncement" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysCodeTable" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysColumnFilter" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysDepartment" Width="1.5" PointX="0.75" PointY="10" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysDocument" Width="1.5" PointX="3" PointY="10.25" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysDocumentTalk" Width="1.5" PointX="5.25" PointY="10.625" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysEmail" Width="1.5" PointX="5" PointY="5" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysEmailTemp" Width="1.5" PointX="2.75" PointY="5" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysException" Width="1.5" PointX="12.75" PointY="5.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysField" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysLog" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysMenu" Width="1.5" PointX="10.5" PointY="17.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysMenuSysRoleSysOperation" Width="1.5" PointX="12.75" PointY="23.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysMessage" Width="1.5" PointX="5" PointY="1" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysMessageTemp" Width="1.5" PointX="2.75" PointY="1" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysNotice" Width="1.5" PointX="2.75" PointY="14.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysOperation" Width="1.5" PointX="10.5" PointY="27.625" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysPerson" Width="1.5" PointX="8.25" PointY="7.5" />
+        <EntityTypeShape EntityType="DB_CRMModel.SysRole" Width="1.5" PointX="10.5" PointY="23.375" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_Address" Width="1.5" PointX="4.75" PointY="14.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_Billing" Width="1.5" PointX="14.75" PointY="5.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_BillingDetails" Width="1.5" PointX="12.75" PointY="14.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_CallLog" Width="1.5" PointX="13.5" PointY="10" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_Company" Width="1.5" PointX="14.75" PointY="14.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_CompanyInterviewJob" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_Contract" Width="1.5" PointX="16.75" PointY="11.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_ContractSolution" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_Customer" Width="1.5" PointX="8.25" PointY="21.25" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_CustomerAttributionChange" Width="1.5" PointX="10.5" PointY="10.125" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_CustomerContact" Width="1.5" PointX="10.5" PointY="32.375" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_CustomerFollow" Width="1.5" PointX="16.75" PointY="17.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_CustomerFollowSolution" Width="1.5" PointX="6.75" PointY="17.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_CustomerProject" Width="1.5" PointX="18.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_CustomerProjectEvalDetails" Width="1.5" PointX="0.75" PointY="18.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_CustomerRating" Width="1.5" PointX="18.75" PointY="6.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_CustomerService" Width="1.5" PointX="18.75" PointY="11.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_CustomerShare" Width="1.5" PointX="10.5" PointY="5.375" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_CustomerShareLog" Width="1.5" PointX="18.75" PointY="14.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_CustomerVerification" Width="1.5" PointX="18.75" PointY="18.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_ImportResume" Width="1.5" PointX="2.75" PointY="19.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_JobhunterResumeInterview" Width="1.5" PointX="20.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_RecommendSolution" Width="1.5" PointX="4.75" PointY="20.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_RPOPerformance" Width="1.5" PointX="20.75" PointY="6.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_SalesPerformance" Width="1.5" PointX="20.75" PointY="12.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TP_Employees" Width="1.5" PointX="20.75" PointY="18.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TP_HousingFund" Width="1.5" PointX="22.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TP_SalaryDetails" Width="1.5" PointX="22.75" PointY="5.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TP_SalaryItem" Width="1.5" PointX="22.75" PointY="22.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TP_SalarySubjectSysPerson" Width="1.5" PointX="4.75" PointY="23.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TP_SocialInsur" Width="1.5" PointX="24.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TP_SubjectsAuthority" Width="1.5" PointX="24.75" PointY="7.75" />
+        <EntityTypeShape EntityType="DB_CRMModel.TB_SoundComment" Width="1.5" PointX="24.75" PointY="11.75" />
+        <AssociationConnector Association="DB_CRMModel.FK_SYSDEPAR_REFERENCE_SYSDEPAR" />
+        <AssociationConnector Association="DB_CRMModel.FK_SYSPERSO_REFERENCE_SYSDEPAR" />
+        <AssociationConnector Association="DB_CRMModel.FK_SYSDOCUM_REFERENCE_SYSDOCUM" />
+        <AssociationConnector Association="DB_CRMModel.FK_SYSEMAIL_REFERENCE_SYSEMAIL" />
+        <AssociationConnector Association="DB_CRMModel.FK_SYSFIELD_REFERENCE_SYSFIELD" />
+        <AssociationConnector Association="DB_CRMModel.FK_SYSMENU_REFERENCE_SYSMENU" />
+        <AssociationConnector Association="DB_CRMModel.FK_SYSMENUS_REFERENCE_SYSMENU2" />
+        <AssociationConnector Association="DB_CRMModel.FK_SysMenuSysRoleSysOperation_SysOperation" />
+        <AssociationConnector Association="DB_CRMModel.FK_SysMenuSysRoleSysOperation_SysRole" />
+        <AssociationConnector Association="DB_CRMModel.FK_SYSMESSA_REFERENCE_SYSMESSA" />
+        <AssociationConnector Association="DB_CRMModel.FK_SysOperation_SysOperation" />
+        <AssociationConnector Association="DB_CRMModel.FK_TB_CallLog_SysPerson" />
+        <AssociationConnector Association="DB_CRMModel.FK_TB_CustomerAttributionChange_SysPerson" />
+        <AssociationConnector Association="DB_CRMModel.FK_TB_CustomerShare_SysPerson" />
+        <AssociationConnector Association="DB_CRMModel.FK_TB_CallLog_TB_Customer" />
+        <AssociationConnector Association="DB_CRMModel.FK_TB_CustomerAttributionChange_TB_Customer" />
+        <AssociationConnector Association="DB_CRMModel.FK_TB_CustomerContact_TB_Customer" />
+        <AssociationConnector Association="DB_CRMModel.FK_TB_CustomerShare_TB_Customer" />
+        <AssociationConnector Association="DB_CRMModel.SysDocumentSysDepartment" />
+        <AssociationConnector Association="DB_CRMModel.SysDocumentSysPerson" />
+        <AssociationConnector Association="DB_CRMModel.SysMenuSysOperation" />
+        <AssociationConnector Association="DB_CRMModel.SysRoleSysPerson" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

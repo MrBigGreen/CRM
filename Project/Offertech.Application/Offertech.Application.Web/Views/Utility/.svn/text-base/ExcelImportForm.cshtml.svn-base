@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "导入Excel数据";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<script>
+    var gridId = request('gridId');
+    var filename = request('filename');
+    $(function () {
+        var columnModel = $.currentIframe().$("#" + gridId).jqGrid('getGridParam', 'colModel');
+      
+    });
+    //确定导出
+    function AcceptClick() {
+        var exportField = [];
+        $('.sys_spec_text ').find('li.active').each(function () {
+            var value = $(this).attr('data-value');
+            exportField.push(value);
+        });
+        var columnJson = $.currentIframe().$("#" + gridId).jqGrid('getGridParam', 'colModel');
+        var rowJson = $.currentIframe().$("#" + gridId).jqGrid('getRowData');
+        $('#executeexcel').remove();
+        var $form = $("<form id='executeexcel' method='post' action='" + top.contentPath + "/Utility/ExecuteExportExcel' style='display:none;'>");
+        var $input = $("<input type='hidden' name='columnJson' value='" + JSON.stringify(columnJson) + "'><input type='hidden' name='rowJson' value='" + JSON.stringify(rowJson) + "'><input type='hidden' name='exportField' value='" + String(exportField) + "'><input type='hidden' name='filename' value='" + escape(filename) + "'>");
+        $("body").append($form);
+        $form.append($input).submit();
+    }
+</script>
+<div style="margin: 5px;">
+    <div class="alert alert-danger" style="margin-bottom: 5px;">
+        <i class="fa fa-question-circle" style="position: relative; top: 1px; font-size: 15px; padding-right: 5px;"></i>
+        
+        <table class="form">
+            <tr>
+                <td class="formTitle">模板<font face="宋体">*</font></td>
+                <td class="formValue">
+                    <a href="/Pay/DownSalaryTemplate" class="easyui-linkbutton" data-options="iconCls:'icon-add'">下载</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">导入<font face="宋体">*</font></td>
+                <td class="formValue">
+                    <input type="file" name="file" id="FileUpLoad1" accept="application/vnd.ms-excel" style="width: 480px;" />
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+<div style="margin: 5px;">
+    <ul class="sys_spec_text"></ul>
+</div>

@@ -1,0 +1,73 @@
+﻿@model CRM.DAL.SysNotice
+
+@{
+    Layout = "~/Views/Shared/Edit.cshtml";
+}
+@using Common
+@using Models
+ @section CurentPlace {
+    修改  
+}
+
+    <fieldset>
+        <legend>
+            <input class="a2 f2" type="submit" value="修改" />
+            <input class="a2 f2" type="button" onclick="BackList('SysNotice')" value="返回列表" />
+        </legend>
+        <div class="bigdiv">
+            @Html.HiddenFor(model => model.Id ) 
+            <br style="clear: both;" />
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Message)：
+            </div>
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.Message) 
+                @Html.ValidationMessageFor(model => model.Message) 
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.LostTime)：
+            </div>
+            <div class="editor-field">
+                @Html.TextBox("LostTime", ((Model != null && Model.LostTime != null) ? Model.LostTime.ToString().AsDateTime().ToString("yyyy-MM-dd") : ""), new { style = "width: 244px;", @class="easyui-datebox" })
+                @Html.ValidationMessageFor(model => model.LostTime)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.PersonId)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.PersonId)
+                @Html.ValidationMessageFor(model => model.PersonId)
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Remark)：
+            </div>
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.Remark) 
+                @Html.ValidationMessageFor(model => model.Remark) 
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.State)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.State)
+                @Html.ValidationMessageFor(model => model.State)
+            </div>@Html.HiddenFor(model => model.CreateTime ) @Html.HiddenFor(model => model.CreatePerson ) 
+        </div>
+    </fieldset>
+
+
+
+
+    <script type="text/javascript">
+
+        $(function () {
+            
+
+        });
+        
+
+    </script>
+
+
+

@@ -1,0 +1,51 @@
+﻿
+@using Common
+@using Models
+@model CRM.DAL.TB_Customer
+
+@{
+    ViewBag.Title = "客户审核";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+<div id="divQuery">
+    <div class="easyui-panel" title="查询栏" iconcls="icon-search" collapsible="true" data-options="collapsed:true" style="height:auto;width:auto">
+        <table id="ttSearch" class="record" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th style="width:120px; text-align:right; padding-right:10px;height:36px">查询条件:</th>
+                <td>
+                    <input id="Keyword" name="Keyword" maxlength="100" value="" type="text" placeholder="搜索公司名称、电话" style="width:220px" />
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                        查 询
+                    </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" onclick="RemvoeAll()" class="easyui-linkbutton" data-options="iconCls:'icon-clear'">
+                        清 空
+                    </a>
+
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+<br style="clear: both;" />
+<div class="easyui-tabs" style="width:99%;height:750px">
+    <div title="全部" style="padding:10px">
+        <table id="allData"></table>
+    </div>
+    <div title="待审核" style="padding:10px">
+        <table id="PendingAuditData"></table>
+    </div>
+    <div title="审核通过" style="padding:10px">
+        <table id="AuditThroughData"></table>
+    </div>
+    <div title="未通过" style="padding:10px">
+        <table id="NotByData"></table>
+    </div>
+</div>
+
+<script type="text/javascript" language="javascript">$.getScript("/Scripts/Customer/SelfAudit.js")</script>

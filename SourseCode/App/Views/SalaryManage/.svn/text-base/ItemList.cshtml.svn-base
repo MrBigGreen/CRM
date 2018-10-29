@@ -1,0 +1,248 @@
+﻿@{ Layout = "~/Views/Shared/Index.cshtml"; }
+@using Common
+@using Models
+<style type="text/css">
+    .div_column {
+        background: none repeat scroll 0 0 #99BBE8;
+        width: 271px;
+        height: 22px;
+        border-width: 0;
+        font-size: 14.5px;
+        color: #FFFFFF;
+        font-weight: 500;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 2px;
+        text-align: left;
+        vertical-align: middle;
+        padding-left: 5px;
+        padding-top: 5px;
+    }
+
+    #divCustomColumns .panel {
+        width: 300px;
+        display: block;
+        margin: 5px;
+        margin-bottom: 0px;
+    }
+
+    #divCustomColumns .panel-header {
+        width: 800px;
+    }
+
+    .select-list {
+        width: 300px;
+        height: 480px;
+        float: left;
+        margin: 5px;
+        overflow-y: auto;
+    }
+
+    .selected {
+        background-color: #4B8BC1;
+    }
+</style>
+
+
+<div class="easyui-panel" id="panelShow" title="查询栏" iconcls="icon-search" collapsible="true" style="height:auto;width:auto">
+    <div id="ttSearch" data-options="region:'center'" style="padding:2px">
+        <table class="record" border="0" cellpadding="0" cellspacing="0" style="width:100%">
+            <tr>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    列名 :
+                </th>
+                <td>
+                    <input type='text' id='ItemName' name="ItemName" />
+                </td>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    类别 :
+                </th>
+                <td>
+                    <select class="easyui-combobox" id="ItemClass" name="ItemClass" style="width:120px;" value="--请选择--"></select>
+                </td>
+            </tr> 
+           
+            <tr>
+                <td colspan="4" style="text-align:center">
+                    <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                        查 询
+                    </a> 
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<br style="clear: both;" />
+<table id="flexigridData"></table>
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script type="text/javascript" language="javascript">
+
+    var iframeid = "";
+    $(function () {
+        $('#ItemClass').combobox({
+            valueField: 'Value', //值字段
+            textField: 'Text', //显示的字段
+            editable: false,
+            data: [{ "Value": "", "Text": "--请选择--" }, { "Value": "0", "Text": "共有" }, { "Value": "1", "Text": "客服" }, { "Value": "2", "Text": "薪酬" }, { "Value": "3", "Text": "社保" }, { "Value": "4", "Text": "财务" }],
+        });
+
+    //首先获取iframe标签的id值
+    iframeid = window.parent.$('#tabs').tabs('getSelected').find('iframe').attr("id");
+
+        $('#flexigridData').datagrid({
+            title: '薪资项目', //列表的标题
+            url: '../SalaryManage/GetSalaryItemData', //获取数据的url
+            iconCls: 'icon-site',
+            width: 'auto',
+            height: '600',
+            //nowrap: false,
+            striped: true,
+            collapsible: true,
+            sortName: 'Sort',
+            sortOrder: 'asc',
+            idField: 'SalaryItemID',
+            fitColumns: true,
+            resizable: true,
+            pagination: true,
+            rownumbers: true,
+            singleSelect: true,
+            showFooter: true,//定义是否显示一行页脚。
+            columns: [[
+                { field: 'ItemCode', title: '字段', width: 100 },
+                { field: 'ItemName', title: '列名', width: 90 },
+                {
+                    field: 'DataType', title: '数据类型', width: 90, formatter: function (value,rowData) {
+                        if (value == "1")
+                        {
+                            return "字符型";
+                        }
+                        else if (value == "2") {
+                            return "整型";
+                        }
+                        else if (value == "3") {
+                            return "浮点型";
+                        }
+                    }
+                },
+                {
+                    field: 'ItemClass', title: '所属类别', width: 90, formatter: function (value) {
+                        if (value == "0")
+                        {
+                            return "共有";
+                        }
+                        else if (value == "1") {
+                            return "客服";
+                        }
+                        else if (value == "2") {
+                            return "薪酬";
+                        }
+                        else if (value == "3") {
+                            return "社保";
+                        }
+                        else if (value == "4") {
+                            return "财务";
+                        }
+                    }
+                },
+                { field: 'Sort', title: '排序', width: 90 },
+
+            ]],
+
+
+        });
+
+        //如果列表页出现在弹出框中，则只显示查询和选择按钮
+        var parent = window.dialogArguments; //获取父页面
+        //异步获取按钮
+        if (parent == "undefined" || parent == null) {
+
+            //然后关闭AJAX相应的缓存
+            $.ajaxSetup({
+                cache: false
+            });
+
+            //获取按钮值
+            $.getJSON("../Home/GetToolbar", { id: iframeid }, function (data) {
+                if (data == null) {
+                    return;
+                }
+                $('#flexigridData').datagrid("addToolbarItem", data);
+            });
+
+        }
+
+
+    });
+
+
+</script>
+ 
+
+
+<script type="text/javascript">
+  
+
+    //将查询条件按照分隔符拼接成字符串
+    var search = "";
+    //“查询”按钮，弹出查询框
+    function flexiQuery() {
+
+
+        //将查询条件按照分隔符拼接成字符串
+        search = "";
+        var ItemClass = $('#ItemClass').combobox('getValue');//薪资月份
+        if (ItemClass != '') {
+            search = search + "ItemClass&" + ItemClass + "^";
+        }
+        var ItemName = $("#ItemName").val();//
+        if (ItemName != '') {
+            search = search + "ItemName&" + ItemName + "^";
+        }
+     
+
+        $('#flexigridData').datagrid('options').url = "../SalaryManage/GetSalaryItemData";
+        $("#flexigridData").datagrid("clearSelections");
+        //执行查询
+        $('#flexigridData').datagrid('load', { search: search });
+    };
+
+
+    //导航到查看详细的按钮
+    function getView() {
+
+        var arr = $('#flexigridData').datagrid('getSelections');
+
+        if (arr.length == 1) {
+
+            window.location.href = "/SalaryManage/ItemView?ID=" + arr[0].SalaryItemID;
+
+        } else {
+            $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+        }
+        return false;
+    }
+
+    //导航到创建的按钮
+    function flexiCreate() {
+        showWindowTop("新增项目", "/SalaryManage/ItemAdd", 750, 600);
+        return false;
+    }
+    //导航到修改的按钮
+    function flexiModify() {
+
+        var arr = $('#flexigridData').datagrid('getSelections');
+
+        if (arr.length == 1) {
+            var ID = arr[0].SalaryItemID;
+
+            showWindowTop("修改项目", "/SalaryManage/ItemEdit?id=" + ID, 750, 600);
+        } else {
+            $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+        }
+        return false;
+
+    };
+
+</script>

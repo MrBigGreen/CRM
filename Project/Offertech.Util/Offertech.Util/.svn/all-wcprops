@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BridgehrKit/!svn/ver/14679/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util
+END
+Offertech.Util.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BridgehrKit/!svn/ver/14574/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/Offertech.Util.csproj
+END
+WebHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/WebHelper.cs
+END
+packages.config
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BridgehrKit/!svn/ver/14620/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/packages.config
+END
+Sys.cs
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BridgehrKit/!svn/ver/13650/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/Sys.cs
+END
+app.config
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/app.config
+END
+MailHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/MailHelper.cs
+END
+IDCardHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/IDCardHelper.cs
+END
+Const.cs
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/Const.cs
+END
+Net.cs
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/Net.cs
+END
+Serialize.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/Serialize.cs
+END
+ValidateUtil.cs
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/ValidateUtil.cs
+END
+FtpClient.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/13865/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/FtpClient.cs
+END
+CommonHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/CommonHelper.cs
+END
+Offertech.Util.csproj.user
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/Offertech.Util.csproj.user
+END
+Comparint.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/Comparint.cs
+END
+Time.cs
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/Time.cs
+END
+XmlHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/XmlHelper.cs
+END
+IPLocation.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/IPLocation.cs
+END
+job_scheduling_data_2_0.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/BridgehrKit/!svn/ver/14679/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/job_scheduling_data_2_0.xsd
+END
+SmsHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/SmsHelper.cs
+END
+HttpMethods.cs
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/HttpMethods.cs
+END
+Str.cs
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/Str.cs
+END
+DataHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/DataHelper.cs
+END
+Json.cs
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BridgehrKit/!svn/ver/13839/VISS/solution/WebSrc/CRM/Project/Offertech.Util/Offertech.Util/Json.cs
+END

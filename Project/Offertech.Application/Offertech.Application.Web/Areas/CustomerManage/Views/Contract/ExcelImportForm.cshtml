@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "导入合同页面";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<script src="~/Content/scripts/bootstrap/bootstrap-prettyfile.js"></script>
+<link href="~/Content/styles/style.min.css" rel="stylesheet" />
+<style>
+    .input-group-btn {
+        display: none;
+    }
+</style>
+<script>
+    var gridId = request('gridId');
+    var filename = request('filename');
+    $(function () {
+        $("#form1").attr("method", "post");
+        $("#form1").attr("enctype", "multipart/form-data");
+        $("#form1").attr("action", "../../CustomerManage/Contract/ExcelImportData");
+        $('input[type="file"]').prettyFile()
+    });
+    //模板下载
+    function btn_download() {
+        //var FileId = "bbad5b7c-4bea-45e8-b3bc-27a44c844e77";
+        //$.download("../../PublicInfoManage/ResourceFile/DownloadFile", "keyValue=" + FileId, 'post');
+        var FileId = "";
+        $.download("../../CustomerManage/Contract/DownloadFile", "keyValue=" + FileId, 'post');
+      
+    }
+    //确定导入
+    function AcceptClick() {
+        if (!!$("#FileUpLoad1").val()) {
+            //得到上传文件的值
+            var fileName = document.getElementById("FileUpLoad1").value;
+            //返回String对象中子字符串最后出现的位置.
+            var seat = fileName.lastIndexOf(".");
+            //返回位于String对象中指定位置的子字符串并转换为小写.
+            var extension = fileName.substring(seat).toLowerCase();
+            //判断允许上传的文件格式
+            var allowed = [".xls", ".xlsx"];
+            for (var i = 0; i < allowed.length; i++) {
+                if (!(allowed[i] != extension)) {
+                    $("#form1").submit();
+                    return true;
+                }
+            }
+            dialogMsg("不支持" + extension + "格式", 0);
+        }
+        else {
+            dialogMsg("请选择要导入的文件", 0);
+        }
+        return false;
+    }
+
+
+</script>
+<div style="margin: 5px;">
+    <div class="alert alert-danger" style="margin-bottom: 5px;">
+        <i class="fa fa-question-circle" style="position: relative; top: 1px; font-size: 15px; padding-right: 5px;"></i>
+        注：请下载最新模板导入
+    </div>
+</div>
+<div style="margin: 5px;">
+    <input id="ItemClass" name="ItemClass" type="hidden" value="1">
+    <table class="form">
+        <tr>
+            <th class="formTitle">模板</th>
+            <td class="formValue">
+                <a id="lr-download" class="btn btn-default" onclick="btn_download()"><i class="fa fa-download"></i>&nbsp;下载</a>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">选择文件</td>
+            <td class="formValue">
+                <input type="file" name="file" id="FileUpLoad1" accept="application/vnd.ms-excel" style="width: 80%;" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="margin:35px 5px 5px 5px;text-align:center">
+    <button class="btn btn-primary " type="button" onclick="AcceptClick()"><i class="fa fa-check"></i>&nbsp;提交</button>
+</div>

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/BridgehrKit/!svn/ver/20048/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Controllers
+END
+PersonCenterController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/BridgehrKit/!svn/ver/14631/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Controllers/PersonCenterController.cs
+END
+ClientDataController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Controllers/ClientDataController.cs
+END
+HomeController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Controllers/HomeController.cs
+END
+LoginController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/BridgehrKit/!svn/ver/20048/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Controllers/LoginController.cs
+END
+ErrorController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Controllers/ErrorController.cs
+END
+UtilityController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Controllers/UtilityController.cs
+END

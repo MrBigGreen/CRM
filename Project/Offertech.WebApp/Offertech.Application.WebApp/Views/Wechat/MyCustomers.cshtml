@@ -1,0 +1,426 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>我的客户</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <!--<link href="~/Content/css/mui.min.css" rel="stylesheet" />-->
+    <link rel="stylesheet" href="~/Content/css/mui.css" />
+    <link rel="stylesheet" href="~/Content/css/app.css" />
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.picker.min.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.poppicker.css" />
+
+    <style>
+        .nav-back-title {
+            font-size: 17px;
+        }
+
+        .myCustomers .filter-area {
+            height: 50px;
+            width: 100%;
+            background: #fff;
+            position: relative;
+            z-index: 10;
+            display: flex;
+        }
+
+            .myCustomers .filter-area li {
+                flex: 1;
+                font-size: 14px;
+                height: 30px;
+                margin: 10px 0;
+                text-align: center;
+                border-right: 1px solid #e5e5e5;
+            }
+
+        .myCustomers .search-area {
+            height: 50px;
+            width: 100%;
+            background: #EAF1F8;
+            position: relative;
+            padding-top: 10px;
+            z-index: 10;
+        }
+
+            .myCustomers .search-area .mui-search {
+                margin: 0px 10px 0px 10px;
+            }
+
+            .myCustomers .search-area .search-input {
+                background: white;
+                height: 30px;
+                margin-bottom: 0;
+            }
+
+            .myCustomers .search-area .mui-search .mui-placeholder {
+                font-size: 13px;
+            }
+
+        .mui-scroll {
+            margin-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .mui-table-view {
+            background: #EBF2F7;
+            padding-top: 60px;
+        }
+
+        .mui-bar-nav ~ .mui-content .mui-pull-top-pocket {
+            top: 94px;
+        }
+        /* 客户列表样式*/
+        .myCustomers .customer-list .company-cell {
+            overflow: hidden;
+            margin-bottom: 10px;
+            background: #fff;
+        }
+
+            .myCustomers .customer-list .company-cell .cell-left {
+                overflow: hidden;
+                float: left;
+                width: 85%;
+                margin-bottom: 10px;
+            }
+
+                .myCustomers .customer-list .company-cell .cell-left .cell-left-top {
+                    margin-left: 15px;
+                    margin-top: 8px;
+                    height: 24px;
+                    overflow: hidden;
+                }
+
+                .myCustomers .customer-list .company-cell .cell-left .cell-left-bottom {
+                    margin-left: 15px;
+                    margin-top: 4px;
+                }
+
+            .myCustomers .customer-list .company-cell .cell-left-top .company-name {
+                font: arial;
+                font-size: 15px;
+                width: 85%;
+                color: #000000;
+            }
+
+            .myCustomers .customer-list .company-cell .cell-left-top .right-arrow {
+                float: right;
+                height: 16px;
+                width: 16px;
+                margin-right: 10px;
+                margin-top: -18px;
+            }
+
+            .myCustomers .customer-list .company-cell .cell-left-bottom .company-num {
+                font: arial;
+                font-size: 13px;
+                color: #A3A4A5;
+                float: left;
+                width: 45%;
+                text-align: left;
+            }
+
+            .myCustomers .customer-list .company-cell .cell-left-bottom .company-level {
+                font: arial;
+                font-size: 13px;
+                color: #A3A4A5;
+                float: left;
+                width: 15%;
+                text-align: center;
+                margin-left: 5%;
+            }
+
+            .myCustomers .customer-list .company-cell .cell-left-bottom .company-location {
+                font: arial;
+                font-size: 13px;
+                color: #A3A4A5;
+                float: left;
+                width: 25%;
+                text-align: center;
+                margin-left: 5%;
+                /*font: arial;*/
+            }
+
+            .myCustomers .customer-list .company-cell .cell-right {
+                float: right;
+                margin-top: 10px;
+                width: 15%;
+            }
+
+                .myCustomers .customer-list .company-cell .cell-right .record-btn {
+                    margin-top: 10px;
+                    font-size: 12px;
+                    height: 27px;
+                    padding: 0 6px;
+                    margin-right: 10px;
+                }
+
+        .myCustomers .customer-list .cell-divider {
+            background: #EBF2F7;
+            height: 10px;
+        }
+
+        .mui-search.mui-active:before {
+            margin-top: -10px;
+        }
+    </style>
+</head>
+
+<body class="myCustomers">
+
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"><span class="nav-back-title">返回</span></a>
+        <h1 class="mui-title">我的客户</h1>
+        <a class="mui-icon-plusempty mui-icon mui-icon-right-nav mui-pull-right" style="color:white;" id="NewCustomer"></a>
+    </header>
+    <div class="mui-content">
+        <div class="search-area">
+            <div class="mui-input-row mui-search">
+                <input type="search" id="textkey" class="mui-input-clear search-input" placeholder="请输入关键字">
+            </div>
+        </div>
+        <ul class="filter-area">
+            <li id="customerLevel" data-name="客户级别"><span>客户级别</span><span class="mui-icon mui-icon-arrowdown"></span></li>
+            <li id="industry" data-name="所属行业"><span>所属行业</span><span class="mui-icon mui-icon-arrowdown"></span></li>
+            <li id="companyScale" data-name="公司规模"><span>公司规模</span><span class="mui-icon mui-icon-arrowdown"></span></li>
+        </ul>
+    </div>
+    <div id="pullrefresh" class="mui-content mui-scroll-wrapper customer-list">
+        @*<div class="search-area">
+                <div class="mui-input-row mui-search">
+                    <input id="txt_Keyword" type="search" class="mui-input-clear search-input" placeholder="请输入关键字">
+                </div>
+                <span class="cancel" id="btn_Search">查询</span>
+            </div>*@
+        <div class="mui-scroll">
+            <!--客户列表-->
+            <ul class="mui-table-view" id="customerLists"></ul>
+        </div>
+    </div>
+    <script src="~/Content/Scripts/jquery-1.11.1.js"></script>
+    <script src="~/Content/Scripts/mui.min.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.js"></script>
+    <script src="~/Content/Scripts/utils/offertech-clientdata.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.picker.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.poppicker.js"></script>
+    <script>
+
+        var Currentpage = 1;
+        var PageSize = 10;
+        var totalpage = 1;
+
+        mui.init({
+            pullRefresh: {
+                container: '#pullrefresh',
+                down: {
+                    callback: pulldownRefresh
+                },
+                up: {
+                    contentrefresh: '正在加载...',
+                    callback: pullupRefresh
+                }
+            }
+        });
+
+        /**
+         * 下拉刷新具体业务实现
+         */
+        function pulldownRefresh() {
+
+            location.reload();
+
+        }
+
+        var txtKeyword = document.getElementById("textkey");
+
+        txtKeyword.addEventListener('change', function () {
+            $("#customerLists").html('');
+            var queryJson = {
+                condition: "FullName",
+                keyword: txtKeyword.value,
+                CustLevelId: $("#customerLevel").attr("data-value"),
+                CustIndustryId: $("#industry").attr("data-value"),
+                CompanySize: $("#companyScale").attr("data-value")
+            }
+            Currentpage = 1;
+            LoadData(JSON.stringify(queryJson));
+        });
+
+        $("body").on('tap', ".mui-icon-clear", function () {
+            $("#customerLists").html('');
+            var queryJson = {
+                condition: "FullName",
+                keyword: ""
+            }
+            Currentpage = 1;
+            LoadData(JSON.stringify(queryJson));
+        });
+        /**
+         * 上拉加载具体业务实现
+         */
+        function pullupRefresh() {
+
+            mui('#pullrefresh').pullRefresh().endPullupToRefresh(Currentpage > totalpage); //参数为true代表没有更多数据了。
+            var queryJson = {
+                condition: "FullName",
+                keyword: txtKeyword.value,
+            }
+            LoadData(JSON.stringify(queryJson));
+
+        }
+        if (mui.os.plus) {
+            mui.plusReady(function () {
+
+                mui('#pullrefresh').pullRefresh().pullupLoading();
+
+            });
+        } else {
+            mui.ready(function () {
+                mui('#pullrefresh').pullRefresh().pullupLoading();
+            });
+        }
+
+        function LoadData(queryJson) {
+            var param;
+            if (!!queryJson) {
+                param = { rows: PageSize, page: Currentpage, sidx: "ModifyDate", sord: "desc", queryJson: queryJson };
+            }
+            else {
+                param = { rows: PageSize, page: Currentpage, sidx: "ModifyDate", sord: "desc" };
+            }
+            $.ajax({
+                type: "get",
+                url: "GetMyPageListJson",
+                data: param,
+                async: false,
+                dataType: "json",
+                contentType: "application/x-www-form-urlencoded",
+                success: function (data) {
+                    var rows = data.resultdata.rows;
+
+                    Currentpage++;
+                    totalpage = data.resultdata.total;
+
+                    $.each(rows, function (i) {
+                        var row = rows[i];
+                        var li;
+                        li = document.createElement('li');
+                        li.className = 'company-cell';
+                        var temphtml = "";
+                        temphtml += '<div class="cell-content">';
+                        temphtml += '<div class="cell-left">';
+                        temphtml += '<div class="cell-left-top">';
+                        temphtml += '<a class="linktodetail" data-customid="' + row.customerid + '" href="javascript:;">';
+                        temphtml += '<p class="company-name mui-ellipsis">' + row.fullname + '</p>';
+                        temphtml += '<img class="right-arrow" src="/Content/img/arrow.png" />';
+                        temphtml += '</a>';
+                        temphtml += '</div>';
+                        temphtml += '<div class="cell-left-bottom">';
+                        temphtml += '<p class="company-num">' + row.encode + '</p>';
+                        temphtml += '<p class="company-level">' + top.clientdataItem["Client_Level"][row.custlevelid] + '</p>';
+                        temphtml += '<p class="company-location mui-ellipsis">' + (top.clientAreaData[row.cityid] == undefined ? '' : top.clientAreaData[row.cityid].AreaName) + '</p>';
+                        temphtml += '</div>';
+                        temphtml += '</div>';
+                        temphtml += '<div class="cell-right">';
+                        temphtml += ' <button type="button" data-customname="' + row.fullname + '" data-customid="' + row.customerid + '" class="mui-btn mui-btn-danger mui-btn-outlined record-btn">记录</button>';
+                        temphtml += '</div>';
+                        li.innerHTML = temphtml;
+                        $("#customerLists").append(li);
+                    });
+                },
+                error: function (data) {
+                    mui.toast(data.responseText);
+                }
+            });
+
+        }
+
+        $(function () {
+            $("body")
+                .on("tap",
+                ".linktodetail",
+                function () {
+                    window.location.href = "CustomerDetail";
+                    localStorage.setItem("customerid", $(this).attr("data-customid"));
+
+                });
+            $("body")
+                .on("tap",
+                ".record-btn",
+                function () {
+                    window.location.href = "CustomerHistory";
+                    localStorage.setItem("customerid", $(this).attr("data-customid"));
+                    localStorage.setItem("customername", $(this).attr("data-customname"));
+                });
+
+            $("#NewCustomer").on("tap", function () {
+                window.location.href = "CustomerDetail";
+                localStorage.removeItem("customerid");
+            })
+
+            var customerLevel = document.getElementById("customerLevel");
+            var industry = document.getElementById("industry");
+            var scale = document.getElementById("companyScale");
+
+            // 客户级别
+            customerLevel.onclick = function () {
+                showPoppicker(this, "Client_Level");
+            }
+            //公司规模
+            scale.onclick = function () {
+                showPoppicker(this, "Client_CompanySize");
+            }
+            // 所属行业
+            industry.onclick = function () {
+                showPoppicker(this, "Client_Trade");
+            }
+
+            /*------------自定义展示picker-----------*/
+            function showPoppicker(obj, datatype) {
+                $.ajax({
+                    type: "get",
+                    url: "/ClientData/GetDataItemListJson",
+                    data: { EnCode: datatype },
+                    async: false,
+                    dataType: "json",
+                    success: function (data) {
+                        debugger;
+                        var title = $(obj).data("name");
+                        var picker = new mui.PopPicker({ title: title });
+                        var arrayData = [{ text: '不限', value: '' }];
+                        for (var i = 0; i < data.length; i++) {
+                            arrayData.push({ text: data[i].ItemName, value: data[i].ItemDetailId })
+                        }
+
+                        picker.setData(arrayData);
+                        picker.show(function (items) {
+                            $(obj).find("span:eq(0)").text(items[0].text);
+                            obj.setAttribute("data-value", items[0].value);
+                            $("#customerLists").html('');
+                            Currentpage = 1;
+                            var queryJson = {
+                                condition: "FullName",
+                                keyword: txtKeyword.value,
+                                CustLevelId: $("#customerLevel").attr("data-value"),
+                                CustIndustryId: $("#industry").attr("data-value"),
+                                CompanySize: $("#companyScale").attr("data-value")
+                            }
+                            LoadData(JSON.stringify(queryJson));
+                        });
+                    },
+                    error: function (data) {
+                        mui.toast(data.responseText);
+                    }
+                });
+
+            }
+        });
+
+        mui.back = function () {
+            location.href = "Home";
+        };
+    </script>
+</body>
+
+</html>

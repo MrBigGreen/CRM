@@ -1,0 +1,102 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_RPOPerformance
+
+@{
+    ViewBag.Title = "项目创建";
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<style>
+    textarea {
+        height: 160px;
+        width: 480px;
+    }
+
+    input {
+        width: 140px;
+    }
+
+    .display-field {
+        height: auto;
+        width: 500px;
+    }
+</style>
+
+<div class="bigdiv">
+    @Html.HiddenFor(model => model.CustomerProjectID)
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.CurrentDate)：
+    </div>
+    <div class="editor-field">
+        <input name="CurrentDate" class="Wdate  valid" id="CurrentDate" onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd' })" type="text" value="@DateTime.Now.ToString("yyyy-MM-dd")" data-val-required="请填写" data-val="true" data-val-date="The field 统计日期 must be a date.">
+        @Html.ValidationMessageFor(model => model.CurrentDate)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.DownLoadQty)：
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.DownLoadQty)
+        @Html.ValidationMessageFor(model => model.DownLoadQty)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.ContactPersonQty)：
+    </div>
+    <div class="editor-field" style="width:150px">
+        @Html.TextBoxFor(model => model.ContactPersonQty, new { @style = "width:140px;" })
+        @Html.ValidationMessageFor(model => model.ContactPersonQty)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.AppInterviewQty)：
+    </div>
+    <div class="editor-field" style="width:150px">
+        @Html.TextBoxFor(model => model.AppInterviewQty, new { @style = "width:140px;" })
+        @Html.ValidationMessageFor(model => model.AppInterviewQty)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.InterviewQty)：
+    </div>
+    <div class="editor-field" style="width:150px">
+        @Html.TextBoxFor(model => model.InterviewQty, new { @style = "width:140px;" })
+        @Html.ValidationMessageFor(model => model.InterviewQty)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.OfferQty)：
+    </div>
+    <div class="editor-field" style="width:150px">
+        @Html.TextBoxFor(model => model.OfferQty, new { @style = "width:140px;" })
+        @Html.ValidationMessageFor(model => model.OfferQty)
+    </div>
+
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.OnBoardQty)：
+    </div>
+    <div class="editor-field" style="width:150px">
+        @Html.TextBoxFor(model => model.OnBoardQty, new { @style = "width:140px;" })
+        @Html.ValidationMessageFor(model => model.OnBoardQty)
+    </div>
+
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.OverProbationQty)：
+    </div>
+    <div class="editor-field" style="width:150px">
+        @Html.TextBoxFor(model => model.OverProbationQty, new { @style = "width:140px;" })
+        @Html.ValidationMessageFor(model => model.OverProbationQty)
+    </div>
+    <br style="clear: both;" />
+    <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+        <input class="a2 f2" type="submit" id="submit" value="创 建" />
+    </div>
+</div>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+@*<script type="text/javascript">$.getScript("/Scripts/CustomerProject/Create.js")</script>*@
+

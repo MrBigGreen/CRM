@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BridgehrKit/!svn/ver/9392/VISS/solution/WebSrc/CRM/SourseCode/App/Commons
+END
+DefaultListProvider.cs
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BridgehrKit/!svn/ver/8687/VISS/solution/WebSrc/CRM/SourseCode/App/Commons/DefaultListProvider.cs
+END
+Constants.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BridgehrKit/!svn/ver/9392/VISS/solution/WebSrc/CRM/SourseCode/App/Commons/Constants.cs
+END
+FTPUploadHandler.cs
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Commons/FTPUploadHandler.cs
+END
+UploadHandler.ashx
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Commons/UploadHandler.ashx
+END
+UploadHandler.ashx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BridgehrKit/!svn/ver/5339/VISS/solution/WebSrc/CRM/SourseCode/App/Commons/UploadHandler.ashx.cs
+END
+FtpClient.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Commons/FtpClient.cs
+END

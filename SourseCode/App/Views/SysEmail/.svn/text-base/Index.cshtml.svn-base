@@ -1,0 +1,283 @@
+﻿@model CRM.DAL.SysEmail
+@{ Layout = "~/Views/Shared/Index.cshtml"; }
+@using Common
+@using Models
+<div id="divQuery">
+
+    <div class='input_search'>
+        <div class='input_search-label'>
+            @Html.LabelFor(model => model.ReadTime):
+        </div>
+        <div class='input_search-field-time'>
+            <input type="text" id="ReadTimeStart_Time" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'ReadTimeEnd_Time\');}'})" />
+            <span>到</span>
+            <input type="text" id="ReadTimeEnd_Time" onclick="WdatePicker({minDate:'#F{$dp.$D(\'ReadTimeStart_Time\');}'})" />
+        </div>
+    </div>
+    <div class='input_search'>
+        <div class='input_search-label'>
+            @Html.LabelFor(model => model.CreateTime):
+        </div>
+        <div class='input_search-field-time'>
+            <input type="text" id="CreateTimeStart_Time" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'CreateTimeEnd_Time\');}'})" />
+            <span>到</span>
+            <input type="text" id="CreateTimeEnd_Time" onclick="WdatePicker({minDate:'#F{$dp.$D(\'CreateTimeStart_Time\');}'})" />
+        </div>
+    </div>
+    <div class='input_search'>
+        <div class='input_search-label'>
+            <a class="anUnderLine" onclick="showModalOnly('CreatePerson', '../../SysPerson');">
+                创建人
+            </a>:
+        </div>
+        <div class='input_search-field-time'>
+            <div id="checkCreatePerson">
+
+            </div>
+            <input name="CreatePerson" id="CreatePerson" type="hidden" value="">
+        </div>
+    </div>
+    <div class='input_search' style="padding-top:10px;">
+        <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+            查 询
+        </a>
+    </div>
+</div>
+<br style="clear: both;" />
+<div id="dQuestion" style="display:none;" onmouseover="$(this).show()" onmouseout="$(this).hide()"></div>
+<script type="text/javascript" language="javascript">
+    $(function () {
+
+        $('#flexigridData').datagrid({
+            title: '邮件发送记录', //列表的标题
+            iconCls: 'icon-site',
+            width: 'auto',
+            height: 'auto',
+            //nowrap: false,
+            striped: true,
+            collapsible: true,
+            url: '../SysEmail/GetData', //获取数据的url
+            sortName: 'Id',
+            sortOrder: 'desc',
+            idField: 'Id',
+
+            toolbar: [
+
+                 {
+                     text: '详细',
+                     iconCls: 'icon-search',
+                     handler: function () {
+                         return getView();
+                     }
+                 }, {
+                     text: '导出',
+                     iconCls: 'icon-excel',
+                     handler: function () {
+                         return flexiExport();
+                     }
+                 }],
+            columns: [[
+
+                {
+                    field: 'Subject', title: '@Html.DisplayNameFor(model => model.Subject)', width: 259,
+                    formatter: function (value, rec, index) {
+                        var q = '<span onmouseout="HideQuestion()" onmouseover="ShowQuestion(event,' + index + ')" style="cursort:pointer">' + rec.Subject + '</span>';
+                        return q;
+                    }
+                }
+                , {
+                    field: 'Content', title: '@Html.DisplayNameFor(model => model.Content)', width: 790, formatter: function (value, rec, index) {
+                        var q = '<span onmouseout="HideQuestion()" onmouseover="ShowQuestion(event,' + index + ')" style="cursort:pointer">' + rec.Content + '</span>';
+                        return q;
+                    }
+                }
+               // , { field: 'SysMailId', title: '@Html.DisplayNameFor(model => model.SysMailId)', width: 186 }
+               // , { field: 'Reply_email', title: '@Html.DisplayNameFor(model => model.Reply_email)', width: 136 }
+                //,{ field: 'Mail_type', title:  '@Html.DisplayNameFor(model => model.Mail_type)', width: 86 }
+                //,{ field: 'Remark', title:  '@Html.DisplayNameFor(model => model.Remark)', width: 86 }
+                //,{ field: 'State', title:  '@Html.DisplayNameFor(model => model.State)', width: 86 }
+                //, {
+                 //   field: 'ReadTime', title: '@Html.DisplayNameFor(model => model.ReadTime)', width: 86, formatter: function (value, rec) {
+                   //     if (value) {
+                     //       return dateConvert(value);
+                     //   }
+                   // }
+                //}
+                , {
+                    field: 'CreateTime', title: '@Html.DisplayNameFor(model => model.CreateTime)', width: 96
+                , formatter: function (value, rec) {
+                    if (value) {
+                        return datetimeConvert(value);
+                    }
+                }
+                }
+                , { field: 'CreatePerson', title: '@Html.DisplayNameFor(model => model.CreatePerson)', width: 86 }
+            ]],
+            pagination: true,
+            rownumbers: true
+
+        });
+
+        var parent = window.dialogArguments; //获取父页面
+        if (parent == "undefined" || parent == null) {
+            //    不是在iframe中打开的
+        } else {
+            //隐藏所有的按钮和分隔符
+            $(".l-btn.l-btn-plain").hide();
+            $(".datagrid-btn-separator").hide();
+            //添加选择按钮
+            $('#flexigridData').datagrid("addToolbarItem", [{ "text": "选择", "iconCls": "icon-ok", handler: function () { flexiSelect(); } }]);
+        }
+    });
+    function ShowQuestion(e, rowIndex) {
+        var ev = e || window.event;
+        var xx = ev.clientX + document.body.scrollLeft - document.body.clientLeft;
+        var yy = ev.clientY + document.body.scrollTop - document.body.clientTop;
+        $("#dQuestion").css({ "position": "absolute", "cursor": "pointer", "background": "#fff", "z-index": "2001", "border": "1px solid #ccc", "top": +yy, "left": +xx });
+        var row = $('#flexigridData').datagrid('getRows')[rowIndex];
+        if (row && row.Content && $.trim(row.Content) != "")
+            $('#dQuestion').html(row.Content).show();
+        else
+            $('#dQuestion').html("无内容").show();
+    }
+    function HideQuestion() {
+        $('#dQuestion').hide();
+    }
+    //“查询”按钮，弹出查询框
+    function flexiQuery() {
+
+        //将查询条件按照分隔符拼接成字符串
+        var search = "";
+        $('#divQuery').find(":text,:selected,select,textarea,:hidden,:checked,:password").each(function () {
+            
+            if (this.id)
+                search = search + this.id + "&" + this.value + "^";
+            else
+                search = search + this.name + "&" + this.value + "^";
+        });
+        //执行查询
+        $('#flexigridData').datagrid('load', { search: search });
+    };
+    //“导出”按钮     在6.0版本中修改
+    function flexiExport() {
+
+        //将查询条件按照分隔符拼接成字符串
+        var search = "";
+        $('#divQuery').find(":text,:selected,select,textarea,:hidden,:checked,:password").each(function () {
+            search = search + this.id + "&" + this.value + "^";
+        });
+
+        var p = $('#flexigridData').datagrid('options').columns[0];
+        var field = [];//所有的列名
+        var title = [];//所有的标题名称
+        $(p).each(function () {
+            field.push(this.field);
+            title.push(this.title);
+        });
+
+        $.post("../SysEmail/Export",
+            {
+                title: title.join(","),
+                field: field.join(","),
+                sortName: $('#flexigridData').datagrid('options').sortName,
+                sortOrder: $('#flexigridData').datagrid('options').sortOrder,
+                search: search
+            }, function (res) {
+                window.location.href = res;
+
+            });
+    };
+    //“选择”按钮，在其他（与此页面有关联）的页面中，此页面以弹出框的形式出现，选择页面中的数据
+    function flexiSelect() {
+
+        var rows = $('#flexigridData').datagrid('getSelections');
+        if (rows.length == 0) {
+            $.messager.alert('操作提示', '请选择数据!', 'warning');
+            return false;
+        }
+
+        var arr = [];
+        for (var i = 0; i < rows.length; i++) {
+            arr.push(rows[i].Id);
+        }
+        arr.push("^");
+        for (var i = 0; i < rows.length; i++) {
+            arr.push(rows[i].SysMailId);
+        }
+        //主键列和显示列之间用 ^ 分割   每一项用 , 分割
+        if (arr.length > 0) {//一条数据和多于一条
+            returnParent(arr.join("&")); //每一项用 & 分割
+        }
+    }
+    //导航到查看详细的按钮
+    function getView() {
+
+        var arr = $('#flexigridData').datagrid('getSelections');
+
+        if (arr.length == 1) {
+            window.location.href = "../SysEmail/Details/" + arr[0].Id;
+
+        } else {
+            $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+        }
+        return false;
+    }
+    //导航到创建的按钮
+    function flexiCreate() {
+
+        window.location.href = "../SysEmail/Create";
+        return false;
+    }
+    //导航到修改的按钮
+    function flexiModify() {
+
+        var arr = $('#flexigridData').datagrid('getSelections');
+
+        if (arr.length == 1) {
+            window.location.href = "../SysEmail/Edit/" + arr[0].Id;
+
+        } else {
+            $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+        }
+        return false;
+
+    };
+    //删除的按钮
+    function flexiDelete() {
+
+        var rows = $('#flexigridData').datagrid('getSelections');
+        if (rows.length == 0) {
+            $.messager.alert('操作提示', '请选择数据!', 'warning');
+            return false;
+        }
+
+        var arr = [];
+        for (var i = 0; i < rows.length; i++) {
+            arr.push(rows[i].Id);
+        }
+
+        $.messager.confirm('操作提示', "确认删除这 " + arr.length + " 项吗？", function (r) {
+            if (r) {
+                $.post("../SysEmail/Delete", { query: arr.join(",") }, function (res) {
+                    if (res == "OK") {
+                        //移除删除的数据
+
+                        $.messager.alert('操作提示', '删除成功!', 'info');
+                        $("#flexigridData").datagrid("reload");
+                        $("#flexigridData").datagrid("clearSelections");
+                    }
+                    else {
+                        if (res == "") {
+                            $.messager.alert('操作提示', '删除失败!请查看该数据与其他模块下的信息的关联，或联系管理员。', 'info');
+                        }
+                        else {
+                            $.messager.alert('操作提示', res, 'info');
+                        }
+                    }
+                });
+            }
+        });
+
+    };
+
+</script>

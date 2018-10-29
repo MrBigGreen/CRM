@@ -1,0 +1,84 @@
+﻿@using Common
+@using Models
+
+@{
+    ViewBag.Title = "联系人列表";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+<input type="hidden" id="CustomerID" name="CustomerID" value="@ViewBag.CustomerID" />
+<table id="flexigridData"></table>
+<div id="contactDialog" class="easyui-dialog" iconcls="icon-add" style="padding: 5px; overflow: auto; " title="" data-options="closed:true">
+    <iframe id="ContactIframe" frameborder="0" scrolling="no" style="height:100%;width:100%"></iframe>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#flexigridData').datagrid({
+            title: '客户联系人', //列表的标题
+            iconCls: 'icon-site',
+            width: 'auto',
+            height: 'auto',
+            striped: true,
+            collapsible: true,
+            singleSelect: true,
+            url: '/CustomerContact/GetReadOnlyData', //获取数据的url
+            idField: 'CustomerContactID',
+            sortName: 'CreatedTime',
+            sortOrder: 'desc',
+            queryParams: { "id": $("#CustomerID").val() },
+            columns: [[
+                 { field: 'ck', title: '全选', checkbox: true, width: 80 },
+                  { field: 'ContactName', title: '联系人', width: 90 }
+                , { field: 'CompanyTel2', title: '前台电话', width: 90 }
+                , { field: 'BirthDate', title: '生日', width: 90 }
+                , { field: 'Interested', title: '感兴趣', width: 90 }
+                , { field: 'Department', title: '部门', width: 90 }
+                , { field: 'PostName', title: '职务', width: 90 }
+                , { field: 'CompanyTel', title: '固定电话', width: 90 }
+                , { field: 'PhoneNumber1', title: '手机', width: 90 }
+                , { field: 'Email1', title: '邮箱', width: 90 }
+                , { field: 'QQID', title: 'QQ号码', width: 77 }
+                , {
+                    field: 'IsKP', title: '是否KP', width: 77, formatter: function (value) {
+                        if (value == true) {
+                            return "是";
+                        }
+                        else {
+                            return "否";
+                        }
+                    }
+
+                }
+
+            ]],
+            pagination: true,
+            rownumbers: true,
+            onDblClickRow: function () {
+                getView();
+            }
+        });
+
+    });
+
+    //导航到查看详细的按钮
+    function getView() {
+
+        var arr = $('#flexigridData').datagrid('getSelections');
+
+        if (arr.length == 1) {
+            $('#ContactIframe').attr("src", "/CustomerContact/Details?Id=" + arr[0].CustomerContactID);
+            $('#contactDialog').dialog({
+                title: '查看联系人',
+                width: 750,
+                height: 500,
+                closed: false,
+                cache: false,
+                resizable: true,
+                modal: true
+            });
+
+        } else {
+            $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+        }
+        return false;
+    }
+</script>

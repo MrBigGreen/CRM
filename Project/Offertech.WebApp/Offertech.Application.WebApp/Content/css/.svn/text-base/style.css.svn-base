@@ -1,0 +1,715 @@
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	font-family: "Microsoft YaHei", Helvetica, STHeiTi, sans-serif;
+}
+
+html {
+	-webkit-text-size-adjust: none;
+	-ms-text-size-adjust: 100%;
+}
+
+body,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+h1,
+h2,
+h3,
+h4,
+p,
+a,
+img {
+	margin: 0;
+	padding: 0;
+	font-family: "Microsoft YaHei", Helvetica, STHeiTi, sans-serif;
+}
+
+img {
+	border: 0px;
+}
+
+ul,
+ol,
+li,
+dl,
+dt,
+dd {
+	list-style: none;
+}
+
+a,
+input,
+select,
+option {
+	font-family: "Microsoft YaHei", Helvetica, STHeiTi, sans-serif;
+	border: none;
+	outline: transparent none;
+	background-color: transparent;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a:hover,
+input:hover,
+select:hover,
+option:hover {
+	border: none;
+	outline: transparent none;
+	background-color: transparent;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+:-moz-placeholder {
+	
+	color: #c8c8c8 !important; /* Mozilla Firefox 4 to 18 */
+}
+
+::-moz-placeholder {
+	/* Mozilla Firefox 19+ */
+	color: #c8c8c8;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+	color: #c8c8c8;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+	color: #c8c8c8;
+}
+
+
+/*----------------------------- 首页 -------------------------------*/
+       .crm-home .home-content {
+			background-color: white;
+		}
+		/*固定的头部*/
+		.crm-home .home-header {
+			background: white;
+			z-index: 2;
+			position: fixed;
+			width: 100%;
+		}
+		.crm-home .home-header .header-backgroud {
+ 
+			width: 100%;
+		}
+		
+ 		  /*导航键排列*/
+		 .crm-home .home-nav-content {
+
+		     margin: 0;
+			background-color: white;
+			 
+		}
+		
+		.crm-home .home-nav-content .home-nav-title {
+			font-size: 11px;
+			margin-top: -5px;
+		}
+        .crm-home .home-nav-content .mui-table-view:before{height: 0}
+        .crm-home .home-nav-content .mui-table-view:after{height: 0}
+        .crm-home .home-nav-content .mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-object {
+                line-height: 62px;
+    max-width: 62px;
+    height: 62px;
+            float: left;
+        }
+         .crm-home .home-nav-content .mui-table-view.mui-grid-view .mui-table-view-cell .home-nav-title {
+                line-height: 62px;
+            float: left;
+             margin: 0;
+             font-size: 16px;
+        }
+
+
+		/*代办任务区域*/
+		.crm-home .home-task {
+		 
+			background: #F6F7F8;
+			height: 35px;
+		}
+		.crm-home .home-task-undo {
+			margin-left: 10px;
+			margin-top: 10px;
+			font-size: 14px;
+		    color: #2e91f4;
+		}
+		
+		/*任务列表*/
+		.crm-home .top320 {
+			margin-top: 320px;
+		}
+		.crm-home .taskList .task-cell {
+			overflow: hidden;
+		}
+		.crm-home .taskList .task-cell .cell-left {
+			float: left;
+			width: 70%;
+		}
+		.crm-home .taskList .task-cell .cell-left .task-time {
+			font-size: 13px;
+		}
+		.crm-home .taskList .task-cell .cell-left .task-company {
+			font-size: 15px;
+			color: black;
+			margin-top: 2px;
+		}
+	
+		.crm-home .taskList .task-cell .cell-right {
+			float: right;
+			margin-top: 10px;
+			width: 20%;
+		}
+		.crm-home .taskList .task-cell .write-btn {
+			margin-left: 15px;
+			width: 50px;
+			height: 25px;
+			font-size: 14px;
+		    line-height: 25px;
+		    padding: 0;
+            color: #2e91f4;
+		}
+
+/*--------------------------------记录和计划--------------------------------*/
+       .record-plan .selectArea {
+	     	z-index: 10;
+		 	height: 56px;
+		 	background:#3593F1;
+		 	position: fixed;
+		}
+		 .record-plan .segment {
+				height: 30px;
+				top: 6px;
+				width: 60%;
+				margin: auto;
+				border-radius: 20px;
+				background: #3593F1;
+				border-color:lightgray;
+			}
+		.record-plan .mui-segmented-control .mui-control-item {
+			/*color: #9DC8FB;*/
+			color: white;
+		}
+		.record-plan .selectArea .add {
+			display: none;
+			float: right;
+			margin-right: 10px;
+			margin-top: -28px;
+			height: 30px;
+			width: 30px;
+		}
+	 
+		.record-plan .mui-control-content {
+	 
+			background-color:#EAF1F7;
+		}		
+		.record-plan .mui-table-view {
+			background: #EAF1F7;
+	 
+		}
+		.record-plan .mui-table-view-cell {
+			height: 50px;
+			background: white;
+		}
+		
+		.record-plan  .mui-table-view-cell .cell-left {
+			color: gray;
+			width: 30%;
+			padding: 5px 0px;
+		}
+		.record-plan  .mui-table-view-cell label {
+			
+			font-size: 16px;
+			color: #989999;
+		}
+		.record-plan .mui-table-view-cell p {
+			
+			width: 60%;
+			font-size: 16px;
+			color: #989999;
+			margin-left: 1%;
+			margin-top: 4px;
+			float: left;
+		}
+		.record-plan  .activityRecord-cell {
+			background: white;
+		}
+		.record-plan .activityRecord-cell .activityRecord-content {
+			margin-top: 10px;
+			margin-left: 12px;
+			margin-right: 12px;
+			padding-top: 10px;
+		}
+		.record-plan .activityRecord-cell .activityRecord-content .activityRecord-label {
+			color: gray;
+			font-size: 16px;
+		}
+		.record-plan .activityRecord-cell .activityRecord-content .activityRecord-input {
+			margin-top: 10px;
+			height: 100px;
+			background: #EAF1F7;
+			font-size: 16px;
+		}
+		
+		.record-plan  .upload-cell {
+			background: white;
+			margin-top:10px ;
+		}
+	
+		.record-plan  .upload-cell .upload-content {
+			overflow: hidden;
+			margin-left: 10px;
+			margin-right:10px
+		}
+		.record-plan  .upload-cell .upload-content .upload-image {
+			height: 50px;
+			width: 50px;
+			float: left;
+		}
+		.record-plan .upload-cell .upload-content .upload-title {
+			margin-top: 12px;
+			margin-left: 5px;
+			float: left;
+		}
+		.record-plan .commit-btn {
+			color: white;
+			position: absolute;
+			bottom: 10px;
+			border-radius: 5px;
+			margin-top: 20px;
+			margin-left: 5%;
+			width: 90%;
+			font-size: 18px;
+			height: 40px;
+			background: #3593F2;
+			border: none;
+		}
+	.scommit-btn{
+			color: white;
+			border-radius: 5px;
+			margin-top: 10px;
+			margin-left: 5%;
+			width: 90%;
+			font-size: 18px;
+			height: 40px;
+			background: #3593F2;
+			border: none;
+		}
+    .task_cusname{ padding: 5px 15px;color: #333;font-size: 16px;}
+    
+ 
+    .uploadimglist .mui-table-view.mui-grid-view .mui-table-view-cell{ overflow: hidden; height: 70px; margin-bottom:10px;}
+    .uploadimglist .mui-table-view.mui-grid-view .mui-table-view-cell img{ width: 100%;height: 100%;}
+
+/*----------------------------- 客户详情和联系人 ---------------------------*/
+  
+   .customer-contacter .selectArea {
+		 	height: 54px;
+		 	background:#3593F1;
+	 
+		 	position: relative;
+		 	width: 100%;
+		 	z-index: 10;
+             padding-top: 6px;
+		}
+		.customer-contacter .selectArea .add {
+		 
+			float: right;
+			margin-right: 10px;
+			margin-top: -34px;
+			height: 30px;
+			width: 30px;
+		}
+		
+		.customer-contacter .show-content {
+			/*margin-top: 54px*/
+		}
+		
+		 .customer-contacter .segment {
+				width: 60%;
+				margin: auto;
+				
+				border-radius: 18px;
+				background: #3593F1;
+				border-color:lightgray;
+			}
+		 .customer-contacter .mui-segmented-control .mui-control-item {
+			color: #9DC8FB;
+		}
+		
+		.customer-contacter .customerDetail .mui-scroll-wrapper .mui-table-view-cell {
+			height: 50px;
+			
+		}
+		
+		.customer-contacter .customerDetail .mui-scroll-wrapper .mui-table-view-cell .cell-left {
+			color: gray;
+			width: 30%;
+			padding: 5px 0px;
+		}
+		.customer-contacter .customerDetail .mui-scroll-wrapper .mui-table-view-cell input {
+			width: 70%;
+			margin-top: -6px;
+		}
+		.customer-contacter .customerDetail .mui-scroll-wrapper .mui-table-view-cell p {
+			
+			width: 60%;
+			font-size: 17px;
+			color: #000000;
+			margin-left: 1%;
+			margin-top: 2px;
+			float: left;
+		}
+		.customer-contacter .customerDetail .mui-scroll-wrapper .introduce-cell {
+			height: 210px;
+		}
+		.customer-contacter .customerDetail .mui-scroll-wrapper .introduce-cell .introduce-content {
+			margin-top: 10px;
+			margin-left: 12px;
+			margin-right: 12px;
+		}
+		.customer-contacter .customerDetail .mui-scroll-wrapper .introduce-cell .introduce-content .introduce-label {
+			color: gray;
+		}
+		.customer-contacter .customerDetail .mui-scroll-wrapper .introduce-cell .introduce-content .introduce-input {
+			margin-top: 10px;
+			height: 100px;
+			background: #EAF1F7;
+		}
+		.customer-contacter .customerDetail .commit-btn {
+			color: white;
+			border: none;
+			width: 100%;
+			font-size: 18px;
+			border-radius: 4px;
+			height: 44px;
+			background: #3593F2;
+		}
+	
+		.customer-contacter .customerDetail .mui-scroll-wrapper .bottom {
+			background: white;
+			width: 100%;
+			height: 40px;
+		}
+		/*--------------------联系人-----------------------*/
+		
+		.customer-contacter  .search-area {
+			height: 50px;
+			width: 100%;
+			background: #EAF1F8;
+			position: relative;
+		    padding-top: 10px;
+			z-index: 10;
+		}
+		.customer-contacter  .search-area .mui-search {
+			margin: 0px 10px 0px 10px;
+		}
+		.customer-contacter   .search-area .search-input{
+			background: white;
+			height: 30px;
+		    margin-bottom: 0;
+		}
+		.customer-contacter  .search-area .mui-search .mui-placeholder {
+			font-size: 13px;
+		}
+		.customer-contacter .contacter-scroll-wrapper {
+			margin-top: 148px;
+		}
+		.customer-contacter .contacter-list .mui-table-view:after {
+			height: 0px;
+		}
+		.customer-contacter .contacter-list .contacter-cell .contacter-cell-top {
+			overflow: hidden;
+		}
+		.customer-contacter .contacter-list .contacter-cell .contacter-cell-top .contacter-icon {
+			margin: 6px 5px 8px 10px;
+			height: 28px;
+			width: 28px;
+			float: left;
+		}
+		.customer-contacter .contacter-list .contacter-cell .contacter-cell-top .contacer-name {
+			float: left;
+			margin-top: 8px;
+			font-size: 16px;
+		}
+		.customer-contacter .contacter-list .contacter-cell .contacter-cell-top .edit-btn {
+			height: 20px;
+			width: 20px;
+			float: right;
+			margin-top: 8px;
+			margin-right: 10px;
+		}
+		.customer-contacter .line {
+			background: lavender;
+			height: 1px;
+			width: 100%;
+			float: left;
+		}
+		.customer-contacter .contacter-list .contacter-cell .contacter-cell-middle {
+			margin-top: 10px;
+			padding-bottom: 10px;
+		}
+		.customer-contacter .contacter-list .contacter-cell .contacter-cell-middle p {
+			margin-left: 15px;
+			margin-top: 6px;
+			font-size: 16px;
+		}
+	
+		.customer-contacter .contacter-list .contacter-cell .divider{
+			height: 10px;
+			width: 100%;
+			background: #EAF1F8;
+		}
+		.customer-contacter .contacter-list .contacter-scroll-wrapper .bottom {
+			height: 50px;
+			width: 100%;
+			background: #EAF1F8;
+		}
+
+/*----------------------------- 跟进记录 ---------------------------*/
+ 
+           .processHistory .company {
+				/*overflow: hidden;
+				height: 40px;*/
+				background: #fff;
+			}
+			.processHistory .company .companyIcon {
+				margin-left: 10px;
+				margin-top: 10px;
+				width: 30px;
+				height: 30px;
+				float: left;
+			}
+			.processHistory .company .companyName {
+				float: left;
+                margin:14px 10px 0 6px;
+				font-size: 16px;
+				color: rgba(61,62,63,1);
+                width:80%;
+                
+			}
+		 
+
+             .processHistory .toptitle .company {
+				overflow: hidden;
+				height: 50px;
+				background: white;
+                    width: 100%;
+    position: relative;
+    z-index: 10;
+			}
+			.processHistory .toptitle .company .companyIcon {
+				margin-left: 10px;
+				margin-top: 10px;
+				width: 30px;
+				height: 30px;
+				float: left;
+			}
+			.processHistory .toptitle .company .companyName {
+				float: left;
+				margin-left: 6px;
+				font-size: 16px;
+				margin-top: 14px;
+				color: rgba(61,62,63,1);
+			}
+
+			.processHistory .processList .processCell {
+				background: #EAF1F7;
+				padding-bottom: 10px;
+			}
+			.processHistory .processList .processCell .processCell-top {
+				overflow: hidden;
+				background: white;
+				height: 35px;
+			}
+			.processHistory .processList .processCell .processCell-top .date {
+				margin-top: 8px;
+				margin-left: 12px;
+				color: rgba(61,62,63,1);
+				float: left;
+			}
+			.processHistory .processList .processCell .processCell-top .principal {
+				float: right;
+				color: rgba(61,62,63,1);
+				margin-top: 8px;
+				margin-right: 12px;
+			}
+			.processHistory .processList .processCell .processCell-middle .content-header {
+				height: 35px;
+				overflow: hidden;
+				background: #F6F7F8;
+			}
+			.processHistory .processList .processCell .processCell-middle .content-header .contacter-icon {
+				width: 24px;
+				height: 24px;
+				margin-top: 8px;
+				float: left;
+				margin-left: 8px;
+			}
+			.processHistory .processList .processCell .processCell-middle .content-header .contacter-name {
+				margin-top: 8px;
+				float: left;
+				margin-left: 6px;
+			}
+			.processHistory .processList .processCell .processCell-middle .content-header .title-divider {
+				float: left;
+				margin-left: 8px;
+				height: 14px;
+				width: 1px;
+				background: lightgray;
+				margin-top: 13px;
+			}
+			.processHistory .processList .processCell .processCell-middle .content-header .contacter-title {
+				margin-top: 8px;
+				float: left;
+				margin-left: 8px;
+			}
+			.processHistory .processList .processCell .processCell-middle .content-header .contacter-step {
+				float: right;
+				margin-top: 8px;
+				margin-right: 10px;
+			}
+			.processHistory .processList .processCell .processCell-middle .content-header .divider-line{
+				float: left;
+				height: 1px;
+				width: 100%;
+				background: #E5E6E7;
+			}
+			.processHistory .processList .processCell .processCell-middle .content-describe {
+				background: #F6F7F8;
+			}
+			.processHistory .processList .processCell .processCell-middle .content-describe .describe {
+				padding-top: 4px;
+				margin-left: 10px;
+				margin-right: 10px;
+				overflow: hidden;
+				display: -webkit-box;
+        
+                -webkit-box-orient: vertical;
+			    height: 25px; 			
+			}
+			.processHistory .processList .processCell .processCell-middle .content-describe .unfold-control {
+				/*position: relative;*/
+				height: 25px;
+				overflow: hidden;
+			}
+			
+			.processHistory .processList .processCell .processCell-middle .content-describe .unfold {
+				
+				border: hidden;
+				margin-left: 40%;
+				width: 20%;
+				background: none;
+				margin-top: -5px;
+				color: #288DE7;
+				float: left;
+			}
+			.processHistory .processList .processCell .processCell-middle .content-describe .arrow-down {
+				margin-top: 1px;
+				height: 18px;
+				width: 18px;
+				margin-left: -5%;
+				float: left;
+			}			
+			.processHistory .processList .processCell .processCell-middle .content-images {
+			    background: #fff;
+			    padding: 10px 5px 10px 10px;
+			    width: 100%;
+			    position: relative;
+			}
+                .processHistory .processList .processCell .processCell-middle .content-images ul li{
+                    width: 18.5%;
+                    position: relative;
+                    height: 50px;
+                    display: inline-block;
+                    overflow: hidden;
+                    margin-right: 1%;
+                }
+                 .processHistory .processList .processCell .processCell-middle .content-images ul li img{
+                     width: 100%;
+                     height: 100%;
+                }
+                .processHistory .processList .processCell .processCell-middle .content-images ul li.moreimg a {
+                    line-height: 50px;
+                    color: #666;
+                    background: #e2e2e2;
+                    display: inline-block;width: 100%;height: 100%;
+                    font-size: 12px;
+                    text-align: center;
+                }
+                    .processHistory .processList .processCell .processCell-middle .content-images ul li.moreimg a i{
+                        font-style: normal;
+                    }
+            	/*----------------------编辑客户-----------------------*/
+.edit-contacter .mui-table-view-cell {
+			height: 50px;
+		}
+		.edit-contacter .mui-table-view-cell .cell-left {
+			color: gray;
+			width: 30%;
+			padding: 5px 0px;
+		}
+		.edit-contacter .mui-table-view-cell input {
+			width: 70%;
+			margin-top: -6px;
+		}
+		.edit-contacter .mui-table-view-cell p {
+			
+			width: 60%;
+			font-size: 17px;
+			color: #000000;
+			margin-left: 1%;
+			margin-top: 3px;
+			float: left;
+		}
+		
+		.edit-contacter .comment-content {
+			margin-top: 10px;
+			margin-left: 12px;
+			margin-right: 12px;
+		}
+		
+		.edit-contacter .comment-label {
+			color: gray;
+		}
+		.edit-contacter .comment-content .comment-input {
+			margin-top: 10px;
+			height: 100px;
+			background: #EAF1F7;
+			font-size: 14px;
+			padding-left: 5px;
+/*			margin-left: ;*/
+		}
+		.edit-contacter .commit-btn {
+			color: white;
+			width: 100%;
+			font-size: 18px;
+			height: 40px;
+			background: #3593F2;
+			border-radius: 4px;
+		}
+  .processHistory  .search-area {
+			height: 50px;
+			width: 100%;
+			background: #EAF1F8;
+			position: relative;
+		    padding-top: 10px;
+			z-index: 10;
+		}
+ .processHistory  .search-area .mui-search {
+			margin: 0px 10px 0px 10px;
+		}
+ .processHistory   .search-area .search-input{
+			background: white;
+			height: 30px;
+		    margin-bottom: 0;
+		}
+ .processHistory .search-area .mui-search .mui-placeholder {
+			font-size: 13px;
+		}

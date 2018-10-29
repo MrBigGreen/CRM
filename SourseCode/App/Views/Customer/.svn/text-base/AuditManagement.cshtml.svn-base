@@ -1,0 +1,141 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_Customer
+
+@{
+    ViewBag.Title = "客户审核管理";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+<style>
+    .editor-field {
+        margin: 0px 0 0px 0px;
+    }
+
+    .editor-label {
+        margin: 0px 0 0px 0px;
+    }
+
+    .txt-large {
+        width: 200px;
+    }
+</style>
+<div id="divQuery">
+    <div class="easyui-panel" title="查询栏" iconcls="icon-search" collapsible="true" data-options="collapsed:true" style="height:auto;width:auto">
+        <table id="ttSearch" class="record" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th style="width:120px; text-align:right; padding-right:10px;height:36px">查询条件:</th>
+                <td>
+                    <input id="Keyword" name="Keyword" maxlength="100" value="" type="text" placeholder="搜索公司名称、电话" style="width:220px" />
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                        查 询
+                    </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" onclick="RemvoeAll()" class="easyui-linkbutton" data-options="iconCls:'icon-clear'">
+                        清 空
+                    </a>
+
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+<br style="clear: both;" />
+<div class="easyui-tabs" style="width:99%;height:750px">
+    <div title="全部" style="padding:10px">
+        <table id="allData"></table>
+    </div>
+    <div title="待审核" style="padding:10px">
+        <table id="PendingAuditData"></table>
+    </div>
+    <div title="审核通过" style="padding:10px">
+        <table id="AuditThroughData"></table>
+    </div>
+    <div title="未通过" style="padding:10px">
+        <table id="NotByData"></table>
+    </div>
+</div>
+<!-- 客户查重验证 start-->
+<div id="repeatDialog" class="easyui-dialog" iconcls="icon-edit" style="width: 600px; height: 560px;
+      padding: 5px; overflow: auto; " title="" data-options="closed:true">
+    <div fit="true" style="height:80%;width:95%">
+        <form id="form_Customer">
+            <input type="hidden" name="CustomerID" id="CustomerID" />
+            <div class="editor-label">
+                客户名称：
+            </div>
+            <div class="editor-field">
+                <input class="txt-large" type="text" name="CustomerName" id="CustomerName" readonly="readonly" />
+            </div>
+            <div class="editor-label">
+                创建人：
+            </div>
+            <div class="editor-field">
+                <input class="txt-large" type="text"  name="CreatedBy" id="CreatedBy" readonly="readonly" />
+            </div>
+            <div class="editor-label">
+                联系人：
+            </div>
+            <div class="editor-field">
+                <input class="txt-large" type="text"  name="ContactPerson" id="ContactPerson" readonly="readonly" />
+            </div>
+            <div class="editor-label">
+                手机号码：
+            </div>
+            <div class="editor-field">
+                <input class="txt-large" type="text"  name="ContactPhone" id="ContactPhone" readonly="readonly" />
+            </div>
+            <div class="editor-label">
+                联系电话：
+            </div>
+            <div class="editor-field">
+                <input class="txt-large" type="text"  name="ContactTel" id="ContactTel" readonly="readonly" />
+            </div>
+            <div class="editor-label">
+                省份：
+            </div>
+            <div class="editor-field">
+                <input class="txt-large" type="text"  name="ProvinceName" id="ProvinceName" readonly="readonly" />
+            </div>
+            <div class="editor-label">
+                城市：
+            </div>
+            <div class="editor-field">
+                <input class="txt-large" type="text"  name="CityName" id="CityName" readonly="readonly" />
+            </div>
+            <div class="editor-label">
+                区域：
+            </div>
+            <div class="editor-field">
+                <input class="txt-large" type="text"  name="DistrictName" id="DistrictName" readonly="readonly" />
+            </div>
+        </form>
+
+        <br style="clear: both;" />
+        <hr style="border:1px dashed #ccc;color:#fff" width="95%">
+        <div data-options="region:'south',border:false" style="text-align: left; padding: 5px 5px 5px 0;">
+            <a class="easyui-linkbutton" id="btnConfirmCreate" style="width:85px;height:30px" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+               onclick="getAudit(1)">通过</a>&nbsp;&nbsp;
+            <a class="easyui-linkbutton" id="btnConfirmCreate" style="width:85px;height:30px" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+               onclick="getAudit(0)">拒绝</a>&nbsp;&nbsp;
+            <a class="easyui-linkbutton" style="width:85px;height:30px;" href="javascript:void(0)"
+               onclick="$('.easyui-dialog').window('close');">取消</a>
+            <span style="width:400px;padding:10px;margin:5px;">
+                拒绝原因：<input type="text" name="txtReason" id="txtReason" style="width:280px;height:19px;" />
+
+            </span>
+        </div>
+
+        <br style="clear: both;" />
+        <table id="RepeatData" class="easyui-datagrid" title="客户查重验证" style="width:98%;height:auto"></table>
+        <br style="clear: both;" />
+
+    </div>
+
+</div>
+<!-- 客户查重验证 end -->
+<script type="text/javascript" language="javascript">$.getScript("/Scripts/Customer/AuditManagement.js")</script>

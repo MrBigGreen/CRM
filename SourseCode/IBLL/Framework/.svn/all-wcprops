@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BridgehrKit/!svn/ver/12714/VISS/solution/WebSrc/CRM/SourseCode/IBLL/Framework
+END
+IHomeBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/Framework/IHomeBLL.cs
+END
+ISysAnnouncementBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/Framework/ISysAnnouncementBLL.cs
+END
+ISysCodeTableHander.cs
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BridgehrKit/!svn/ver/7154/VISS/solution/WebSrc/CRM/SourseCode/IBLL/Framework/ISysCodeTableHander.cs
+END
+ISysFieldHander.cs
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BridgehrKit/!svn/ver/12714/VISS/solution/WebSrc/CRM/SourseCode/IBLL/Framework/ISysFieldHander.cs
+END
+IAccountBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/Framework/IAccountBLL.cs
+END
+ISysColumnFilterBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BridgehrKit/!svn/ver/8985/VISS/solution/WebSrc/CRM/SourseCode/IBLL/Framework/ISysColumnFilterBLL.cs
+END
+ISysMenuSysRoleSysOperationBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/IBLL/Framework/ISysMenuSysRoleSysOperationBLL.cs
+END

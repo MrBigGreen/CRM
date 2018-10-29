@@ -1,0 +1,96 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_CustomerContact
+
+@{
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<style>
+    .display-field {
+        width: 201px;
+        height: 24px;
+        float: left;
+        margin: 2px 0 2px 6px;
+        display: inline;
+    }
+
+    .editor-label {
+        width: 100px;
+        height: 24px;
+        float: left;
+        text-align: right;
+        margin: 2px 0 2px;
+        line-height: 24px;
+        display: inline;
+    }
+
+    textarea {
+        width: 457px;
+    }
+</style>
+<div class="easyui-layout" title="" style="width:100%">
+    <div style="padding: 10px 20px 20px 20px; ">
+        @Html.HiddenFor(m => m.CustomerID)
+        <div class="editor-label">@Html.LabelFor(m => m.ContactName):</div>
+        <div class="display-field">
+            @Html.DisplayFor(m => m.ContactName) @Html.DisplayFor(m => m.IsKP)<label>KP</label>
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.CompanyTel2):
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(m => m.CompanyTel2)
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.BirthDate):</div>
+        <div class="display-field">
+            @Html.DisplayFor(m => m.BirthDate)
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.Interested):</div>
+        <div class="display-field">
+            @Html.DisplayFor(m => m.Interested)
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.Department):</div>
+        <div class="display-field">
+            @Html.DisplayFor(m => m.Department)
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.Post):</div>
+        <div class="display-field">
+            
+            @Html.DropDownListFor(model => model.Post, Models.SysFieldModels.GetSysFieldByParentID("1506121005392690303c5640a411a"), "--请选择--", new { @Style = "width:133px;", @disabled = "disabled" })
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.CompanyTel):</div>
+        <div class="display-field">
+            @Html.DisplayFor(m => m.CompanyTel)
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.QQID):</div>
+        <div class="display-field">
+            @Html.DisplayFor(m => m.QQID)
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.PhoneNumber1):</div>
+        <div class="display-field">
+            @Html.DisplayFor(m => m.PhoneNumber1)
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.PhoneNumber2):</div>
+        <div class="display-field">
+            @Html.DisplayFor(m => m.PhoneNumber2)
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.Email1):</div>
+        <div class="display-field">
+            @Html.DisplayFor(m => m.Email1)
+        </div>
+        <div class="editor-label">@Html.LabelFor(m => m.Email2):</div>
+        <div class="display-field">
+            @Html.DisplayFor(m => m.Email2)
+        </div>
+        <br style="clear: both;" />
+        <div class="editor-label">@Html.LabelFor(m => m.Remark):</div>
+        <div class="textarea-box">
+            @Html.TextAreaFor(m => m.Remark, new { @readonly = true })
+        </div>
+        <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">            
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+               onclick="closeWindow();">关闭</a>
+        </div>
+    </div>
+</div>

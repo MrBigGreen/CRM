@@ -1,0 +1,121 @@
+﻿@{ Layout = "~/Views/Shared/Index.cshtml"; }
+@using Common
+@using Models
+
+<div class="easyui-panel" id="panelShow" title="查询栏" iconcls="icon-search" collapsible="true" style="height: auto; width: auto">
+    <table id="ttSearch" class="record">
+        <tr>
+            <th>公司</th>
+            <td>
+                <select id="cc" style="width: 350px;"></select>
+            </td>
+        </tr>
+        <tr>
+            <th>日期</th>
+            <td>
+                <input class="easyui-datebox" id="beginDate" editable="false" style="width: 100px" />
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" style="text-align: center">
+                <input type="button" id="todaySearch" style="width: 80px;" onclick="SearchParm()" value="搜索">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            </td>
+        </tr>
+    </table>
+</div>
+<br/>
+<div class="easyui-panel" style="height:auto;" collapsible="true">
+    <table id="flexigridData"></table>
+</div>
+<div id="tb" style="padding:3px;height:24px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-excel" plain="true" onclick="ExportInfo()" style="float: left; margin-right: 20px;">导出</a>
+</div>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.watermark.min.js"></script>
+<script src="~/Scripts/jquery.bpopup-0.7.0.min.js"></script>
+<script src="~/Scripts/type-bpopup_fuc.js" type="text/javascript"></script>
+<script src="/Scripts/Employees/Index.js" type="text/javascript"></script>
+<link href="~/Content/TodayTasks/Index.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(function () {
+        $('#flexigridData').datagrid({
+            title: '汇总数据查询', //列表的标题
+            iconCls: 'icon-site',
+            width: 'auto',
+            height: 'auto',
+            loadMsg: "正在加载...",
+            striped: true,
+            url: '../PayReport/GetSocialReportData', //获取数据的url
+            sortName: 'ContractID',
+            sortOrder: 'desc',
+            idField: 'ContractID',
+            fitColumns: true,
+
+            columns: [[
+               { field: 'CustomerCounts', title: '客户数量', width: $(this).width() * 0.2, align: 'center', resizable: false }
+             , { field: 'PayPersonsCounts', title: '合计人数', width: $(this).width() * 0.3, align: 'center', resizable: false }
+             , { field: 'CompanyAcceptAmount', title: '公司承担额', width: $(this).width() * 0.3, align: 'center', resizable: false }
+             , { field: 'PersonAcceptAmount', title: '个人承担额', width: $(this).width() * 0.3, align: 'center', resizable: false }
+             , { field: 'AcceptAmountTotal', title: '合计金额', width: $(this).width() * 0.2, align: 'center', resizable: false }
+            ]],
+            pagination: true,
+            rownumbers: true,
+            showFooter: true,
+            toolbar: '#tb'
+
+        });
+
+
+        $("#cc").combobox({
+            url: '/PayReport/GetComboxList?parm=1604121151490315992e569f90a1e',
+            valueField: 'id',
+            textField: 'text',
+            //editable: false
+            filter: function (q, row) { //q：文本框内你输入的值，row：列表数据集合；
+                var opts = $(this).combobox('options');
+                return row[opts.textField].indexOf(q) >= 0;
+            }
+
+        });
+    });
+
+    function toDate(str) {
+        var sd = str.split("-");
+        return new Date(sd[0], sd[1], sd[2]);
+    }
+    //按条件查询
+    function SearchParm() {
+        var search = "";
+
+        var ck = $("#cc").combobox("getValue");//公司
+
+        var beginDate = $('#beginDate').datebox('getValue');//开始时间
+      
+
+
+        search = 'CombotreeCheck&' + ck + '^';
+        search += 'StartDate&' + beginDate + '^';
+    
+        $("#flexigridData").datagrid("clearSelections");
+        //执行查询
+        $('#flexigridData').datagrid('load', { search: search });
+    }
+    //搜索清空
+    function RemvoeAll() {
+
+        $("#cc").combobox("reload");
+        $('#beginDate').datebox('setValue', '');
+      
+        $("#flexigridData").datagrid("clearSelections");
+    }
+
+</script>
+
+
+
+
+

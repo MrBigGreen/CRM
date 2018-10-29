@@ -1,0 +1,335 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_CustomerFollow
+
+@{ Layout = "~/Views/Shared/Index.cshtml"; }
+<style>
+
+</style>
+
+<form id="myForm">
+    <div class="bigdiv" style="margin-left:10px;width:96%;">
+        @Html.HiddenFor(model => model.CustomerFollowID)
+        @Html.HiddenFor(model => model.CustomerID)
+        @*对方级别*@
+        @Html.HiddenFor(model => model.OtherLevel)
+        @Html.HiddenFor(model => model.IsKP)
+        <input id="FollowUpCategory" name="FollowUpCategory" type="hidden" value="FollowUpCategory" />
+        <input id="FollowUpPurpose" name="FollowUpPurpose" type="hidden" value="FollowUpPurpose" />
+        <input name="ContactState" id="CheckYse" type="radio" value="1" checked="checked" style="display:none">
+        <table id="ttEdit" class="record">
+            <tr id="a">
+                <th><span style="color:red">*</span>联系人</th>
+                <td>
+                    <input id="CustomerContactName" name="CustomerContactName" class="textbox-text" type="text" readonly="readonly" style="width:100px">
+
+                    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="ShowContactPerson();">选择</a>
+                </td>
+                <th>联系人方式</th>
+                <td>
+                    <input id="CallPhone" name="CallPhone" class="textbox-text" type="text" readonly="readonly" style="width:100px">
+                    <a class="easyui-linkbutton" data-options="iconCls:'icon-call'" href="javascript:void(0)" onclick="javascript: CallTel();"></a>
+                </td>
+            </tr>
+            <tr id="c">
+                <th> 跟进方式</th>
+                <td>
+                    @Html.RadioButtonListFor(model => model.FollowUpMode, Models.SysFieldModels.GetSysFieldByParentID("1506251032089851135c18a57f429"), true)
+                </td>
+                <th> </th>
+                <td></td>
+            </tr>
+            <tr>
+                <th><span style="color: red">*</span>跟进时间</th>
+                <td>
+
+                    <input type="text" id="FollowUpDate" name="FollowUpDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                </td>
+                <th><span style="color: red">*</span>客户进程</th>
+                <td>
+                    <input id="cbxCustomerFunnel" name="cbxCustomerFunnel" style="width: 140px" />
+                    <input type="hidden" id="CustomerFunnel" name="CustomerFunnel" />
+                </td>
+            </tr>
+            <tr>
+                <th><span style="color: red">*</span>开始时间</th>
+                <td>
+                    <input type="text" id="GoTime" name="GoTime" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'BackTime\');}', dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                </td>
+                <th><span style="color: red">*</span>结束时间</th>
+                <td><input type="text" id="BackTime" name="BackTime" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'GoTime\');}', dateFmt: 'yyyy-MM-dd HH:mm:ss' })" /></td>
+            </tr>
+            <tr id="b">
+                <th>预计成单金额</th>
+                <td>
+                    @Html.TextBoxFor(model => model.ExpectedMoney)
+                </td>
+                <th>预计成单日期</th>
+                <td>
+                    <input type="text" id="ExpectedDate" name="ExpectedDate" value="" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                </td>
+            </tr>
+            <tr id="d">
+                <th>可推荐方案</th>
+                <td colspan="3">
+                    @Html.CheckBoxListFor(model => model.RecommendSolutionID, Models.SysFieldModels.GetSysFieldByParentID("1508071046119479968e30ccf1f9f"))
+                    @Html.HiddenFor(model => model.RecommendSolutionIDNew)
+                </td>
+            </tr>
+            <tr id="e">
+                <th>商机判断</th>
+                <td>
+                    @Html.DropDownListFor(model => model.Opportunities, Models.SysFieldModels.GetSysFieldByParentID("150612100955842681016eb929de8"), "--请选择--", new { @Style = "width:133px;" })
+                </td>
+                <th> 下次跟进时间</th>
+                <td>
+                    <span>
+                        @*@Html.TextBoxFor(model => model.NextFollowDate, new { @class = "easyui-datetimebox", editable = "true", style = "width:150px" })*@
+                        @Html.TextBoxFor(model => model.NextFollowDate, new { @class = "Wdate", style = "width:160px", onfocus = "WdatePicker({minDate:CurentTime(), dateFmt: 'yyyy/MM/dd HH:mm:ss' })" })
+                    </span>
+                </td>
+            </tr>
+            <tr id="f">
+                <th> 下次跟进方式</th>
+                <td>
+                    @Html.RadioButtonListFor(model => model.NextFollowUpMode, Models.SysFieldModels.GetSysFieldByParentID("1506251032089851135c18a57f429"), true)
+                </td>
+                <th> 下次跟进目的</th>
+                <td>
+                    @Html.DropDownListFor(model => model.NextFollowUpPurpose, Models.SysFieldModels.GetSysFieldByParentID("15061210014976927076a3fd215ab"), "--请选择--", new { @Style = "width:133px;" })
+                </td>
+            </tr>
+            <tr id="g">
+                <td colspan="4">
+                    <div>
+                        <span style="color:red">*</span>客户反馈的需求描述记录
+                        <span style="text-align: left; float: right; width: 190px;  vertical-align: bottom;  ">
+                            您可输入剩余字数：<b class="red" id="leave_letter">800</b>
+                        </span>
+                    </div>
+                    <textarea id="Remark" name="Remark" style=" width 88%; height 53px; resize none; " maxlength="800" onkeyup="checkLength(this);"></textarea>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+                        <a class="easyui-linkbutton" id="ContactSave" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+                           onclick="SubmitFunc();">保存</a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+                           onclick="closeWindow();">取消</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <br style="clear: both;" />
+    </div>
+</form>
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(function () {
+        var customerID = $('#CustomerID').val();
+        //modify by chand 2016-03-14  临时关闭
+        //获取最后一次联系人联系电话
+        $.ajax({
+            url: "/CustomerFollow/GetLastContactInfo",
+            type: "post",
+            data: { id: customerID },
+            datatype: "json",
+            success: function (data) {
+                if (data.Result == 1) {
+
+                    //$("#CustomerContactName").val(data.ContactName);
+                    //$("#CallPhone").val(data.CallPhone);
+                    //$("#CustomerEmail").val(data.CustomerEmail);
+                    //$("#OtherLevel").val(data.OtherLevel);
+                    //$("#IsKP").val(data.IsKP);
+                    $("#CustomerFunnel").val(data.CustomerFunnel);
+                }
+            }
+
+        });
+
+
+    });
+
+    $('#cbxCustomerFunnel').combobox({
+        required: true,
+        url: '/SysField/GetComboBoxList?ParentID=1506121008181709094ed4907cf81',
+        valueField: 'Value',
+        textField: 'Text',
+        //editable: false
+        filter: function (q, row) { //q：文本框内你输入的值，row：列表数据集合；
+            var opts = $(this).combobox('options');
+
+            //统一转换成小写进行比较；==0：匹配首位，>=0：匹配任意位置；
+            return row[opts.textField].indexOf(q) >= 0;
+        },
+        onSelect: function (newValue, oldValue) {
+            $("#CustomerFunnel").val(newValue.Value);
+        }
+    });
+
+    var validator = $("#myForm").validate({
+        errorElement: 'span',
+        errorClass: 'field-validation-error',
+        focusInvalid: false,
+        rules: {
+            CustomerContactName: {
+                required: true,
+            },
+            //CallPhone: {
+            //    required: true,
+            //},
+            FollowUpDate: {
+                required: true,
+            },
+            GoTime: {
+                required: true,
+            },
+            BackTime: {
+                required: true,
+            },
+            CustomerFunnel: {
+                required: true,
+            },
+            Remark: {
+                required: true,
+                maxlength: 800,
+                minlength: 5,
+            },
+        },
+
+        messages: {
+            CustomerContactName: {
+                required: "请选择",
+            },
+            //CallPhone: {
+            //    required: "不能为空",
+            //},
+            FollowUpDate: {
+                required: "不能为空",
+            },
+            GoTime: {
+                required: "不能为空",
+            },
+            BackTime: {
+                required: "不能为空",
+            },
+            CustomerFunnel: {
+                required: "请选择",
+            },
+            Remark: {
+                required: "不能为空",
+                maxlength: "反馈信息部能超过800个字",
+                minlength: "请输入至少5个字的客户反馈信息！",
+            },
+        },
+
+        invalidHandler: function (event, validator) { //display error alert on form submit
+            $('.alert-danger', $('.login-form')).show();
+        },
+
+        highlight: function (e) {
+            //移除当前控件后面所有元素
+
+            $(e).closest('.editor-field input').addClass('input-validation-error');
+        },
+
+        success: function (e) {
+            //移除当前控件后面所有元素
+            //$(e).removeClass('input-validation-error');
+            //$(e).closest('.editor-field').find("input").removeClass('input-validation-error');
+            $(e).prev("input").removeClass('input-validation-error');
+            $(e).remove();
+        },
+
+        errorPlacement: function (error, element) {
+            if (element.is(':checkbox') || element.is(':radio')) {
+                var controls = element.closest('div[class*="col-"]');
+                if (controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+            }
+            else if (element.is('.select2')) {
+                error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+            }
+            else if (element.is('.chosen-select')) {
+                error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+            }
+            else {
+                error.insertAfter(element);
+            }
+
+        },
+
+        submitHandler: function (form) {
+        },
+        invalidHandler: function (form) {
+        }
+    });
+
+    /************************************************创建会员***********************************************/
+
+    var SubmitFunc = function () {
+
+        var ids = "";
+        $("input[name='RecommendSolutionID']:checked").each(function () {
+            ids += $(this).val() + ",";
+        });
+        $("#RecommendSolutionIDNew").val(ids);
+
+
+        var SubmitResult = true;
+        // 检测表单是否验证通过 并进行表单验证
+        var validateState = $("#myForm").valid();
+        if ($("#CustomerFunnel").val() == "") {
+            validateState = false;
+        }
+        if (!validateState) {
+            return false;
+        }
+
+
+        $.ajax({
+            url: "/CustomerFollow/GetCreate",
+            type: "Post",
+            data: $("#myForm").serialize(),
+            dataType: "json",
+            success: function (data) {
+                if (data == "创建成功") {
+                    //合同阶段
+                    if ($("#CustomerFunnel").val() == "150718162712213888586d8311e52") {
+
+                        var id = $("#CustomerID").val();
+                        location.href = "../Contract/Create?customerId=" + id;
+                    }
+                    else {
+                        $.messager.alert('操作提示', "创建成功", "info", function (r) {
+
+
+
+                            closeWindow();
+
+                        });
+                    }
+
+                }
+                else {
+                    $.messager.alert('操作提示', data, "info", function (r) {
+
+                    });
+                }
+            },
+            error: function () {
+                SubmitResult = false;
+            }
+        });
+        return SubmitResult;
+    };
+    function ShowContactPerson() {
+
+        showWindow("选择联系人", '/CustomerContact/MinList?ID=' + $("#CustomerID").val(), 450, 410);
+    }
+
+
+</script> 

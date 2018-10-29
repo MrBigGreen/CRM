@@ -1,0 +1,612 @@
+﻿@{
+    ViewBag.Title = "审核流程";
+    Layout = "~/Views/Shared/_FlowForm.cshtml";
+}
+<link href="~/Content/scripts/plugins/jqgrid/jqgrid.css" rel="stylesheet" />
+<script src="~/Content/scripts/plugins/jqgrid/grid.locale-cn.js"></script>
+<script src="~/Content/scripts/plugins/jqgrid/jqgrid.min.js"></script>
+<script>
+    var processSchemeId = request('processSchemeId');
+    var activityId = request('activityId');
+    var processInstanceId = request('processInstanceId');
+    var createusername = decodeURI(request('createusername'));
+    var description = decodeURI(request('description'));
+
+    $(function () {
+
+        //项目
+        //$("#frm_ProjectID").ComboBox({
+        //    description: "==请选择==",
+        //});
+        //项目
+        //$("#frm_ProjectID").ComboBoxTree({
+        //    url: "../../PayManage/Department/GetTreeJson",
+        //    description: "==请选择==",
+        //    height: "220px",
+        //    allowSearch: true
+        //});
+        GetGrid();
+        //获取验证码
+        $("#register_getcode").click(function () {
+            var $this = $(this);
+            $this.attr('disabled', 'disabled');
+            $.ajax({
+                url: "../../FlowManage/FlowPay/SendSecurityCode",
+                data: {},
+                type: "get",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    if (data.type == 1) {
+                        dialogMsg('已向您的上级主管发送了一条验证短信。', 1);
+                    } else {
+                        $this.removeAttr('disabled');
+                        dialogMsg(data.message, 0);
+                    }
+                }
+            });
+        });
+        var schemeContent;
+        $('#Createusername').val(createusername);
+        $('#Description').val(description);
+        $('#frmtab').height($.windowHeight() - 40);
+        $('#VerificationOpinion').height($.windowHeight() - 460);
+        $.SetForm({
+            url: "../../FlowManage/FlowPay/GetProcessSchemeEntityByNodeId",
+            param: { keyValue: processSchemeId, nodeId: activityId },
+            success: function (data) {
+                schemeContent = JSON.parse(JSON.parse(data.SchemeContent).SchemeContent);
+                frmdata = JSON.parse(JSON.parse(data.SchemeContent).frmData);
+
+                //$('#frmpreview').frmPreview({
+                //    tablecotent: schemeContent.Frm.FrmContent
+                //});
+                $('#FlowPanel').flowdesign({
+                    width: $(window).width() - 298,
+                    height: $(window).height() - 42,
+                    flowcontent: schemeContent.Flow,
+                    haveTool: false,
+                    isprocessing: true,
+                    activityId: activityId,
+                    nodeData: schemeContent.Flow.nodes
+                });
+                $('#frmpreview').frmSetData(frmdata);
+                $("#frm_ReleaseDate").val(formatDate(frmdata.ReleaseDate, "yyyy-MM-dd"));
+                $('#frmpreview').find('input,select,textarea,.ui-select').attr('disabled', 'disabled');
+
+                if ('@ViewBag.WFState' == '0') {
+                    $('#Verification').show();
+                }
+
+
+                //驳回到某一步
+                $("#NodeRejectStep").ComboBox({
+                    data: schemeContent.Flow.nodes,
+                    id: "id",
+                    text: "name",
+                    description: "==请选择==",
+                    allowSearch: true,
+                    height: "300px",
+                });
+                var _node = "";
+                for (var i in schemeContent.Flow.nodes) {
+                    if (schemeContent.Flow.nodes[i].id == activityId) {
+                        _node = schemeContent.Flow.nodes[i];
+                        break;
+                    }
+                }
+                if (_node.setInfo != undefined && _node.setInfo.NodeRejectType == "3") {
+                    $('input[name = "VerificationFinally"]').click(function () {
+                        var _value = $(this).val();
+                        var _height = $.windowHeight() - 360;
+                        var _height1 = _height - 55;
+                        if (_value == "3") {
+                            $(".NodeRejectStep").show();
+                            $("#VerificationOpinion").height(_height1);
+                        }
+                        else {
+                            $(".NodeRejectStep").hide();
+                            $("#VerificationOpinion").height(_height);
+                        }
+                    });
+                }
+            }
+        });
+
+        $('#btn_Submission').click(function () {
+            if (!$('#VerificationInfo').Validform()) {
+                return false;
+            }
+            var _verificationFinally = $('input[name = VerificationFinally]:checked').val();
+            if (_verificationFinally == undefined) {
+                dialogTop("请选择审核结果", "error");
+                return false;
+            }
+            var VerificationOpinion = $("#VerificationOpinion").val();
+            if (VerificationOpinion.length < 1 || VerificationOpinion.length > 50) {
+                dialogTop("审核意见不能为空或超过50个字符", "error");
+                return false;
+            }
+
+            var _IsArrival = $('input[name = frm_IsArrival]:checked').val();
+            var _IsAdvances = $('input[name = frm_IsAdvances]:checked').val();
+            if ('@ViewBag.WFState' == '0' && _verificationFinally == 1) {
+
+
+                if (_IsArrival == undefined) {
+                    dialogTop("请选择是否到账", "error");
+                    return false;
+                }
+
+
+                if (_IsAdvances == undefined) {
+                    dialogTop("请选择是否垫款", "error");
+                    return false;
+                }
+
+                if (_IsArrival == 0 && _IsAdvances == 0) {
+                    dialogTop("对不起资金未到账不能提交", "error");
+                    return false;
+                }
+                if ($("#VerifyCode").val().length != 6) {
+                    dialogTop("验证码格式不正确，验证码请于上级主管联系", "error");
+                    return false;
+                }
+            }
+
+            var _postdata = $("#VerificationInfo").GetWebControls();
+
+            delete _postdata["VerificationFinally1"];
+            delete _postdata["VerificationFinally2"];
+            delete _postdata["VerificationFinally3"];
+
+            _postdata["VerificationFinally"] = _verificationFinally;
+
+            $.ConfirmAjax({
+                msg: "请确认是否要【提交审核】流程？",
+                url: "../../FlowManage/FlowPay/VerificationProcess",
+                param: { processId: processInstanceId, verificationData: JSON.stringify(_postdata), IsArrival: _IsArrival, IsAdvances: _IsAdvances },
+                success: function (data) {
+                    $.currentIframe().callBack();
+                    dialogClose();
+
+                }
+            })
+        });
+    });
+
+    //加载表格
+    function GetGrid() {
+        var selectedRowIndex = 0;
+        var $gridTable = $('#gridTable');
+        $gridTable.jqGrid({
+            autowidth: true,
+            height: 300.5,
+            url: "../../FlowManage/FlowPay/GetPageListJson",
+            postData: { queryJson: JSON.stringify({ WFSalaryId: processInstanceId }) },
+            datatype: "json",
+            colModel: [
+                { label: '薪资明细主键', name: 'salarydetailsid', index: 'salarydetailsid', width: 100, align: 'left', sortable: true, hidden: true },
+                { label: '项目编号', name: 'projectid', index: 'projectid', width: 100, align: 'left', sortable: true, hidden: true },
+                { label: '项目名称', name: 'projectname', index: 'projectname', width: 100, align: 'left', sortable: true, hidden: false },
+                { label: '员工', name: 'empname', index: 'empname', width: 100, align: 'left', sortable: true },
+                { label: '薪资月份', name: 'salarymonth', index: 'salarymonth', width: 100, align: 'left', sortable: true },
+                { label: '基本工资', name: 'basicsalary', index: 'basicsalary', width: 100, align: 'left', sortable: true },
+                { label: '计时工资', name: 'hourlywage', index: 'hourlywage', width: 100, align: 'left', sortable: true },
+                { label: '计件工资', name: 'pieceworkwage', index: 'pieceworkwage', width: 100, align: 'left', sortable: true },
+                { label: '其他补贴', name: 'othersubsidies', index: 'othersubsidies', width: 100, align: 'left', sortable: true },
+                { label: '节假日加班费', name: 'holidayovertime', index: 'holidayovertime', width: 100, align: 'left', sortable: true },
+                { label: '工作日加班费', name: 'workingovertime', index: 'workingovertime', width: 100, align: 'left', sortable: true },
+                { label: '介绍奖', name: 'pearlawards', index: 'pearlawards', width: 100, align: 'left', sortable: true },
+                { label: '奖金', name: 'monthbonus', index: 'monthbonus', width: 100, align: 'left', sortable: true },
+                { label: '全勤奖', name: 'fullbonus', index: 'fullbonus', width: 100, align: 'left', sortable: true },
+                { label: '餐费补贴', name: 'mealallowance', index: 'mealallowance', width: 100, align: 'left', sortable: true },
+                { label: '加班费', name: 'overtimepay', index: 'overtimepay', width: 100, align: 'left', sortable: true },
+                { label: '交通补贴', name: 'transubsidies', index: 'transubsidies', width: 100, align: 'left', sortable: true },
+                { label: '出差补贴', name: 'travelallowance', index: 'travelallowance', width: 100, align: 'left', sortable: true },
+                { label: '补发工资', name: 'backpay', index: 'backpay', width: 100, align: 'left', sortable: true },
+                { label: '考核工资', name: 'checkwage', index: 'checkwage', width: 100, align: 'left', sortable: true },
+                { label: '考勤扣款', name: 'absenteeismdeduction', index: 'absenteeismdeduction', width: 100, align: 'left', sortable: true },
+                { label: '扣个税', name: 'tax', index: 'tax', width: 100, align: 'left', sortable: true },
+                { label: '其它扣款', name: 'otherdeduction', index: 'otherdeduction', width: 100, align: 'left', sortable: true },
+                { label: '社保基数', name: 'sibase', index: 'sibase', width: 100, align: 'left', sortable: true },
+                { label: '个人养老', name: 'indipension', index: 'indipension', width: 100, align: 'left', sortable: true },
+                { label: '个人医保', name: 'indimedical', index: 'indimedical', width: 100, align: 'left', sortable: true },
+                { label: '个人失保', name: 'indijobsecurity', index: 'indijobsecurity', width: 100, align: 'left', sortable: true },
+                { label: '个人大病统筹', name: 'indidbtc', index: 'indidbtc', width: 100, align: 'left', sortable: true },
+                { label: '个人社保合计', name: 'indisocialtotal', index: 'indisocialtotal', width: 100, align: 'left', sortable: true },
+                { label: '个人公积金', name: 'indifund', index: 'indifund', width: 100, align: 'left', sortable: true },
+                { label: '公司养老', name: 'copension', index: 'copension', width: 100, align: 'left', sortable: true },
+                { label: '公司医保', name: 'comedical', index: 'comedical', width: 100, align: 'left', sortable: true },
+                { label: '公司失保', name: 'cojobsecurity', index: 'cojobsecurity', width: 100, align: 'left', sortable: true },
+                { label: '工伤保险', name: 'coinsurance', index: 'coinsurance', width: 100, align: 'left', sortable: true },
+                { label: '生育保险', name: 'cobirth', index: 'cobirth', width: 100, align: 'left', sortable: true },
+                { label: '公司大病统筹', name: 'codbtc', index: 'codbtc', width: 100, align: 'left', sortable: true },
+                { label: '残保金', name: 'coresidual', index: 'coresidual', width: 100, align: 'left', sortable: true },
+                { label: '公司社保合计', name: 'cosocialtotal', index: 'cosocialtotal', width: 100, align: 'left', sortable: true },
+                { label: '公司公积金', name: 'cofund', index: 'cofund', width: 100, align: 'left', sortable: true },
+                { label: '应发工资', name: 'payablesalary', index: 'payablesalary', width: 100, align: 'left', sortable: true },
+                { label: '实发工资', name: 'realsalary', index: 'realsalary', width: 100, align: 'left', sortable: true },
+                { label: '年终奖金', name: 'yearbonus', index: 'yearbonus', width: 100, align: 'left', sortable: true },
+                { label: '年终奖个税', name: 'yearbonustax', index: 'yearbonustax', width: 100, align: 'left', sortable: true },
+                { label: '发放方式', name: 'paymentmode', index: 'paymentmode', width: 100, align: 'left', sortable: true },
+                { label: '补缴月份', name: 'bjsalarymonth', index: 'bjsalarymonth', width: 100, align: 'left', sortable: true },
+                { label: '补缴基数', name: 'bjpaybase', index: 'bjpaybase', width: 100, align: 'left', sortable: true },
+                { label: '补缴个人养老', name: 'bjindipension', index: 'bjindipension', width: 100, align: 'left', sortable: true },
+                { label: '补缴个人医保', name: 'bjindimedical', index: 'bjindimedical', width: 100, align: 'left', sortable: true },
+                { label: '补缴个人失保', name: 'bjindijobsecurity', index: 'bjindijobsecurity', width: 100, align: 'left', sortable: true },
+                { label: '补缴个人社保合计', name: 'bjindisocialtotal', index: 'bjindisocialtotal', width: 100, align: 'left', sortable: true },
+                { label: '补缴个人公积金', name: 'bjindifund', index: 'bjindifund', width: 100, align: 'left', sortable: true },
+                { label: '补缴公司养老', name: 'bjcopension', index: 'bjcopension', width: 100, align: 'left', sortable: true },
+                { label: '补缴公司医保', name: 'bjcomedical', index: 'bjcomedical', width: 100, align: 'left', sortable: true },
+                { label: '补缴公司失保', name: 'bjcojobsecurity', index: 'bjcojobsecurity', width: 100, align: 'left', sortable: true },
+                { label: '补缴工伤保险', name: 'bjcoinsurance', index: 'bjcoinsurance', width: 100, align: 'left', sortable: true },
+                { label: '补缴生育保险', name: 'bjcobirth', index: 'bjcobirth', width: 100, align: 'left', sortable: true },
+                { label: '补缴公司社保合计', name: 'bjcosocialtotal', index: 'bjcosocialtotal', width: 100, align: 'left', sortable: true },
+                { label: '补缴公司公积金', name: 'bjcofund', index: 'bjcofund', width: 100, align: 'left', sortable: true },
+                { label: '补充个人公积金', name: 'bcindifund', index: 'bcindifund', width: 100, align: 'left', sortable: true },
+                { label: '补充公司公积金', name: 'bccofund', index: 'bccofund', width: 100, align: 'left', sortable: true },
+                { label: '补充公积金合计', name: 'bcfundtotal', index: 'bcfundtotal', width: 100, align: 'left', sortable: true },
+                { label: '修改日期', name: 'modifydate', index: 'modifydate', width: 120, align: 'left', sortable: true },
+                { label: '修改用户', name: 'modifyusername', index: 'modifyusername', width: 100, align: 'left', sortable: true },
+            ],
+            viewrecords: true,
+            rowNum: 1000,
+            //rowList: [30, 50, 100],
+            //pager: "#gridPager",
+            sortname: 'SalaryDetailsId',
+            sortorder: 'desc',
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            onSelectRow: function () {
+                selectedRowIndex = $('#' + this.id).getGridParam('selrow');
+            },
+            pager: false,
+            footerrow: true,
+            gridComplete: function () {
+                var basicsalary = $(this).getCol("basicsalary", false, "sum");
+                var hourlywage = $(this).getCol("hourlywage", false, "sum");
+                var pieceworkwage = $(this).getCol("pieceworkwage", false, "sum");
+                var othersubsidies = $(this).getCol("othersubsidies", false, "sum");
+                var holidayovertime = $(this).getCol("holidayovertime", false, "sum");
+                var workingovertime = $(this).getCol("workingovertime", false, "sum");
+                var pearlawards = $(this).getCol("pearlawards", false, "sum");
+                var monthbonus = $(this).getCol("monthbonus", false, "sum");
+                var fullbonus = $(this).getCol("fullbonus", false, "sum");
+                var mealallowance = $(this).getCol("mealallowance", false, "sum");
+                var overtimepay = $(this).getCol("overtimepay", false, "sum");
+                var transubsidies = $(this).getCol("transubsidies", false, "sum");
+                var travelallowance = $(this).getCol("travelallowance", false, "sum");
+                var backpay = $(this).getCol("backpay", false, "sum");
+                var checkwage = $(this).getCol("checkwage", false, "sum");
+                var absenteeismdeduction = $(this).getCol("absenteeismdeduction", false, "sum");
+                var tax = $(this).getCol("tax", false, "sum");
+                var otherdeduction = $(this).getCol("otherdeduction", false, "sum");
+                var sibase = $(this).getCol("sibase", false, "sum");
+                var indipension = $(this).getCol("indipension", false, "sum");
+                var indimedical = $(this).getCol("indimedical", false, "sum");
+                var indijobsecurity = $(this).getCol("indijobsecurity", false, "sum");
+                var indidbtc = $(this).getCol("indidbtc", false, "sum");
+                var indisocialtotal = $(this).getCol("indisocialtotal", false, "sum");
+                var indifund = $(this).getCol("indifund", false, "sum");
+                var copension = $(this).getCol("copension", false, "sum");
+                var comedical = $(this).getCol("comedical", false, "sum");
+                var cojobsecurity = $(this).getCol("cojobsecurity", false, "sum");
+                var coinsurance = $(this).getCol("coinsurance", false, "sum");
+                var cobirth = $(this).getCol("cobirth", false, "sum");
+                var codbtc = $(this).getCol("codbtc", false, "sum");
+                var coresidual = $(this).getCol("coresidual", false, "sum");
+                var cosocialtotal = $(this).getCol("cosocialtotal", false, "sum");
+                var cofund = $(this).getCol("cofund", false, "sum");
+                var payablesalary = $(this).getCol("payablesalary", false, "sum");
+                var realsalary = $(this).getCol("realsalary", false, "sum");
+                var yearbonus = $(this).getCol("yearbonus", false, "sum");
+                var yearbonustax = $(this).getCol("yearbonustax", false, "sum");
+                var paymentmode = $(this).getCol("paymentmode", false, "sum");
+                var bjpaybase = $(this).getCol("bjpaybase", false, "sum");
+                var bjindipension = $(this).getCol("bjindipension", false, "sum");
+                var bjindimedical = $(this).getCol("bjindimedical", false, "sum");
+                var bjindijobsecurity = $(this).getCol("bjindijobsecurity", false, "sum");
+                var bjindisocialtotal = $(this).getCol("bjindisocialtotal", false, "sum");
+                var bjindifund = $(this).getCol("bjindifund", false, "sum");
+                var bjcopension = $(this).getCol("bjcopension", false, "sum");
+                var bjcomedical = $(this).getCol("bjcomedical", false, "sum");
+                var bjcojobsecurity = $(this).getCol("bjcojobsecurity", false, "sum");
+                var bjcoinsurance = $(this).getCol("bjcoinsurance", false, "sum");
+                var bjcobirth = $(this).getCol("bjcobirth", false, "sum");
+                var bjcosocialtotal = $(this).getCol("bjcosocialtotal", false, "sum");
+                var bjcofund = $(this).getCol("bjcofund", false, "sum");
+                var bcindifund = $(this).getCol("bcindifund", false, "sum");
+                var bccofund = $(this).getCol("bccofund", false, "sum");
+                var bcfundtotal = $(this).getCol("bcfundtotal", false, "sum");
+                //合计
+                $(this).footerData("set", {
+                    "empname": "合计：",
+                    "basicsalary": basicsalary,
+                    "hourlywage": hourlywage,
+                    "pieceworkwage": pieceworkwage,
+                    "othersubsidies": othersubsidies,
+                    "holidayovertime": holidayovertime,
+                    "workingovertime": workingovertime,
+                    "pearlawards": pearlawards,
+                    "monthbonus": monthbonus,
+                    "fullbonus": fullbonus,
+                    "mealallowance": mealallowance,
+                    "overtimepay": overtimepay,
+                    "transubsidies": transubsidies,
+                    "travelallowance": travelallowance,
+                    "backpay": backpay,
+                    "checkwage": checkwage,
+                    "absenteeismdeduction": absenteeismdeduction,
+                    "tax": tax,
+                    "otherdeduction": otherdeduction,
+                    "sibase": sibase,
+                    "indipension": indipension,
+                    "indimedical": indimedical,
+                    "indijobsecurity": indijobsecurity,
+                    "indidbtc": indidbtc,
+                    "indisocialtotal": indisocialtotal,
+                    "indifund": indifund,
+                    "copension": copension,
+                    "comedical": comedical,
+                    "cojobsecurity": cojobsecurity,
+                    "coinsurance": coinsurance,
+                    "cobirth": cobirth,
+                    "codbtc": codbtc,
+                    "coresidual": coresidual,
+                    "cosocialtotal": cosocialtotal,
+                    "cofund": cofund,
+                    "payablesalary": payablesalary,
+                    "realsalary": realsalary,
+                    "yearbonus": yearbonus,
+                    "yearbonustax": yearbonustax,
+                    "paymentmode": paymentmode,
+                    "bjpaybase": bjpaybase,
+                    "bjindipension": bjindipension,
+                    "bjindimedical": bjindimedical,
+                    "bjindijobsecurity": bjindijobsecurity,
+                    "bjindisocialtotal": bjindisocialtotal,
+                    "bjindifund": bjindifund,
+                    "bjcopension": bjcopension,
+                    "bjcomedical": bjcomedical,
+                    "bjcojobsecurity": bjcojobsecurity,
+                    "bjcoinsurance": bjcoinsurance,
+                    "bjcobirth": bjcobirth,
+                    "bjcosocialtotal": bjcosocialtotal,
+                    "bjcofund": bjcofund,
+                    "bcindifund": bcindifund,
+                    "bccofund": bccofund,
+                    "bcfundtotal": bcfundtotal,
+                });
+                $('table.ui-jqgrid-ftable td').prevUntil().css("border-right-color", "#fff");
+            }
+        });
+    }
+
+</script>
+<div class="FlowPanelall">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#frmtab" data-toggle="tab">表单信息</a></li>
+        <li><a href="#FlowPanel" data-toggle="tab">流程信息</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="frmtab" class="tab-pane active" style="overflow-y:auto;">
+            <div id="frmpreview" class="tab-pane app_layout app_preview active">
+                <div class="item_row" style="display:none">
+                    <div class="item_field_label"><span>项目编号</span><font face="宋体">*</font></div><div class="item_field_value" style="width: 680px;"><input id="frm_ProjectId" type="text" class="form-control" isvalid="yes" checkexpession="NotNull"></div>
+                </div>
+                <div class="item_row">
+                    <div class="item_field_label"><span>项目名称</span><font face="宋体">*</font></div><div class="item_field_value" style="width: 680px;"><input id="frm_ProjectName" type="text" class="form-control" isvalid="yes" checkexpession="NotNull"></div>
+                </div>
+                <div class="item_row">
+                    <div class="item_field_label"><span>客户名称</span><font face="宋体">*</font></div><div class="item_field_value" style="width: 680px;"><input id="frm_CustomerName" type="text" class="form-control" isvalid="yes" checkexpession="NotNull"></div>
+                </div>
+                <div class="item_row">
+                    <div class="item_field_label"><span>薪资月份</span><font face="宋体">*</font></div>
+                    <div class="item_field_value" style="width: 260px;">
+                        <input id="frm_SalaryMonth" type="text" class="form-control" isvalid="yes" checkexpession="NotNull">
+                    </div>
+                    <div class="item_field_label">
+                        <span>
+                            发放日期
+                        </span><font face="宋体">*</font>
+                    </div><div class="item_field_value" style="width: 260px;">
+                        <input value="" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',qsEnabled:false,isShowClear:false,isShowOK:false,isShowToday:false})" id="frm_ReleaseDate" readonly="" type="text" class="form-control input-datepicker" isvalid="yes" checkexpession="NotNull">
+                    </div>
+                </div>
+                @*<div class="item_row">
+                        <div class="item_field_label"><span>是否到账</span><font face="宋体">*</font></div>
+                        <div class="item_field_value" style="width: 260px;">
+                            <div class="rdio rdio-color_a">
+                                <input name="frm_IsArrival" id="frm_IsArrival9365389244819653" type="radio" data-value="9365389244819653" value="1"><label for="frm_IsArrival9365389244819653">是</label>
+                            </div><div class="rdio rdio-color_a"><input name="frm_IsArrival" id="frm_IsArrival10526848067062089" type="radio" data-value="10526848067062089" value="0"><label for="frm_IsArrival10526848067062089">否</label></div>
+                        </div>
+                        <div class="item_field_label"><span>是否垫款</span><font face="宋体">*</font></div>
+                        <div class="item_field_value" style="width: 260px;">
+                            <div class="rdio rdio-color_a">
+                                <input name="frm_IsAdvances" id="frm_IsAdvances6877750668628837" type="radio" data-value="6877750668628837" value="1"><label for="frm_IsAdvances6877750668628837">是</label>
+                            </div><div class="rdio rdio-color_a"><input name="frm_IsAdvances" id="frm_IsAdvances15143011666186984" type="radio" data-value="15143011666186984" value="0"><label for="frm_IsAdvances15143011666186984">否</label></div>
+                        </div>
+                    </div>*@
+            </div>
+
+            <div class="tab-pane app_layout app_preview active">
+                <div class="item_row">
+                    <div class="gridPanel">
+                        <table id="gridTable"></table>
+                        <div id="gridPager"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="FlowPanel" class="tab-pane">
+        </div>
+    </div>
+</div>
+<div class="FlowInfoPanel" id="VerificationInfo">
+    <table class="form">
+        <tr>
+            <td class="formTitle">申请人员</td>
+        </tr>
+        <tr>
+            <td class="formValue">
+                <input id="Createusername" disabled type="text" class="form-control" isvalid="yes" checkexpession="NotNull" />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">申请备注</td>
+        </tr>
+        <tr>
+            <td class="formValue">
+                <textarea id="Description" disabled class="form-control" style="height:50px;"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">审核人员<font face="宋体">*</font></td>
+        </tr>
+        <tr>
+            <td class="formValue">
+                <input id="VerificationUser" value="@Offertech.Application.Code.OperatorProvider.Provider.Current().LoginInfo.UserName" disabled type="text" class="form-control" isvalid="yes" checkexpession="NotNull" />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">审核结果<font face="宋体">*</font></td>
+        </tr>
+        <tr>
+            <td class="formValue">
+                <div class="rdio rdio-color_a"><input name="VerificationFinally" id="VerificationFinally1" value="1" type="radio" /><label for="VerificationFinally1">同意</label></div>
+                <div class="rdio rdio-color_f"><input name="VerificationFinally" id="VerificationFinally2" value="2" type="radio" /><label for="VerificationFinally2">不同意</label></div>
+                <div class="rdio rdio-color_c"><input name="VerificationFinally" id="VerificationFinally3" value="3" type="radio" /><label for="VerificationFinally3">驳回</label></div>
+            </td>
+        </tr>
+        <tr class="NodeRejectStep" style="display:none">
+            <td class="formTitle">驳回步骤<font face="宋体">*</font></td>
+        </tr>
+        <tr class="NodeRejectStep" style="display:none">
+            <td class="formValue">
+                <div id="NodeRejectStep" type="select" class="ui-select"></div>
+            </td>
+        </tr>
+        <tr id="Verification" style="display:none">
+            <td class="formValue">
+                <div class="td-item-row">
+                    <div class="item_row_label">
+                        是否到账 <font face="宋体">*</font>
+                    </div>
+                    <div class="rdio rdio-color_a"><input name="frm_IsArrival" id="IsArrival1" value="1" type="radio" /><label for="IsArrival1">是</label></div>
+                    <div class="rdio rdio-color_f"><input name="frm_IsArrival" id="IsArrival0" value="0" type="radio" /><label for="IsArrival0">否</label></div>
+                </div>
+                <div class="td-item-row">
+                    <div class="item_row_label">
+                        是否垫款 <font face="宋体">*</font>
+                    </div>
+                    <div class="rdio rdio-color_a"><input name="frm_IsAdvances" id="IsAdvances1" value="1" type="radio" /><label for="IsAdvances1">是</label></div>
+                    <div class="rdio rdio-color_f"><input name="frm_IsAdvances" id="IsAdvances0" value="0" type="radio" /><label for="IsAdvances0">否</label></div>
+                </div>
+                <div class="td-item-row">
+                    <div class="item_row_label">
+                        验证码 <font face="宋体">*</font>
+                    </div>
+                    <div style="float: left; width: 80px;margin-right:5px;">
+                        <input id="VerifyCode" maxlength="6" type="text" class="form-control" placeholder="短信验证码">
+                    </div>
+                    <div style="float: right;">
+                        <button id="register_getcode" type="button" class="btn btn-info">发送验证码</button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">审核意见<font face="宋体">*</font></td>
+        </tr>
+        <tr>
+            <td class="formValue">
+                <textarea id="VerificationOpinion" class="form-control"></textarea>
+            </td>
+        </tr>
+    </table>
+    <div style="padding:5px;">
+        <a id="btn_Submission" class="btn btn-success btn-block"><i class="fa fa-check-circle"></i>&nbsp;提交审核</a>
+    </div>
+</div>
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    .app_layout {
+        height: auto;
+    }
+
+    .app_preview .item_row {
+        background-color: #fff;
+    }
+
+    .app_layout .item_field_label {
+        background-color: #fff;
+    }
+
+    .FlowPanelall {
+        width: 800px;
+        float: left;
+    }
+
+    .FlowInfoPanel {
+        float: right;
+        width: 300px;
+        height: 659px;
+        z-index: 1000;
+        background: rgba(0,0,0,0.01);
+        padding: 10px;
+        border-left: 1px solid #ccc;
+    }
+
+    .form .formTitle {
+        text-align: left;
+        padding-left: 5px;
+    }
+
+        .form .formTitle font {
+            right: auto !important;
+            margin-left: 5px;
+        }
+
+    .formValue input, .formValue textarea {
+        border-radius: 5px;
+    }
+
+    input, textarea {
+        background: #fff !important;
+    }
+
+    .td-item-row {
+        position: relative;
+        display: block;
+        margin-right: 5px;
+        margin-top: 10px;
+        line-height: initial;
+        float: left;
+    }
+
+        .td-item-row font {
+            color: red;
+            right: 0px;
+        }
+
+        .td-item-row .item_row_label {
+            position: relative;
+            display: block;
+            margin-right: 18px;
+            line-height: initial;
+            float: left;
+        }
+
+        .td-item-row .rdio {
+            position: relative;
+            display: block;
+            margin-right: 5px;
+            line-height: initial;
+            float: left;
+        }
+</style>

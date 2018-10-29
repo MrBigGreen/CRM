@@ -1,0 +1,2012 @@
+﻿html {
+    overflow-y: auto !important;
+    overflow-y: scroll;
+}
+
+BODY {
+    margin: 0px;
+    font: 12px Verdana;
+    color: #07519a;
+    scrollbar-face-color: #A6CFF8;
+    scrollbar-highlight-color: #8ABCEE;
+    scrollbar-shadow-color: #1A538C;
+    scrollbar-3dlight-color: #fff;
+    scrollbar-arrow-color: #000;
+    scrollbar-track-color: #D7E7F8;
+    scrollbar-darkshadow-color: #FBFDFF;
+    scrollbar-base-color: #8ABCEE;
+}
+/*超链接样式*/
+A {
+    color: blue;
+    text-decoration: none;
+}
+
+    A:hover {
+        color: #ff9966;
+        cursor: hand;
+    }
+
+FORM {
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+    padding-top: 0px;
+}
+
+
+
+H2 {
+    border-right: #99bbe8 1px solid;
+    padding-right: 8px;
+    border-top: #99bbe8 1px solid;
+    padding-left: 8px;
+    background: #dce7fb;
+    padding-bottom: 0px;
+    margin: 0px;
+    font: bold 12px/26px Verdana;
+    border-left: #99bbe8 1px solid;
+    padding-top: 0px;
+    border-bottom: #99bbe8 1px;
+}
+
+H3 {
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+    font: bold 12px/24px Verdana;
+    padding-top: 0px;
+}
+
+Image {
+    border: 0px;
+}
+/*搜索条件与公共Table样式*/
+.search {
+    border-right: #99bbe8 1px solid;
+    border-top: #99bbe8 1px solid;
+    border-left: #99bbe8 0px solid;
+    width: 100%;
+    border-bottom: #99bbe8 1px solid;
+    border-collapse: collapse;
+    empty-cells: show;
+    font-size: 12px;
+}
+
+    .search th {
+        background: #dce7fb;
+        border-right: #99bbe8 0px solid;
+        padding-right: 8px;
+        border-top: #99bbe8 0px solid;
+        padding-left: 8px;
+        font-weight: normal;
+        padding-bottom: 3px;
+        border-left: #99bbe8 1px solid;
+        width: 100px;
+        line-height: 18px;
+        padding-top: 3px;
+        border-bottom: #99bbe8 1px solid;
+        text-align: left;
+        empty-cells: show;
+    }
+
+    .search TD {
+        border-right: #99bbe8 0px solid;
+        padding-right: 8px;
+        border-top: #99bbe8 0px solid;
+        padding-left: 8px;
+        padding-bottom: 3px;
+        border-left: #99bbe8 1px solid;
+        line-height: 18px;
+        padding-top: 3px;
+        border-bottom: #99bbe8 1px solid;
+        empty-cells: show;
+        border-collapse: collapse;
+    }
+
+    .search .txt {
+        border-right: #99bbe8 1px solid;
+        padding-right: 3px;
+        border-top: #99bbe8 1px solid;
+        padding-left: 3px;
+        padding-bottom: 2px;
+        font: 12px Verdana;
+        border-left: #99bbe8 1px solid;
+        width: 150px;
+        color: #07519a;
+        padding-top: 2px;
+        border-bottom: #99bbe8 1px solid;
+    }
+
+.style_th {
+    color: #07519a;
+    border-right: #99bbe8 0px solid;
+    padding-right: 8px;
+    border-top: #99bbe8 0px solid;
+    padding-left: 8px;
+    font-weight: normal;
+    background: #dce7fb; /*#edf6ff;*/
+    padding-bottom: 3px;
+    border-left: #99bbe8 1px solid;
+    width: 100px;
+    line-height: 18px;
+    padding-top: 3px;
+    border-bottom: #99bbe8 1px solid;
+    text-align: left;
+    empty-cells: show;
+}
+
+.style_tr_odd {
+    background: #FAFDFF;
+}
+
+.style_tr_even {
+    background: #FFFFFF;
+}
+/*搜索条件与公共Table样式*/
+.record {
+    border-right: #99bbe8 1px solid;
+    border-top: #99bbe8 1px solid;
+    border-left: #99bbe8 0px solid;
+    width: 100%;
+    border-bottom: #99bbe8 1px solid;
+    border-collapse: collapse;
+    empty-cells: show;
+    font-size: 12px;
+}
+
+    .record th {
+        background: #dce7fb;
+        border-right: #99bbe8 0px solid;
+        padding-right: 8px;
+        border-top: #99bbe8 0px solid;
+        padding-left: 8px;
+        font-weight: normal;
+        padding-bottom: 3px;
+        border-left: #99bbe8 1px solid;
+        width: 100px;
+        line-height: 18px;
+        padding-top: 3px;
+        border-bottom: #99bbe8 1px solid;
+        text-align: right;
+        empty-cells: show;
+    }
+
+    .record TD {
+        border-right: #99bbe8 0px solid;
+        padding-right: 8px;
+        border-top: #99bbe8 0px solid;
+        padding-left: 8px;
+        padding-bottom: 3px;
+        border-left: #99bbe8 1px solid;
+        line-height: 18px;
+        padding-top: 3px;
+        border-bottom: #99bbe8 1px solid;
+        empty-cells: show;
+        border-collapse: collapse;
+    }
+        /*设置td table th边框线*/
+        .record td table th {
+            border: 0px;
+        }
+        /*设置 td table td边框线*/
+        .record td table td {
+            border: 0px;
+        }
+
+TD.bot {
+    /*background: #edf6ff;*/
+    text-align: center;
+}
+/*文本框TextBox样式*/
+.txt {
+    border-right: #99bbe8 1px solid;
+    padding-right: 3px;
+    border-top: #99bbe8 1px solid;
+    padding-left: 3px;
+    padding-bottom: 2px;
+    font: 12px Verdana;
+    border-left: #99bbe8 1px solid;
+    width: 150px;
+    color: #07519a;
+    padding-top: 2px;
+    border-bottom: #99bbe8 1px solid;
+}
+
+.file {
+    border-right: #99bbe8 1px solid;
+    padding-right: 3px;
+    border-top: #99bbe8 1px solid;
+    padding-left: 3px;
+    padding-bottom: 2px;
+    font: 12px Verdana;
+    border-left: #99bbe8 1px solid;
+    color: #07519a;
+    padding-top: 2px;
+    border-bottom: #99bbe8 1px solid;
+    background: #EEE;
+    height: 23px;
+}
+/*按钮样式集合*/
+.btn {
+    background: url(images/png/tia.jpg);
+    font: 12px/19px Verdana;
+    border: 1px solid #AACCEE;
+    width: 67px;
+    height: 23px;
+    background-position: -4px -4px;
+    cursor: pointer;
+    line-height: 23px;
+}
+
+.btn1 {
+    background: url(images/png/button.gif);
+    width: 82px;
+    height: 23px;
+    background-position: -4px -55px;
+    border: 0;
+    color: #000;
+    line-height: 23px;
+    font-weight: bold;
+}
+
+.btn2 {
+    background: url(images/png/button.gif);
+    font: 12px/19px Verdana;
+    width: 67px;
+    height: 23px;
+    background-position: -4px -30px;
+    border: 0;
+    color: #000;
+    line-height: 23px;
+}
+
+.btnCancelJSPK /*取消教室排课*/ {
+    background: url(images/png/canceljsap.png);
+    width: 113px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnCancelJSYY /*取消教室预约*/ {
+    background: url(images/png/canceljsyy.png);
+    width: 113px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnCopyData /*复制历史数据*/ {
+    background: url(images/png/Copydata.png);
+    width: 113px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnSeniorQuery /*高级搜索*/ {
+    background: url(images/png/gjquery.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnSetPartPublic /*设置为半公开*/ {
+    background: url(images/png/bgk.png);
+    width: 113px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnSetAllPublic /*设置为完全公开*/ {
+    background: url(images/png/wgk.png);
+    width: 113px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnInheritingPermissions /*继承上级目录权限*/ {
+    background: url(images/png/jcsj.png);
+    width: 133px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnLookFile /*预览文件*/ {
+    background: url(images/png/lookflie.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnAutoClass /*班级排课的*/ {
+    background: url(images/png/autoclass1.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnCalculation /*计算*/ {
+    background: url(images/png/js.png);
+    width: 53px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnSave3 /*保存*/ {
+    background: url(images/png/bc.png);
+    width: 53px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnScheme /*方案复制*/ {
+    background: url(images/png/fafz.png);
+    width: 81px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnSchemeGray /*方案复制*/ {
+    background: url(images/png/fafzGray.png);
+    width: 81px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnScoreList /*绩效列表*/ {
+    background: url(images/png/jxlb.png);
+    width: 81px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnScoreListGray /*绩效列表*/ {
+    background: url(images/png/jxlbGray.png);
+    width: 81px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnAddResource /*添加资源*/ {
+    background: url(images/png/addresource.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnShowResource /*显示资源*/ {
+    background: url(images/png/showresource.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnSystemCopy /*系统数据备份*/ {
+    background: url(images/png/systemcopy.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnOpenMySelf /*打开本地文件*/ {
+    background: url(images/png/openselfflie.png);
+    width: 113px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnOpenMode /*打开本地模板*/ {
+    background: url(images/png/openmode.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnAddIResource /*添加网络资源*/ {
+    background: url(images/png/addiresource.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnLApply /*听课申请*/ {
+    background: url(images/png/lapply.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnCreateflie /*新建文档*/ {
+    background: url(images/png/createflie.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnOtherSave /*另存*/ {
+    background: url(images/png/othersave.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnAllWork /*全勤*/ {
+    background: url(images/png/allwork.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnAllowEnter /*同意进入*/ {
+    background: url(images/png/btnAllowEnter.jpg);
+    width: 81px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnAllowLeave /*同意离开*/ {
+    background: url(images/png/btnAllowLeave.jpg);
+    width: 81px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnResetPass /*重置密码*/ {
+    background: url(images/png/restPwd.png);
+    width: 81px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnPublished /*发表评论*/ {
+    background: url(images/png/fbpr.png);
+    width: 81px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnPervite /*上一步*/ {
+    background: url(images/png/tobuttom.png);
+    width: 81px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnNext /*下一步*/ {
+    background: url(images/png/totop.png);
+    width: 81px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnAutoGrade /*年级排课*/ {
+    background: url(images/png/autoclass2.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnMoreReplay /*批量审核*/ {
+    background: url(images/png/morereplay.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnMoreCancel /*批量作废*/ {
+    background: url(images/png/moreleave.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnGo /*分页GO的*/ {
+    background: url(images/go.png);
+    width: 20px;
+    height: 21px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnActive /*此活动人员*/ {
+    background: url(images/png/peoplehaved.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.btnAdd /*添加*/ {
+    background: url(images/png/add.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnContinueAdd /*继续添加*/ {
+    background: url(images/png/continueadd.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnAddType /*添加类别*/ {
+    background: url(images/png/addtype.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnAdd1 {
+    background: url(images/png/add_1.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnFileSend /*文件下发*/ {
+    background: url(images/png/filesend.png);
+    width: 80px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnCloseLC /*结束流程*/ {
+    background: url(images/png/closelc.png);
+    width: 81px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnJump /*跳过处理意见*/ {
+    background: url(images/png/jump.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnOpen /*打开*/ {
+    background: url(images/png/open.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnOpenLC /*开启流程*/ {
+    background: url(images/png/openlc.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnLSign /*听课签到*/ {
+    background: url(images/png/lsign.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnUpload /*上传*/ {
+    background: url(images/png/upload.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnAdjustment /*调整*/ {
+    background: url(images/png/tz.png);
+    width: 26px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnQD /*签到*/ {
+    background: url(images/png/qd.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnNQD /*未签到*/ {
+    background: url(images/png/nqd.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnLook /*查看*/ {
+    background: url(images/png/Look.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnImport /*导入*/ {
+    background: url(images/png/Import.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnImport1 {
+    background: url(images/png/Import_1.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnExport /*导出*/ {
+    background: url(images/png/excel.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnPrint /*打印*/ {
+    background: url(images/png/print.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnExport1 {
+    background: url(images/png/excel_1.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnQuery /*查询*/ {
+    background: url(images/png/find.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnForFee /*作费*/ {
+    background: url(images/png/zf.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnDownload /*下载*/ {
+    background: url(images/png/xz.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnQuery1 {
+    background: url(images/png/find_1.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnVerify /*审核*/ {
+    background: url(images/png/verify4.png);
+    width: 81px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnVerify2 /*执行审核*/ {
+    background: url(images/png/verify2.png);
+    width: 81px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnVerify3 /*取消审核*/ {
+    background: url(images/png/verify3.png);
+    width: 81px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnVerify1 {
+    background: url(images/png/verify_1.png);
+    width: 81px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #000;
+    padding: 5px 0 0 20px;
+}
+
+.btnBack /*返回*/ {
+    background: url(images/png/back.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnBack1 {
+    background: url(images/png/back_1.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnSave /*弹出保存*/ {
+    background: url(images/png/btnSave.gif);
+    width: 76px;
+    height: 26px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnSave2 /*保存*/ {
+    background: url(images/png/Save.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnSubmitSave /*提交保存subsave*/ {
+    background: url(images/png/Save.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnSave1 {
+    background: url(images/png/btnSave.gif);
+    width: 76px;
+    height: 26px;
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnDelete /*删除*/ {
+    background: url(images/png/delete.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnDoc /*文档*/ {
+    background: url(images/png/doc.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnEnter /*登录*/ {
+    background: url(images/png/enter.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnList /*列表设置*/ {
+    background: url(images/png/Listcolumns.png);
+    width: 81px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnReletive /*重置*/ {
+    background: url(images/png/reletive.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnShow /*显示*/ {
+    background: url(images/png/show.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnOk /*确定*/ {
+    background: url(images/png/ok.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnSubmit /*提交*/ {
+    background: url(images/png/submite.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnSubmitApp /*提交申请*/ {
+    background: url(images/png/application.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnUpdate /*修改*/ {
+    background: url(images/png/update.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnClose /*关闭*/ {
+    background: url(images/png/close.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnSend /*发送*/ {
+    background: url(images/png/send.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnSendMsg /*发送消息*/ {
+    background: url(images/png/sendMsg.png);
+    width: 81px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnPass /*通过*/ {
+    background: url(images/png/pass.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnRight /*合格*/ {
+    background: url(images/png/right.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnNoRight /*不合格*/ {
+    background: url(images/png/noright.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnSelect /*选择*/ {
+    background: url(images/png/select.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnSelectR /*选择>*/ {
+    background: url(images/png/selectr1.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnSelectL /*<选择*/ {
+    background: url(images/png/selectl1.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnAllSelectR /*选择>>*/ {
+    background: url(images/png/selectr.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnAllSelectL /*<<选择*/ {
+    background: url(images/png/selectl.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnNoSelect /*不选择*/ {
+    background: url(images/png/noselect.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnCancel /*撤消*/ {
+    background: url(images/png/cancel.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnAutoArrang /*自动排课*/ {
+    background: url(images/png/automatic.png);
+    width: 93px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnDraftBox /*草稿箱*/ {
+    background: url(images/png/SaveCG.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnReply /*回复*/ {
+    background: url(images/png/reply.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnPieCharts /*查询饼状图*/ {
+    background: url(images/png/pie.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnBarChart /*查询柱状图*/ {
+    background: url(images/png/zhu.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnDelSel /*删除所选*/ {
+    background: url(images/png/.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnAddAgenda /*添加到日程*/ {
+    background: url(images/png/addmanage.png);
+    width: 92px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.btnIntegral /*转换积分*/ {
+    background: url(images/png/change.png);
+    width: 60px;
+    height: 22px;
+    border: 0px;
+    cursor: pointer;
+}
+
+TD.bot {
+    /*background: #edf6ff;*/
+    text-align: center;
+}
+
+.record TEXTAREA {
+    border-right: #99bbe8 1px solid;
+    border-top: #99bbe8 1px solid;
+    font: 12px/18px Verdana;
+    border-left: #99bbe8 1px solid;
+    width: 65%;
+    border-bottom: #99bbe8 1px solid;
+    height: 60px;
+}
+/*下拉框样式  暂不用*/
+.dropdownlist {
+    border-right: #99bbe8 1px solid;
+    padding-right: 3px;
+    border-top: #99bbe8 1px solid;
+    padding-left: 3px;
+    padding-bottom: 2px;
+    font: 12px Verdana;
+    border-left: #99bbe8 1px solid;
+    width: 150px;
+    color: #07519a;
+    padding-top: 2px;
+    border-bottom: #99bbe8 1px solid;
+}
+
+.text {
+    border-right: #0099cc 1px groove;
+    border-top: 1px solid #0099cc;
+    font-size: 9pt;
+    border-left: 1px solid #0099cc;
+    border-bottom: 1px inset #0099cc;
+    font-family: 宋体;
+    background-color: aliceblue;
+}
+/*gridview的样式 */
+table.gridview {
+    border-collapse: collapse;
+    border: 1px solid #99bbe8;
+    padding: 0px;
+    text-align: center;
+    font-size: 12px;
+}
+    /*gridview table的样式 
+table.gridview table
+{	
+	border: 1px solid #99bbe8;
+}*/
+    /*gridview th的样式*/
+    table.gridview th {
+        background: url(images/gvthbg.png);
+        border-collapse: collapse;
+        border: 1px solid #99bbe8;
+        padding: 0px;
+        line-height: 27px;
+        font-weight: bold;
+        color: #07519a;
+    }
+    /*gridview td的样式 */
+    table.gridview td {
+        border-collapse: collapse;
+        border: 1px solid #d1d2d3;
+        padding: 0px;
+        line-height: 25px;
+    }
+    /*gridview txt的样式 */
+    table.gridview .txt {
+        border-right: #99bbe8 1px solid;
+        padding-right: 3px;
+        border-top: #99bbe8 1px solid;
+        padding-left: 3px;
+        padding-bottom: 2px;
+        font: 12px Verdana;
+        border-left: #99bbe8 1px solid;
+        width: 180px;
+        color: #07519a;
+        padding-top: 2px;
+        border-bottom: #99bbe8 1px solid;
+    }
+
+.gridview-footer-inner {
+    border-top: 1px solid #ccc;
+    float: left;
+}
+/*gridview1的样式 */
+table.gridview1 {
+    border-collapse: collapse;
+    border: 1px solid #CCCFFF;
+    text-align: center;
+    font-size: 13px;
+}
+    /*gridview1 table的样式 */
+    table.gridview1 table {
+        border: 1px solid #CCCFFF;
+    }
+    /*gridview1 th的样式 */
+    table.gridview1 th {
+        white-space: nowrap;
+        background: #D7E7F6;
+        border-collapse: collapse;
+        border: 1px solid #CCCFFF;
+        padding: 2px;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 25px;
+    }
+    /*gridview1 td的样式 */
+    table.gridview1 td {
+        border-collapse: collapse;
+        border-top: 1px solid #CCCFFF;
+        border-left: 1px solid #CCCFFF;
+        border-right: 1px solid #CCCFFF;
+        padding: 0px;
+        line-height: 25px;
+    }
+
+    table.gridview1 .txt {
+        border-right: #99bbe8 1px solid;
+        padding-right: 3px;
+        border-top: #99bbe8 1px solid;
+        padding-left: 3px;
+        padding-bottom: 2px;
+        font: 12px Verdana;
+        border-left: #99bbe8 1px solid;
+        width: 180px;
+        color: #07519a;
+        padding-top: 2px;
+        border-bottom: #99bbe8 1px solid;
+    }
+/*小手样式*/
+.cursor {
+    cursor: hand;
+}
+
+/*Table 样式*/
+.tableTile {
+    background: url(images/commontdImage.gif);
+    height: 35px;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+
+table {
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+}
+
+.divleft {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+/*审核的时候*/
+.record .verifyTable {
+    border-right: #99bbe8 1px solid;
+    border-top: #99bbe8 1px solid;
+    border-left: #99bbe8 0px solid;
+    width: 100%;
+    border-bottom: #99bbe8 0px solid;
+    border-collapse: collapse;
+    empty-cells: show;
+    font-size: 12px;
+}
+
+.verifyTable .odd {
+    background: #F6FAFD;
+}
+
+.verifyTable .even {
+    background: #fff;
+}
+
+.record .verifyTable TD {
+    border-right: #99bbe8 0px solid;
+    padding-right: 8px;
+    border-top: #99bbe8 0px solid;
+    padding-left: 8px;
+    padding-bottom: 3px;
+    border-left: #99bbe8 1px solid;
+    line-height: 18px;
+    padding-top: 3px;
+    border-bottom: #99bbe8 1px solid;
+    empty-cells: show;
+    border-collapse: collapse;
+    height: 25px;
+}
+
+.newsTitle {
+    width: 96%;
+    height: 22px;
+    margin: 5px;
+    border-left: solid 1px #CAC9C9;
+    border-right: solid 1px #CAC9C9;
+    color: #000;
+    padding-left: 20px;
+    padding-top: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    background: url(images/newsbg.gif);
+}
+
+.news A {
+    color: #000;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+    .news A span {
+        color: #000;
+        text-decoration: none;
+        font-size: 12px;
+    }
+
+    .news A:hover {
+        color: #97161B;
+    }
+
+/*双分制页面大图*/
+.banner {
+    background: url(../../images/logo/logo.jpg);
+    width: 1000px;
+    height: 177px;
+}
+
+.bottom {
+    background: url(../../DefaultStyle/StudentStyle2/images/bottombg.gif);
+    font-size: 12px;
+    width: 1009px;
+    height: 69px;
+    text-align: center;
+    margin: auto;
+    margin-top: 10px;
+}
+
+
+.report {
+    border-right: #99bbe8 1px solid;
+    border-top: #99bbe8 1px solid;
+    border-left: #99bbe8 0px solid;
+    border-bottom: #99bbe8 1px solid;
+    border-collapse: collapse;
+    empty-cells: show;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+    .report TH {
+        border-right: #99bbe8 0px solid;
+        padding-right: 8px;
+        border-top: #99bbe8 0px solid;
+        padding-left: 8px;
+        font-weight: normal;
+        padding-bottom: 3px;
+        border-left: #99bbe8 1px solid;
+        background: #edf6ff;
+        line-height: 18px;
+        padding-top: 3px;
+        border-bottom: #99bbe8 1px solid;
+        text-align: left;
+        empty-cells: show;
+    }
+
+    .report TD {
+        border-right: #99bbe8 0px solid;
+        padding-right: 8px;
+        border-top: #99bbe8 0px solid;
+        padding-left: 8px;
+        padding-bottom: 3px;
+        border-left: #99bbe8 1px solid;
+        line-height: 18px;
+        padding-top: 3px;
+        border-bottom: #99bbe8 1px solid;
+        empty-cells: show;
+        border-collapse: collapse;
+    }
+
+        .report td table {
+            border: 0px;
+            padding: 0px;
+        }
+
+    .report table td {
+        border: 0px;
+        padding: 0px;
+    }
+
+
+/*综合素质列表标题*/
+.QualityAsses_title {
+    background: url(../images/gvbg.png);
+    line-height: 26px;
+    border: 1px solid #C6E2F7;
+    padding-left: 5px;
+    color: #000;
+    font-size: 13px;
+}
+
+    .QualityAsses_title #ConDate {
+        font-size: 12px;
+        color: #9f9f9f;
+    }
+
+/*学生列表*/
+.stuList {
+    width: 99.5%;
+    background: #F0F8FF;
+    border: 1px rgb(153,187,232) solid;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    float: left;
+}
+
+    .stuList ul {
+        border-left: 1px #fff solid;
+        border-bottom: 1px #fff solid;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        height: auto;
+        float: left;
+    }
+
+    .stuList li {
+        width: 140px;
+        text-align: left;
+        padding-left: 2px;
+        padding-top: 3px;
+        float: left;
+        display: block;
+        margin: 1px 1px 1px 1px;
+        border: 1px rgb(153,187,232) solid;
+    }
+
+    .stuList img {
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+
+    .stuList A {
+        font-size: 14px;
+        text-decoration: none;
+        color: #000;
+    }
+
+        .stuList A:hover {
+            color: blue;
+            text-decoration: underline;
+        }
+
+    .stuList span {
+        color: #ff0000;
+    }
+
+.btnDiv {
+    margin-top: 1.5px;
+    margin-bottom: 1.5px;
+    text-align: right;
+    width: 100%;
+}
+
+/*上面菜单按钮*/
+#tabs {
+    margin-top: 5px;
+}
+
+    #tabs ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        height: 28px;
+    }
+
+    #tabs li {
+        list-style: none;
+        float: left;
+        margin: 0 5px 0 0;
+        padding: 0 0 0 2px;
+    }
+
+        #tabs li, #tabs li a {
+            height: 28px;
+            background: url(images/tabs.gif) no-repeat 0 -105px;
+        }
+
+            #tabs li a {
+                display: block;
+                height: 100%;
+                padding: 0 16px 0 14px;
+                line-height: 28px;
+                text-align: center;
+                background-position: 100% -70px;
+                font-weight: bold;
+                color: #464646;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+                #tabs li a:hover {
+                    text-decoration: underline;
+                }
+
+            #tabs li.current {
+                height: 29px;
+                margin-bottom: -1px;
+                background-position: 0 -35px;
+                position: relative;
+                z-index: 100;
+            }
+
+                #tabs li.current a {
+                    background-position: 100% 0;
+                    color: #FFF !important;
+                    text-decoration: none;
+                }
+
+    #tabs .tab-border {
+        background: #40A5FF;
+        border: 1px solid #439AD6;
+        height: 2px;
+        overflow: hidden;
+    }
+
+* html #tabs {
+    overflow: hidden;
+}
+
+    * html #tabs li a {
+        width: 1%;
+        white-space: nowrap;
+    }
+
+.bo {
+    width: 100%;
+    height: 100%;
+    border-top: 0;
+}
+
+.filelist {
+    list-style: none;
+    margin: 5px 0px 0px 0px;
+    padding: 0;
+}
+
+    .filelist li {
+        list-style: none;
+        margin: 0 5px 0 0;
+        padding: 0 0 0 2px;
+    }
+
+.DivContent {
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.tdWidth30 {
+    width: 30px;
+}
+
+.tdWidth40 {
+    width: 40px;
+}
+
+.tdWidth50 {
+    width: 50px;
+}
+
+.tdWidth60 {
+    width: 60px;
+}
+
+.tdWidth80 {
+    width: 80px;
+}
+
+.tdWidth100 {
+    width: 100px;
+}
+
+.btnplus {
+    background: url(images/edit_add.png);
+    font: 12px/19px Verdana;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #AACCEE;
+    background-position: 1px 1px;
+    cursor: pointer;
+    line-height: 23px;
+}
+
+.btnreduce {
+    background: url(images/cancel.png);
+    font: 12px/19px Verdana;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #AACCEE;
+    background-position: 1px 1px;
+    cursor: pointer;
+    line-height: 23px;
+}
+/***************选择人员并删除样式Begin************************/
+.appButton {
+    position: relative;
+    width: auto;
+    display: inline;
+    float: left;
+    height: 26px;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    background: url('images/btnbg12.png');
+}
+
+.appButton_appIconImg {
+    position: relative;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    overflow: hidden;
+}
+
+.appButton_notify {
+    position: absolute;
+    text-align: center;
+    line-height: 12px;
+    display: block;
+    background: url(images/cancelb10.png);
+    height: 10px;
+    font-size: 11px;
+    top: 3px;
+    cursor: pointer;
+    right: 2px;
+    width: 10px;
+}
+
+.appButton_appIcon {
+    position: relative;
+    margin-top: 8px;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 30px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.selectPerson {
+    border-right: #99bbe8 0px solid;
+    border-top: #99bbe8 0px solid;
+    border-left: #99bbe8 0px solid;
+    border-bottom: #99bbe8 0px solid;
+    border-collapse: collapse;
+    empty-cells: show;
+    font-size: 12px;
+}
+
+    .selectPerson TD {
+        border-right: #99bbe8 0px solid;
+        padding-right: 1px;
+        border-top: #99bbe8 0px solid;
+        padding-left: 1px;
+        padding-bottom: 1px;
+        border-left: #99bbe8 0px solid;
+        line-height: 14px;
+        padding-top: 2px;
+        border-bottom: #99bbe8 0px solid;
+        empty-cells: show;
+        border-collapse: collapse;
+    }
+/***************选择人员并删除样式End************************/
+
+/***************选择人员文本框************************/
+#box {
+    width: 600px;
+    text-align: left;
+    margin: 0 auto;
+    padding-top: 80px;
+    font-size: 13px;
+}
+
+    #box input {
+        height: 15px;
+        width: 196px;
+    }
+
+#suggest, #suggest2 {
+    width: 200px;
+    font-size: 13px;
+}
+
+.gray {
+    color: gray;
+    font-size: 13px;
+}
+
+.ac_results {
+    background: #fff;
+    border: 1px solid #7f9db9;
+    position: absolute;
+    z-index: 10000;
+    display: none;
+    font-size: 13px;
+}
+
+    .ac_results ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 13px;
+    }
+
+    .ac_results li a {
+        white-space: nowrap;
+        text-decoration: none;
+        display: block;
+        color: #05a;
+        padding: 1px 3px;
+        font-size: 13px;
+    }
+
+    .ac_results li {
+        border: 1px solid #fff;
+        font-size: 13px;
+        list-style: none;
+    }
+
+        .ac_over, .ac_results li a:hover {
+            background: #c8e3fc;
+            font-size: 13px;
+        }
+
+        .ac_results li a span {
+            float: right;
+            font-size: 13px;
+        }
+
+.ac_result_tip {
+    border-bottom: 1px dashed #666;
+    padding: 3px;
+    font-size: 13px;
+}
+
+
+
+
+/***职位地点等多选弹出层样式 start  ***/
+
+.user_btn {
+    background: none;
+    border: 0px;
+    padding: 0px 10px;
+}
+
+.user_btn:hover {
+    border: 0px;
+}
+
+.bgred {
+    background: orange;
+    color: #fff;
+}
+
+/*xml公共弹框*/
+.bpopup_type {
+    padding: 8px;
+    min-width: 685px;
+    min-height: 500px;
+    /*** background: url(../images/jobtype_bg.png) 0 0 repeat;***/
+    display: none;
+}
+
+    .bpopup_type#bpopupCity {
+        min-height: 270px;
+    }
+
+.bpopup_type_main {
+    min-height: 500px;
+    padding: 1px;
+    border: 1px solid #d7d7d7;
+    background-color: #fff;
+    padding-bottom: 20px;
+    position: relative;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#bpopupCity .bpopup_type_main {
+    min-height: 270px;
+}
+
+.bpopup_type_main .selected_type {
+    /***  background-color: #8dcc1e;**/
+    width: auto;
+    color: #fff;
+    min-height: 37px;
+    background: -moz-linear-gradient(top, #ffffff, #ececec);
+    background: -o-linear-gradient(top, #ffffff, #ececec);
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ffffff), to(#ececec));
+    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#ffffff', endColorstr='#ececec',gradientType=0);
+    background: linear-gradient(top, #ffffff, #ececec);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.selected_type .selected_type_btn {
+    width: 53px;
+    height: 22px;
+    background: url(/Content/images/ok_btn.png) 0 0 no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.selected_type ul li {
+    font-weight: bold;
+    background-color: #999;
+    color: #fff;
+    float: left;
+    cursor: pointer;
+    margin: 5px 10px 5px 0;
+}
+
+.selected_type td b {
+    color: #333;
+}
+
+.selected_type ul li span {
+    display: inline-block;
+    margin: 5px 0px 5px 10px;
+}
+
+.selected_type ul li img {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.bpopup_type_table {
+    margin: 20px 40px 0 40px;
+}
+
+.three_industry_table td {
+    line-height: 20px;
+}
+
+.bpopup_type_table > tbody > tr {
+    border-bottom: 1px dashed #d2d1d1;
+}
+
+    .bpopup_type_table > tbody > tr:hover {
+        background-color: #f2ffe0;
+    }
+
+#bpopupCity .bpopup_type_table > tbody > tr:hover {
+    background-color: transparent;
+}
+
+.bpopup_type_table > tbody > tr > td {
+    *border-bottom: 1px dashed #d2d1d1;
+    line-height: 20px;
+}
+
+.bpopup_type_table > tbody > tr.last_tr {
+    border-bottom: none;
+}
+
+    .bpopup_type_table > tbody > tr.last_tr > td {
+        *border-bottom: none;
+    }
+
+.bpopup_type_table .bigjob {
+    padding: 0 0px 0 10px;
+}
+
+.bpopup_type_table td {
+    height: 20px;
+}
+
+.bpopup_type_table table td {
+    /*padding:0px 15px 4px 20px;*/
+    padding: 0px 0px 1px 15px;
+    width: 175px;
+}
+
+#bpopupCity .bpopup_type_table table td {
+    width: 85px;
+    height: 35px;
+}
+
+.bpopup_type_table table td:hover {
+    cursor: pointer;
+    color: #518801;
+    text-decoration: underline;
+}
+
+.bpopup_type_table table .first_tr td {
+    padding-top: 1px;
+}
+
+.bpopup_type_table table tr:first-child td {
+    padding-top: 1px;
+}
+
+.bpopup_type_table table .last_tr td {
+    padding-bottom: 1px;
+}
+
+.sub_bpopup_type {
+    padding: 8px;
+    min-width: 200px;
+    overflow: hidden;
+    background: url(/Content/images/jobtype_bg.png) 0 0 repeat;
+    position: absolute;
+    display: none;
+    /*top:0;
+        left:0;
+        z-index:10000;*/
+}
+
+    .sub_bpopup_type .sub_type_main {
+        min-width: 200px;
+        border: 1px solid #abc487;
+        background-color: #fff;
+        padding: 15px 0 15px 15px;
+    }
+
+.sub_type_main table td {
+    padding-right: 30px;
+    height: 20px;
+    cursor: pointer;
+}
+
+    .sub_type_main table td:hover {
+        color: #518801;
+    }
+
+.subBpopupType {
+    padding: 8px;
+    min-width: 200px;
+    overflow: hidden;
+    background: url(/Content/images/jobtype_bg.png) 0 0 repeat;
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+}
+
+    .subBpopupType .subTypeMain {
+        min-width: 200px;
+        border: 1px solid #abc487;
+        background-color: #fff;
+        padding: 15px 0 15px 15px;
+    }
+
+.subTypeMain table td {
+    padding-right: 30px;
+    height: 20px;
+    cursor: pointer;
+}
+
+    .subTypeMain table td:hover {
+        color: #518801;
+    }
+
+.select_btn {
+    width: 197px;
+    height: 23px;
+    background: url(/Content/images/select_btn.jpg) 0 0 no-repeat;
+    border: none;
+    color: #000;
+    line-height: 25px;
+    padding-left: 5px;
+    text-align: left;
+    cursor: pointer;
+}
+
+/*end*/ 
+
+
+/***职位地点等多选弹出层样式 end  ***/
+
+
+.red { color: #f61617; }

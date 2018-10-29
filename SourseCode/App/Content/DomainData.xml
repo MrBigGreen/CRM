@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+<OneDimension ID="bdb1f3dc-aead-4510-a1b6-7e0593b7249b" Name="哲学">
+<TwoDimension ID="207fc614-9ba7-4cf1-8291-f9266f6f3080" Name="哲学类">
+<ThreeDimension ID="f197c5a5-24e0-4862-b363-4baca3250e65" Name="哲学（含伦理学）"/>
+<ThreeDimension ID="7dde67af-37b6-4b7d-8ba5-5c33215ed25c" Name="逻辑学"/>
+<ThreeDimension ID="eea70389-c087-4ed1-a06b-864fb4c8ab60" Name="宗教学"/>
+</TwoDimension>
+</OneDimension>
+<OneDimension ID="a576284b-c4f7-4578-85ab-05619f07c855" Name="经济学">
+<TwoDimension ID="e6fd8a3e-d1b9-4aeb-992e-3c94085e1f35" Name="经济学类">
+<ThreeDimension ID="ed970db6-36dc-4789-95c2-f215b72efc2f" Name="经济学"/>
+<ThreeDimension ID="2d3d903d-76a5-4523-8eb8-66df406ee5ad" Name="国际经济与贸易"/>
+<ThreeDimension ID="f5b007a5-a875-4aa1-9c30-33d26a0b3ae0" Name="财政学"/>
+<ThreeDimension ID="faed2eb2-17b3-4774-b72d-138155cbbcff" Name="金融学"/>
+<ThreeDimension ID="c1d8e2f5-b924-4821-9e96-76d6376dd7bc" Name="经济管理"/>
+<ThreeDimension ID="874f9478-39bf-452f-a85f-a971c55161d0" Name="经济信息管理"/>
+<ThreeDimension ID="e6ad1d87-24d6-4473-b189-533c7e242c8f" Name="贸易经济"/>
+<ThreeDimension ID="f7e8b21c-5f9a-49e5-9560-e6bee37bcabc" Name="国际金融"/>
+<ThreeDimension ID="1d019062-c875-489f-8bc0-6f9943cc6744" Name="投资学"/>
+<ThreeDimension ID="5942d89f-7597-4feb-a713-0edc3fca1563" Name="统计学"/>
+<ThreeDimension ID="b7ff4177-4dfc-48d6-99ca-1550a1ff4cd3" Name="经济与金融"/>
+<ThreeDimension ID="d14ec092-c4bd-4dea-a028-463481b98f14" Name="金融工程"/>
+<ThreeDimension ID="9c51f6ea-1b38-4ce8-bb19-8e495fdd73b4" Name="保险"/>
+<ThreeDimension ID="e3670cc9-e962-4e78-8641-260357796a07" Name="税务"/>
+<ThreeDimension ID="8b81a61d-5a6d-4b87-bf7f-d56dc177381b" Name="信用管理"/>
+<ThreeDimension ID="d45505af-b390-4cbe-8730-fc0ee089fa7c" Name="网络经济学"/>
+<ThreeDimension ID="3505a42b-22c6-4a5a-aa2b-2db3b91faae8" Name="技术经济"/>
+</TwoDimension>
+</OneDimension>
+<OneDimension ID="07be6c0e-c9e0-4ec2-b501-24ee5d322aed" Name="管理学">
+<TwoDimension ID="d937a1fe-7cda-469f-9c30-6cf1d3116857" Name="管理科学与工程类">
+<ThreeDimension ID="9c6037b7-4199-42c3-9a38-573183b39072" Name="管理科学"/>
+<ThreeDimension ID="eb5884a3-7c41-48e8-85b3-ac974af73e1f" Name="信息管理和信息系统"/>
+<ThreeDimension ID="57305090-03f0-4c81-b494-fde7fb62c6af" Name="工业工程"/>
+<ThreeDimension ID="8310d23c-ec7f-4320-b1b5-7a7ad21f2470" Name="工程管理"/>
+<ThreeDimension ID="1e070430-9fbd-4acb-a186-e42934cc6390" Name="产品质量工程"/>
+<ThreeDimension ID="e2eb5e68-b5b2-4f64-8fd0-2b25f2e03fae" Name="项目管理"/>
+</TwoDimension>
+<TwoDimension ID="a0caf104-8292-4ad2-aa9e-83b9842349ca" Name="工商管理类">
+<ThreeDimension ID="0ee8d262-3287-4c93-8690-efb18e2772d2" Name="工商管理"/>
+<ThreeDimension ID="f95ee2cc-1d8b-48ce-b319-fcc907e400e2" Name="市场营销"/>
+<ThreeDimension ID="ac883f35-4782-493c-b0d3-6039199b0b0a" Name="人力资源管理"/>
+<ThreeDimension ID="3949f76a-ccc3-48f1-9cb1-c27ce39ef4a5" Name="商品学"/>
+<ThreeDimension ID="7a2c5cb1-2040-4058-b14d-c8dab36ec9b1" Name="会计学"/>
+<ThreeDimension ID="5ce2061c-11ac-4245-b4ab-82d45fdf3f0b" Name="审计学"/>
+<ThreeDimension ID="f43da435-b5db-4879-9a92-0a23e9988def" Name="涉外会计"/>
+<ThreeDimension ID="12d4828e-81bc-47ac-8255-26fc335ed531" Name="会计信息系统"/>
+<ThreeDimension ID="a5723f29-427c-4c2b-9dff-63f85f3f4b95" Name="财务管理"/>
+<ThreeDimension ID="e6892853-a7a3-47e3-8b99-f099b78d95fa" Name="财政金融"/>
+<ThreeDimension ID="5478a65f-7760-49ec-af40-43bc5012e2d4" Name="资产评估"/>
+<ThreeDimension ID="5e1d0b2a-ac37-41fc-8405-71cb47e3a904" Name="企业管理"/>
+<ThreeDimension ID="cb38ce28-5a84-4d79-bbb0-2a772d863de8" Name="商务策划管理"/>
+<ThreeDimension ID="7d5ec404-cd30-4dde-8d1b-2dacefc0843c" Name="国际商务"/>
+<ThreeDimension ID="02da585b-8d73-4b97-b19a-3e6ba8008aa3" Name="电子商务"/>
+<ThreeDimension ID="e42399bc-6d37-410d-8a7f-c7b70e6c6726" Name="房地产经营管理"/>
+<ThreeDimension ID="d76df809-1810-4d26-b36a-18db72ba71f7" Name="物业管理"/>
+<ThreeDimension ID="3f6cf1b7-fb48-417a-956f-d6d4dd22fb30" Name="物流管理"/>
+<ThreeDimension ID="d24ee348-250c-43d2-b1df-e8310b952775" Name="旅游管理"/>
+<ThreeDimension ID="29010feb-9fe6-4ddc-a1d1-f26e2a153e3a" Name="酒店管理"/>
+<ThreeDimension ID="ee31d824-890c-4256-a7ff-145c5dabb1f7" Name="连锁经营管理"/>
+</TwoDimension>
+<TwoDimension ID="223e7d48-383c-4a65-bd96-8cdc6d6a289d" Name="行政管理、公共管理类">
+<ThreeDimension ID="feeeb27a-9388-42f8-8f59-34a7931ce579" Name="行政管理"/>
+<ThreeDimension ID="ae467f40-78fa-4e29-bea8-0d7418a15cce" Name="公共关系学"/>
+<ThreeDimension ID="9cb9ab74-3636-4220-9e15-deb36a561968" Name="文秘"/>
+<ThreeDimension ID="5ace4e89-4c56-4852-87ac-4dbe5e319651" Name="公共事业管理"/>
+<ThreeDimension ID="abad6b61-6e60-4854-9c51-3330a30a18b3" Name="公共政策学"/>
+<ThreeDimension ID="8f02ad8e-c171-480e-bc54-5b1344ff2f21" Name="国防教育与管理"/>
+<ThreeDimension ID="4dfb4fb7-4173-4967-bfe8-aca8ce2aeaa4" Name="劳动关系"/>
+<ThreeDimension ID="de99ae2d-100b-42e2-a8fd-5a0783f5f0e3" Name="劳动与社会保障"/>
+<ThreeDimension ID="05a9fe1c-7862-418a-9499-9716eb7e28da" Name="城市规划与管理"/>
+<ThreeDimension ID="09af7999-ee27-4abf-9583-ed840d03e2db" Name="土地资源管理"/>
+<ThreeDimension ID="c2194f55-b660-4bca-97cd-a26a6d61160b" Name="农业经济管理"/>
+<ThreeDimension ID="67adef96-dfc6-4a7d-919b-4337e520453c" Name="食品经济管理"/>
+<ThreeDimension ID="dc06541b-02bd-4a4a-b27c-3307658bb3db" Name="会展经济与管理"/>
+<ThreeDimension ID="f6fee84c-717a-4a2c-97ab-05740c433cac" Name="文化产业管理"/>
+<ThreeDimension ID="dc2c61c2-e669-4dee-bdbf-ab1a38be8431" Name="体育产业管理"/>
+<ThreeDimension ID="b7db25b7-1c6d-4c4e-bfe7-83d0453f1729" Name="航运管理"/>
+</TwoDimension>
+<TwoDimension ID="9f041e03-71ac-4218-a0a8-ee39110b3075" Name="图书档案学类">
+<ThreeDimension ID="3d602739-07bd-40a4-8f21-e219109b0e52" Name="图书馆学和档案学"/>
+<ThreeDimension ID="2a24a745-536f-420f-88e5-e0ca3e6cc3c6" Name="信息资源管理"/>
+</TwoDimension>
+</OneDimension>
+<OneDimension ID="a58367a0-c965-45e6-a9f7-6953f5e1cbea" Name="文学">
+<TwoDimension ID="092e6951-ff3d-465e-987f-2672d8dbc2bd" Name="语言文学类">
+<ThreeDimension ID="4e88cb29-f847-4174-8cf9-da02b3752087" Name="汉语言文学"/>
+<ThreeDimension ID="1fc7bf0a-a3df-43dd-a92f-ff1955e803bf" Name="对外汉语"/>
+<ThreeDimension ID="51072bbf-6fee-44c2-ba53-0b8fcb2e70f6" Name="英语"/>
+<ThreeDimension ID="26d88882-af28-4e39-97bd-2fb9c8e8b629" Name="商务英语"/>
+<ThreeDimension ID="9594dfef-b712-44c0-bb64-c74e2ac18633" Name="外贸英语"/>
+<ThreeDimension ID="9958f85f-c18b-4439-87f6-37a6ebafac75" Name="俄语"/>
+<ThreeDimension ID="a30814dd-df01-49c6-a953-3f9dfe107fa0" Name="德语"/>
+<ThreeDimension ID="46038057-479c-4cae-baa1-8a30261bdf9c" Name="法语"/>
+<ThreeDimension ID="3d77996c-d7e1-417c-aa06-3568d440ed71" Name="西班牙语"/>
+<ThreeDimension ID="31e9a9ee-8077-4830-ae21-55341ae17228" Name="阿拉伯语"/>
+<ThreeDimension ID="0c51606d-a24f-47ac-9dc0-daf4e7aa0cd1" Name="日语"/>
+<ThreeDimension ID="dd539cbb-17b2-46d4-9d88-9dfd55576649" Name="朝鲜语"/>
+<ThreeDimension ID="83b00700-1006-41c1-907a-54e3a0aefea8" Name="其它外语"/>
+</TwoDimension>
+<TwoDimension ID="0867bcad-15f9-4b61-8909-0692d1c4fb52" Name="新闻传播学类">
+<ThreeDimension ID="834f6689-0115-483c-8e56-eb01b834beab" Name="新闻学"/>
+<ThreeDimension ID="602025e8-c69a-484f-a345-d02e2c4d6b2b" Name="广播电视新闻"/>
+<ThreeDimension ID="25c9f668-752c-4cb6-a4fc-e4304948ce9f" Name="广告学"/>
+<ThreeDimension ID="da12378d-c93e-4f2f-99bc-e112a171e901" Name="编辑出版学"/>
+<ThreeDimension ID="cf16e0c5-1854-46ec-8d76-8d01bcd09bf3" Name="传播学"/>
+<ThreeDimension ID="435f3bed-b67b-403a-8dbb-c561dbe68bce" Name="媒体创意"/>
+</TwoDimension>
+<TwoDimension ID="5e861dca-4260-4f88-b9e8-826f7404c8c3" Name="艺术类">
+<ThreeDimension ID="a31c20e2-23ea-4b88-95aa-b4bbe8a52333" Name="音乐，作曲"/>
+<ThreeDimension ID="2946dd16-9959-4754-89b5-4fb4bf30aa17" Name="艺术设计"/>
+<ThreeDimension ID="0429b9ee-f726-40a6-831b-b4f43051e547" Name="戏剧，表演"/>
+<ThreeDimension ID="646d7c03-b16a-4395-aaed-7f7c25f52e72" Name="导演，广播电视编导"/>
+<ThreeDimension ID="b52f7175-195f-4dba-9f31-0cebd12307f2" Name="戏剧影视文学"/>
+<ThreeDimension ID="36d93f43-786d-450b-8e05-389461eba55d" Name="戏剧影视美术设计"/>
+<ThreeDimension ID="8c933b91-57b5-40df-9c66-2e53c76c25d1" Name="摄影，动画"/>
+<ThreeDimension ID="484e256f-ff79-4726-844c-b458466ed510" Name="播音，主持，录音"/>
+<ThreeDimension ID="dc910df5-1dcf-4733-b453-352279a7dd6a" Name="服装设计"/>
+<ThreeDimension ID="1a7490b6-2a8d-48e3-af45-0fcccb45e71a" Name="舞蹈"/>
+<ThreeDimension ID="d2ca3dcc-bd5b-4d47-a1e0-1d99ee6b5523" Name="美术学"/>
+<ThreeDimension ID="a71efaa3-992c-45ed-a164-7977c88287d1" Name="绘画"/>
+<ThreeDimension ID="458931c7-c96b-4c29-b38e-e6f5f0f159b3" Name="雕塑"/>
+<ThreeDimension ID="ca060ea7-e592-4f2d-8308-12d1887f5838" Name="影视学"/>
+</TwoDimension>
+</OneDimension>
+<OneDimension ID="be069f20-3016-466d-8d0a-86a278bce777" Name="工学">
+<TwoDimension ID="c4be2280-f977-4a50-af26-fa2c597d8820" Name="电气信息类">
+<ThreeDimension ID="ebaf91e7-ef74-4d67-825c-365ba3a6991a" Name="电气工程及其自动化"/>
+<ThreeDimension ID="feec6474-0e93-4adf-a183-007737bcd813" Name="电气信息工程"/>
+<ThreeDimension ID="7ecaf935-f877-48b5-89a7-f35390b075db" Name="通信工程"/>
+<ThreeDimension ID="6e449c10-c377-4c0d-be78-a1f2f67dfabc" Name="自动化"/>
+<ThreeDimension ID="a196f248-63b4-4dea-b8f0-7cf595c2e3ed" Name="电子信息工程"/>
+<ThreeDimension ID="f6701e94-f85d-4ac7-a566-5feb3fbd7368" Name="电子科学与技术"/>
+<ThreeDimension ID="408123f3-0b82-4310-a6ed-ef95e6018a97" Name="集成电路设计与集成系统"/>
+<ThreeDimension ID="984929ed-fb1f-4736-b31a-3c3e15d48329" Name="影视艺术技术"/>
+<ThreeDimension ID="1eded3cd-57ce-4259-893d-3f90e67a79fa" Name="广播电视工程"/>
+</TwoDimension>
+<TwoDimension ID="9ccddf9f-a630-4f5b-997f-7fdc4a95078e" Name="计算机科学与技术类">
+<ThreeDimension ID="db960bb0-fb9c-4ee7-a607-ab10a49181f6" Name="计算机科学与技术"/>
+<ThreeDimension ID="218aa4e5-a128-4f05-a8bc-06e6f2bb5455" Name="计算机科学"/>
+<ThreeDimension ID="21b9edbc-be7c-4163-9f4a-efe468b02a7b" Name="计算机工程"/>
+<ThreeDimension ID="f2cec4ed-489f-4b90-aacc-e857dad62cf7" Name="计算机网络"/>
+<ThreeDimension ID="548f47f5-f4b6-41e5-a545-e01a530bb4e9" Name="计算机应用"/>
+<ThreeDimension ID="0837aed4-b8cc-4874-b718-6bc616c9940f" Name="软件工程"/>
+<ThreeDimension ID="e2b436a4-bc70-4737-a904-a2e425ef8a05" Name="计算机信息管理"/>
+</TwoDimension>
+<TwoDimension ID="42450b4f-c8ac-49f7-a189-7ae1f1e855f5" Name="机械类">
+<ThreeDimension ID="403259d2-0101-4994-8aae-f25a2dc89527" Name="机械设计制造及其自动化"/>
+<ThreeDimension ID="0fb41b0f-1abd-4318-99ab-c7657d4826e9" Name="机械电子工程/机电一体化"/>
+<ThreeDimension ID="92959dbe-8d50-43ca-9039-ea9bbf605ac6" Name="机械工程及自动化"/>
+<ThreeDimension ID="affe9f94-0f19-436c-94ce-69dbe1781832" Name="机械制造工艺与设备"/>
+<ThreeDimension ID="4d1996ee-8ee8-491f-bca1-f842256dbd81" Name="制造工程"/>
+<ThreeDimension ID="033c79c0-af4f-4664-976e-21b23fc8a5c0" Name="制造自动化与测控技术"/>
+<ThreeDimension ID="6d42040a-2faf-4d35-9562-f34da29cf729" Name="材料成型及控制工程"/>
+<ThreeDimension ID="4189b2b8-af00-4e96-8a70-e7bcbb252d68" Name="工业设计"/>
+<ThreeDimension ID="6905bda9-c460-4c02-ab0d-3a4ba662cdd0" Name="过程装备与控制工程"/>
+<ThreeDimension ID="40e65317-be96-431a-9c8d-a31cc2faa362" Name="模具设计与制造"/>
+<ThreeDimension ID="7c03d8db-720f-4aa2-9299-169e485e738f" Name="微机电系统工程"/>
+<ThreeDimension ID="960b1c3b-8ad0-4fd5-b451-a05edde4d7b0" Name="车辆工程"/>
+<ThreeDimension ID="bf187a32-4921-49db-9931-16c97d97bab1" Name="汽车服务工程"/>
+</TwoDimension>
+<TwoDimension ID="4bcc07ca-d17b-424b-81fb-b40e91cdd925" Name="土建类">
+<ThreeDimension ID="569dcf5b-9bf9-4069-98f4-63b67e05c795" Name="土木工程"/>
+<ThreeDimension ID="a643adf2-57b2-410a-9b5e-0dd80668364a" Name="道路与桥梁"/>
+<ThreeDimension ID="46de93c0-8564-4e51-92e9-b663a8da3a50" Name="建筑学"/>
+<ThreeDimension ID="5a2bc45d-85ff-43fa-ba8e-27e87757196f" Name="建筑工程"/>
+<ThreeDimension ID="bb380aa8-6e05-4daa-8a55-b54f2788299d" Name="工业与民用建筑"/>
+<ThreeDimension ID="0dad339c-aa5e-4191-b9fc-8093fd88fa96" Name="工程造价管理"/>
+<ThreeDimension ID="72264b3e-24f0-46fe-ae63-9932db0a5e15" Name="建筑环境与设备工程"/>
+<ThreeDimension ID="267fb642-7d36-4e42-91fd-d3823defee89" Name="给排水科学与工程"/>
+<ThreeDimension ID="b175393a-42da-403f-9088-df36ac15bfdb" Name="供热通风与空调工程"/>
+<ThreeDimension ID="cd097cd4-697d-4a34-b7b8-0e97ac26b8b7" Name="室内装潢设计"/>
+<ThreeDimension ID="ee36a355-1974-4f78-9905-2433a3b759b0" Name="城市规划"/>
+<ThreeDimension ID="a526b8c0-fdf1-448d-97dc-e9e16deb7179" Name="历史建筑保护工程"/>
+<ThreeDimension ID="c4affdf9-d107-4e61-8de0-e3dbc4f06f04" Name="景观学"/>
+</TwoDimension>
+<TwoDimension ID="e77d4109-d0b9-4c9e-a932-88e9a0ca5117" Name="材料类">
+<ThreeDimension ID="8382e646-1428-4522-b815-b9dd33ac36af" Name="冶金工程"/>
+<ThreeDimension ID="bf481a8a-b353-4705-b9ac-8fdcd8bb92f0" Name="金属材料工程"/>
+<ThreeDimension ID="d1a5e0a5-64c1-4937-adc7-76ff3818ef96" Name="无机非金属材料工程"/>
+<ThreeDimension ID="94704740-d328-4c0a-a6ac-d7dce919ed7b" Name="高分子材料与工程"/>
+<ThreeDimension ID="809ecad4-bbc6-4db5-9a1e-41ae93367684" Name="材料物理"/>
+<ThreeDimension ID="a823d753-e2d2-42f0-9920-1577244975fd" Name="材料化学"/>
+<ThreeDimension ID="ec7a3063-fbf4-4c5a-bbd3-abaf9ab46bb5" Name="材料科学与工程"/>
+<ThreeDimension ID="e10fe405-04e7-4656-ae0d-dba4d43f3ac5" Name="电子封装技术"/>
+</TwoDimension>
+<TwoDimension ID="39a9c58f-3ed5-4de9-9e0f-25a1d44ccc6a" Name="仪器仪表类">
+<ThreeDimension ID="48d64f0b-8ca8-4787-bbaf-ee4f11db5a85" Name="测控技术与仪器"/>
+</TwoDimension>
+<TwoDimension ID="4decb2dc-6dab-40bb-974e-cede7755c808" Name="能源动力类">
+<ThreeDimension ID="e4e8a137-c687-473a-b10d-477d14e0d684" Name="热能与动力工程"/>
+<ThreeDimension ID="54f7ca0f-00a0-4834-a6e3-4602e1c88160" Name="核工程与核技术"/>
+<ThreeDimension ID="19b7238b-855f-4292-a419-949f73b60ce7" Name="电力系统及自动化"/>
+<ThreeDimension ID="2e18b7f9-7155-4df6-837c-66282c7dba8e" Name="制冷与低温技术"/>
+</TwoDimension>
+<TwoDimension ID="59482bc1-9e8f-4f2a-93be-d51bba5459f2" Name="水利类">
+<ThreeDimension ID="223b112c-8ea2-4a61-b88f-6703a79b6b68" Name="水利水电工程"/>
+<ThreeDimension ID="85c83218-27f4-43d1-9fc3-29440efdfaa1" Name="水文与水资源工程"/>
+<ThreeDimension ID="5b8b8f99-6215-4f5b-b4d5-0c3fece13845" Name="港口航道与海岸工程"/>
+</TwoDimension>
+<TwoDimension ID="077eaebe-8bc5-40fd-a94e-f4fa4f92dbcb" Name="测绘类">
+<ThreeDimension ID="209eb0f6-3efe-4e1d-8053-df6f72eb14ca" Name="测绘工程"/>
+<ThreeDimension ID="462c57c0-0f50-4aff-8365-e5fde120954b" Name="遥感科学与技术"/>
+<ThreeDimension ID="eef67b90-9350-4d4b-99d0-698f0bbdc593" Name="空间信息与数字技术"/>
+</TwoDimension>
+<TwoDimension ID="d4fdb57e-4d47-4b43-9024-976c064ef409" Name="制药工程类">
+<ThreeDimension ID="c676d12d-807b-4c33-bc0c-bd2ca9bf2ce6" Name="制药工程"/>
+</TwoDimension>
+<TwoDimension ID="a8579514-5677-4a87-aacd-9a256efd2df4" Name="交通运输类">
+<ThreeDimension ID="ff1f2350-38b8-47a2-8212-68063843022b" Name="交通运输"/>
+<ThreeDimension ID="4b1fa8cc-f84a-4ff2-ac63-d35b110e00e6" Name="交通工程"/>
+<ThreeDimension ID="f42d02c6-d691-4cd3-811e-c061744dc244" Name="油气储运工程"/>
+<ThreeDimension ID="e2daa188-45bd-44ff-89a8-ce85a145a60a" Name="飞行技术"/>
+<ThreeDimension ID="83445108-8aaa-4a50-988e-ec19714a86b3" Name="航海技术"/>
+<ThreeDimension ID="63e71be8-7a76-44a6-a429-8e4d922a2136" Name="轮机工程"/>
+<ThreeDimension ID="93246c75-db83-4f12-a733-9bda668ec947" Name="物流工程"/>
+<ThreeDimension ID="8f95fa77-b36c-4816-bce9-c9f053ab1709" Name="海事管理"/>
+</TwoDimension>
+<TwoDimension ID="5da32e91-bfba-4bc5-bca1-73d6582cce5a" Name="船舶与海洋工程类">
+<ThreeDimension ID="de05b962-4f7a-424a-8475-849c84decf90" Name="船舶与海洋工程"/>
+</TwoDimension>
+<TwoDimension ID="d332cf09-0761-4ab8-9521-2f1de078253e" Name="航空航天类">
+<ThreeDimension ID="1f0e7cca-d2fa-44f7-9355-c1af6790d148" Name="飞行器设计与工程"/>
+<ThreeDimension ID="21fa003f-189e-472c-982e-b1f776f83aac" Name="飞行器动力工程"/>
+<ThreeDimension ID="6cb8cde6-be24-45fe-a252-8ee699dd4b9d" Name="飞行器制造工程"/>
+<ThreeDimension ID="c30c57bc-8ce7-4071-a3d6-1e4190fde7d1" Name="飞行器环境与生命保障工程"/>
+</TwoDimension>
+<TwoDimension ID="b2c51193-b544-441d-a370-82c157af02c3" Name="轻工纺织食品类">
+<ThreeDimension ID="9108ced8-8f55-4d92-8103-03bc5cb272ba" Name="食品科学与工程"/>
+<ThreeDimension ID="ba5c10ad-3aea-468a-80ba-7f5ba3b0685e" Name="轻化工程"/>
+<ThreeDimension ID="3cee46e0-8e94-469a-8188-c3c53f34566f" Name="包装工程"/>
+<ThreeDimension ID="b635f579-8e66-490c-be3c-b6f5ef3771b4" Name="印刷工程"/>
+<ThreeDimension ID="f10e8c99-efab-4135-91d4-4e9639b5f6e4" Name="纺织工程"/>
+<ThreeDimension ID="e07925e8-f8f0-4894-a954-c1241798ee32" Name="服装设计与工程"/>
+</TwoDimension>
+<TwoDimension ID="b16511b5-948f-4e14-998c-c598ae6262fc" Name="武器类">
+<ThreeDimension ID="8c34cc61-97ca-4bff-8b32-450e9835d695" Name="武器系统与发射工程"/>
+<ThreeDimension ID="54e5fcc9-6c19-4fc3-8cdd-60aa905a8223" Name="探测制导与控制技术"/>
+<ThreeDimension ID="e9c3ff32-d059-4443-881e-93f717fc89f0" Name="弹药工程与爆炸技术"/>
+<ThreeDimension ID="04f5b5f5-c809-4fee-a4b0-784c5d6012d2" Name="特种能源工程与烟火技术"/>
+<ThreeDimension ID="41d55584-69c3-47b6-be98-73415e6bce90" Name="地面武器机动工程"/>
+<ThreeDimension ID="2ec8ca68-1b80-4196-8247-c068f700174b" Name="信息对抗技术"/>
+</TwoDimension>
+<TwoDimension ID="f6e4f45c-0491-4238-acfd-eaa06593a566" Name="公安技术类">
+<ThreeDimension ID="4eac494f-3a7f-4e0f-b054-39df59c628be" Name="公安技术"/>
+</TwoDimension>
+<TwoDimension ID="d36d3728-c346-4c1a-9425-1b1dcfa3ed80" Name="生物医学工程类">
+<ThreeDimension ID="941f7653-9e84-4973-881e-c465becfdbbe" Name="生物医学工程"/>
+<ThreeDimension ID="8592fa11-7804-4ef5-8599-4d024779291d" Name="生物医学工程"/>
+</TwoDimension>
+</OneDimension>
+<OneDimension ID="2902d302-c2a8-4bdc-b9ec-faa98436cf6d" Name="法学">
+<TwoDimension ID="31893569-0218-4210-831f-557f14793d51" Name="法学类">
+<ThreeDimension ID="69f86d99-0a32-4432-82eb-857982f38852" Name="法学"/>
+<ThreeDimension ID="3fc7e997-6d2b-4f1c-b3f6-a83635505e73" Name="马克思主义理论"/>
+<ThreeDimension ID="fe13c7e7-5bfa-4070-bb1f-501198ac7302" Name="政治学与行政学"/>
+<ThreeDimension ID="b6d9d020-19db-4924-b681-800d2aa36515" Name="思想政治教育"/>
+<ThreeDimension ID="2c8ba06f-d408-4a81-b3a5-7c6854422963" Name="国际政治"/>
+<ThreeDimension ID="e3206fe6-2f05-4ef2-a71b-151fd4c9122b" Name="国际经济法"/>
+<ThreeDimension ID="08168579-0ee3-46bb-b51f-41c5b0870bdc" Name="经济法"/>
+<ThreeDimension ID="cd4be912-919a-4c85-97ed-dbed51fbaf6e" Name="社会学"/>
+<ThreeDimension ID="f3a80790-9400-4ab1-8c90-4d13d4a33e00" Name="外交学"/>
+<ThreeDimension ID="86de79f6-e4a7-42db-936f-25ffeab7ec88" Name="公安学"/>
+</TwoDimension>
+</OneDimension>
+<OneDimension ID="863ed067-c36e-41f8-b616-ab90f0a32948" Name="历史学">
+<TwoDimension ID="9521c2e5-e23f-46b9-8606-bf7aac3ace1e" Name="历史学类">
+<ThreeDimension ID="85b99745-fb09-4f22-bbce-05c14d8e8d28" Name="历史学"/>
+<ThreeDimension ID="32cd88c2-f943-4746-a72e-243741a900a5" Name="考古学"/>
+<ThreeDimension ID="a203c419-6963-4de5-8565-374ccdc075d1" Name="博物馆学"/>
+</TwoDimension>
+</OneDimension>
+<OneDimension ID="2eb10232-b431-4ca5-a131-2d56ed608e54" Name="理学">
+<TwoDimension ID="2eab8738-e1f7-4c1c-aac8-6a99d696f23a" Name="数学类">
+<ThreeDimension ID="f4fe83f7-ca51-46a8-adae-0052b675e03b" Name="数学与应用数学"/>
+<ThreeDimension ID="86fa650f-ccd9-4297-b5ba-156880cd5403" Name="信息与计算科学"/>
+</TwoDimension>
+<TwoDimension ID="2b453364-5137-4ce5-9bdb-ca11ff89884e" Name="物理学类">
+<ThreeDimension ID="27fef8ce-743d-4432-b5e5-95b3ce34c3ff" Name="物理学"/>
+<ThreeDimension ID="1eece68e-3fcb-40e1-a55c-c79c842b35a4" Name="应用物理学"/>
+</TwoDimension>
+<TwoDimension ID="f30b7790-1778-4137-aee9-c6f22c518918" Name="化学类及化学工程类">
+<ThreeDimension ID="42831ae3-f6b5-42d1-97b6-feece87503b2" Name="化学"/>
+<ThreeDimension ID="cb95e1df-4082-4181-a557-5d8b6f27a3d9" Name="应用化学"/>
+<ThreeDimension ID="5167983b-dce7-49aa-a9df-12b45df903fd" Name="化学工程与工艺"/>
+<ThreeDimension ID="552be6cf-4b21-43d2-b46f-56346a463564" Name="精细化工"/>
+<ThreeDimension ID="d28c2e64-fb69-48f1-89ae-0c765940329e" Name="化工设备与机械"/>
+<ThreeDimension ID="63a0c5b7-3269-4043-9ef5-894fd34b0788" Name="生物化工"/>
+</TwoDimension>
+<TwoDimension ID="b24995d5-3c6d-49a3-9f06-c2d624bae234" Name="生物科学及生物技术类">
+<ThreeDimension ID="49a509f7-b541-42dd-bef3-ee6447c70f87" Name="生物工程"/>
+<ThreeDimension ID="62ed4373-40fe-4e24-8415-434c7cf1e118" Name="生物科学，技术"/>
+<ThreeDimension ID="af4caf5d-596a-436a-99c4-80e60243cef2" Name="生物信息学"/>
+</TwoDimension>
+<TwoDimension ID="79cff7b1-9ee6-4423-9132-254529ddd05c" Name="天文地质地理类">
+<ThreeDimension ID="53aa15f6-aa41-439a-a1f2-c770f52d2faf" Name="天文学"/>
+<ThreeDimension ID="03a5d229-14a8-4728-96c8-ee0fc750b2fc" Name="地质学"/>
+<ThreeDimension ID="acbcb9a2-3767-4e32-b60b-68345aa873d5" Name="地理科学"/>
+<ThreeDimension ID="98bd4443-fbbd-4645-b820-d690635e97a8" Name="地球物理学"/>
+<ThreeDimension ID="5da4aeaf-ffcc-48ec-a5ef-45728da45c4e" Name="大气科学"/>
+<ThreeDimension ID="38e67709-917a-47fb-af28-13cfd4f002f3" Name="海洋科学"/>
+<ThreeDimension ID="b8c76c41-c796-4912-a19a-dbb4d40d3472" Name="地矿"/>
+<ThreeDimension ID="8b5be6a1-b737-4b83-8f22-9ce69b1c0d95" Name="宝石鉴定与加工"/>
+<ThreeDimension ID="142b4d12-c024-4d80-a219-adcd2d5e2f73" Name="石油工程"/>
+<ThreeDimension ID="2431822f-e6f3-4c97-a732-2c9cc446edb9" Name="地球化学"/>
+<ThreeDimension ID="71fa2f51-fc15-48ac-a768-8d91b898bfe3" Name="地球与空间科学"/>
+<ThreeDimension ID="d9a9d6aa-c61b-491d-ac0d-094683653eb7" Name="地理信息系统"/>
+<ThreeDimension ID="a6b52f23-f7f8-4e0f-97db-62263fb4fa06" Name="地理信息科学与技术"/>
+</TwoDimension>
+</OneDimension>
+<OneDimension ID="cc0aae2b-000a-47f6-9f44-a8b60b3e13bb" Name="教育学">
+<TwoDimension ID="5ee532f6-5959-42a4-a940-037397a1f15e" Name="教育学类">
+<ThreeDimension ID="7ddb4c8c-ae06-48d1-9cf0-75e156240a41" Name="教育学"/>
+<ThreeDimension ID="9b6ff186-a1d7-4b6d-a2d2-060cfb35c837" Name="体育教育"/>
+<ThreeDimension ID="dcd1a3b1-21dd-4d3a-a541-6ebe8543c4f6" Name="学前教育"/>
+<ThreeDimension ID="da31a6fd-96a6-4f11-a771-90df856d41d4" Name="职业技术教育"/>
+<ThreeDimension ID="f338fb82-b291-44c7-be2a-75cc7da6e713" Name="特殊教育"/>
+<ThreeDimension ID="2eb8a288-5f76-4d45-9ff5-86565418f9e4" Name="教育技术学"/>
+</TwoDimension>
+</OneDimension>
+<OneDimension ID="dfab80d0-7ef7-4f51-b263-e2681b51d5a1" Name="医学">
+<TwoDimension ID="f7b70f16-a51e-42f7-b2c7-6a619b3d555a" Name="医学类">
+<ThreeDimension ID="ea58cb03-081e-4235-a971-768a893ee2d9" Name="基础医学"/>
+<ThreeDimension ID="aac46f00-3358-43aa-9ef5-f3609a700e05" Name="预防医学"/>
+<ThreeDimension ID="a238f102-0f94-4a2a-abcb-98318ce4d5b0" Name="临床医学与医学技术"/>
+<ThreeDimension ID="714b61a7-1551-461b-979a-c3638cf3c9b7" Name="口腔医学"/>
+<ThreeDimension ID="d131b8b9-32d5-4400-a5ae-1007e549d2d1" Name="中医学"/>
+<ThreeDimension ID="27a0cc48-ea9c-40a9-8213-268f0d82dfd0" Name="法医学"/>
+<ThreeDimension ID="f58f1f6f-f8be-4589-a133-e5a2e8cc7159" Name="护理学"/>
+<ThreeDimension ID="e04bc17e-f270-4464-9cca-3746159c1a9b" Name="药学"/>
+<ThreeDimension ID="de8f601e-82e7-4a3f-ac49-cb38c6541e0c" Name="医学检验"/>
+<ThreeDimension ID="01f95e05-6a76-48c8-8a9b-0669a1bfc068" Name="营养学"/>
+<ThreeDimension ID="8419aeb8-ce22-4640-914f-aea04c5acacb" Name="麻醉学"/>
+<ThreeDimension ID="c442d927-420a-4c8a-8333-1088f17815d8" Name="放射医学"/>
+<ThreeDimension ID="63ad45e0-2665-4d50-9c69-6a928a1f81f4" Name="眼视光学"/>
+<ThreeDimension ID="4e07743a-411b-49d4-9d00-980ee4990e6c" Name="针灸推拿学"/>
+<ThreeDimension ID="9a24e392-fd1f-4d97-ad03-3267527e19e4" Name="中药学"/>
+</TwoDimension>
+<TwoDimension ID="8adc58d8-915a-4e72-a6ef-c02a26c32e31" Name="心理学类">
+<ThreeDimension ID="cb18f106-e2a5-4b3c-b9f9-7f73628b7f92" Name="心理学"/>
+<ThreeDimension ID="f264a604-1939-4b78-8f69-65e26bf9e3c5" Name="应用心理学"/>
+</TwoDimension>
+</OneDimension>
+<OneDimension ID="6b9a7b93-e64f-42ad-94e1-7c80d77da1ca" Name="农学">
+<TwoDimension ID="317b9420-2d0c-4106-a967-d07d1b7f8b95" Name="农业类">
+<ThreeDimension ID="4cb62132-6689-4521-bd85-0db6057c52f2" Name="农学"/>
+<ThreeDimension ID="1a8daeea-1909-41b1-9b85-58723101c34a" Name="园艺"/>
+<ThreeDimension ID="ce14926a-d263-49d1-8fb9-1fb5c793aeff" Name="植物保护学"/>
+<ThreeDimension ID="b659732a-831b-4d97-ad84-f644a4ddc6f0" Name="茶学"/>
+<ThreeDimension ID="7ce0f251-f378-4f1f-8cb0-0e0cd91c5fac" Name="草业科学"/>
+<ThreeDimension ID="96b43af1-562a-46a7-94c2-34be2e7e7aa0" Name="森林资源"/>
+<ThreeDimension ID="49898df5-e85a-42cc-9721-671e42c01fe6" Name="环境生态"/>
+<ThreeDimension ID="32885b90-4ef0-42d1-8f00-ee00f4df4ea1" Name="动物科学"/>
+<ThreeDimension ID="c4e06db2-8e06-4f04-ac83-9926043fcfc3" Name="动物医学"/>
+<ThreeDimension ID="41658cb8-4065-40cd-94c3-2e806b79f73e" Name="水产科学"/>
+<ThreeDimension ID="6944841d-5646-488b-8f39-07bcb0f713ce" Name="农业工程"/>
+<ThreeDimension ID="5f4b24ab-6e13-44a6-8abc-df4aa9c55de9" Name="林业工程"/>
+<ThreeDimension ID="b9c958b3-b72a-44ba-89ea-0cf4a4a6d31b" Name="植物生产"/>
+<ThreeDimension ID="0fdac0db-afa0-434e-8610-1c1827e43134" Name="园林"/>
+</TwoDimension>
+</OneDimension>
+</root>
+

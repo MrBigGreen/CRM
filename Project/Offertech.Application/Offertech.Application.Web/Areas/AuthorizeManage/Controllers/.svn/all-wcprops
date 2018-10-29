@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/AuthorizeManage/Controllers
+END
+PermissionUserController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 174
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/AuthorizeManage/Controllers/PermissionUserController.cs
+END
+ModuleFormController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/AuthorizeManage/Controllers/ModuleFormController.cs
+END
+PermissionRoleController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 174
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/AuthorizeManage/Controllers/PermissionRoleController.cs
+END
+FilterIPController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/AuthorizeManage/Controllers/FilterIPController.cs
+END
+PermissionPostController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 174
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/AuthorizeManage/Controllers/PermissionPostController.cs
+END
+ModuleButtonController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/AuthorizeManage/Controllers/ModuleButtonController.cs
+END
+ModuleColumnController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/AuthorizeManage/Controllers/ModuleColumnController.cs
+END
+PermissionJobController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/AuthorizeManage/Controllers/PermissionJobController.cs
+END
+FilterTimeController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/AuthorizeManage/Controllers/FilterTimeController.cs
+END
+PermissionUserGroupController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 179
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/AuthorizeManage/Controllers/PermissionUserGroupController.cs
+END
+ModuleController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/AuthorizeManage/Controllers/ModuleController.cs
+END

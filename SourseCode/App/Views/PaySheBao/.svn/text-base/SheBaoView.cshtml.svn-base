@@ -1,0 +1,170 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TP_SocialInsur
+
+@{
+    ViewBag.Title = "新增社保";
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<style>
+    textarea {
+        height: 160px;
+        width: 480px;
+    }
+
+    input {
+        width: 100px;
+    }
+
+    .display-field {
+        height: auto;
+        width: 500px;
+    }
+</style>
+
+<div class="bigdiv">
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>名称：
+    </div>
+    <div class="editor-field">
+        @Html.DisplayTextFor(m => m.SocialInsurName)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>编码：
+    </div>
+    <div class="editor-field">
+        <input type="text" id="txtSocialInsurID" name="txtSocialInsurID" value="@Model.SocialInsurID" disabled="disabled" style="width:200px;" />
+        @Html.HiddenFor(m => m.SocialInsurID)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>省份：
+    </div>
+    <div class="editor-field">
+        <select class="easyui-combobox" id="Province" name="Province" style="width:120px;" data-options="required:true" validtype="comboxValidate['Province','请选择']"></select>
+
+        <input type="hidden" id="ProvinceName" name="ProvinceName" />
+        @Html.HiddenFor(m => m.ProvinceCode)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>城市：
+    </div>
+    <div class="editor-field">
+        <select class="easyui-combobox" id="City" name="City" style="width:120px;" data-options="required:true" validtype="comboxValidate['City','请选择']"></select>
+
+        <input type="hidden" id="CityName" name="CityName" />
+        @Html.HiddenFor(m => m.CityCode)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        行政区：
+    </div>
+    <div class="editor-field">
+        <select class="easyui-combobox" id="District" name="District" style="width:120px;" data-options="required:false"></select>
+
+        <input type="hidden" id="DistrictName" name="DistrictName" />
+        @Html.HiddenFor(m => m.DistrictCode)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>差异范围：
+    </div>
+    <div class="editor-field">
+        @Html.DisplayTextFor(m => m.DiffBegin) ~
+        @Html.DisplayTextFor(m => m.DiffEnd)
+    </div>
+    <br style="clear: both;" />
+
+    <table class="record" border="0" cellpadding="0" cellspacing="0" style="width:430px;">
+        <tr>
+            <td style="width:50px;">&nbsp;</td>
+            <th style="text-align: center; padding-right: 10px; height: 26px;  ">
+                公司部分
+            </th>
+            <th style="text-align: center; padding-right: 10px; height: 26px; ">
+                个人部分
+            </th>
+        </tr>
+        <tr>
+            <td style="text-align:right">养老：</td>
+            <td>
+                @Html.DisplayTextFor(m => m.CompanyPension)
+            </td>
+            <td>
+                @Html.DisplayTextFor(m => m.IndiPension)
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">工伤：</td>
+            <td>
+                @Html.DisplayTextFor(m => m.CompanyInjury)
+            </td>
+            <td>
+                @Html.DisplayTextFor(m => m.IndiInjury)
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">医疗：</td>
+            <td>
+                @Html.DisplayTextFor(m => m.CompanyMedical)
+            </td>
+            <td>
+                @Html.DisplayTextFor(m => m.IndiMedical)
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">生育：</td>
+            <td>
+                @Html.DisplayTextFor(m => m.CompanyBirth)
+            </td>
+            <td>
+                @Html.DisplayTextFor(m => m.IndiBirth)
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">补充：</td>
+            <td>
+                @Html.DisplayTextFor(m => m.CompanySupply)
+            </td>
+            <td>
+                @Html.DisplayTextFor(m => m.IndiSupply)
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">大病统筹：</td>
+            <td>
+                @Html.DisplayTextFor(m => m.CompanyDBTC)
+            </td>
+            <td>
+                @Html.DisplayTextFor(m => m.IndiDBTC)
+            </td>
+        </tr>
+    </table>
+
+
+
+    <br style="clear: both;" />
+    <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+        <input class="a2 f2" type="button" id="btnSubmit" onclick="GetClose()" value="关 闭" />
+    </div>
+</div>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/City.js"></script>
+<script type="text/javascript">
+    $(function () {
+        BindProvinceCity();
+
+    });
+    var GetClose = function () {
+
+
+        parent.$('.easyui-window').window('close');
+        parent.$('.easyui-dialog').dialog('close');
+    }
+</script>
+

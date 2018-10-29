@@ -1,0 +1,348 @@
+﻿@{
+    ViewBag.Title = "商机跟进页面";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<link href="~/Content/styles/font-awesome.full.min.css" rel="stylesheet" />
+<link href="~/Content/styles/colorbox.css" rel="stylesheet" />
+<script src="~/Content/scripts/bootstrap/jquery.colorbox-min.js"></script>
+<script src="~/Content/scripts/plugins/uploadify/ajaxfileupload.js"></script>
+<link href="~/Content/styles/learun-ckbox-radio.css" rel="stylesheet" />
+<style>
+    .app-logo {
+        position: relative;
+        padding: 4px 12px;
+        overflow: hidden;
+        color: #1E88C7;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+    }
+
+        .app-logo input {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .app-logo:hover {
+            text-decoration: none;
+        }
+</style>
+<script>
+    var objectId = request('objectId');
+    var objectName = request('objectName');
+    var objectSort = request('objectSort');
+    $(function () {
+        GetTimeline();
+        //联系人
+        $("#Contact").ComboBox({
+            url: "../../CustomerManage/Customer/GetContactJson",
+            param: { customerId: objectId },
+            id: "contact",
+            text: "contact",
+            description: "==请选择==",
+            height: "200px"
+        });
+        //销售阶段
+        $("#SaleStageId").ComboBox({
+            url: "../../SystemManage/DataItemDetail/GetDataItemListJson",
+            param: { EnCode: "Client_SaleStage" },
+            id: "ItemDetailId",
+            text: "ItemName",
+            description: "==请选择==",
+            height: "200px"
+        });
+        $("input[name='TrailType']").bind("click", function () {
+
+            if ($(this).val() == "1") {//计划
+                $("#trServiceType").hide();
+            }
+            else if ($(this).val() == "2") {//完成
+                $("#trServiceType").show();
+            }
+
+        });
+        //上传文件初始化
+        uploadify();
+        initFrmCotent();
+    })
+    function initFrmCotent() {
+        var ckName = "ServiceType";
+        $.ajax({
+            url: "../../SystemManage/DataItemDetail/GetDataItemListJson",
+            data: { EnCode: "Client_ProductInfo" },
+            type: "get",
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                var rowdata = '';
+                $.each(data, function (i, item) {
+                    rowdata += '<div class="ckbox ckbox-color_a">';
+                    rowdata += '<input id="' + item.ItemDetailId + '" data-value="' + item.ItemName + '" name="' + ckName + '" value="' + item.ItemDetailId + '" type="checkbox"><label for="' + item.ItemDetailId + '">' + item.ItemName + '</label>';
+                    rowdata += '</div>';
+                });
+                $('#tdServiceType').html(rowdata);
+            }
+        });
+    }
+    //获取跟进记录列表
+    function GetTimeline() {
+        $.ajax({
+            url: "../../CustomerManage/TrailRecord/GetListJson",
+            data: { objectId: objectId },
+            type: "get",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                var timeline = data.timeline;
+                var rows = data.rows;
+                var _html = "";
+                $.each(timeline, function (key) {
+                    _html += '<li> ';
+                    _html += '    <span class="label label-warning"><i class="fa fa-circle"></i>' + key + '</span> ';
+                    _html += '    <div class="content"> ';
+                    $.each(rows, function (i) {
+                        var row = rows[i];
+                        if (timeline[key] == formatDate(row.StartTime, 'yyyy-MM-dd')) {
+                            var FollowUpMode = "电话";
+                            if (row.FollowUpMode == 2) {
+                                FollowUpMode = "拜访";
+                            }
+                            else if (row.FollowUpMode == 3) {
+                                FollowUpMode = "邮件";
+                            }
+                            _html += '        <div class="row"> ';
+                            _html += '            <span class="item-flag"><i class="fa fa-file-text-o"></i></span> ';
+                            _html += '            <div class="item-data"> ';
+                            _html += '                <span class="time">' + formatDate(row.StartTime, 'hh:mm') + '</span> ~  <span class="time"> ' + formatDate(row.EndTime, 'hh:mm') + '</span> ';
+                            _html += '                <span class="name">【' + row.CreateUserName + '】</span><span class="name">' + row.SaleStageName + '</span> ';
+                            _html += '            </div> ';
+                            _html += '        </div> ';
+                            _html += '        <div class="row"> ';
+                            _html += '             <div class="col-sm-7 col-md-7 col-lg-7 col-xs-7"> ';
+                            _html += '                  <div class="item-data"> ';
+                            _html += '                      <span class="name">' + FollowUpMode + '</span> <i class="fa fa-caret-right"></i>';
+                            _html += '                      <span class="action">' + row.TrackContent + '</span> ';
+                            _html += '                  </div> ';
+                            _html += '              </div> ';
+                            _html += '             <div class="col-sm-5 col-md-5 col-lg-5 col-xs-5" style="padding-right:0"> ';
+                            if (row.FilesPath != null && row.FilesPath != undefined) {
+                                var files = row.FilesPath.split(';');
+                                _html += '                  <ul class="ace-thumbnails"> ';
+                                $.each(files, function (j) {
+                                    if (files[j] != '') {
+                                        _html += '                      <li>';
+                                        _html += '                          <a href="' + top.ImgServerUrl + files[j] + '" data-rel="colorbox"><img  src="' + top.ImgServerUrl + files[j] + '"/></a>';
+                                        _html += '                      </li> ';
+                                    }
+                                });
+                                _html += '                  </ul> ';
+                            }
+                            _html += '              </div> ';
+                            _html += '        </div> ';
+
+                        }
+                    });
+                    _html += '    </div> ';
+                    _html += '</li> ';
+
+                });
+                $("#ul_timeline").html(_html);
+            }
+        });
+    }
+
+    //上传文件
+    function uploadify() {
+
+        $(".app-item-add").on("change", "input[type='file']", function () {
+            var filename = $(this).val();
+            $("#originalTargetFileName").val(filename);
+            var f = document.getElementById('uploadFile').files[0]
+            var src = window.URL.createObjectURL(f);
+            //上传应用图标
+            $.ajaxFileUpload({
+                url: "/CustomerManage/TrailRecord/UploadFile",
+                secureuri: false,
+                fileElementId: 'uploadFile',
+                dataType: 'json',
+                success: function (data, status) {
+                    dialogMsg(data.message, 1);
+                    if (data.type == 1) {//上传成功
+                        $("#uploadfilelist").append('<li><input name="FileIds" type="hidden" value="' + data.FilePath + '" /><a href="' + top.ImgServerUrl + data.FilePath + '" data-rel="colorbox"><img src="' + top.ImgServerUrl + data.FilePath + '"></a></li>');
+                    }
+                },
+                error: function (data, status, e) {
+                }
+            });
+        });
+    }
+    //保存表单
+    function AcceptClick() {
+        if (!$('#form1').Validform()) {
+            return false;
+        }
+        var postData = $("#form1").GetWebControls("");
+        var FileIds = "";
+        $('input[name = FileIds]').each(function () {
+            FileIds += $(this).val() + ";";
+        });
+        postData["FilesPath"] = FileIds;
+
+        var _FollowUpMode = $('input[name = FollowUpMode]:checked').val();
+        delete postData["FollowUpMode1"];
+        delete postData["FollowUpMode2"];
+        delete postData["FollowUpMode3"];
+        postData["FollowUpMode"] = _FollowUpMode;
+
+        var _TrailType = $('input[name = TrailType]:checked').val();
+        delete postData["TrailType1"];
+        delete postData["TrailType2"];
+        postData["TrailType"] = _TrailType;
+        if (!!objectId) {
+            postData["ObjectId"] = objectId;
+        }
+        if (!!objectSort) {
+            postData["ObjectSort"] = objectSort;
+        }
+        if (!!objectName) {
+            postData["ObjectName"] = objectName;
+        }
+        postData["SaleStageName"] = $("#SaleStageId").attr('data-text');
+        if (_TrailType == 2) {//完成
+            //推荐方案
+            var _ServiceType = "";
+            $("input[type='checkbox'][name='ServiceType']").each(function () {
+                var id = $(this).attr('id');
+                delete postData[id];
+                if ($("#" + id).is(":checked")) {;
+                    _ServiceType += $("#" + id).attr("data-value") + ",";
+                }
+            });
+            postData["Description"] = _ServiceType;
+        }
+        $.SaveForm({
+            url: "../../CustomerManage/TrailRecord/SaveForm",
+            param: postData,
+            loading: "正在保存数据...",
+            close: false,
+            success: function () {
+                GetTimeline();
+                $("#TrackContent").val('');
+            }
+        })
+    }
+</script>
+<div style="margin: 10px; margin-bottom: 0px;padding-right:20px;">
+    <table class="form">
+        <tr>
+            <th class="formTitle">跟进方式<font face="宋体">*</font></th>
+            <td class="formValue">
+                <div class="rdio rdio-color_a"><input name="FollowUpMode" id="FollowUpMode1" value="1" type="radio" checked="checked" /><label for="FollowUpMode1">电话</label></div>
+                <div class="rdio rdio-color_b"><input name="FollowUpMode" id="FollowUpMode2" value="2" type="radio" /><label for="FollowUpMode2">拜访</label></div>
+                <div class="rdio rdio-color_e"><input name="FollowUpMode" id="FollowUpMode3" value="3" type="radio" /><label for="FollowUpMode3">邮件</label></div>
+            </td>
+            <th class="formTitle">类型<font face="宋体">*</font></th>
+            <td class="formValue">
+                <div class="rdio rdio-color_f"><input name="TrailType" id="TrailType1" value="1" type="radio" /><label for="TrailType1">计划</label></div>
+                <div class="rdio rdio-color_c"><input name="TrailType" id="TrailType2" value="2" type="radio" checked="checked" /><label for="TrailType2">完成</label></div>
+            </td>
+        </tr>
+        <tr>
+            <th class="formTitle">联系人<font face="宋体">*</font></th>
+            <td class="formValue">
+                <div id="Contact" type="select" class="ui-select" isvalid="yes" checkexpession="NotNull">
+                </div>
+            </td>
+            <th class="formTitle">销售阶段<font face="宋体">*</font></th>
+            <td class="formValue">
+                <div id="SaleStageId" type="select" class="ui-select" isvalid="yes" checkexpession="NotNull"></div>
+            </td>
+        </tr>
+        <tr id="trServiceType">
+            <th class="formTitle">推荐方案</th>
+            <td class="formValue" colspan="3" id="tdServiceType"></td>
+        </tr>
+        <tr>
+            <th class="formTitle">开始时间<font face="宋体">*</font></th>
+            <td class="formValue">
+                <input id="StartTime" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm'})" value="@DateTime.Now.AddHours(-1).ToString("yyyy-MM-dd HH:mm")" />
+            </td>
+            <th class="formTitle">结束时间<font face="宋体">*</font></th>
+            <td class="formValue">
+                <input id="EndTime" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm")" />
+            </td>
+        </tr>
+        <tr>
+            <th class="formTitle">跟进内容<font face="宋体">*</font></th>
+            <td class="formValue" colspan="3">
+                <textarea id="TrackContent" maxlength="200" placeholder="活动记录内容" class="form-control" isvalid="yes" checkexpession="NotNull" style="height: 60px; border-radius: 5px;"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th class="formTitle">上传图片</th>
+            <td class="formValue" colspan="2">
+                <input id="FilesPath" type="hidden" />
+                <div style="padding-right:0">
+                    <ul id="uploadfilelist" class="ace-thumbnails"></ul>
+                    <ul class="ace-thumbnails">
+                        <li class="app-item-add" title="添加应用">
+                            <a class="app-logo">
+                                <input id="uploadFile" name="uploadFile" type="file" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </td>
+            <td class="formValue" style="text-align: right;">
+                <a id="btn_Search" class="btn btn-success" onclick="AcceptClick()"><i class="fa fa-paper-plane"></i>&nbsp;保存内容</a>
+            </td>
+        </tr>
+    </table>
+    <div style="overflow: auto; height: 380px">
+        <div class="timeline">
+            <div class="line"></div>
+            <ul id="ul_timeline" style="display:;"></ul>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        var colorbox_params = {
+            reposition: true,
+            scalePhotos: true,
+            scrolling: false,
+            previous: '<i class="icon-arrow-left"></i>',
+            next: '<i class="icon-arrow-right"></i>',
+            close: '&times;',
+            current: '{current} of {total}',
+            maxWidth: '100%',
+            maxHeight: '100%',
+            onOpen: function () {
+                document.body.style.overflow = 'hidden';
+            },
+            onClosed: function () {
+                document.body.style.overflow = 'auto';
+            },
+            onComplete: function () {
+                $.colorbox.resize();
+            }
+        };
+
+        $('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
+        $("#cboxLoadingGraphic").append("<i class='icon-spinner orange'></i>");//let's add a custom loading icon
+
+        /**$(window).on('resize.colorbox', function() {
+            try {
+                //this function has been changed in recent versions of colorbox, so it won't work
+                $.fn.colorbox.load();//to redraw the current frame
+            } catch(e){}
+        });*/
+    })
+</script>

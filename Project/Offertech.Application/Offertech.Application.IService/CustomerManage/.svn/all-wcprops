@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/BridgehrKit/!svn/ver/14612/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage
+END
+IChanceService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/IChanceService.cs
+END
+ISubscribeService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/BridgehrKit/!svn/ver/14612/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/ISubscribeService.cs
+END
+ITrailRecordExtendService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/BridgehrKit/!svn/ver/13574/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/ITrailRecordExtendService.cs
+END
+IOwnershipChangeService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/BridgehrKit/!svn/ver/13878/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/IOwnershipChangeService.cs
+END
+ICustomerFollowService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/BridgehrKit/!svn/ver/13498/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/ICustomerFollowService.cs
+END
+ICashBalanceService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/ICashBalanceService.cs
+END
+IExpensesService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/IExpensesService.cs
+END
+IInvoiceService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/IInvoiceService.cs
+END
+IReceivableReportService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/IReceivableReportService.cs
+END
+IOrderEntryService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/IOrderEntryService.cs
+END
+IContractServiceService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/IContractServiceService.cs
+END
+ICooperativeServiceService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/ICooperativeServiceService.cs
+END
+IReceivableService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/IReceivableService.cs
+END
+ICustomerService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/BridgehrKit/!svn/ver/13878/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/ICustomerService.cs
+END
+IShareService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/BridgehrKit/!svn/ver/13623/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/IShareService.cs
+END
+ICustomerRatingService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/BridgehrKit/!svn/ver/13322/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/ICustomerRatingService.cs
+END
+ITrailRecordService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/BridgehrKit/!svn/ver/13839/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/ITrailRecordService.cs
+END
+IOrderService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/IOrderService.cs
+END
+IContractService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/BridgehrKit/!svn/ver/14574/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/IContractService.cs
+END
+ICustomerContactService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/BridgehrKit/!svn/ver/13574/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/ICustomerContactService.cs
+END
+IProjectIService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/BridgehrKit/!svn/ver/13322/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.IService/CustomerManage/IProjectIService.cs
+END

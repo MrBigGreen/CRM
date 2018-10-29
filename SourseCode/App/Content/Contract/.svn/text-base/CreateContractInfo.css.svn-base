@@ -1,0 +1,237 @@
+﻿
+.ui-autocomplete {
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    line-height: 25px;
+}
+
+
+.user_btn {
+    background: none;
+    border: 0px;
+    padding: 0px 10px;
+}
+
+    .user_btn:hover {
+        border: 0px;
+    }
+
+.bgred {
+    background: orange;
+    color: #fff;
+}
+
+/*xml公共弹框*/
+.bpopup_type {
+    padding: 8px;
+    min-width: 685px;
+    min-height: 500px;
+    /*** background: url(../images/jobtype_bg.png) 0 0 repeat;***/
+    display: none;
+}
+
+    .bpopup_type#bpopupCity {
+        min-height: 270px;
+    }
+
+.bpopup_type_main {
+    min-height: 500px;
+    padding: 1px;
+    border: 1px solid #d7d7d7;
+    background-color: #fff;
+    padding-bottom: 20px;
+    position: relative;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#bpopupCity .bpopup_type_main {
+    min-height: 270px;
+}
+
+.bpopup_type_main .selected_type {
+    /***  background-color: #8dcc1e;**/
+    width: auto;
+    color: #fff;
+    min-height: 37px;
+    background: -moz-linear-gradient(top, #ffffff, #ececec);
+    background: -o-linear-gradient(top, #ffffff, #ececec);
+    background: -webkit-gradient(linear, 0 0 0 bttom, fom(#ffffff), t(#ececec));
+    lter: p ogid:DXImageTransform.Microsoft.gradient(startcolorstr='#ffffff', edColorstr='#ececec',gradientType=0);
+    ckground: l near-gradient(top, #fffff, #cecec);
+    rder-top-left-radius: 5 x;
+    rder-top-right-radius: 5 x;
+    rder-bottom: 1 x slid #7d7d7;
+    elected_type . elected_type_btn;
+
+{
+    dth: 5 px;
+    ight: 2 px;
+    ckground: u l(/Content/images/ok_btn.png) 0 0 n-repeat;
+    rder: n ne;
+    rsor: p inter;
+    elected_type u l;
+
+{
+    nt-weight: b ld;
+    ckground-color: # 99;
+    lor: # ff;
+    oat: l ft;
+    rsor: p inter;
+    rgin: 5 x 1px 5x 0 elected_type t b;
+
+{
+    lor: # 33;
+    elected_type u l s an;
+
+{
+    splay: i line-block;
+    rgin: 5 x 0x 5x 1px;
+    elected_type u l i g;
+
+{
+    rgin-right: 1 px;
+    rtical-align: m ddle;
+    popup_type_table;
+
+{
+    rgin: 2 px 4px 0 4px;
+    hree_industry_table t;
+
+{
+    ne-height: 2 px;
+    popup_type_table > t ody > t;
+
+{
+    rder-bottom: 1 x dshed #2d1d1;
+    popup_type_table > t ody > t :hover;
+
+{
+    ckground-color: # 2ffe0;
+    popupCity . popup_type_table > t ody > t :hover;
+
+{
+    ckground-color: t ansparent;
+    popup_type_table > t ody > t > t;
+
+{
+    order-bottom: 1 x dshed #2d1d1;
+    ne-height: 2 px;
+    popup_type_table > t ody > t .last_tr;
+
+{
+    rder-bottom: n ne;
+    popup_type_table > t ody > t .last_tr > t;
+
+{
+    order-bottom: n ne;
+    popup_type_table . igjob;
+
+{
+    dding: 0 0x 0 1px;
+    popup_type_table t;
+
+{
+    ight: 2 px;
+    popup_type_table t ble t;
+
+{
+    padding: 0px 15px 4px 20px;
+    */ dding: 0 x 0x 1x 1px;
+    dth: 1 5px;
+    popupCity . popup_type_table t ble t;
+
+{
+    dth: 8 px;
+    ight: 3 px;
+    popup_type_table t ble t :hover;
+
+{
+    rsor: p inter;
+    lor: # 18801;
+    xt-decoration: u derline;
+    popup_type_table t ble . irst_tr t;
+
+{
+    dding-top: 1 x;
+    popup_type_table t ble t :first-child t;
+
+{
+    dding-top: 1 x;
+    popup_type_table t ble . ast_tr t;
+
+{
+    dding-bottom: 1 x;
+    ub_bpopup_type;
+
+{
+    dding: 8 x;
+    n-width: 2 0px;
+    erflow: h dden;
+    ckground: u l(/Content/images/jobtype_bg.png) 0 0 rpeat;
+    sition: a solute;
+    splay: n ne;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    */ ub_bpopup_type . ub_type_main;
+
+{
+    n-width: 2 0px;
+    rder: 1 x slid #bc487;
+    ckground-color: # ff;
+    dding: 1 px 0 1px 1px;
+    ub_type_main t ble t;
+
+{
+    dding-right: 3 px;
+    ight: 2 px;
+    rsor: p inter;
+    ub_type_main t ble t :hover;
+
+{
+    lor: # 18801;
+    ubBpopupType;
+
+{
+    dding: 8 x;
+    n-width: 2 0px;
+    erflow: h dden;
+    ckground: u l(/Content/images/jobtype_bg.png) 0 0 rpeat;
+    sition: a solute;
+    splay: n ne;
+    p: 0 ft: 0 index: 1 000;
+    ubBpopupType . ubTypeMain;
+
+{
+    n-width: 2 0px;
+    rder: 1 x slid #bc487;
+    ckground-color: # ff;
+    dding: 1 px 0 1px 1px;
+    ubTypeMain t ble t;
+
+{
+    dding-right: 3 px;
+    ight: 2 px;
+    rsor: p inter;
+    ubTypeMain t ble t :hover;
+
+{
+    lor: # 18801;
+    elect_btn;
+
+{
+    dth: 1 7px;
+    ight: 2 px;
+    ckground: u l(/Content/images/select_btn.jpg) 0 0 n-repeat;
+    rder: n ne;
+    lor: # 00;
+    ne-height: 2 px;
+    dding-left: 5 x;
+    xt-align: l ft;
+    rsor: p inter;
+    indow, . indow-shadow;
+
+{
+    p: 0 x ! mportant;
+    end */;

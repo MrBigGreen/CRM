@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/BridgehrKit/!svn/ver/12714/VISS/solution/WebSrc/CRM/SourseCode/BLL/Framework
+END
+SysColumnFilterBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BridgehrKit/!svn/ver/9035/VISS/solution/WebSrc/CRM/SourseCode/BLL/Framework/SysColumnFilterBLL.cs
+END
+SysMenuBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BridgehrKit/!svn/ver/5128/VISS/solution/WebSrc/CRM/SourseCode/BLL/Framework/SysMenuBLL.cs
+END
+SysMenuSysRoleSysOperationBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/BLL/Framework/SysMenuSysRoleSysOperationBLL.cs
+END
+CodeFieldHander.cs
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/BLL/Framework/CodeFieldHander.cs
+END
+DataOfDiffrent.cs
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/BLL/Framework/DataOfDiffrent.cs
+END
+HomeBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BridgehrKit/!svn/ver/5128/VISS/solution/WebSrc/CRM/SourseCode/BLL/Framework/HomeBLL.cs
+END
+ExceptionsHander.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BridgehrKit/!svn/ver/6119/VISS/solution/WebSrc/CRM/SourseCode/BLL/Framework/ExceptionsHander.cs
+END
+NetSendMail.cs
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BridgehrKit/!svn/ver/6255/VISS/solution/WebSrc/CRM/SourseCode/BLL/Framework/NetSendMail.cs
+END
+SysAnnouncementBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/BLL/Framework/SysAnnouncementBLL.cs
+END
+SysCodeTableHander.cs
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BridgehrKit/!svn/ver/7154/VISS/solution/WebSrc/CRM/SourseCode/BLL/Framework/SysCodeTableHander.cs
+END
+SysFieldHander.cs
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BridgehrKit/!svn/ver/12714/VISS/solution/WebSrc/CRM/SourseCode/BLL/Framework/SysFieldHander.cs
+END
+AccountBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BridgehrKit/!svn/ver/10066/VISS/solution/WebSrc/CRM/SourseCode/BLL/Framework/AccountBLL.cs
+END

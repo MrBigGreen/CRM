@@ -1,0 +1,106 @@
+﻿@model CRM.DAL.SysDocument
+
+@{
+    Layout = "~/Views/Shared/Details.cshtml";
+}
+@using Common
+ @section CurentPlace {
+    详细  
+}
+ 
+    <fieldset>
+        <legend>
+            <input class="a2 f2" type="button" onclick="window.location.href = 'javascript:history.go(-1)';" value="返回" />
+        </legend>
+        <div class="bigdiv">
+                  
+                <div class="display-label">
+                      @Html.LabelFor(model => model.Name) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Name) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.Path) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Path) 
+                </div>
+                <br style="clear: both;" />
+                <div class="display-label">
+                    @Html.LabelFor(model => model.FullPath) :
+                </div>
+                <div class="textarea-box">
+                    @Html.TextAreaFor(model => model.FullPath, new {  @readonly=true})                   
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.Suffix) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Suffix) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.Size) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Size) 
+                </div>
+                <br style="clear: both;" />
+                <div class="display-label">
+                    @Html.LabelFor(model => model.Remark) :
+                </div>
+                <div class="textarea-box">
+                    @Html.TextAreaFor(model => model.Remark, new {  @readonly=true})                   
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.Download) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Download) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.CreateTime) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.CreateTime) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.CreatePerson) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.CreatePerson) 
+                </div>    
+                <div class="display-label">
+                      @Html.LabelFor(model => model.SysPersonId) :
+                </div>
+                <div class="display-field">            
+                    @{string ids11 = string.Empty;
+                       foreach (var item11 in Model.SysPerson)
+                       {
+                           ids11 += item11.Name;
+                           ids11 += " , ";
+                                 
+                     } 
+                    
+                @ids11   
+                  }
+                </div>    
+                <div class="display-label">
+                      @Html.LabelFor(model => model.SysDepartmentId) :
+                </div>
+                <div class="display-field">            
+                    @{string ids12 = string.Empty;
+                       foreach (var item12 in Model.SysDepartment)
+                       {
+                           ids12 += item12.Name;
+                           ids12 += " , ";
+                                 
+                     } 
+                    
+                @ids12   
+                  }
+                </div>
+        </div>
+    </fieldset>
+
+

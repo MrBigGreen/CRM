@@ -1,0 +1,22 @@
+﻿@model IList<Offer.DAL.ResumeRemarkEntity>
+@{
+    if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <div class="box">
+                <span class="date">
+                    @Convert.ToDateTime(item.CreatedTime).ToString("yyyy-MM-dd HH:mm:ss")
+                </span>
+                <span class="p_name">@item.SysPersonName</span>
+                <div style="width: 100%; max-height: 83px; overflow-y: auto;">
+                    <div style="padding:5px">
+                        @item.Content
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+}
+

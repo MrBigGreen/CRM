@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <OneDimension ID="6d398f2d-e04e-45ce-965a-ddbec4a6fe0f" Name="金融">
+    <TwoDimension ID="7d0b7440-b40c-41ce-9c83-f4a2f20f9327" Name="银行">
+    </TwoDimension>
+    <TwoDimension ID="ec580367-508c-4414-854e-0dba874b25df" Name="证券">
+    </TwoDimension>
+    <TwoDimension ID="ce851a52-00d6-45da-891c-53ab8917725b" Name="期货">
+    </TwoDimension>
+    <TwoDimension ID="e86349c5-c838-4152-b89e-ca9ef8f9f326" Name="保险">
+    </TwoDimension>
+    <TwoDimension ID="aecd0aa7-42c7-4bcc-8cb2-7646c78cdb27" Name="投资VE/PE">
+    </TwoDimension>
+    <TwoDimension ID="ed89082a-8e94-4500-aa86-a27085e83deb" Name="基金">
+    </TwoDimension>
+    <TwoDimension ID="d0fc9b03-3378-4004-ad86-a4d4ad331be0" Name="典当">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="17d8457d-bbd8-4c08-83ab-5a8a59fa8c14" Name="IT/互联网/电子/通信">
+    <TwoDimension ID="1a1d1f81-3a58-4c2c-8108-a8ccc8177f55" Name="计算机硬件">
+    </TwoDimension>
+    <TwoDimension ID="80d26eb8-c95f-43bc-b92d-faf0f59ef02f" Name="计算机软件">
+    </TwoDimension>
+    <TwoDimension ID="279ee104-7e8b-4a63-94d4-efcbb652a594" Name="IT服务支持（系统维护、数据分析）">
+    </TwoDimension>
+    <TwoDimension ID="c11b3b80-8c1d-4894-a4d6-789fb16a8fed" Name="电子商务">
+    </TwoDimension>
+    <TwoDimension ID="373f369a-02e4-40f3-9bfe-05858c17388e" Name="网络游戏">
+    </TwoDimension>
+    <TwoDimension ID="62b28f46-8e95-4534-ae27-df1bb7b2d932" Name="通信服务">
+    </TwoDimension>
+    <TwoDimension ID="25f3b969-79f7-4930-a8fd-f1043eb0e497" Name="通信/网络设备">
+    </TwoDimension>
+    <TwoDimension ID="80729bdf-acdb-4bcb-a5c9-7736797aaedd" Name="电子/半导体/集成电路">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="2d71688c-292e-49d9-9ff9-61efcd64dbef" Name="物流/航运">
+    <TwoDimension ID="9ec8f294-6625-4602-aa9e-0e3c92e4fd09" Name="物流快递">
+    </TwoDimension>
+    <TwoDimension ID="19bfaa0c-f845-4e4c-9dad-1535dc018ea1" Name="航空运输">
+    </TwoDimension>
+    <TwoDimension ID="2271f589-42ab-40b3-bcb7-441a4eab8c6c" Name="远洋运输">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="2a87ac27-6ac8-45bc-a981-a6855a49bada" Name="贸易/批发零售/消费品">
+    <TwoDimension ID="43602e44-9249-4807-b2fe-15fc312639fa" Name="进出口贸易">
+    </TwoDimension>
+    <TwoDimension ID="96cd653c-63a1-4860-ae38-08cc582e2910" Name="批发零售">
+    </TwoDimension>
+    <TwoDimension ID="930ea673-a584-47fe-950b-266a39d61f3c" Name="快速消费品（食品/饮料/化妆品/烟酒/日化等）">
+    </TwoDimension>
+    <TwoDimension ID="23aaecad-81a7-4ac5-aacd-7391811a2052" Name="服装/纺织/皮革">
+    </TwoDimension>
+    <TwoDimension ID="1fb9c298-8997-41e1-a5d4-bea55a6ddff1" Name="家电/手机/电子产品">
+    </TwoDimension>
+    <TwoDimension ID="18f4ce9d-41b2-4976-a822-7b1786d509cd" Name="礼品/玩具/工艺美术/收藏品/奢侈品">
+    </TwoDimension>
+    <TwoDimension ID="8d78906e-34d3-4cc9-9d48-3984e2be0727" Name="办公用品及设备">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="bb3ea11c-cc62-48ea-944f-2adaf2073801" Name="制造/仪表设备">
+    <TwoDimension ID="4e4e2116-bbb1-4180-a285-ba809d72fe7b" Name="汽车/机动车/非机动车（制造/维护/配件/销售/服务/租赁）">
+    </TwoDimension>
+    <TwoDimension ID="40eaa073-5afa-4b00-801e-138252886c11" Name="大型设备/机电设备/重工业">
+    </TwoDimension>
+    <TwoDimension ID="536f06da-d6bb-4ecc-a516-ca343d48c56b" Name="加工制造（原料加工/模具/3D打印）">
+    </TwoDimension>
+    <TwoDimension ID="f83f4aa6-919a-4a96-a609-11ba99fed020" Name="仪器仪表及工业自动化">
+    </TwoDimension>
+    <TwoDimension ID="04713d5b-700b-41b2-896d-310a64b901db" Name="航空/航天研究与制造">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="fc3e768b-fedf-4893-b30c-2a7792a16258" Name="制药/医药医疗/卫生服务">
+    <TwoDimension ID="22ec2328-c7ea-41c2-80f3-c1d6ea72237f" Name="制药/生物工程">
+    </TwoDimension>
+    <TwoDimension ID="d796de59-2ebf-43c3-bba6-7476ccd64e95" Name="医疗器械">
+    </TwoDimension>
+    <TwoDimension ID="b8727e3a-3baa-4ad5-98ab-a094f4af6f86" Name="医疗/护理">
+    </TwoDimension>
+    <TwoDimension ID="147b7bc4-c224-4214-8954-57868d6b9f68" Name="美容/保健">
+    </TwoDimension>
+    <TwoDimension ID="f2f5181b-8199-43e1-a3b9-7b0646b9e6ba" Name="健康体检">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="8f2fb5ed-97a2-4245-80e0-6ab158c383c7" Name="生活服务">
+    <TwoDimension ID="04d5e2d3-eeff-4646-a988-b0da6f06768f" Name="酒店">
+    </TwoDimension>
+    <TwoDimension ID="d01ba289-40b8-4409-b18d-4702ef30f9b2" Name="餐饮">
+    </TwoDimension>
+    <TwoDimension ID="c32ef4c2-248e-4421-90cf-c524810fde6b" Name="旅游">
+    </TwoDimension>
+    <TwoDimension ID="df468322-a2df-4552-8935-c2806fa233e5" Name="娱乐/休闲">
+    </TwoDimension>
+    <TwoDimension ID="bbb1adad-e298-485d-a643-2b98b514516c" Name="体育运动">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="ac588580-6968-46d9-aa50-248eb6606870" Name="房地产/建筑">
+    <TwoDimension ID="78f760ed-b8b8-48b3-81d8-60456f917de4" Name="房地产/建筑/工程">
+    </TwoDimension>
+    <TwoDimension ID="835f6584-5d64-49a5-9728-2db93cd85c0f" Name="室内设计/装潢">
+    </TwoDimension>
+    <TwoDimension ID="6f26befb-bf3a-43ef-a7b6-5ecf0e4d3905" Name="物业管理">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="c6534e31-8120-4dd3-b168-d3fcd4866609" Name="影视传媒/公关/">
+    <TwoDimension ID="a933e048-1665-4957-9cf6-afd3e2b9f710" Name="广告">
+    </TwoDimension>
+    <TwoDimension ID="f4a95e6f-6a6c-4e53-933c-e40a7ae9a53a" Name="会展/公关">
+    </TwoDimension>
+    <TwoDimension ID="3805bc89-4ddf-47be-9896-e44ce81e1ee4" Name="影视/文化传播">
+    </TwoDimension>
+    <TwoDimension ID="626b8395-0f1d-4092-95c5-7b5fa8de45eb" Name="出版">
+    </TwoDimension>
+    <TwoDimension ID="db1773a2-0bd2-4527-8d64-6ad0fe3d9bae" Name="媒体">
+    </TwoDimension>
+    <TwoDimension ID="39135a30-71a4-417d-ac38-dbabb01bd7f8" Name="印刷/包装">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="dda8a79b-4b3e-42cd-834c-a06111094372" Name="专业服务">
+    <TwoDimension ID="d3a1f3c4-9cbf-4bf1-9924-06394c27ea86" Name="财务/审计/税务">
+    </TwoDimension>
+    <TwoDimension ID="ea5a38d6-f90a-4ff2-a967-cb2702ac8972" Name="法律">
+    </TwoDimension>
+    <TwoDimension ID="1c061a38-73de-4a61-ba27-dd82a9fe8d29" Name="教育/培训">
+    </TwoDimension>
+    <TwoDimension ID="0b6e3810-4578-4b81-b8bc-4c79adb27d60" Name="学术/科研">
+    </TwoDimension>
+    <TwoDimension ID="be4d4ba9-5d77-4d25-8041-8bd855ab1592" Name="外包服务（人事/财会）">
+    </TwoDimension>
+    <TwoDimension ID="a6595734-5139-420c-b5ad-f6c32c47c166" Name="检测/认证/公证">
+    </TwoDimension>
+    <TwoDimension ID="a025a3f8-9a33-4710-b003-434d52fb7070" Name="管理咨询">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="34125aa1-151b-4795-b0f2-db5c9773d33b" Name="能源/化工/原料/地质">
+    <TwoDimension ID="a38864aa-d563-4008-b090-a3274903631b" Name="石油/石化/化工">
+    </TwoDimension>
+    <TwoDimension ID="56a83bf5-52aa-4b71-864f-45d5f3810a40" Name="地质/矿产">
+    </TwoDimension>
+    <TwoDimension ID="209f6a9b-fe99-4c26-8db9-258c62b23f60" Name="采掘/冶炼">
+    </TwoDimension>
+    <TwoDimension ID="db3623e3-69e4-4bdb-99e5-178508e2a3a9" Name="电气/电力/水利">
+    </TwoDimension>
+    <TwoDimension ID="3e3f2f51-eb1b-48e7-af57-5929e733df7d" Name="原材料加工">
+    </TwoDimension>
+    <TwoDimension ID="399768b1-46ba-417f-a609-91a9edef2ea8" Name="新能源">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="676340f4-5eaa-4d3c-a316-ca5dc52b0629" Name="政府/协会/非盈利机构">
+    <TwoDimension ID="3d2b8385-845f-4368-ae4c-4fe80c75610c" Name="政府/公共事业单位">
+    </TwoDimension>
+    <TwoDimension ID="2f6f5e01-a54d-4ccb-a8bf-184a11865d63" Name="协会性质组织">
+    </TwoDimension>
+    <TwoDimension ID="e11603a8-b685-4c02-80e2-9d46a5ce6b20" Name="非盈利公益组织">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="5140425b-9a66-4ecb-99ad-7111d9f4bfd8" Name="农/林/牧/渔">
+    <TwoDimension ID="6bcbfc31-5497-416d-ab3a-5d6ea16f997b" Name="农/林/牧/渔">
+    </TwoDimension>
+  </OneDimension>
+  <OneDimension ID="dc935e79-7602-45be-a8c9-2fe28ab5b546" Name="其他">
+    <TwoDimension ID="4b1f0274-8987-4dde-872e-f86bf96bea09" Name="其他行业">
+    </TwoDimension>
+  </OneDimension>
+</root>

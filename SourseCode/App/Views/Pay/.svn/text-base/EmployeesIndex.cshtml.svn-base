@@ -1,0 +1,204 @@
+﻿@{ Layout = "~/Views/Shared/Index.cshtml"; }
+@using Common
+@using Models
+@model CRM.DAL.TP_Employees
+
+<div class="easyui-panel" id="panelShow" title="查询栏" iconcls="icon-search" collapsible="true" style="height:auto;width:auto">
+    <table id="ttSearch" class="record">
+        <tr>
+            <th>员工姓名</th>
+            <td>
+                <input id="txtEmployessName" type="text" style="width: 150px" />
+            </td>
+        </tr>
+        <tr>
+            <th>公司名称</th>
+            <td>
+                <input id="txtCompanyName" type="text" style="width: 150px" />
+            </td>
+        </tr>
+        <tr>
+            <th>电话号码</th>
+            <td>
+                <input id="txtPhoneNum" type="text" class="easyui-numberbox" precision="0" style="width: 150px" />
+            </td>
+        </tr>
+        <tr>
+            <th>证件号</th>
+            <td>
+                <input id="txtCardID" type="text" maxlength="18" style="width: 150px" />
+            </td>
+        </tr>
+        <tr>
+            <th>银行卡号</th>
+            <td>
+                <input id="txtBankID" type="text" maxlength="20" style="width: 150px" />
+            </td>
+        </tr>
+        <tr>
+            <th>状态</th>
+            <td>
+                <input type="radio" name="JobStatus" value="0"  />全部
+                <input type="radio" name="JobStatus" value="1" checked="checked" id="checkall" />在职
+                <input type="radio" name="JobStatus" value="2" />离职
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center">
+                <input type="button" id="todaySearch" style="width: 80px;" onclick="SearchToday()" value="搜索">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" id="btnClear" style="width: 80px;" onclick="RemvoeAll()" value="清空">
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="easyui-panel" style="height:auto;" collapsible="true">
+    <table id="flexigridData"></table>
+
+</div>
+
+ 
+
+
+
+@*新增记录*@
+<div id="w_add" class="easyui-dialog" iconcls="icon-add" style="width: 850px; height: 650px;
+    padding: 5px; overflow: auto;" closed="true" title="新增记录">
+    <div class="easyui-layout" fit="true">
+        <div region="center" border="false" style="padding: 2px; background: #fff; border: 1px solid #ccc;">
+            <iframe id="addiframe" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+</div>
+@*新增记录end*@
+
+@*修改记录*@
+<div id="w_edit" class="easyui-dialog" iconcls="icon-edit" style="width: 850px; height:650px;
+    padding: 5px; overflow: auto;" closed="true" title="修改记录">
+    <div class="easyui-layout" fit="true">
+        <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
+            <iframe id="editiframe" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+</div>
+@*修改记录end*@
+
+@*查看记录*@
+<div id="w_look" class="easyui-dialog" iconcls="icon-search" style="width: 850px; height: 650px;
+    padding: 5px; overflow: auto;" closed="true" title="查看记录">
+    <div class="easyui-layout" fit="true">
+        <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
+            <iframe id="lookiframe" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+</div>
+@*查看记录end*@
+
+@*导入记录*@
+<div id="w_import" class="easyui-dialog" iconcls="icon-edit" style="width: 850px; height:350px;
+    padding: 5px; overflow: auto;" closed="true" title="导入记录">
+    <div class="easyui-layout" fit="true">
+        <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
+            <iframe id="importiframe" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+</div>
+@*导入记录end*@
+
+@*离职记录*@
+<div id="w_fire" class="easyui-dialog" iconcls="icon-edit" style="width: 850px; height:350px;
+    padding: 5px; overflow: auto;" closed="true" title="离职记录">
+    <div class="easyui-layout" fit="true">
+        <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
+            <iframe id="fireiframe" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+</div>
+@*离职记录end*@
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.watermark.min.js"></script>
+<script src="~/Scripts/jquery.bpopup-0.7.0.min.js"></script>
+<script src="~/Scripts/type-bpopup_fuc.js" type="text/javascript"></script>
+<script src="/Scripts/Employees/Index.js" type="text/javascript"></script>
+<link href="~/Content/TodayTasks/Index.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(function () {
+        /*添加水印*/
+        $("#txtEmployessName").watermark("请输入员工姓名");
+        $("#txtCompanyName").watermark("请输入公司名称");
+        $("#txtCardID").watermark("请输入证件号");
+        $("#txtBankID").watermark("请输入银行卡号");
+        //首先获取iframe标签的id值
+        var iframeid = window.parent.$('#tabs').tabs('getSelected').find('iframe').attr("id");
+        $('#flexigridData').datagrid({
+            title: '人员信息', //列表的标题
+            iconCls: 'icon-site',
+            width: 'auto',
+            height: 'auto',
+            loadMsg: "正在加载...",
+            striped: true,
+            //  collapsible: true,
+            url: '../Pay/GetData', //获取数据的url
+            sortName: 'EmpID',
+            sortOrder: 'desc',
+            idField: 'EmpID',
+            fitColumns: true,
+            // singleSelect: true,
+            columns: [[
+                 { field: 'ck', title: '全选', checkbox: true, width: 80 },
+                {
+                    field: 'EmpName', title: '姓名', width: $(this).width() * 0.2, align: 'center', resizable: false,
+                    formatter: function (value, rowData, rowIndex) {
+                        var a = '<a href="#"  class="easyui-linkbutton" style="border: none; text-decoration: none;"  OnClick="OpenLookWindow(\'' + rowData.EmpID + '\')">' + rowData.EmpName + '</a> ';
+                        return a;
+                    }
+                }
+               , { field: 'CompanyName', title: '客户', width: $(this).width() * 0.3, align: 'center', resizable: false }
+                 , { field: 'IDCard', title: '证件号', width: $(this).width() * 0.3, align: 'center', resizable: false }
+               , {
+                   field: 'Gender', title: '性别', width: $(this).width() * 0.1, align: 'center', resizable: false,
+                   formatter: function (value, rowData, rowIndex) {
+                       if (rowData.Gender == 1) {
+                           return '男';
+                       } else {
+                           return '女';
+                       }
+
+                   }
+               }
+               , { field: 'BankID', title: '银行卡号', width: $(this).width() * 0.3, align: 'center', resizable: false }
+               , { field: 'BankCity', title: '银行开户市', width: $(this).width() * 0.2, align: 'center', resizable: false }
+               , { field: 'PhoneNumber', title: '手机号码', width: $(this).width() * 0.3, align: 'center', resizable: false }
+
+               , { field: 'JobStatus', title: '状态', width: $(this).width() * 0.1, align: 'center', resizable: false }
+               , {
+                   field: 'State', title: '操作', width: $(this).width() * 0.3, align: 'center', resizable: false,
+                   formatter: function (value, rowData, rowIndex) {
+                       var a = '<input type="button" value="修改" OnClick="OpenEditWindow(\'' + rowData.EmpID + '\',\'' + rowData.CustomerID + '\')"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+                       var b = '<input type="button" value="离职" OnClick="OpenDeleteWindow(\'' + rowData.EmpID + '\')"/>';
+                       if (rowData.JobStatus == "在职")
+                           return a + b;
+                       else
+                           return a;
+
+                   }
+               }
+            ]],
+            pagination: true,
+            rownumbers: true,
+
+
+        });
+        
+        //获取按钮值
+        $.getJSON("/Home/GetToolbar", { id: iframeid }, function (data) {
+            if (data == null) {
+                return;
+            }
+            $('#flexigridData').datagrid("addToolbarItem", data);
+            $('#flexigridData').datagrid("addToolbarItem", [{ "text": "批量离职", "iconCls": "icon-redo", handler: function () { OpenFireInfoWindow(); } }]);
+        });
+        
+    });
+</script>

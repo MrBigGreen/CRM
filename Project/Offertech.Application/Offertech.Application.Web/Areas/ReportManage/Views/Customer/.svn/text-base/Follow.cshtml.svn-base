@@ -1,0 +1,286 @@
+﻿@{
+    ViewBag.Title = "销售报表";
+    Layout = "~/Views/Shared/_ReportIndex.cshtml";
+}
+<script>
+    $(function () {
+        initControl();
+        GetGrid();
+    })
+    //初始化控件
+    function initControl() {
+        //上级部门
+        $("#DepartmentId").ComboBoxTree({
+            url: "../../BaseManage/Department/GetOrganizeTreeJson",
+            description: "==请选择==",
+            height: "250px",
+            allowSearch: true,
+            click: function (item) {
+                if (item.Sort == 'Organize') {
+                    organizeId = item.id;
+                    parentId = 0;
+                } else {
+                    parentId = item.id;
+                }
+            }
+        });
+        //销售阶段
+        $("#SaleStageId").ComboBox({
+            url: "../../SystemManage/DataItemDetail/GetDataItemListJson",
+            param: { EnCode: "Client_SaleStage" },
+            id: "ItemDetailId",
+            text: "ItemName",
+            description: "==请选择==",
+            height: "200px"
+        });
+    }
+    function GetGrid() {
+        var $gridTable = $('#gridTable');
+        $gridTable.jqGrid({
+            url: "../../ReportManage/Customer/GetCustomerFollowJson",
+            datatype: "json",
+            height: $(window).height() - 230.5,
+            autowidth: true,
+            colModel: [
+                {
+                    name: "createusername", label: "销售", width: 80, align: "center",
+                    cellattr: function (rowId, tv, rawObject, cm, rdata) {
+                        //合并单元格
+                        return 'id=\'createusername' + rowId + "\'";
+                    }
+                },
+                {
+                    name: "departmentname", label: "部门", width: 80, align: "center",
+                    cellattr: function (rowId, tv, rawObject, cm, rdata) {
+                        //合并单元格
+                        return 'id=\'departmentname' + rowId + "\'";
+                    }
+                },
+                 {
+                     name: "customername", label: "客户名称", align: "center",
+                     cellattr: function (rowId, tv, rawObject, cm, rdata) {
+                         //合并单元格
+                         return 'id=\'customername' + rowId + "\'";
+                     }
+                 },
+                 { label: '跟进时间', name: 'starttime', index: 'starttime', width: 130, align: 'left', sortable: true, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { name: "salestagename", label: "销售阶段", width: 120 },
+                {
+                    name: "followupmode", label: "跟进方式", width: 80, formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == 1) {
+                            return "电话";
+                        }
+                        else if (cellvalue == 2) {
+                            return "当面";
+                        }
+                        else if (cellvalue == 3) {
+                            return "拜访";
+                        }
+                    }
+                },
+                { name: "trackcontent", label: "跟进内容", align: "center" },
+                { name: "description", label: "推荐方案", width: 80, align: "center" },
+                { name: "contact", label: "联系人", width: 80, align: "center" },
+                { name: "postid", label: "联系人职位", width: 80, align: "center", hidden: true },
+
+            ],
+            viewrecords: true,
+            rowNum: 100,
+            rowList: [100, 200, 500],
+            pager: "#gridPager",
+            sortname: 'createusername,customername,starttime desc',
+            sortorder: 'asc',
+            rownumbers: true,
+            gridview: true,
+            gridComplete: function () {
+                var gridName = "gridTable";
+                Merger(gridName, 'createusername');
+                Merger(gridName, 'departmentname');
+                Merger(gridName, 'customername');
+            }
+        });
+        //公共调用方法
+        function Merger(gridName, CellName) {
+            //得到显示到界面的id集合
+            var mya = $("#" + gridName + "").getDataIDs();
+            //当前显示多少条
+            var length = mya.length;
+            for (var i = 0; i < length; i++) {
+                //从上到下获取一条信息
+                var before = $("#" + gridName + "").jqGrid('getRowData', mya[i]);
+                //定义合并行数
+                var rowSpanTaxCount = 1;
+                for (j = i + 1; j <= length; j++) {
+                    //和上边的信息对比 如果值一样就合并行数+1 然后设置rowspan 让当前单元格隐藏
+                    var end = $("#" + gridName + "").jqGrid('getRowData', mya[j]);
+                    if (before[CellName] == end[CellName]) {
+                        rowSpanTaxCount++;
+                        $("#" + gridName + "").setCell(mya[j], CellName, '', { display: 'none' });
+                    } else {
+                        rowSpanTaxCount = 1;
+                        break;
+                    }
+                    $("#" + CellName + "" + mya[i] + "").attr("rowspan", rowSpanTaxCount);
+                }
+            }
+        }
+        //点击时间范围（今天、近7天、近一个月、近三个月）
+        $("#time_horizon a.btn-default").click(function () {
+            $("#time_horizon a.btn-default").removeClass("active");
+            $(this).addClass("active");
+            switch ($(this).attr('data-value')) {
+                case "1"://今天
+                    $("#StartTime").val("@DateTime.Now.ToString("yyyy-MM-dd")");
+                    $("#EndTime").val("@DateTime.Now.ToString("yyyy-MM-dd")");
+                    break;
+                case "2"://近7天
+                    $("#StartTime").val("@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")");
+                    $("#EndTime").val("@DateTime.Now.ToString("yyyy-MM-dd")");
+                    break;
+                case "3"://近一个月
+                    $("#StartTime").val("@DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd")");
+                    $("#EndTime").val("@DateTime.Now.ToString("yyyy-MM-dd")");
+                    break;
+                case "4"://近三个月
+                    $("#StartTime").val("@DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd")");
+                    $("#EndTime").val("@DateTime.Now.ToString("yyyy-MM-dd")");
+                    break;
+                default:
+                    break;
+            }
+            $("#SelectedStartTime").html($("#StartTime").val());
+            $("#SelectedEndTime").html($("#EndTime").val());
+            $(".grid-subtitle").html("日期: " + $("#StartTime").val() + " 至 " + $("#EndTime").val());
+            $('#btn_Search').trigger("click");
+        });
+        //查询条件
+        $("#queryCondition .dropdown-menu li").click(function () {
+            var text = $(this).find('a').html();
+            var value = $(this).find('a').attr('data-value');
+            $("#queryCondition .dropdown-text").html(text).attr('data-value', value)
+        });
+        //查询事件
+        $("#btn_Search").click(function () {
+            if (!$(".ui-filter-text").next('.ui-filter-list').is(":hidden")) {
+                $(".ui-filter-text").trigger("click");
+            }
+            if ($("#StartTime").val() != "") {
+                $("#SelectedStartTime").html($("#StartTime").val());
+                $("#SelectedEndTime").html($("#EndTime").val());
+                $(".grid-subtitle").html("日期: " + $("#StartTime").val() + " 至 " + $("#EndTime").val());
+            }
+            var queryJson = $("#filter-form").GetWebControls();
+            $gridTable.jqGrid('setGridParam', {
+                postData: { queryJson: JSON.stringify(queryJson) },
+                page: 1
+            }).trigger('reloadGrid');
+        });
+        //查询回车
+        $('#txt_Keyword').bind('keypress', function (event) {
+            if (event.keyCode == "13") {
+                $('#btn_Search').trigger("click");
+            }
+        });
+    }
+
+
+
+    //打印
+    function btn_print() {
+        $("#gridPanel").printTable();
+    }
+    //导出
+    function btn_export() {
+        dialogOpen({
+            id: "ExcelIExportDialog",
+            title: '导出客户汇总',
+            url: '/Utility/ExcelExportForm?gridId=gridTable',
+            width: "500px",
+            height: "380px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].AcceptClick();
+            }, btn: ['导出Excel', '关闭']
+        });
+    }
+</script>
+<div class="ui-report">
+    <div class="titlePanel">
+        <div class="title-search">
+            <table>
+                <tr>
+                    <td>查询条件</td>
+                    <td style="padding-left: 10px;">
+                        <div class="ui-filter" style="width: 200px;">
+                            <div class="ui-filter-text">
+                                <strong id="SelectedStartTime">@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")</strong> 至 <strong id="SelectedEndTime">@DateTime.Now.ToString("yyyy-MM-dd")</strong>
+                            </div>
+                            <div class="ui-filter-list" style="width: 450px;">
+                                <table class="form" id="filter-form">
+                                    <tr>
+                                        <th class="formTitle">日期：</th>
+                                        <td class="formValue">
+                                            <input id="Category" type="hidden" value="1" />
+                                            <div style="float: left; width: 45%;">
+                                                <input id="StartTime" readonly type="text" value="@Offertech.Util.Time.GetDate(-7)" class="form-control input-wdatepicker" onfocus="WdatePicker({maxDate:'%y-%M-%d'})">
+                                            </div>
+                                            <div style="float: left; width: 10%; text-align: center;">至</div>
+                                            <div style="float: left; width: 45%;">
+                                                <input id="EndTime" readonly type="text" value="@Offertech.Util.Time.GetToday()" class="form-control input-wdatepicker" onfocus="WdatePicker({maxDate:'%y-%M-%d'})">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="formTitle">姓名：</td>
+                                        <td class="formValue">
+                                            <input id="UserName" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="formTitle">部门：</td>
+                                        <td class="formValue">
+                                            <div id="DepartmentId" type="selectTree" class="ui-select"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="formTitle">销售阶段：</td>
+                                        <td class="formValue">
+                                            <div id="SaleStageId" type="select" class="ui-select"></div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="ui-filter-list-bottom">
+                                    <a id="btn_Reset" class="btn btn-default">&nbsp;重&nbsp;&nbsp;置</a>
+                                    <a id="btn_Search" class="btn btn-primary">&nbsp;查&nbsp;&nbsp;询</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <div id="time_horizon" class="btn-group">
+                            <a class="btn btn-default" data-value="1">今天</a>
+                            <a class="btn btn-default active" data-value="2">近7天</a>
+                            <a class="btn btn-default" data-value="3">近1个月</a>
+                            <a class="btn btn-default" data-value="4">近3个月</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="toolbar">
+            <div class="btn-group">
+                <a id="lr-replace" class="btn btn-default" onclick="reload();"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
+                <a id="lr-print" class="btn btn-default" onclick="btn_print()"><i class="fa fa-print"></i>&nbsp;打印</a>
+                <a id="lr-export" class="btn btn-default" onclick="btn_export()"><i class="fa fa-sign-out"></i>&nbsp;导出</a>
+            </div>
+            <script>$('.toolbar').authorizeButton()</script>
+        </div>
+    </div>
+    <div class="gridPanel" id="gridPanel">
+        <div class="printArea">
+            <div class="grid-title">客户跟进表</div>
+            <div class="grid-subtitle">日期: @Offertech.Util.Time.GetDate(-7) 至 @Offertech.Util.Time.GetToday()</div>
+            <table id="gridTable"></table>
+            <div id="gridPager"></div>
+        </div>
+    </div>
+</div>

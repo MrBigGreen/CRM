@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<repositories>
+  <repository path="..\LeaRun.Application\LeaRun.Application.Mapping\packages.config" />
+  <repository path="..\LeaRun.Application\LeaRun.Application.Web\packages.config" />
+  <repository path="..\LeaRun.Cache\LeaRun.Cache.Redis\packages.config" />
+  <repository path="..\LeaRun.Data\LeaRun.Data.Dapper\packages.config" />
+  <repository path="..\LeaRun.Data\LeaRun.Data.EF\packages.config" />
+  <repository path="..\LeaRun.Data\LeaRun.Data.Repository\packages.config" />
+  <repository path="..\LeaRun.Data\LeaRun.Data\packages.config" />
+  <repository path="..\LeaRun.SOA\LeaRun.SOA.IM\packages.config" />
+  <repository path="..\LeaRun.SOA\LeaRun.SOA.SSO\packages.config" />
+  <repository path="..\LeaRun.Util.SignalR\packages.config" />
+  <repository path="..\LeaRun.Util\LeaRun.Util.Ioc\packages.config" />
+  <repository path="..\LeaRun.Util\LeaRun.Util.Log\packages.config" />
+  <repository path="..\LeaRun.Util\LeaRun.Util.Offices\packages.config" />
+  <repository path="..\LeaRun.WebApp\LeaRun.Application.AppSerivce\packages.config" />
+  <repository path="..\Offertech.Application\Offertech.Application.Mapping\packages.config" />
+  <repository path="..\Offertech.Application\Offertech.Application.Web\packages.config" />
+  <repository path="..\Offertech.Cache\Offertech.Cache.Redis\packages.config" />
+  <repository path="..\Offertech.Data\Offertech.Data.Dapper\packages.config" />
+  <repository path="..\Offertech.Data\Offertech.Data.EF\packages.config" />
+  <repository path="..\Offertech.Data\Offertech.Data.Repository\packages.config" />
+  <repository path="..\Offertech.Data\Offertech.Data\packages.config" />
+  <repository path="..\Offertech.SOA\Offertech.SOA.IM\packages.config" />
+  <repository path="..\Offertech.SOA\Offertech.SOA.SSO\packages.config" />
+  <repository path="..\Offertech.Util.SignalR\packages.config" />
+  <repository path="..\Offertech.Util\Offertech.Util.Ioc\packages.config" />
+  <repository path="..\Offertech.Util\Offertech.Util.Log\packages.config" />
+  <repository path="..\Offertech.Util\Offertech.Util.Offices\packages.config" />
+  <repository path="..\Offertech.WebApp\Offertech.Application.AppSerivce\packages.config" />
+</repositories>

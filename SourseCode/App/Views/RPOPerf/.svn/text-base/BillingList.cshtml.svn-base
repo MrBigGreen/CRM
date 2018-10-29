@@ -1,0 +1,34 @@
+﻿@using Common
+@using Models
+
+@{
+    ViewBag.Title = "开票列表";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+<div class="easyui-panel" id="panelShow" title="查询栏" iconcls="icon-search" collapsible="true" style="height:auto;width:auto">
+    <div id="ttSearch" data-options="region:'center'" style="padding:2px">
+        <table class="record" border="0" cellpadding="0" cellspacing="0" style="width:100%">
+            <tr>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    月份 :
+                </th>
+                <td>
+                    <input id="TheMonth" name="TheMonth" style="width:150px; " value="--请选择--" />
+
+                    <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="margin-left:50px">
+                        查 询
+                    </a>
+                </td>
+
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<br style="clear: both;" />
+<table id="flexigridData"></table>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script type="text/javascript" language="javascript">$.getScript("/Scripts/RPOPerf/BillingList.js")</script>
+

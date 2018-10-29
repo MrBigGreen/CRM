@@ -1,0 +1,27 @@
+﻿@{ Layout = "~/Views/Shared/Index.cshtml"; }
+<div>
+    <object width="424" border="0" height="70" type="application/x-ms-wmp" classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" id="mediaPlayerObj">
+        <param value="@ViewBag.FileUrl" name="url">
+        <param value="1" name="rate">
+        <param value="0" name="balance">
+        <param value="0" name="currentPosition">
+        <param value="100" name="playCount">
+        <param value="-1" name="autoStart">
+        <param value="" name="defaultFrame">
+        <param value="100" name="volume">
+        <param value="0" name="currentMarker">
+        <param value="-1" name="invokeURLs">
+        <param value="-1" name="stretchToFit">
+        <param value="-1" name="windowlessVideo">
+        <param value="-1" name="enabled">
+        <param value="Full" name="uiMode">
+        <param value="-1" name="enableContextMenu">
+        <param value="0" name="fullScreen">
+        <param value="" name="SAMIStyle">
+        <param value="" name="SAMILang">
+        <param value="" name="SAMIFilename">
+        <param value="" name="captioningID">
+        <param value="0" name="enableErrorDialogs">
+        <embed width="100%" height="64" enablecontextmenu="0" playcount="1" allowscan="1" showcontrols="1" autostart="1" type="video/x-ms-wmv" name="MediaPlayer" src="@ViewBag.FileUrl" id="ffmedia">
+    </object>
+</div>

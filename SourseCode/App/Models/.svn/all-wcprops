@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Models
+END
+CommonEnum.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/App/Models/CommonEnum.cs
+END
+SysDepartmentTreeModel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Models/SysDepartmentTreeModel.cs
+END
+SysFieldTreeModel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Models/SysFieldTreeModel.cs
+END
+EmptyClass.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Models/EmptyClass.cs
+END
+SysMenuTreeModel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/App/Models/SysMenuTreeModel.cs
+END
+BaseException.cs
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BridgehrKit/!svn/ver/5054/VISS/solution/WebSrc/CRM/SourseCode/App/Models/BaseException.cs
+END

@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+
+<style>
+    .date {
+        font-weight: bold;
+        font-size: 10.5pt;
+    }
+
+    .p_name {
+        font-weight: bold;
+        color: #399ab2;
+        font-size: 11pt;
+        margin-left: 10px;
+    }
+
+    .box {
+        width: 465px;
+        padding: 5px;
+        padding-left: 10px;
+        margin-bottom: 15px;
+        border-bottom-color: #ccc;
+        border-bottom-width: 1px;
+        border-bottom-style: dotted;
+    }
+</style>
+<div style="width:486px;">
+    <div class="easyui-panel" style="width:486px;">
+        <div id="RemarkList" class="easyui-layout1" data-options="fit:true" style="width: 476px;min-height: 320px; ">
+            @{Html.RenderAction("GetRemarkList", new { ResumeID = ViewBag.ResumeID });}
+        </div>
+        <div style="width:476px">
+            <form id="fromRemark" action="RemarkAdd" style="width: 472px">
+                <input type="hidden" id="ResumeName" name="ResumeName" value="@ViewBag.ResumeName" />
+                <input id="ResumeID" type="hidden" name="ResumeID" hidden="hidden" value="@ViewBag.ResumeID" />
+                <input id="Type" name="Type" type="hidden" hidden="hidden" value="1" />
+                <textarea id="Content" name="Content" style="width: 470px" data-val-required="请填写" data-val="true" data-val-length-max="200" data-val-length="长度不可超过200"></textarea>
+                <div style="float:right">
+                    <input class="a2 f2" type="button" value="提交" onclick="remarkAdd()" />
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function remarkAdd() {
+        if ($("#Content").val() == "") {
+            $.messager.alert('操作提示', '请填写备注', 'error');
+            return false;
+
+        }
+
+        $.ajax({
+            url: "../Resume/RemarkAdd",
+            type: "post",
+            datatype: "json",
+            data: $("#fromRemark").serialize(),
+            success: function (data) {
+                if (data.Result == "1") {
+                    window.location.reload();
+                }
+                else {
+                    $.messager.alert('操作提示', '备注失败，' + data.Msg, 'error');
+
+                }
+            }
+
+        });
+
+    }
+
+
+
+</script>

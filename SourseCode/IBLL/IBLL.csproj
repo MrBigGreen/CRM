@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9B7FCA89-A8A4-4FA8-B67B-0BF0FE9C53CD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CRM.IBLL</RootNamespace>
+    <AssemblyName>IBLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Framework\IAccountBLL.cs" />
+    <Compile Include="Framework\IHomeBLL.cs" />
+    <Compile Include="Framework\ISysAnnouncementBLL.cs" />
+    <Compile Include="Framework\ISysCodeTableHander.cs" />
+    <Compile Include="Framework\ISysColumnFilterBLL.cs" />
+    <Compile Include="Framework\ISysFieldHander.cs" />
+    <Compile Include="Framework\ISysMenuSysRoleSysOperationBLL.cs" />
+    <Compile Include="IBaseDAL.cs" />
+    <Compile Include="IImportResume.cs" />
+    <Compile Include="IJobInfoBLL.cs" />
+    <Compile Include="IPayReportBLL.cs" />
+    <Compile Include="ISysEmailBLL.cs" />
+    <Compile Include="ISysEmailTempBLL.cs" />
+    <Compile Include="ISysMessageBLL.cs" />
+    <Compile Include="ISysMessageTempBLL.cs" />
+    <Compile Include="ITBBillingBLL.cs" />
+    <Compile Include="ITBCallLogBLL.cs" />
+    <Compile Include="ITBCompanyBLL.cs" />
+    <Compile Include="ITBContractBLL.cs" />
+    <Compile Include="ITBCustomerAttributionChangeBLL.cs" />
+    <Compile Include="ITBCustomerBLL.cs" />
+    <Compile Include="ITBCustomerContactBLL.cs" />
+    <Compile Include="ITBCustomerFollowBLL.cs" />
+    <Compile Include="ITBCustomerProjectBLL.cs" />
+    <Compile Include="ITBCustomerRatingBLL.cs" />
+    <Compile Include="ITBCustomerServiceBLL.cs" />
+    <Compile Include="ITBCustomerShareBLL.cs" />
+    <Compile Include="ITBMyColumnFilterBLL.cs" />
+    <Compile Include="ITBRPOPerformanceBLL.cs" />
+    <Compile Include="ITBSalesPerformanceBLL.cs" />
+    <Compile Include="ITPEmployeesBLL.cs" />
+    <Compile Include="ITPHousingFundBLL.cs" />
+    <Compile Include="ITPSalaryDetailsBLL.cs" />
+    <Compile Include="ITPSalaryItemBLL.cs" />
+    <Compile Include="ITPSocialInsurBLL.cs" />
+    <Compile Include="ITPSubjectsAuthorityBLL.cs" />
+    <Compile Include="IUnCallBLL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ISysPersonBLL.cs" />
+    <Compile Include="ISysMenuBLL.cs" />
+    <Compile Include="ISysRoleBLL.cs" />
+    <Compile Include="ISysLogBLL.cs" />
+    <Compile Include="ISysExceptionBLL.cs" />
+    <Compile Include="ISysFieldBLL.cs" />
+    <Compile Include="IFileUploaderBLL.cs" />
+    <Compile Include="ISysOperationBLL.cs" />
+    <Compile Include="ISysMenuSysRoleSysOperationBLL.cs" />
+    <Compile Include="ISysDepartmentBLL.cs" />
+    <Compile Include="ISysAnnouncementBLL.cs" />
+    <Compile Include="ISysDocumentBLL.cs" />
+    <Compile Include="ISysDocumentTalkBLL.cs" />
+    <Compile Include="ISysNoticeBLL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{ade2ca10-f91e-4312-ba9d-5d264291e549}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{d1ac05a2-96af-4124-ad40-ad0a05c84f5c}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

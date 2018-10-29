@@ -1,0 +1,288 @@
+﻿@{
+    Layout = null;
+}
+@model CRM.DAL.SysOperation
+<!DOCTYPE html>
+<html>
+<head id="MyHead">
+    <link id="easyuiTheme" href="@Url.Content("~/Res/easyui/themes/default/easyui.css")" rel="stylesheet" type="text/css" />
+    <title> 操作 </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/easyui")
+
+    <script type="text/javascript">
+
+        $(function () {
+
+                $('#flexigridData').datagrid({
+                title: '操作', //列表的标题
+                iconCls: 'icon-site',
+                width: 'auto',
+                height: 'auto',
+                //nowrap: false,
+                striped: true,
+                collapsible: true,
+                url: 'SysOperation/GetData', //获取数据的url
+                sortName: 'Id',
+                sortOrder: 'desc',
+                idField: 'Id',
+
+                toolbar: [
+
+                     {
+                        text: '详细',
+                        iconCls: 'icon-search',
+                        handler: function () {
+                            return getView();
+                        }
+                    }, {
+                        text: '创建',
+                        iconCls: 'icon-add',
+                        handler: function () {
+                            return flexiCreate();
+                        }
+                    },  {
+                        text: '删除',
+                        iconCls: 'icon-remove',
+                        handler: function () {
+                            return flexiDelete();
+                        }
+                    }, {
+                        text: '修改',
+                        iconCls: 'icon-edit',
+                        handler: function () {
+                            return flexiModify();
+                        }
+
+                    }],
+
+                columns: [[
+
+                    
+					{ field: 'Name', title: '@Html.DisplayNameFor(model => model.Name)', width: 111 }
+					,{ field: 'Function', title:  '@Html.DisplayNameFor(model => model.Function)', width: 111 }
+					,{ field: 'Iconic', title:  '@Html.DisplayNameFor(model => model.Iconic)', width: 111 }
+					,{ field: 'Sort', title:  '@Html.DisplayNameFor(model => model.Sort)', width: 111 }
+					,{ field: 'Remark', title:  '@Html.DisplayNameFor(model => model.Remark)', width: 111 }
+					,{ field: 'State', title:  '@Html.DisplayNameFor(model => model.State)', width: 111 }
+					,{ field: 'CreateTime', title:  '@Html.DisplayNameFor(model => model.CreateTime)', width: 111
+                    , formatter: function (value, rec) {
+                        if (value) {
+                            return dateConvert(value);
+                        } 
+                    } 
+}
+					,{ field: 'CreatePerson', title:  '@Html.DisplayNameFor(model => model.CreatePerson)', width: 111 }					//, { display: '@Html.DisplayNameFor(model => model.SysMenuId)', name: 'SysMenuId', width: 111, sortable: false, align: 'left' }
+
+                ]],
+                pagination: true,
+                rownumbers: true
+
+            });
+
+             var parent = window.dialogArguments; //获取父页面
+            if (parent == "undefined" || parent == null) {
+                //    不是在iframe中打开的
+            } else {
+                //隐藏所有的按钮和分隔符
+                $(".l-btn.l-btn-plain").hide();
+                $(".datagrid-btn-separator").hide();
+                //添加选择按钮
+                $('#flexigridData').datagrid("addToolbarItem", [{ "text": "选择", "iconCls": "icon-ok", handler: function () { flexiSelect(); } }]);
+            }
+
+            $('#myTree').tree({
+            url: '../SysMenuTree/GetTree',
+            onClick: function (node) {
+                if (node != null && node.id != null && node.id != "undefined") {
+                    if (node.iconCls != null) {//&& node.iconCls == 'icon-ok'
+                        $("#hidtreeid").val('');
+                        $("#flexigridData").datagrid("load"); //根目录刷新
+                    } else {
+                        $("#hidtreeid").val(node.id);
+                        $("#flexigridData").datagrid("load", { id: node.id });//子节点刷新
+                    }
+
+                }
+            },
+            onBeforeLoad: function (node, param) {
+                if (node) {
+                    param.parentid = node.id;
+                }
+            }
+        });
+    });
+
+        //“查询”按钮，弹出查询框
+        function flexiQuery() {
+
+            //将查询条件按照分隔符拼接成字符串
+            var search = "";
+            $('#divQuery').find(":text,:selected,select,textarea,:hidden,:checked,:password").each(function () {
+                search = search + this.id + "&" + this.value + "^";
+            });
+            //执行查询
+            $('#flexigridData').datagrid('reload', { search: search });
+
+        };
+
+        //“选择”按钮，在其他（与此页面有关联）的页面中，此页面以弹出框的形式出现，选择页面中的数据
+        function flexiSelect() {
+
+            var rows = $('#flexigridData').datagrid('getSelections');
+            if (rows.length == 0) {
+                $.messager.alert('操作提示', '请选择数据!', 'warning');
+                return false;
+            }
+
+            var arr = [];
+            for (var i = 0; i < rows.length; i++) {
+                arr.push(rows[i].Id);
+            }
+            arr.push("^");
+            for (var i = 0; i < rows.length; i++) {
+                arr.push(rows[i].Name);
+            }
+
+            //主键列和显示列之间用 ^ 分割   每一项用 , 分割
+            if (arr.length > 0) {//一条数据和多于一条
+                returnParent(arr.join("&")); //每一项用 & 分割
+            }
+        }
+        //导航到查看详细的按钮
+        function getView() {
+
+            var arr = $('#flexigridData').datagrid('getSelections');
+
+            if (arr.length == 1) {
+                window.location.href = "../SysOperation/Details/" + arr[0].Id;
+
+            } else {
+                $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+            }
+            return false;
+        }
+        //导航到创建的按钮
+        function flexiCreate() {
+
+            window.location.href = "../SysOperation/Create";
+            return false;
+        }
+        //导航到修改的按钮
+        function flexiModify() {
+
+            var arr = $('#flexigridData').datagrid('getSelections');
+
+            if (arr.length == 1) {
+                window.location.href = "../SysOperation/Edit/" + arr[0].Id;
+
+            } else {
+                $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+            }
+            return false;
+
+        };
+        //删除的按钮
+        function flexiDelete() {
+
+            var rows = $('#flexigridData').datagrid('getSelections');
+            if (rows.length == 0) {
+                $.messager.alert('操作提示', '请选择数据!', 'warning');
+                return false;
+            }
+
+            var arr = [];
+            for (var i = 0; i < rows.length; i++) {
+                arr.push(rows[i].Id);
+            }
+
+            $.messager.confirm('操作提示', "确认删除这 " + arr.length + " 项吗？", function (r) {
+                if (r) {
+                    $.post("../SysOperation/Delete", { query: arr.join(",") }, function (res) {
+                        if (res == "OK") {
+                           //移除删除的数据
+
+                            $.messager.alert('操作提示', '删除成功!', 'info');
+                            $("#flexigridData").datagrid("reload");
+                            $("#flexigridData").datagrid("clearSelections");
+                        }
+                        else {
+                            if (res == "") {
+                                $.messager.alert('操作提示', '删除失败!请查看该数据与其他模块下的信息的关联，或联系管理员。', 'info');
+                            }
+                            else {
+                               $.messager.alert('操作提示', res, 'info');
+                            }
+                        }
+                    });
+                }
+            });
+
+        };
+
+        //设置
+        function setSysMenu() {
+
+            var arr = $('#flexigridData').datagrid('getSelections');
+
+            if (arr.length == 1) {
+                window.location.href = "../SysOperation/SetSysMenu/" + arr[0].Id;
+
+            } else {
+                $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+            }
+            return false;
+        }
+
+    </script>
+</head>
+<body class="easyui-layout">
+    <div region="west" split="true" title="菜单" style="width: 180px;">
+        <ul id="myTree"></ul>
+    </div>
+    <div id="content" region="center" fit="true" title="操作" style="padding: 5px;">
+
+        <div id="divQuery">
+             
+            <div class="input_search">
+               <div class="input_search-label">
+                    @Html.LabelFor(model => model.Iconic):
+               </div>
+                <div class="input_search-field">
+                    <input type="text" id="IconicEnd_String"/>
+               </div>
+            </div>
+            <div class="input_search">
+             <div class="input_search-label">
+                    @Html.LabelFor(model => model.State):
+                </div>
+                <div class="input_search-field">
+                    @Html.DropDownList("StateDDL_String", Models.SysFieldModels.GetSysField("SysOperation","State"),"请选择",new { id = "StateDDL_String" })
+                </div>
+            </div> 
+            <div class='input_search'>
+              <div class='input_search-label'>
+                    @Html.LabelFor(model => model.CreateTime):
+                </div>
+                <div class='input_search-field-time'>
+                    <input type="text" id="CreateTimeStart_Time" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'CreateTimeEnd_Time\');}'})"  />
+                    <span>到</span>
+                    <input type="text" id="CreateTimeEnd_Time" onclick="WdatePicker({minDate:'#F{$dp.$D(\'CreateTimeStart_Time\');}'})" />
+               </div>
+            </div>
+            <div class='input_search' style="padding-top:10px;">
+                <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                    查 询
+                </a>
+            </div>
+        </div>
+        <br style="clear: both;" />
+         
+        <table id="flexigridData"></table>
+    </div>
+    <input id="hidtreeid" type="hidden" />
+    <input id="SysMenuIdOld" type="hidden" />
+</body>
+</html>
+

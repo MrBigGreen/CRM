@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.CodeGenerator/Model
+END
+BaseConfigModel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.CodeGenerator/Model/BaseConfigModel.cs
+END
+FormModel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.CodeGenerator/Model/FormModel.cs
+END
+GridColumnModel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.CodeGenerator/Model/GridColumnModel.cs
+END
+GridModel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.CodeGenerator/Model/GridModel.cs
+END
+FormFieldModel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.CodeGenerator/Model/FormFieldModel.cs
+END
+MultiTableConfigModel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.CodeGenerator/Model/MultiTableConfigModel.cs
+END

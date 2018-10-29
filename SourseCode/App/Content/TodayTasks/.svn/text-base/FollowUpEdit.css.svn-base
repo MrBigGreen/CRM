@@ -1,0 +1,138 @@
+﻿.user_btn {
+    background: none;
+    border: 0px;
+    padding: 0px 10px;
+}
+
+    .user_btn:hover {
+        border: 0px;
+    }
+
+.bgred {
+    background: orange;
+    color: #fff;
+}
+
+/*xml公共弹框*/
+.bpopup_type {
+    padding: 8px;
+    min-width: 685px;
+    min-height: 500px;
+    /*** background: url(../images/jobtype_bg.png) 0 0 repeat;***/
+    display: none;
+}
+
+    .bpopup_type#bpopupCity {
+        min-height: 270px;
+    }
+
+.bpopup_type_main {
+    min-height: 500px;
+    padding: 1px;
+    border: 1px solid #d7d7d7;
+    background-color: #fff;
+    padding-bottom: 20px;
+    position: relative;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#bpopupCity .bpopup_type_main {
+    min-height: 270px;
+}
+
+.bpopup_type_main .selected_type {
+    /***  background-color: #8dcc1e;**/
+    width: auto;
+    color: #fff;
+    min-height: 37px;
+    background: -moz-linear-gradient(top, #ffffff, #ececec);
+    background: -o-linear-gradient(top, #ffffff, #ececec);
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ffffff), to(#ececec));
+    ilter: rogid:DXImageTransform.Microsoft.gradient(startcolorstr='#ffffff', ndColorstr='#ececec',gradientType=0);
+    ackground: inear-gradient(top, ffffff, ececec);
+    order-top-left-radius: px;
+    order-top-right-radius: px;
+    order-bottom: px olid d7d7d7;
+    selected_type selected_type_btn idth: 3px;
+    eight: 2px;
+    ackground: rl(/Content/images/ok_btn.png) o-repeat;
+    order: one;
+    ursor: ointer;
+    selected_type l i ont-weight: old;
+    ackground-color: 999;
+    olor: fff;
+    loat: eft;
+    ursor: ointer;
+    argin: px 0px px;
+    selected_type d olor: 333;
+    selected_type l i pan isplay: nline-block;
+    argin: px px px 0px;
+    selected_type l i mg argin-right: 0px;
+    ertical-align: iddle;
+    bpopup_type_table argin: 0px 0px 0px;
+    three_industry_table d ine-height: 0px;
+    bpopup_type_table body r order-bottom: px ashed d2d1d1;
+    bpopup_type_table body r:hover ackground-color: f2ffe0;
+    bpopupCity bpopup_type_table body r:hover ackground-color: ransparent;
+    bpopup_type_table body r d border-bottom: px ashed d2d1d1;
+    ine-height: 0px;
+    bpopup_type_table body r.last_tr order-bottom: one;
+    bpopup_type_table body r.last_tr d border-bottom: one;
+    bpopup_type_table bigjob adding: px 0px;
+    bpopup_type_table d eight: 0px;
+    bpopup_type_table able d *padding:0px 15px 4px 20px;
+    */ adding: px px px 5px;
+    idth: 75px;
+    bpopupCity bpopup_type_table able d idth: 5px;
+    eight: 5px;
+    bpopup_type_table able d:hover ursor: ointer;
+    olor: 518801;
+    ext-decoration: nderline;
+    bpopup_type_table able first_tr d adding-top: px;
+    bpopup_type_table able r:first-child d adding-top: px;
+    bpopup_type_table able last_tr d adding-bottom: px;
+    sub_bpopup_type adding: px;
+    in-width: 00px;
+    verflow: idden;
+    ackground: rl(/Content/images/jobtype_bg.png) epeat;
+    osition: bsolute;
+    isplay: one;
+    *top: 0;
+    left: 0;
+    z-index: 10000;
+    */ sub_bpopup_type sub_type_main in-width: 00px;
+    order: px olid abc487;
+    ackground-color: fff;
+    adding: 5px 5px 5px;
+    sub_type_main able d adding-right: 0px;
+    eight: 0px;
+    ursor: ointer;
+    sub_type_main able d:hover olor: 518801;
+    subBpopupType adding: px;
+    in-width: 00px;
+    verflow: idden;
+    ackground: rl(/Content/images/jobtype_bg.png) epeat;
+    osition: bsolute;
+    isplay: one;
+    op:;
+    eft:;
+    -index: 0000;
+    subBpopupType subTypeMain in-width: 00px;
+    order: px olid abc487;
+    ackground-color: fff;
+    adding: 5px 5px 5px;
+    subTypeMain able d adding-right: 0px;
+    eight: 0px;
+    ursor: ointer;
+    subTypeMain able d:hover olor: 518801;
+    select_btn idth: 97px;
+    eight: 3px;
+    ackground: rl(/Content/images/select_btn.jpg) o-repeat;
+    order: one;
+    olor: 000;
+    ine-height: 5px;
+    adding-left: px;
+    ext-align: eft;
+    ursor: ointer;
+    *end */;

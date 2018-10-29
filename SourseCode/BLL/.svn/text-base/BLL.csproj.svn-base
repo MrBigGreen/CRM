@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{90AE47ED-B0D9-4B2A-A7AC-1C6D74B51DE6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CRM.BLL</RootNamespace>
+    <AssemblyName>BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\DAL\bin\Debug\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseBLL.cs" />
+    <Compile Include="Framework\AccountBLL.cs" />
+    <Compile Include="Framework\DataOfDiffrent.cs" />
+    <Compile Include="Framework\ExceptionsHander.cs" />
+    <Compile Include="Framework\HomeBLL.cs" />
+    <Compile Include="Framework\NetSendMail.cs" />
+    <Compile Include="Framework\SysAnnouncementBLL.cs" />
+    <Compile Include="Framework\SysCodeTableHander.cs" />
+    <Compile Include="Framework\SysColumnFilterBLL.cs" />
+    <Compile Include="Framework\SysFieldHander.cs" />
+    <Compile Include="Framework\SysMenuBLL.cs" />
+    <Compile Include="Framework\SysMenuSysRoleSysOperationBLL.cs" />
+    <Compile Include="JobInfoBLL.cs" />
+    <Compile Include="PayReportBLL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SysEmailBLL.cs" />
+    <Compile Include="SysEmailTempBLL.cs" />
+    <Compile Include="SysMessageBLL.cs" />
+    <Compile Include="SysMessageTempBLL.cs" />
+    <Compile Include="SysPersonBLL.cs" />
+    <Compile Include="SysMenuBLL.cs" />
+    <Compile Include="SysRoleBLL.cs" />
+    <Compile Include="SysLogBLL.cs" />
+    <Compile Include="SysExceptionBLL.cs" />
+    <Compile Include="SysFieldBLL.cs" />
+    <Compile Include="FileUploaderBLL.cs" />
+    <Compile Include="SysOperationBLL.cs" />
+    <Compile Include="SysMenuSysRoleSysOperationBLL.cs" />
+    <Compile Include="SysDepartmentBLL.cs" />
+    <Compile Include="SysAnnouncementBLL.cs" />
+    <Compile Include="SysDocumentBLL.cs" />
+    <Compile Include="SysDocumentTalkBLL.cs" />
+    <Compile Include="SysNoticeBLL.cs" />
+    <Compile Include="TBBillingBLL.cs" />
+    <Compile Include="TBCallLogBLL.cs" />
+    <Compile Include="TBCompanyBLL.cs" />
+    <Compile Include="TBContractBLL.cs" />
+    <Compile Include="TBCustomerAttributionChangeBLL.cs" />
+    <Compile Include="TBCustomerBLL.cs" />
+    <Compile Include="TBCustomerContactBLL.cs" />
+    <Compile Include="TBCustomerFollowBLL.cs" />
+    <Compile Include="TBCustomerProjectBLL.cs" />
+    <Compile Include="TBCustomerRatingBLL.cs" />
+    <Compile Include="TBCustomerServiceBLL.cs" />
+    <Compile Include="TBCustomerShareBLL.cs" />
+    <Compile Include="TBRPOPerformanceBLL.cs" />
+    <Compile Include="TBSalesPerformanceBLL.cs" />
+    <Compile Include="TPEmployeesBLL.cs" />
+    <Compile Include="TPHousingFundBLL.cs" />
+    <Compile Include="TPSalaryDetailsBLL.cs" />
+    <Compile Include="TPSalaryItemBLL.cs" />
+    <Compile Include="TPSocialInsurBLL.cs" />
+    <Compile Include="TPSubjectsAuthorityBLL.cs" />
+    <Compile Include="UnCallBLL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{ade2ca10-f91e-4312-ba9d-5d264291e549}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{d1ac05a2-96af-4124-ad40-ad0a05c84f5c}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IBLL\IBLL.csproj">
+      <Project>{9b7fca89-a8a4-4fa8-b67b-0bf0fe9c53cd}</Project>
+      <Name>IBLL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\EntityFramework.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

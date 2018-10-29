@@ -1,0 +1,253 @@
+﻿@model CRM.DAL.TB_Customer
+@using Common
+@using Models
+
+
+@section CurentPlace {
+    修改
+}
+@using (Html.BeginForm("Edit", "Customer", FormMethod.Post, new { id = "EditForm" }))
+{
+    <div class="bigdiv">
+        @Html.HiddenFor(model => model.CustomerID)
+        @Html.HiddenFor(model => model.ReleaseState)
+        @Html.HiddenFor(model => model.IsRegister)
+        @Html.HiddenFor(model => model.CompanyCertification)
+        @Html.HiddenFor(model => model.BelongingDate)
+        @Html.HiddenFor(model => model.RelieveDate)
+        @Html.HiddenFor(model => model.IsFrozen)
+        @Html.HiddenFor(model => model.IsDelete)
+        @Html.HiddenFor(model => model.VersionNo)
+        @Html.HiddenFor(model => model.CreatedBy)
+        @Html.HiddenFor(model => model.CreatedTime)
+        @Html.HiddenFor(model => model.LastUpdatedBy)
+        @Html.HiddenFor(model => model.LastUpdatedTime)
+        @Html.HiddenFor(model => model.FollowUpDate)
+        @Html.HiddenFor(model => model.IsCertification)
+        @Html.HiddenFor(model => model.SocialRecruitingQty)
+        @Html.HiddenFor(model => model.SchoolRecruitingQty)
+        @Html.HiddenFor(model => model.SysPersonID)
+        @Html.HiddenFor(model => model.ContactPerson)
+        @Html.HiddenFor(model => model.ContactPhone)
+        @Html.HiddenFor(model => model.ContactTel)
+        @Html.HiddenFor(model => model.EmailAddress)
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td class="td-label">@Html.LabelFor(model => model.CustomerName)：</td>
+                <td class="td-field">
+                    <div style="display: inline-block">
+                        @Html.TextBoxFor(model => model.CustomerName, new { @readOnly = "true", Class = "text-box single-line", style = "background-color: rgba(226, 226, 226, 1);" })
+                        @Html.ValidationMessageFor(model => model.CustomerName)
+                        @*<input type="button" id="btnBinding" value="绑定" onclick="openDialog();" />*@
+                    </div>
+                </td>
+
+
+                <td class="td-label">@Html.LabelFor(model => model.EstablishDate)：</td>
+                <td class="td-field">
+                    @Html.TextBox("EstablishDate", ((Model != null && Model.EstablishDate != null) ? Model.EstablishDate.ToString().AsDateTime().ToString("yyyy-MM-dd") : ""), new { style = "width: 244px;", @class = "easyui-datebox" })
+                    @Html.ValidationMessageFor(model => model.EstablishDate)
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.CustomerLevel)：</td>
+                <td class="td-field">
+                    @Html.DropDownListFor(model => model.CustomerLevel, Models.SysFieldModels.GetSysFieldByParentID("1506121613241983616c78e696559"), "--请选择--")
+                    @Html.ValidationMessageFor(model => model.CustomerLevel)
+                </td>
+                <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.CompanyNatureCode)：</td>
+                <td class="td-field">
+                    @Html.DropDownListFor(model => model.CompanyNatureCode, Models.SysFieldModels.GetSysFieldByParentID("160713095717572021040ac383027"), "--请选择--")
+                    @Html.ValidationMessageFor(model => model.CompanyNatureCode)
+                </td>
+            </tr>
+            <tr>
+                <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.RegisterCapital)：</td>
+                <td class="td-field">
+                    @Html.DropDownListFor(model => model.RegisterCapital, Models.SysFieldModels.GetSysFieldByParentID("1607131000531739012f5b0912c4e"), "--请选择--")
+                    @Html.ValidationMessageFor(model => model.RegisterCapital)
+                </td>
+                <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.SalesRevenue)：</td>
+                <td class="td-field">
+                    @Html.DropDownListFor(model => model.SalesRevenue, Models.SysFieldModels.GetSysFieldByParentID("160713105050333696171810f2300"), "--请选择--")
+                    @Html.ValidationMessageFor(model => model.SalesRevenue)
+                </td>
+            </tr>
+            <tr>
+                <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.VocationCode)：</td>
+                <td class="td-field">
+                    @Html.DropDownListFor(model => model.VocationCode, Models.SysFieldModels.GetSysFieldByParentID("1607131049411558386f229d2e7c5"), "--请选择--")
+                    @Html.ValidationMessageFor(model => model.VocationCode)
+                </td>
+                <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.CompanySize)：</td>
+                <td class="td-field">
+                    @Html.DropDownListFor(model => model.CompanySize, Models.SysFieldModels.GetSysFieldByParentID("1607131044342478062a35dfcf219"), "--请选择--")
+                    @Html.ValidationMessageFor(model => model.CompanySize)
+                </td>
+
+            </tr>
+            <tr>
+
+                <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.ProvinceCode)：</td>
+                <td class="td-field">
+                    @*<select class="easyui-combobox" id="Province" name="Province" style="width:120px;" data-options="required:false"></select>*@
+                    <select class="easyui-combobox" id="Province" name="Province" style="width:120px;" data-options="required:true" validtype="comboxValidate['Province','请选择']"></select>
+                    @Html.HiddenFor(model => model.ProvinceCode)
+                    @Html.HiddenFor(model => model.ProvinceName)
+                    @Html.ValidationMessageFor(model => model.ProvinceCode)
+
+                </td>
+                <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.CityCode)：</td>
+                <td class="td-field">
+                    @*<select class="easyui-combobox" id="City" name="City" style="width:120px;" data-options="required:false"></select>*@
+                    <select class="easyui-combobox" id="City" name="City" style="width:120px;" data-options="required:true" validtype="comboxValidate['City','请选择']"></select>
+                    @Html.HiddenFor(model => model.CityCode)
+                    @Html.HiddenFor(model => model.CityName)
+                    @Html.ValidationMessageFor(model => model.CityCode)
+                </td>
+            </tr>
+            <tr>
+                <td class="td-label">@Html.LabelFor(model => model.DistrictCode)：</td>
+                <td class="td-field">
+                    <select class="easyui-combobox" id="District" name="District" style="width:120px;" data-options="required:false"></select>
+                    @Html.HiddenFor(model => model.DistrictCode)
+                    @Html.HiddenFor(model => model.DistrictName)
+                    @Html.ValidationMessageFor(model => model.DistrictCode)
+                </td>
+                <td class="td-label">@Html.LabelFor(model => model.AddressDetails)：</td>
+                <td class="td-field">
+                    @Html.EditorFor(model => model.AddressDetails)
+                    @Html.ValidationMessageFor(model => model.AddressDetails)
+                </td>
+            </tr>
+            <tr>
+                <td class="td-label">@Html.LabelFor(model => model.CustomerSource)：</td>
+                <td class="td-field">
+                    @Html.DropDownListFor(model => model.CustomerSource, Models.SysFieldModels.GetSysFieldById("TB_Customer", "CustomerSource"), "--请选择--")
+                    @Html.ValidationMessageFor(model => model.CustomerSource)
+                </td>
+                <td class="td-label">@Html.LabelFor(model => model.PositionLink)：</td>
+                <td class="td-field">
+                    @Html.EditorFor(model => model.PositionLink)
+                    @Html.ValidationMessageFor(model => model.PositionLink)
+                </td>
+            </tr>
+            <tr>
+                <td class="td-label">@Html.LabelFor(model => model.HomePage)：</td>
+                <td class="td-field" colspan="3">
+                    @Html.TextBoxFor(model => model.HomePage, new { style = "width:650px;" })
+                    @Html.ValidationMessageFor(model => model.HomePage)
+                </td>
+            </tr>
+            <tr>
+                <td class="td-label"><span class="red">*</span>@Html.LabelFor(model => model.Comments)：</td>
+                <td class="textarea-box" colspan="3">
+                    @Html.TextAreaFor(model => model.Comments)
+                    @Html.ValidationMessageFor(model => model.Comments)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+
+                        <a class="easyui-linkbutton" id="ContactSave" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+                           onclick="GetSave();">保存</a>
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+        <br style="clear: both;" />
+
+    </div>
+}
+
+<div id="selectCompany" class="easyui-window" title="Modal Window" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width:500px;height:200px;padding:10px; text-align:center">
+</div>
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script type="text/javascript" src="/Scripts/jquery.bpopup-0.7.0.min.js"> </script>
+<script type="text/javascript" src="/Scripts/type-bpopup_fuc.js"> </script>
+<script type="text/javascript" src="/Scripts/Customer/Edit.js"> </script>
+<script type="text/javascript" src="/Scripts/Customer/Basic.js"> </script>
+
+<script type='text/javascript'>
+    function GetSave() {
+
+        var CompanyNatureCode = $("#CompanyNatureCode").val();
+        if (CompanyNatureCode == "") {
+            $.messager.alert('操作提示', '请选择企业性质！', 'warning');
+            return false;
+        }
+
+
+        var RegisterCapital = $("#RegisterCapital").val();
+        if (RegisterCapital == "") {
+            $.messager.alert('操作提示', '请选择注册资金！', 'warning');
+            return false;
+        }
+
+        var SalesRevenue = $("#SalesRevenue").val();
+        if (SalesRevenue == "") {
+            $.messager.alert('操作提示', '请选择销售收入！', 'warning');
+            return false;
+        }
+
+
+        var vocationCode = $("#VocationCode").val();
+        if (vocationCode == "") {
+            $.messager.alert('操作提示', '请选择所属行业！', 'warning');
+            return false;
+        }
+
+        var CompanySize = $("#CompanySize").val();
+        if (CompanySize == "") {
+            $.messager.alert('操作提示', '请选择公司规模！', 'warning');
+            return false;
+        }
+
+        var comments = $("#Comments").val();
+        if (comments == "") {
+            $.messager.alert('操作提示', '公司简介不能为空！', 'warning');
+            return false;
+        }
+        if ($("form").valid()) {
+            $.ajax({
+                url: "/Customer/Edit",
+                type: "Post",
+                data: $("form").serialize(),
+                dataType: "json",
+                success: function (data) {
+
+                    if ($.messager) {
+                        //$.messager.defaults.ok = '确定';
+                        //$.messager.defaults.cancel = '继续';
+                        //$.messager.confirm('操作提示', data, function (r) {
+                        //    if (r) {
+                        //        window.location.reload();// = '/Customer/Self';
+                        //    }
+                        //});
+                        $.messager.alert("操作提示", data, "info", function () {
+                            location.reload();
+                        });
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(XMLHttpRequest.status);
+                    console.log(XMLHttpRequest.readyState);
+                    console.log(textStatus);
+                }
+            });
+        }
+    }
+
+    $(function () {
+        $('.easyui-combobox').combobox({
+            width: 243
+        });
+
+        //按钮样式
+        $('.a2').mouseover(function () { this.style.color = "#ae1121"; }).mouseout(function () { this.style.color = "#333"; });
+
+    });
+</script>

@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BridgehrKit/!svn/ver/9188/VISS/solution/WebSrc/CRM/SourseCode/DAL/Framework
+END
+IBaseEntity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/DAL/Framework/IBaseEntity.cs
+END
+SysMessageTempMeta.cs
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/DAL/Framework/SysMessageTempMeta.cs
+END
+SysCodeTableRepository.cs
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BridgehrKit/!svn/ver/7183/VISS/solution/WebSrc/CRM/SourseCode/DAL/Framework/SysCodeTableRepository.cs
+END
+SysColumnFilterRepository.cs
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BridgehrKit/!svn/ver/9188/VISS/solution/WebSrc/CRM/SourseCode/DAL/Framework/SysColumnFilterRepository.cs
+END
+SysEmailTempMeta.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BridgehrKit/!svn/ver/5119/VISS/solution/WebSrc/CRM/SourseCode/DAL/Framework/SysEmailTempMeta.cs
+END
+SysMenuSysRoleSysOperationRepository.cs
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/BridgehrKit/!svn/ver/5128/VISS/solution/WebSrc/CRM/SourseCode/DAL/Framework/SysMenuSysRoleSysOperationRepository.cs
+END
+BaseViewRepository.cs
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BridgehrKit/!svn/ver/5128/VISS/solution/WebSrc/CRM/SourseCode/DAL/Framework/BaseViewRepository.cs
+END
+SysAnnouncementRepository.cs
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BridgehrKit/!svn/ver/5128/VISS/solution/WebSrc/CRM/SourseCode/DAL/Framework/SysAnnouncementRepository.cs
+END
+BaseRepository.cs
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BridgehrKit/!svn/ver/5128/VISS/solution/WebSrc/CRM/SourseCode/DAL/Framework/BaseRepository.cs
+END

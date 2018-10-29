@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/FlowManage
+END
+WFSchemeContentService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/FlowManage/WFSchemeContentService.cs
+END
+WFSchemeInfoService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/FlowManage/WFSchemeInfoService.cs
+END
+WFProcessOperationHistoryService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/FlowManage/WFProcessOperationHistoryService.cs
+END
+WFDelegateRuleService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/FlowManage/WFDelegateRuleService.cs
+END
+WFProcessInstanceService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/FlowManage/WFProcessInstanceService.cs
+END
+WFProcessSchemeService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/FlowManage/WFProcessSchemeService.cs
+END
+WFRuntimeService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/FlowManage/WFRuntimeService.cs
+END
+WFDelegateRecordService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/FlowManage/WFDelegateRecordService.cs
+END
+WFFrmMainService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/FlowManage/WFFrmMainService.cs
+END
+WFProcessTransitionHistoryService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Service/FlowManage/WFProcessTransitionHistoryService.cs
+END

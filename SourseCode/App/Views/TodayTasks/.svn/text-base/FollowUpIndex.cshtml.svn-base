@@ -1,0 +1,147 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_Customer
+@{ Layout = "~/Views/Shared/Index.cshtml"; }
+
+<div class="easyui-panel" id="panelShow" title="查询栏" iconcls="icon-search" collapsible="true" style="height:auto;width:auto">
+    <input type="hidden" id="SysPersonID" name="SysPersonID" value="@ViewBag.SysPersonID" />
+    <table id="ttSearch" class="record">
+        <tr>
+            <th>通话日期</th>
+            <td>
+                <input class="easyui-datebox" id="StartDate" name="StartDate" editable="false" style="width:100px" />&nbsp;&nbsp;到&nbsp;&nbsp;
+                <input class="easyui-datebox" id="EndDate" name="EndDate" editable="false" style="width:100px" />
+            </td>
+        </tr>
+        <tr>
+            <th>是否接通</th>
+            <td>
+                <a href="#" class="user_btn easyui-linkbutton" id="cType" rel="userIsLine" data-value="">不限</a>&nbsp;&nbsp;&nbsp;
+                <a href="#" class="user_btn easyui-linkbutton" rel="userIsLine" data-value="1">是</a>&nbsp;&nbsp;&nbsp;
+                <a href="#" class="user_btn easyui-linkbutton" rel="userIsLine" data-value="2">否</a>
+                <input type="hidden" id="ContactState" name="ContactState" />
+            </td>
+        </tr>
+        <tr>
+            @if (ViewBag.PersonList != null)
+            {
+                <th>跟进人</th>
+                <td>
+                    @*<a href="#" class="user_btn easyui-linkbutton" id="pType" rel="userCallPerson" data-value="0" onclick="AddCheckClass()">不限</a>&nbsp;&nbsp;&nbsp;
+                            @{
+                        var tp = (List<CRM.DAL.SysPerson>)ViewBag.TeamPersons;
+                        foreach (var item in tp)
+                        {
+
+                            <input type="checkbox" rel="userCallPerson" data-value="@item.Id" id="@item.Id" onclick="RemoveCheckClass()"><label for="@item.Id">@item.MyName</label><span>&nbsp;&nbsp; &nbsp;</span>
+
+                        }
+                            }*@
+
+                    @if (ViewBag.PersonList != null)
+                    {
+                        <label>
+                            @Html.CheckBoxList("SysPersonIdList", (IEnumerable<SelectListItem>)ViewBag.PersonList, false)
+
+                        </label>
+                    }
+                    else
+                    {
+                        @*<iframe id="iframeDeptTree" frameborder="0" scrolling="no" src="../SysDepartmentTree/selected" style="width: 90%; height: 300px;"></iframe>*@
+                        @Html.Action("Selected", "SysDepartmentTree")
+                    }
+                </td>
+            }
+        </tr>
+        <tr>
+            <th>客户进程</th>
+            <td>
+                <input id="CustomerFunnel" name="CustomerFunnel" style="width:150px" value="--请选择--" />
+            </td>
+        </tr>
+        <tr>
+            <th>城市</th>
+            <td>
+                <input type="button" class="select_btn" id="btnCityName" name="btnCityName" value="选择城市" />
+                <input type="hidden" id="CityCode" name="CityCode" value="" />
+                <input type="hidden" id="CityName" name="CityName" value="" />
+            </td>
+        </tr>
+        <tr>
+            <th>查询条件</th>
+            <td>
+                <input id="Keyword" name="Keyword" type="text" style="width: 200px;" />&nbsp;&nbsp;<input id="BackRemark" name="BackRemark" type="text" style="width: 200px;" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center">
+                <input type="button" id="todaySearch" style="width: 80px;" onclick="SearchToday()" value="搜索">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" id="btnClear" style="width: 80px;" onclick="RemvoeAll()" value="清空">
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="easyui-panel" style="height:auto;" collapsible="true">
+    <div id="worktabs" class="easyui-tabs" border="false">
+        <div title="电话跟进" iconcls="icon-edit" id="divCall">
+            <table id="call"></table>
+        </div>
+        <div title="当面约谈" iconcls="icon-edit" id="divMeet">
+            <table id="meeting"></table>
+        </div>
+    </div>
+</div>
+
+@*电话跟进*@
+<div id="tb" style="padding:3px;height:24px">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" plain="true" onclick="allCallSelect()" style="float: left; margin-right: 20px;">全选</a>&nbsp; &nbsp;
+
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-excel" plain="true" onclick="CallExportInfo()" style="float: left; margin-right: 20px;">导出</a>
+</div>
+@*电话跟进end*@
+
+@*当面约谈*@
+<div id="tbb" style="padding:5px;height:auto">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" plain="true" onclick="allMeetingSelect()" style="float: left; margin-right: 20px;">全选</a>&nbsp; &nbsp;
+
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-excel" plain="true" onclick="MeetingExportInfo()" style="float: left; margin-right: 20px;">导出</a>
+</div>
+@*当面约谈end*@
+
+@*查看公司详情*@
+<div id="w_companyInfo" class="easyui-dialog" iconcls="icon-search" style="width: 980px; height: 480px;
+    padding: 5px; overflow: auto;" closed="true" title="公司详情">
+    <iframe id="companyInfoiframe" frameborder="0" width="100%" height="100%"></iframe>
+</div>
+@*查看公司详情end*@
+
+@*查看跟进记录*@
+<div id="w_followInfo" class="easyui-dialog" iconcls="icon-search" style="width: 1220px; height: 480px;
+    padding: 5px; overflow: auto;" closed="true" title="跟进记录">
+    <div class="easyui-layout" fit="true">
+        <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
+            <iframe id="followInfoiframe" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+</div>
+@*查看跟进记录end*@
+
+
+@*查看跟进记录*@
+<div id="w_callRecording" class="easyui-dialog" iconcls="icon-search" style="width: 490px; height: 140px;
+    padding: 5px; overflow: auto;" closed="true" title="录音">
+    <div class="easyui-layout" fit="true">
+        <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
+            <iframe id="callRecordingiframe" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+</div>
+@*查看跟进记录end*@
+
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.watermark.min.js"></script>
+<script src="~/Scripts/jquery.bpopup-0.7.0.min.js"></script>
+<script src="~/Scripts/type-bpopup_fuc.js" type="text/javascript"></script>
+<script src="~/Scripts/TodayTasks/FollowUpIndex.js" type="text/javascript"></script>
+<link href="~/Content/TodayTasks/FollowUpIndex.css" rel="stylesheet" />

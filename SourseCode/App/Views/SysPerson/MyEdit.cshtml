@@ -1,0 +1,183 @@
+﻿@model CRM.DAL.SysPerson
+
+@{
+    Layout = "~/Views/Shared/_Edit.cshtml";
+}
+@using Common
+@using Models
+@section CurentPlace {
+    修改
+}
+
+<fieldset>
+    <legend>
+
+    </legend>
+    <div class="bigdiv">
+
+
+        <div style="float:right; width:379px;height:184px;">
+            <img id="showPic" src="~/Images/noPic.jpg" width="149" height="175" />
+            <div style="float:left">
+                <div id="uploader-demo">
+                    <!--用来存放item-->
+                    <div id="fileList" style="display:none;" class="uploader-list"></div>
+                    <div id="filePicker">上传头像</div>
+                </div>
+            </div>
+        </div>
+
+
+        @Html.HiddenFor(model => model.Id)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)：
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Name, new { disabled = "disabled", @readonly = "readonly", @class = "text-box single-line valid" })
+            @Html.HiddenFor(model => model.Name)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MyName)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MyName)
+            @Html.ValidationMessageFor(model => model.MyName)
+            @Html.HiddenFor(model => model.Password)
+            @Html.HiddenFor(model => model.SurePassword)
+            @Html.HiddenFor(model => model.Position)
+            @Html.HiddenFor(model => model.LogonTime)
+            @Html.HiddenFor(model => model.LogonIP)
+            @Html.HiddenFor(model => model.CustomerCeiling)
+            @Html.HiddenFor(model => model.IsDelete)
+            @Html.HiddenFor(model => model.VersionNo)
+            @Html.HiddenFor(model => model.UpdatePerson)
+            @Html.HiddenFor(model => model.UpdateTime)
+            @Html.HiddenFor(model => model.PageStyle)
+            @Html.HiddenFor(model => model.LastLogonIP)
+            @Html.HiddenFor(model => model.LastLogonTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sex)：
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Sex, Models.SysFieldModels.GetSysField("SysPerson", "Sex"), "请选择")
+        </div>
+        <div class="editor-label">
+            @*<a class="anUnderLine" onclick="showModalOnly('SysDepartmentId','../../SysDepartment');">
+                    @Html.LabelFor(model => model.SysDepartmentId)
+                </a>：*@
+            @Html.LabelFor(model => model.SysDepartmentId)
+        </div>
+        <div class="editor-field">
+            <div id="checkSysDepartmentId">
+                @if (Model != null)
+                {
+                    if (null != Model.SysDepartmentId)
+                    {
+                        <table id="@Model.SysDepartmentId"
+                               class="deleteStyle">
+                            <tr>
+                                <td></td>
+                                <td style="display: inline-block; cursor: pointer; color: blue;">
+                                    @Model.SysDepartment.Name
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                }
+            </div>
+            @Html.HiddenFor(model => model.SysDepartmentId)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EnglishName)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EnglishName)
+            @Html.ValidationMessageFor(model => model.EnglishName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CompanyQQ)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CompanyQQ)
+            @Html.ValidationMessageFor(model => model.CompanyQQ)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MobilePhoneNumber)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MobilePhoneNumber)
+            @Html.ValidationMessageFor(model => model.MobilePhoneNumber)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Telephone)：
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Telephone, new { @Style = "width:160px" }) -
+            @Html.TextBoxFor(model => model.TelephoneExt, new { @style = "width:60px" })
+            @Html.ValidationMessageFor(model => model.Telephone)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailAddress)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EmailAddress)
+            @Html.ValidationMessageFor(model => model.EmailAddress)
+        </div>
+        <div style=" display:none">
+            @Html.RadioButtonListFor(model => model.State, Models.SysFieldModels.GetSysField("SysPerson", "State"), false)
+        </div>
+        @*<div class="editor-label">
+                @Html.LabelFor(model => model.CustomerCeiling)：
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.CustomerCeiling, Models.SysFieldModels.GetSysFieldValueByParentID("1507211652160012567cb8396adce"))
+            </div>*@
+        <br style="clear: both;" />
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Remark)：
+        </div>
+        <div class="textarea-box">
+            @Html.TextAreaFor(model => model.Remark)
+            @Html.ValidationMessageFor(model => model.Remark)
+        </div>
+        @Html.HiddenFor(model => model.CreateTime)
+        @Html.HiddenFor(model => model.CreatePerson)
+    </div>
+
+    @Html.HiddenFor(model => model.HDpic)
+    <input type="hidden" id="OldPic" name="OldPic" value="@(ViewBag.OldPic)" />
+    <input type="hidden" id="fileUrl" value="HDpic" />
+    <div style="width:100%; text-align:center"><input class="a2 f2" type="submit" value="保存" /></div>
+
+
+    <script type="text/javascript" src="@Url.Content("~/Res/webuploader/js/webuploader.nolog.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/UploadFile.js")"></script>
+</fieldset>
+
+@section HeadContent{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Res/webuploader/css/webuploader.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Res/webuploader/images/style.css")" />
+}
+<script type="text/javascript">
+
+    $(function () {
+        var pic = $("#HDpic").val();
+        if (pic == '') {
+            $("#showPic").attr("src", "/Images/noPic.jpg")
+        } else {
+            $("#showPic").attr("src", pic);//显示头像图片
+        }
+        $("#Province").change(function () { getCity("#City"); });
+
+
+        $("#City").change(function () { getVillage("#Village"); });
+
+
+    });
+
+</script>
+
+

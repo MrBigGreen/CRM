@@ -1,0 +1,70 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.SysNotice
+
+@{
+    ViewBag.Title = "通知内容";
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<style>
+    .display-field {
+        height: auto;
+        width: 400px;
+    }
+
+    textarea {
+        height: 160px;
+        width: 380px;
+    }
+
+    input {
+        width: 480px;
+    }
+
+    .display-field {
+        height: auto;
+        width: 400px;
+    }
+</style>
+
+<div class="bigdiv">
+    @Html.HiddenFor(model => model.Id)
+    <div class="display-label">
+        @Html.LabelFor(model => model.Title)：
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+    <br style="clear: both;" />
+    <div class="display-label">
+        @Html.LabelFor(model => model.Message)：
+    </div>
+    <div class="display-field">
+        @Html.TextAreaFor(model => model.Message, new { @readonly = "readonly" })
+    </div>
+    <br style="clear: both;" />
+    <div class="display-label">
+        @Html.LabelFor(model => model.CreateTime)：
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreateTime)
+    </div>
+    <br style="clear: both;" />
+    <div class="display-label">
+        @Html.LabelFor(model => model.CreatePerson)：
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreatePersonName)
+    </div>
+    <br style="clear: both;" />
+    <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+
+        &nbsp;&nbsp;&nbsp;
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+           onclick="$('.easyui-window').window('close');">关 闭</a>
+    </div>
+</div>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+

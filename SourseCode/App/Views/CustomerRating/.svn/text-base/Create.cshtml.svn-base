@@ -1,0 +1,79 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_CustomerRating
+
+@{
+    ViewBag.Title = "等级评价";
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+
+<style>
+    textarea {
+        height: 160px;
+        width: 480px;
+    }
+
+    input {
+        width: 480px;
+    }
+
+    .display-field {
+        height: auto;
+        width: 500px;
+    }
+</style>
+
+<div class="bigdiv">
+    @Html.HiddenFor(model => model.CustomerID)
+    @Html.HiddenFor(model => model.CustomerRatingID)
+
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.CompanyNatureCode)：
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.CompanyNatureCode, Models.SysFieldModels.GetSysFieldByParentID("160713095717572021040ac383027"),"--请选择--")
+        @Html.ValidationMessageFor(model => model.CompanyNatureCode)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.RegisterCapital)：
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.RegisterCapital, Models.SysFieldModels.GetSysFieldByParentID("1607131000531739012f5b0912c4e"), "--请选择--")
+        @Html.ValidationMessageFor(model => model.RegisterCapital)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.SalesRevenue)：
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.SalesRevenue, Models.SysFieldModels.GetSysFieldByParentID("160713105050333696171810f2300"), "--请选择--")
+        @Html.ValidationMessageFor(model => model.SalesRevenue)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.ContractPeriod)：
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.ContractPeriod, Models.SysFieldModels.GetSysFieldByParentID("16071310551483336689691033b53"), "--请选择--")
+        @Html.ValidationMessageFor(model => model.ContractPeriod)
+    </div>
+    <br style="clear: both;" />
+    <div class="editor-label">
+        <span class="red">*</span>@Html.LabelFor(model => model.OverdueAdvances)：
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.OverdueAdvances, Models.SysFieldModels.GetSysFieldByParentID("1607131114360284901a2bc39ea80"), "--请选择--")
+        @Html.ValidationMessageFor(model => model.OverdueAdvances)
+    </div>
+
+
+    <br style="clear: both;" />
+    <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+        <input class="a2 f2" type="submit" id="submit" value="提  交" />
+    </div>
+</div>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+

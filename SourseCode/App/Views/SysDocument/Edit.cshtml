@@ -1,0 +1,126 @@
+﻿@model CRM.DAL.SysDocument
+
+@{
+    Layout = "~/Views/Shared/Edit.cshtml";
+}
+@using Common
+@using Models
+ @section CurentPlace {
+    修改  
+}
+
+    <fieldset>
+        <legend>
+            <input class="a2 f2" type="submit" value="修改" />
+            <input class="a2 f2" type="button" onclick="BackList('SysDocument')" value="返回列表" />
+        </legend>
+        <div class="bigdiv">
+            @Html.HiddenFor(model => model.Id )      
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Path)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Path)
+                @Html.ValidationMessageFor(model => model.Path)
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FullPath)：
+            </div>
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.FullPath) 
+                @Html.ValidationMessageFor(model => model.FullPath) 
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Suffix)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Suffix)
+                @Html.ValidationMessageFor(model => model.Suffix)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Size) ：
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Size, new {  onkeyup = "isInt(this)", @class="text-box single-line" })
+                @Html.ValidationMessageFor(model => model.Size) 
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Remark)：
+            </div>
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.Remark) 
+                @Html.ValidationMessageFor(model => model.Remark) 
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Download) ：
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Download, new {  onkeyup = "isInt(this)", @class="text-box single-line" })
+                @Html.ValidationMessageFor(model => model.Download) 
+            </div>@Html.HiddenFor(model => model.CreateTime ) @Html.HiddenFor(model => model.CreatePerson )   
+        <div class="editor-label">
+            <a class="anUnderLine" onclick="showModalMany('SysPersonId','../../SysPerson');">
+                @Html.LabelFor(model => model.SysPersonId) 
+            </a>：
+        </div>
+        <div class="editor-field">
+            <div id="checkSysPersonId">
+                @{string ids11 = string.Empty;
+                if(Model!=null)
+                {
+                   foreach (var item11 in Model.SysPerson)
+                   {
+                       string item111 = string.Empty;
+                       item111 += item11.Id + "&" + item11.Name;
+                       if (ids11.Length > 0)
+                       {
+                           ids11 += "^" + item111;
+                       }
+                       else
+                       {
+                           ids11 += item111;
+                       }
+               
+                <table id="@item111"
+                    class="deleteStyle">
+                    <tr>
+                        <td>
+                            <img  alt="删除" title="点击删除" onclick="deleteTable('@item111','SysPersonId');"  src="../../../Images/deleteimge.png" />
+                        </td>
+                        <td>
+                            @item11.Name
+                        </td>
+                    </tr>
+                </table>
+                }} }
+                <input type="hidden" value="@ids11" name="SysPersonIdOld" id="SysPersonIdOld" />
+                <input type="hidden" value="@ids11" name="SysPersonId" id="SysPersonId" />
+            </div>
+        </div>
+        </div>
+    </fieldset>
+
+
+
+
+    <script type="text/javascript">
+
+        $(function () {
+            
+
+        });
+        
+
+    </script>
+
+
+

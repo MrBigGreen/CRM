@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/BridgehrKit/!svn/ver/13390/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/SystemManage/Controllers
+END
+AreaController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/BridgehrKit/!svn/ver/13390/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/SystemManage/Controllers/AreaController.cs
+END
+DataItemController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/SystemManage/Controllers/DataItemController.cs
+END
+DataBaseBackupController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 171
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/SystemManage/Controllers/DataBaseBackupController.cs
+END
+DataItemDetailController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 171
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/SystemManage/Controllers/DataItemDetailController.cs
+END
+DataBaseTableController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/SystemManage/Controllers/DataBaseTableController.cs
+END
+LogController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/SystemManage/Controllers/LogController.cs
+END
+CodeRuleController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/SystemManage/Controllers/CodeRuleController.cs
+END
+DataBaseLinkController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/SystemManage/Controllers/DataBaseLinkController.cs
+END
+DataItemListController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/SystemManage/Controllers/DataItemListController.cs
+END

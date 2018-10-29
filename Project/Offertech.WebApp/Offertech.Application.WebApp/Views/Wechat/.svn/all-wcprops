@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/BridgehrKit/!svn/ver/23740/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Wechat
+END
+ContractAdd.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/BridgehrKit/!svn/ver/13946/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Wechat/ContractAdd.cshtml
+END
+Index.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/BridgehrKit/!svn/ver/13863/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Wechat/Index.cshtml
+END
+ContractManager.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/BridgehrKit/!svn/ver/23740/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Wechat/ContractManager.cshtml
+END
+EditContacter.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/BridgehrKit/!svn/ver/14007/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Wechat/EditContacter.cshtml
+END
+Home.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/BridgehrKit/!svn/ver/23740/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Wechat/Home.cshtml
+END
+Login.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/BridgehrKit/!svn/ver/13986/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Wechat/Login.cshtml
+END
+Mytask.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/BridgehrKit/!svn/ver/13986/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Wechat/Mytask.cshtml
+END
+MyCustomers.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/BridgehrKit/!svn/ver/23740/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Wechat/MyCustomers.cshtml
+END
+RecordAndPlan.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/BridgehrKit/!svn/ver/14171/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Wechat/RecordAndPlan.cshtml
+END
+ProcessHistory.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/BridgehrKit/!svn/ver/23740/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Wechat/ProcessHistory.cshtml
+END
+CustomerHistory.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/BridgehrKit/!svn/ver/14002/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Wechat/CustomerHistory.cshtml
+END
+CustomerDetail.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/BridgehrKit/!svn/ver/23740/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Wechat/CustomerDetail.cshtml
+END
+TaskDetail.cshtml
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/BridgehrKit/!svn/ver/14171/VISS/solution/WebSrc/CRM/Project/Offertech.WebApp/Offertech.Application.WebApp/Views/Wechat/TaskDetail.cshtml
+END

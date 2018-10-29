@@ -1,0 +1,722 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>记录计划</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="~/Content/css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/app.css" />
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.picker.min.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.poppicker.css" />
+    <link rel="stylesheet" href="~/Content/css/multipleViews.css" />
+    <link rel="stylesheet" href="~/Content/css/mui.dtpicker.css" />
+    <link rel="stylesheet" href="~/Content/css/multipleViews.css" />
+    <style>
+        .record-plan .commit-btn {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body class="mui-fullscreen record-plan">
+    <!--页面主结构开始-->
+    <div id="app" class="mui-views">
+        <div class="mui-view">
+            <div class="mui-navbar">
+            </div>
+            <div class="mui-pages">
+            </div>
+        </div>
+    </div>
+
+    <!--单页面开始-->
+    <div id="setting" class="mui-page">
+        <!--------------------------导航栏区域---------------------->
+
+        <div class="mui-navbar-inner mui-bar mui-bar-nav">
+            <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+                <span class="mui-icon mui-icon-left-nav"></span>返回
+            </button>
+            <h1 class="mui-center mui-title" id="title">记录</h1>
+        </div>
+
+        <div class="mui-page-content">
+            <!--------------------------选择区域---------------------->
+            <div class="selectArea">
+                <div id="segmentedControl" class="mui-segmented-control segment">
+                    <a class="mui-control-item mui-active" id="segmentedItem1" href="#item1">记录</a>
+                    <a class="mui-control-item" id="segmentedItem2" href="#item2">计划</a>
+                </div>
+            </div>
+            <!----------------------主题内容展示区-------------------->
+            <div class="mui-content" style="padding-top: 56px;">
+                <!----------------------客户详情展示-------------------->
+                <div id="item1" class="mui-control-content mui-active record autoheight">
+                    <div class="mui-scroll-wrapper">
+                        <div class="mui-scroll">
+                            <form class="mui-input-form">
+                                <ul class="mui-table-view">
+                                    <li class="mui-table-view-cell">
+                                        <a class="mui-navigate-right">
+                                            <div class="mui-input-row" id="communicate-record">
+                                                <label class="cell-left">跟进方式</label>
+                                                <p class="cell-right" id="cummunicateText-record">请选择跟进方式</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="mui-table-view-cell">
+                                        <a class="mui-navigate-right">
+                                            <div class="mui-input-row" id="contacter-record">
+                                                <label class="cell-left">联系人</label>
+                                                <p class="cell-right" id="contacterText-record">请选择联系人</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="mui-table-view-cell">
+                                        <a class="mui-navigate-right">
+                                            <div class="mui-input-row" id="date-recordstart" data-options=''>
+                                                <label class="cell-left">开始时间</label>
+                                                <p class="cell-right" id="dateText-recordstart">选择跟进日期</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="mui-table-view-cell">
+                                        <a class="mui-navigate-right">
+                                            <div class="mui-input-row" id="date-recordend" data-options=''>
+                                                <label class="cell-left">结束时间</label>
+                                                <p class="cell-right" id="dateText-recordend">选择跟进日期</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="mui-table-view-cell">
+                                        <a class="mui-navigate-right" id='process-record'>
+                                            <div class="mui-input-row">
+                                                <label class="cell-left">销售阶段</label>
+                                                <p class="cell-right" id="processText-record">请选择阶段</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="mui-table-view-cell">
+                                        <a class="mui-navigate-right" id='' href="#account">
+                                            <div class="mui-input-row">
+                                                <label class="cell-left">推荐方案</label>
+                                                <p class="cell-right" id="recommendText-record">请选择推荐方案</p>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li class="activityRecord-cell">
+                                        <div class="mui-input-row activityRecord-content">
+                                            <span class="activityRecord-label">活动记录内容</span>
+                                            <textarea id="activity-record" rows="5" class="activityRecord-input" placeholder="可以输入活动内容..."></textarea>
+                                        </div>
+                                    </li>
+                                    <li class="upload-cell">
+                                        <div class="mui-input-row upload-content">
+                                            <img class="upload-image" id="uploadRecord" src="/Content/img/plan_camera.png" />
+                                            <p class="upload-title">请上传图片</p>
+                                        </div>
+                                        <div class="uploadimglist">
+                                            <ul id="list-img" class="mui-table-view mui-grid-view"></ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </form>
+                            <form enctype="multipart/form-data" id="uploadhead" class="mui-hidden">
+                                <input type="file" accept="image/*" name="hide-headimg" multiple="multiple" id="btnupload_record" onchange="changerecode(this)" />
+                            </form>
+                            <div>
+                                <button class="commit-btn" id="commitRecord">保&nbsp;存</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!----------------------计划展示-------------------->
+                <div id="item2" class="mui-control-content plan  mui-scroll-wrapper autoheight">
+                    <div class="mui-scroll-wrapper">
+                        <div class="mui-scroll">
+                            <form class="mui-input-form">
+                                <ul class="mui-table-view">
+                                    <li class="mui-table-view-cell">
+                                        <a class="mui-navigate-right">
+                                            <div class="mui-input-row" id="communicate-plan">
+                                                <label class="cell-left">跟进方式</label>
+                                                <p class="cell-right" id="cummunicateText-plan">请选择跟进方式</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="mui-table-view-cell">
+                                        <a class="mui-navigate-right">
+                                            <div class="mui-input-row" id="contacter-plan">
+                                                <label class="cell-left">联系人</label>
+                                                <p class="cell-right" id="contacterText-plan">请选择联系人</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="mui-table-view-cell">
+                                        <a class="mui-navigate-right" id='' href="#">
+                                            <div class="mui-input-row" id="begin-plan" >
+                                                <label class="cell-left">开始时间</label>
+                                                <p class="cell-right" id="beginText-plan">选择开始时间</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="mui-table-view-cell">
+                                        <a class="mui-navigate-right" id='' href="#">
+                                            <div class="mui-input-row" id="end-plan" >
+                                                <label class="cell-left">结束时间</label>
+                                                <p class="cell-right" id="endText-plan">选择结束时间</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="mui-table-view-cell">
+                                        <a class="mui-navigate-right" id='process-plan'>
+                                            <div class="mui-input-row">
+                                                <label class="cell-left">销售阶段</label>
+                                                <p class="cell-right" id="processText-plan">请选择阶段</p>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li class="activityRecord-cell">
+                                        <div class="mui-input-row activityRecord-content">
+                                            <span class="activityRecord-label">活动记录内容</span>
+                                            <textarea id="activity-plan" rows="5" class="activityRecord-input" placeholder="可以输入活动内容..."></textarea>
+                                        </div>
+                                    </li>
+                              
+                                </ul>
+                            </form>
+                           
+                            <div>
+                                <button class="commit-btn" id="commitPlan">保&nbsp;存</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!------------------------计划展示结束-------------------->
+            </div>
+        </div>
+    </div>
+    <div id="account" class="mui-page">
+        <div class="mui-navbar-inner mui-bar mui-bar-nav">
+            <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+                <span class="mui-icon mui-icon-left-nav"></span>返回
+            </button>
+            <h1 class="mui-center mui-title">推荐方案</h1>
+        </div>
+        <div class="mui-page-content">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <div class="mui-input-group" id="Descriptionlist">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="~/Content/Scripts/jquery-1.11.1.js"></script>
+    <script src="~/Content/Scripts/mui.min.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.view.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.picker.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.poppicker.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.dtpicker.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/lrz.mobile.min.js"></script>
+    <script>
+        mui.init({ });
+        //初始化单页view
+        var viewApi = mui('#app').view({
+            defaultPage: '#setting'
+        });
+        //初始化单页的区域滚动
+        mui('.mui-scroll-wrapper').scroll();
+        var view = viewApi.view;
+        (function ($) {
+            //处理view的后退与webview后退
+            var oldBack = $.back;
+            $.back = function () {
+                if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
+                    viewApi.back();
+                } else { //执行webview后退
+                    oldBack();
+ 
+                }
+            };
+            //监听页面切换事件方案1,通过view元素监听所有页面切换事件，目前提供pageBeforeShow|pageShow|pageBeforeBack|pageBack四种事件(before事件为动画开始前触发)
+            //第一个参数为事件名称，第二个参数为事件回调，其中e.detail.page为当前页面的html对象
+            view.addEventListener('pageBeforeShow', function (e) {
+                //				console.log(e.detail.page.id + ' beforeShow');
+            });
+            view.addEventListener('pageShow', function (e) {
+                //				console.log(e.detail.page.id + ' show');
+            });
+            view.addEventListener('pageBeforeBack', function (e) {
+                //				console.log(e.detail.page.id + ' beforeBack');
+                getcheckbox();
+            });
+            view.addEventListener('pageBack', function (e) {
+                //				console.log(e.detail.page.id + ' back');
+            });
+        })(mui);
+        $(function () {
+            $(".autoheight").height((document.body.offsetHeight - 110) + "px");
+        });
+        (function ($, doc) {
+            $.init();
+            $.ready(function () {
+                //---------------记录页面操作--------------------
+                
+                //1，跟进方式
+                var communicatePicker = new $.PopPicker({ title: "跟进方式" });
+                var communicateTextRecord = document.getElementById("cummunicateText-record");
+                communicatePicker.setData([
+                    {
+                        text: '电话',
+                        value: "1"
+                    }, {
+                        text: '拜访',
+                        value: "2"
+                    }, {
+                        text: '邮件',
+                        value: "3"
+                    }
+                ]);
+                var communicateRecord = document.getElementById("communicate-record");
+                communicateRecord.onclick = function () {
+                    communicatePicker.show(function (items) {
+                        communicateTextRecord.innerText = items[0].text;
+                        communicateTextRecord.setAttribute("data-value", items[0].value);
+                    });
+                };
+                //2,联系人
+                var contacterRecord = document.getElementById("contacter-record");
+                var contacterTextRecord = document.getElementById("contacterText-record");
+                contacterRecord.onclick = function () {
+                    $.ajax({
+                        type: "get",
+                        url: "GetCustomerContactJson",
+                        data: { customerId: localStorage.getItem("customerid"), keyword: "" },
+                        async: false,
+                        dataType: "json",
+                        success: function (data) {
+
+                            var picker = new $.PopPicker({ title: "联系人" });
+                            var arrayData = [];
+                            var contactlist = data.resultdata.rows
+                            for (var i = 0; i < contactlist.length; i++) {
+                                arrayData[i] = { text: contactlist[i].Contact, value: contactlist[i].Contact }
+                            }
+
+                            picker.setData(arrayData);
+                            picker.show(function (items) {
+                                contacterTextRecord.innerHTML = items[0].value;
+                            });
+                        },
+                        error: function (data) {
+                            mui.toast(data.responseText);
+                        }
+                    });
+                }
+                //3,开始时间
+                var dateRecordstart = document.getElementById("date-recordstart");
+                var dateTextRecordstart = document.getElementById("dateText-recordstart");
+                dateRecordstart.onclick = function () {
+                    var optionsJson = this.getAttribute('data-options') || '{}';
+                    var options = JSON.parse(optionsJson);
+                    var id = this.getAttribute('id');
+                    var picker = new $.DtPicker(options);
+                    picker.show(function(rs) {
+                        dateTextRecordstart.innerHTML = rs.text;
+                        picker.dispose();
+                    });
+                }
+                //4,结束时间
+                var dateRecordend = document.getElementById("date-recordend");
+                var dateTextRecordend = document.getElementById("dateText-recordend");
+                dateRecordend.onclick = function () {
+                    var optionsJson = this.getAttribute('data-options') || '{}';
+                    var options = JSON.parse(optionsJson);
+                    var id = this.getAttribute('id');
+                    var picker = new $.DtPicker(options);
+                    picker.show(function (rs) {
+                        dateTextRecordend.innerHTML = rs.text;
+                        picker.dispose();
+                    });
+                }
+                //4,客户进度
+                var processRecord = document.getElementById("process-record");
+                processRecord.onclick = function () {
+                    showPoppicker(this, "Client_SaleStage");
+                }
+                //推荐方案
+                $.ajax({
+                    type: "get",
+                    url: "/ClientData/GetDataItemListJson",
+                    data: { EnCode: "Client_ProductInfo" },
+                    async: false,
+                    dataType: "json",
+                    success: function (data) {
+                        var temphtml = "";
+                        for (var i = 0; i < data.length; i++) {
+                            temphtml += '<div class="mui-input-row mui-checkbox mui-left"><label>' + data[i].ItemName + '</label>' +
+                                '<input name="checkbox" value="' + data[i].ItemValue + '" type="checkbox"></div>';
+                        }
+                        document.getElementById("Descriptionlist").innerHTML = temphtml;
+                    },
+                    error: function (data) {
+                        mui.toast(data.responseText);
+                    }
+                });
+                //6，点击上传照片
+                var cameraRecord = document.getElementById("uploadRecord");
+                cameraRecord.onclick = function () {
+                    document.getElementById("btnupload_record").click();
+                }
+ 
+
+                //------------------------计划页面操作绑定-----------------------//
+                //1，跟进方式
+                var communicateTextPlan = document.getElementById("cummunicateText-plan");
+                var communicatePickerplan = new $.PopPicker({ title: "跟进方式" });
+                communicatePickerplan.setData([
+                    {
+                        text: '电话',
+                        value: "1"
+                    }, {
+                        text: '拜访',
+                        value: "2"
+                    }, {
+                        text: '邮件',
+                        value: "3"
+                    }
+                ]);
+                var communicatePlan = document.getElementById("communicate-plan");
+                communicatePlan.onclick = function () {
+                    communicatePickerplan.show(function (items) {
+                        communicateTextPlan.innerText = items[0].text;
+                        communicateTextPlan.setAttribute("data-value", items[0].value);
+                    });
+                };
+                //2,联系人
+                var contacterplan = document.getElementById("contacter-plan");
+                var contacterTextplan = document.getElementById("contacterText-plan");
+                contacterplan.onclick = function () {
+                    $.ajax({
+                        type: "get",
+                        url: "GetCustomerContactJson",
+                        data: { customerId: localStorage.getItem("customerid"), keyword: "" },
+                        async: false,
+                        dataType: "json",
+                        success: function (data) {
+
+                            var picker = new $.PopPicker({ title: "联系人" });
+                            var arrayData = [];
+                            var contactlist = data.resultdata.rows
+                            for (var i = 0; i < contactlist.length; i++) {
+                                arrayData[i] = { text: contactlist[i].Contact, value: contactlist[i].Contact }
+                            }
+
+                            picker.setData(arrayData);
+                            picker.show(function (items) {
+                                contacterTextplan.innerHTML = items[0].value;
+                            });
+                        },
+                        error: function (data) {
+                            mui.toast(data.responseText);
+                        }
+                    });
+                }
+                
+                //3,开始时间
+                var beginplan = document.getElementById("begin-plan");
+                var beginTextplan = document.getElementById("beginText-plan");
+                beginplan.onclick = function () {
+                    var optionsJson = this.getAttribute('data-options') || '{}';
+                    var options = JSON.parse(optionsJson);
+                    var id = this.getAttribute('id');
+                    var picker = new $.DtPicker(options);
+                    picker.show(function(rs) {
+                        beginTextplan.innerHTML = rs.text;
+                        picker.dispose();
+                    });
+                }
+                //4,结束时间
+                var endplan = document.getElementById("end-plan");
+                var endTextplan = document.getElementById("endText-plan");
+                endplan.onclick = function () {
+                    var optionsJson = this.getAttribute('data-options') || '{}';
+                    var options = JSON.parse(optionsJson);
+                    var id = this.getAttribute('id');
+                    var picker = new $.DtPicker(options);
+                    picker.show(function (rs) {
+                        endTextplan.innerHTML = rs.text;
+                        picker.dispose();
+                    });
+                }
+                //4,客户进度
+                var processplan = document.getElementById("process-plan");
+                processplan.onclick = function () {
+                    showPoppicker(this, "Client_SaleStage");
+                }
+
+                //5，点击上传照片
+                // var cameraplan = document.getElementById("uploadPlan");
+                // cameraplan.onclick = function () {
+                //    document.getElementById("btnupload_plan").click();
+                //}
+            });
+        })(mui, document);
+
+        /*------------自定义展示picker-----------*/
+        function showPoppicker(obj, datatype) {
+            $.ajax({
+                type: "get",
+                url: "/ClientData/GetDataItemListJson",
+                data: { EnCode: datatype },
+                async: false,
+                dataType: "json",
+                success: function (data) {
+
+                    var title = obj.getElementsByTagName("label")[0].innerHTML.toString();
+                    var picker = new mui.PopPicker({ title: title });
+                    var arrayData = [];
+                    for (var i = 0; i < data.length; i++) {
+                        arrayData[i] = { text: data[i].ItemName, value: data[i].ItemId }
+                    }
+
+                    picker.setData(arrayData);
+                    picker.show(function (items) {
+                        obj.getElementsByTagName("p")[0].innerHTML = items[0].text;
+                        obj.getElementsByTagName("p")[0].setAttribute("data-value", items[0].value);
+                    });
+                },
+                error: function (data) {
+                    mui.toast(data.responseText);
+                }
+            });
+
+        }
+
+        function getcheckbox() {
+            var tempvalue = "";
+            $("#Descriptionlist input").each(function () {
+                if (this.checked) {
+                    tempvalue += this.previousElementSibling.innerText + ",";
+                }
+            });
+            document.getElementById("recommendText-record").innerText = tempvalue.substr(0, tempvalue.length - 1);
+        }
+        //记录页面上传图片
+        function changerecode(file) {
+            // 也可以传入图片路径：lrz('../demo.jpg', ...
+            
+            for (var i = 0; i < file.files.length; i++) {
+
+                lrz(file.files[i], {
+                    width: 800,
+                    height: 600,
+                    done: function (results) {
+                        // 你需要的数据都在这里，可以以字符串的形式传送base64给服务端转存为图片。
+                        console.log(results);
+
+                        $.ajax({
+                            type: "post",
+                            url: "UploadifyFile",
+                            async: false,
+                            dataType: "json",
+                            data: {
+                                "FileName": results.origin.name,
+                                "Filedata": results.base64.split(',')[1]
+                            },
+                            success: function (data) {
+                                if (data.type === 1) {
+                                    $("#list-img")
+                                        .append('<li data-src="' + data.message + '" class="mui-table-view-cell mui-col-xs-3"><img src="' + results.base64 + '" /></li>');
+                                } else {
+                                    mui.toast(data.msg);
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        }
+        $("#list-img")
+            .on("tap",
+                "li",
+                function () {
+                    $(this).remove();
+                });
+        ////计划页面上传图片
+        //function changeplan(file) {
+        //    // 也可以传入图片路径：lrz('../demo.jpg', ...
+        //    for (var i = 0; i < file.files.length; i++) {
+        //            lrz(file.files[i], {
+        //                width: 800,
+        //                height: 600,
+        //                done: function (results) {
+        //                    // 你需要的数据都在这里，可以以字符串的形式传送base64给服务端转存为图片。
+        //                    console.log(results);
+
+        //                    $.ajax({
+        //                        type: "post",
+        //                        url: "UploadifyFile",
+        //                        async: false,
+        //                        dataType: "json",
+        //                        data: {
+        //                            "FileName": results.origin.name,
+        //                            "Filedata": results.base64.split(',')[1]
+        //                        },
+        //                        success: function (data) {
+        //                            if (data.type === 1) {
+        //                                $("#listplan-img")
+        //                                    .append('<li data-src="' + data.message + '" class="mui-table-view-cell mui-col-xs-3"><img src="' + results.base64 + '" /></li>');
+        //                            } else {
+        //                                mui.toast(data.msg);
+        //                            }
+        //                        }
+        //                    });
+        //                }
+        //            });
+        //        }
+        //    }
+        //$("#listplan-img")
+        //        .on("tap",
+        //            "li",
+        //            function () {
+        //                $(this).remove();
+        //            });
+
+
+
+        //点击记录页面保存按钮
+        document.getElementById("commitRecord").addEventListener("tap", function () {
+            //跟进方式
+            var communicateTextRecord = document.getElementById("cummunicateText-record");
+            //联系人
+            var contacterTextRecord = document.getElementById("contacterText-record");
+            //开始时间
+            var dateTextRecordstart = document.getElementById("dateText-recordstart");
+            //结束时间
+            var dateTextRecordend = document.getElementById("dateText-recordend");
+            //客户进度
+            var processTextRecord = document.getElementById("processText-record");
+            //推荐方案
+            var recommendTextRecord = document.getElementById("recommendText-record");
+            var activityTextRecord = document.getElementById("activity-record");
+            var imglist = "";
+            $("#list-img li")
+                .each(function () {
+                    imglist += $(this).attr("data-src") + ";";
+                });
+            var param = {
+                FollowUpMode: communicateTextRecord.getAttribute("data-value"),
+                Contact: contacterTextRecord.innerText,
+                StartTime: dateTextRecordstart.innerText,
+                EndTime: dateTextRecordend.innerText,
+                ObjectId: localStorage.getItem("customerid"),
+                ObjectName: localStorage.getItem("customername"),
+                SaleStageName: processTextRecord.innerText,
+                SaleStageId: processTextRecord.getAttribute("data-value"),
+                Description: recommendTextRecord.innerText,
+                TrackContent: activityTextRecord.value,
+                TrailType: 2,
+                FilesPath: imglist.substr(0, imglist.length - 1)
+            };
+
+            $.ajax({
+                type: "post",
+                url: "SaveTrailRecord",
+                data: param,
+                async: false,
+                dataType: "json",
+                success: function (data) {
+                    if (data.type == 1) {
+                        mui.alert("保存成功",
+                            "提示",
+                            function () {
+                                location.href = "CustomerHistory";
+                                 
+                            });
+                    } else {
+                        mui.toast(data.message);
+                    }
+
+                },
+                error: function (data) {
+                    mui.toast(data.responseText);
+                }
+            });
+
+        });
+
+        //点击计划页面保存按钮
+        document.getElementById("commitPlan").addEventListener("tap", function () {
+            //跟进方式
+            var communicateTextplan = document.getElementById("cummunicateText-plan");
+            //联系人
+            var contacterTextplan = document.getElementById("contacterText-plan");
+            //开始时间
+            var dateTextplanstart = document.getElementById("beginText-plan");
+            //结束时间
+            var dateTextplanend = document.getElementById("endText-plan");
+            //客户进度
+            var processTextplan = document.getElementById("processText-plan");
+       
+            var recommendTextplan = document.getElementById("activity-plan");
+
+            //var imglist = "";
+            //$("#listplan-img li")
+            //    .each(function () {
+            //        imglist += $(this).attr("data-src") + ";";
+            //    });
+            var param = {
+                FollowUpMode: communicateTextplan.getAttribute("data-value"),
+                Contact: contacterTextplan.innerText,
+                StartTime: dateTextplanstart.innerText,
+                EndTime: dateTextplanend.innerText,
+                ObjectId: localStorage.getItem("customerid"),
+                ObjectName: localStorage.getItem("customername"),
+                SaleStageName: processTextplan.innerText,
+                SaleStageId: processTextplan.getAttribute("data-value"),
+                TrackContent: recommendTextplan.value,
+                TrailType: 1,
+                //FilesPath: imglist.substr(0, imglist.length - 1)
+            };
+
+            $.ajax({
+                type: "post",
+                url: "SaveTrailRecord",
+                data: param,
+                async: false,
+                dataType: "json",
+                success: function (data) {
+                    if (data.type == 1) {
+                        mui.alert("保存成功",
+                            "提示",
+                            function () {
+                                location.href = "CustomerHistory";
+                            
+                            });
+                    } else {
+                        mui.toast(data.message);
+                    }
+
+                },
+                error: function (data) {
+                    mui.toast(data.responseText);
+                }
+            });
+
+        });
+
+ 
+
+    </script>
+</body>
+</html>

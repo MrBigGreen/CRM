@@ -1,0 +1,273 @@
+﻿@{ Layout = "~/Views/Shared/Index.cshtml"; }
+<div class="easyui-panel" id="panelShow" title="查询栏" iconcls="icon-search" collapsible="true" style="height:auto;width:auto">
+    <div id="ttSearch" data-options="region:'center'" style="padding:2px">
+        <table class="record" border="0" cellpadding="0" cellspacing="0" style="width:100%">
+            <tr>
+                <td colspan="4" style="text-align:center;font-size:16px; font-weight:bold;">
+                    @ViewBag.CustomerName
+                    <input type="hidden" id="CustomerID" name="CustomerID" value="@ViewBag.CustomerID" />
+                    <input type="hidden" id="CustomerName" name="CustomerName" value="@ViewBag.CustomerName" />
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">员工姓名</th>
+                <td>
+                    <input id="EmpName" name="EmpName" type="text" placeholder="请输入员工姓名" style="width: 150px" />
+                </td>
+
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    电话号码
+                </th>
+                <td>
+                    <input id="PhoneNumber" type="text" class="easyui-numberbox" precision="0" placeholder="请输入电话号码" style="width: 150px" />
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">证件号码</th>
+                <td>
+                    <input id="IDCard" type="text" maxlength="18" placeholder="请输入证件号码" style="width: 150px" />
+                </td>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    银行卡号
+                </th>
+                <td>
+                    <input id="BankID" type="text" maxlength="20" placeholder="请输入银行卡号" style="width: 150px" />
+                </td>
+
+            </tr>
+            <tr>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    在职状态
+                </th>
+                <td colspan="3">
+                    <input type="radio" name="JobStatus" value="0" />全部
+                    <input type="radio" name="JobStatus" value="1" checked="checked" id="checkall" />在职
+                    <input type="radio" name="JobStatus" value="2" />离职
+
+                    <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="margin-left:300px">
+                        查 询
+                    </a>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<div class="easyui-panel" style="height:auto;" collapsible="true">
+    <table id="flexigridData"></table>
+
+</div>
+
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script src="~/Scripts/PayEmployee/EmpList.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        $('#flexigridData').datagrid({
+            title: '人员信息', //列表的标题
+            iconCls: 'icon-site',
+            width: 'auto',
+            height: 'auto',
+            loadMsg: "正在加载...",
+            striped: true,
+            sortName: 'EmpID',
+            sortOrder: 'desc',
+            idField: 'EmpID',
+            fitColumns: true,
+            singleSelect: true,
+            columns: [[
+                 { field: 'ck', title: '全选', checkbox: true, width: 80 },
+                {
+                    field: 'EmpName', title: '姓名', width: $(this).width() * 0.2, align: 'center', resizable: false,
+                    formatter: function (value, rowData, rowIndex) {
+                        var a = '<a href="#"  class="easyui-linkbutton" style="border: none; text-decoration: none;"  OnClick="OpenLookWindow(\'' + rowData.EmpID + '\')">' + rowData.EmpName + '</a> ';
+                        return a;
+                    }
+                }
+                 , { field: 'IDCard', title: '证件号', width: $(this).width() * 0.3, align: 'center', resizable: false }
+               , {
+                   field: 'Gender', title: '性别', width: $(this).width() * 0.1, align: 'center', resizable: false,
+                   formatter: function (value, rowData, rowIndex) {
+                       if (rowData.Gender == 1) {
+                           return '男';
+                       } else {
+                           return '女';
+                       }
+
+                   }
+               }
+               , { field: 'BankID', title: '银行卡号', width: $(this).width() * 0.3, align: 'center', resizable: false }
+               , { field: 'BankCity', title: '银行开户市', width: $(this).width() * 0.2, align: 'center', resizable: false }
+               , { field: 'PhoneNumber', title: '手机号码', width: $(this).width() * 0.3, align: 'center', resizable: false }
+
+               , { field: 'JobStatus', title: '状态', width: $(this).width() * 0.1, align: 'center', resizable: false }
+               , {
+                   field: 'State', title: '操作', width: $(this).width() * 0.3, align: 'center', resizable: false,
+                   formatter: function (value, rowData, rowIndex) {
+                       var a = '<input type="button" value="修改" OnClick="OpenEditWindow(\'' + rowData.EmpID + '\',\'' + rowData.CustomerID + '\')"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+                       var b = '<input type="button" value="离职" OnClick="OpenDeleteWindow(\'' + rowData.EmpID + '\')"/>';
+                       if (rowData.JobStatus == "在职")
+                           return a + b;
+                       else
+                           return a;
+
+                   }
+               }
+            ]],
+            pagination: true,
+            rownumbers: true,
+
+
+        });
+
+        $('#flexigridData').datagrid("addToolbarItem", [{ "text": "创建", "iconCls": "icon-add", handler: function () { flexiCreate(); } }]);
+        $('#flexigridData').datagrid("addToolbarItem", [{ "text": "导入", "iconCls": "icon-import", handler: function () { OpenImport(); } }]);
+        $('#flexigridData').datagrid("addToolbarItem", [{ "text": "批量离职", "iconCls": "icon-redo", handler: function () { BatchQuit(); } }]);
+        
+        flexiQuery();
+    });
+
+
+
+    //按条件查询
+    function flexiQuery() {
+
+        var search = "";
+
+        var EmpName = $("#EmpName").val();
+        var PhoneNumber = $("#PhoneNumber").val();
+        var IDCard = $("#IDCard").val();
+        var BankID = $("#BankID").val();
+        var CustomerID = $("#CustomerID").val();
+
+        var JobStatus = $('input:radio:checked').val();
+
+        search = 'EmpName&' + EmpName + '^';
+        search += 'PhoneNumber&' + PhoneNumber + '^';
+        search += 'IDCard&' + IDCard + '^';
+        search += 'BankID&' + BankID + '^';
+        search += 'CustomerID&@ViewBag.CustomerID^';
+        search += 'JobStatus&' + JobStatus + '^';
+
+
+        $('#flexigridData').datagrid('options').url = "../PayEmployee/GetEmployeesData";
+        $("#flexigridData").datagrid("clearSelections");
+        //执行查询
+        $('#flexigridData').datagrid('load', { search: search });
+    }
+
+
+    //新增
+    function flexiCreate() {
+        showWindowTop("新增员工", "/PayEmployee/EmpCreate?CustomerID=" + $("#CustomerID").val(), 750, 650);
+    }
+
+
+    //“导出”按钮     在6.0版本中修改
+    function flexiExport() {
+
+        var arr = $('#flexigridData').datagrid('getSelections');
+
+        if (arr.length > 0) {
+            $.messager.confirm('提示', '是否导出所选项?', function (r) {
+                if (r) {
+                    var empids = "";
+                    for (var i = 0; i < arr.length; i++) {
+                        empids += arr[i].EmpID + ";";
+                    }
+
+                    $.post("../PayEmployee/Export",
+                        {
+                            search: "1$" + empids
+                        }, function (res) {
+                            window.location.href = res;
+
+                        });
+                }
+
+            });
+        } else {
+            $.messager.confirm('提示', '是否导出全部?', function (r) {
+                if (r) {
+                    var searchs = "";
+
+                    var EmployessName = $("#txtEmployessName").val();
+                    var CompanyName = $("#txtCompanyName").val();
+                    var CardID = $("#txtCardID").val();
+                    var BankID = $("#txtBankID").val();
+                    var PhoneNum = $("#txtPhoneNum").val();
+
+                    var JobStatus = $('input:radio:checked').val();
+
+                    searchs = 'EmployessName&' + EmployessName + '^';
+                    searchs += 'CompanyName&' + CompanyName + '^';
+                    searchs += 'PhoneNum&' + PhoneNum + '^';
+                    searchs += 'CardID&' + CardID + '^';
+                    searchs += 'BankID&' + BankID + '^';
+                    searchs += 'JobStatus&' + JobStatus + '^';
+
+                    $.post("../PayEmployee/Export",
+                        {
+                            search: "0$" + searchs
+                        }, function (res) {
+                            window.location.href = res;
+
+                        });
+                }
+
+            });
+        }
+
+
+    };
+
+
+
+    //修改
+    function OpenEditWindow(cid) {
+        showWindowTop("修改员工", "/PayEmployee/EmpEdit?EmpID=" + cid, 750, 650);
+    }
+
+    //查看
+    function OpenLookWindow(cid) {
+        //$('#w_look').window('open');
+        //$('#lookiframe').attr("src", "../PayEmployee/EmpView?EmpID=" + cid);
+        showWindowTop("修改员工", "/PayEmployee/EmpView?EmpID=" + cid, 750, 650);
+    }
+
+    //导入
+    function OpenImport() {
+        showWindowTop("员工导入", "/PayEmployee/ImportExcel", 750, 650);
+    }
+
+    //离职
+    function BatchQuit() {
+        showWindowTop("员工导入", "/PayEmployee/FireExcel", 750, 650);
+    }
+
+
+
+    //离职
+    function OpenDeleteWindow(eid) {
+        $.messager.confirm('提示', '是否离职?', function (r) {
+            if (r) {
+                $.post("../PayEmployee/FireEmployeese",
+                    {
+                        parm: eid
+                    }, function (data) {
+                        if (data.IsSuccess == true) {
+                            $.messager.alert('提示', '离职成功！', "info");
+                            $("#flexigridData").datagrid("reload");
+                        } else {
+                            $.messager.alert('提示', '离职失败！', "error");
+                        }
+
+                    });
+            }
+
+        });
+    }
+
+
+</script>

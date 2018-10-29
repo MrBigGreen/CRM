@@ -1,0 +1,258 @@
+﻿@model CRM.DAL.SysPerson
+@{ Layout = "~/Views/Shared/Index.cshtml"; }
+@using Common
+@using Models
+<div id="divQuery">
+    <div class="easyui-panel" title="查询栏" iconcls="icon-search" collapsible="true" style="height:auto;width:auto">
+        <table id="ttSearch" class="record" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    @Html.LabelFor(model => model.Name):
+                </th>
+                <td><input type='text' id='Name' /></td>
+            </tr>
+            <tr>
+                <th style="width: 120px; text-align: right; padding-right: 10px; height: 26px">
+                    @Html.LabelFor(model => model.MyName):
+                </th>
+                <td><input type='text' id='MyName' /></td>
+            </tr>
+            <tr>
+                <th style="width:120px; text-align:right; padding-right:10px;height:26px">
+                    @Html.LabelFor(model => model.EmailAddress):
+                </th>
+                <td><input type='text' id='EmailAddress' /></td>
+            </tr>
+            <tr>
+                <th style="width:120px; text-align:right; padding-right:10px;height:26px">
+                    @Html.LabelFor(model => model.SysDepartmentId, new { style = "display:inline-block; cursor:pointer;color:blue;", onclick = "showModalOnly('SysDepartmentId','../../SysDepartment');" })
+                </th>
+                <td>
+                    <div id="checkSysDepartmentId">
+                    </div>
+                    <input type='hidden' id='SysDepartmentId' />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+                        查 询
+                    </a>
+
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+<br style="clear: both;" />
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script type="text/javascript" language="javascript">
+    $(function () {
+
+        $('#flexigridData').datagrid({
+            title: '离职人员列表', //列表的标题
+            iconCls: 'icon-site',
+            width: 'auto',
+            height: 'auto',
+            //nowrap: false,
+            striped: true,
+            collapsible: true,
+            url: '../SysPerson/GetLiZhiData', //获取数据的url
+            sortName: 'Id',
+            sortOrder: 'desc',
+            idField: 'Id',
+            fitColumns: true,
+            queryParams: { "Data": '@ViewBag.Data' },
+            columns: [[
+                { field: 'Name', title: '@Html.DisplayNameFor(model => model.Name)', width: 100 }
+                , { field: 'MyName', title: '@Html.DisplayNameFor(model => model.MyName)', width: 80 }
+                , { field: 'Sex', title: '@Html.DisplayNameFor(model => model.Sex)', width: 60 }
+                , { field: 'MobilePhoneNumber', title: '@Html.DisplayNameFor(model => model.MobilePhoneNumber)', width: 120 }
+                , { field: 'CompanyQQ', title: '@Html.DisplayNameFor(model => model.CompanyQQ)', width: 120 }
+                , { field: 'EmailAddress', title: '@Html.DisplayNameFor(model => model.EmailAddress)', width: 160 }
+                , { field: 'SysDepartmentId', title: '@Html.DisplayNameFor(model => model.SysDepartmentIdOld)', width: 139 }
+                , { field: 'SysRoleName', title: '@Html.DisplayNameFor(model => model.SysRoleName)', width: 139 }
+                , { field: 'State', title: '@Html.DisplayNameFor(model => model.State)', width: 80 }
+                , {
+                field: 'PositionStatus', title: '@Html.DisplayNameFor(model => model.PositionStatus)', width: 80, formatter: function (value, dataRow) {
+                        if (value == true) {
+
+                            return "在职";
+                        }
+                        return "离职";
+                    }
+                }
+            ]],
+            pagination: true,
+            rownumbers: true
+
+        });
+
+        //如果列表页出现在弹出框中，则只显示查询和选择按钮
+        var parent = window.dialogArguments; //获取父页面
+        //异步获取按钮
+        if (parent == "undefined" || parent == null) {
+            //首先获取iframe标签的id值
+
+            var iframeid = window.parent.$('#tabs').tabs('getSelected').find('iframe').attr("id");
+
+            //然后关闭AJAX相应的缓存
+            $.ajaxSetup({
+                cache: false
+            });
+
+            //获取按钮值
+            $.getJSON("../Home/GetToolbar", { id: iframeid }, function (data) {
+                if (data == null) {
+                    return;
+                }
+                $('#flexigridData').datagrid("addToolbarItem", data);
+
+            });
+
+        } else {
+            //添加选择按钮
+            $('#flexigridData').datagrid("addToolbarItem", [{ "text": "选择", "iconCls": "icon-ok", handler: function () { flexiSelect(); } }]);
+        }
+    });
+
+    //“查询”按钮，弹出查询框
+    function flexiQuery() {
+
+        //将查询条件按照分隔符拼接成字符串
+        var search = "";
+        $('#divQuery').find(":text,:selected,select,textarea,:hidden,:checked,:password").each(function () {
+            if (this.id)
+                search = search + this.id + "&" + this.value + "^";
+            else
+                search = search + this.name + "&" + this.value + "^";
+        });
+
+        //执行查询
+        $('#flexigridData').datagrid('load', { search: search, Data: "@ViewBag.Data" });
+    };
+    //“导出”按钮     在6.0版本中修改
+    function flexiExport() {
+
+        //将查询条件按照分隔符拼接成字符串
+        var search = "";
+        $('#divQuery').find(":text,:selected,select,textarea,:hidden,:checked,:password").each(function () {
+            search = search + this.id + "&" + this.value + "^";
+        });
+
+        var p = $('#flexigridData').datagrid('options').columns[0];
+        var field = [];//所有的列名
+        var title = [];//所有的标题名称
+        $(p).each(function () {
+            field.push(this.field);
+            title.push(this.title);
+        });
+
+        $.post("../SysPerson/Export",
+            {
+                title: title.join(","),
+                field: field.join(","),
+                sortName: $('#flexigridData').datagrid('options').sortName,
+                sortOrder: $('#flexigridData').datagrid('options').sortOrder,
+                search: search
+            }, function (res) {
+                window.location.href = res;
+
+            });
+    };
+    //“选择”按钮，在其他（与此页面有关联）的页面中，此页面以弹出框的形式出现，选择页面中的数据
+    function flexiSelect() {
+
+        var rows = $('#flexigridData').datagrid('getSelections');
+        if (rows.length == 0) {
+            $.messager.alert('操作提示', '请选择数据!', 'warning');
+            return false;
+        }
+
+        var arr = [];
+        for (var i = 0; i < rows.length; i++) {
+            arr.push(rows[i].Id);
+        }
+        arr.push("^");
+        for (var i = 0; i < rows.length; i++) {
+            arr.push(rows[i].MyName);
+        }
+        //主键列和显示列之间用 ^ 分割   每一项用 , 分割
+        if (arr.length > 0) {//一条数据和多于一条
+            returnParent(arr.join("&")); //每一项用 & 分割
+        }
+    }
+    //导航到查看详细的按钮
+    function getView() {
+
+        var arr = $('#flexigridData').datagrid('getSelections');
+
+        if (arr.length == 1) {
+            window.location.href = "../SysPerson/Details/" + arr[0].Id;
+
+        } else {
+            $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+        }
+        return false;
+    }
+    //导航到创建的按钮
+    function flexiCreate() {
+
+        window.location.href = "../SysPerson/Create";
+        return false;
+    }
+    //导航到修改的按钮
+    function flexiModify() {
+
+        var arr = $('#flexigridData').datagrid('getSelections');
+
+        if (arr.length == 1) {
+            window.location.href = "../SysPerson/Edit/" + arr[0].Id;
+
+        } else {
+            $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+        }
+        return false;
+
+    };
+    //删除的按钮
+    function flexiDelete() {
+
+        var rows = $('#flexigridData').datagrid('getSelections');
+        if (rows.length == 0) {
+            $.messager.alert('操作提示', '请选择数据!', 'warning');
+            return false;
+        }
+
+        var arr = [];
+        for (var i = 0; i < rows.length; i++) {
+            arr.push(rows[i].Id);
+        }
+
+        $.messager.confirm('操作提示', "确认删除这 " + arr.length + " 项吗？", function (r) {
+            if (r) {
+                $.post("../SysPerson/Delete", { query: arr.join(",") }, function (res) {
+                    if (res == "OK") {
+                        //移除删除的数据
+
+                        $.messager.alert('操作提示', '删除成功!', 'info');
+                        $("#flexigridData").datagrid("reload");
+                        $("#flexigridData").datagrid("clearSelections");
+                    }
+                    else {
+                        if (res == "") {
+                            $.messager.alert('操作提示', '删除失败!请查看该数据与其他模块下的信息的关联，或联系管理员。', 'info');
+                        }
+                        else {
+                            $.messager.alert('操作提示', res, 'info');
+                        }
+                    }
+                });
+            }
+        });
+
+    };
+
+</script>
+

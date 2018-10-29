@@ -1,0 +1,226 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="~/Content/css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/css/app.css" />
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+    <style>
+        .listTab:before, .listTab:after {
+            height: 0;
+        }
+
+        .listTab:first-child {
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .listTab span {
+            color: blue
+        }
+    </style>
+</head>
+<body class="crm-home">
+    <header class="mui-bar mui-bar-nav">
+        <h1 class="mui-title">首页</h1>
+    </header>
+    <!--页面主内容区开始-->
+    <div class="mui-content home-content">
+        <!--头部-->
+        <div class="home-header">
+            <!-- 头部背景区域 -->
+            <img class="header-backgroud" src="/Content/img/home_banner.jpg" />
+            <!-- 页面导航区域-->
+            <div class="home-nav-content" id="nav">
+                <ul class="mui-table-view mui-grid-view">
+                    <li class="mui-table-view-cell mui-media mui-col-xs-6">
+                        <a id="NewCustomer">
+                            <img class="mui-media-object home-nav-image" src="/Content/img/home_newCustomer.png">
+                            <p class="home-nav-title">新建客户</p>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media mui-col-xs-6">
+                        <a href="MyCustomers">
+                            <img class="mui-media-object home-nav-image" src="/Content/img/home_customer.png">
+                            <p class="home-nav-title">我的客户</p>
+                        </a>
+                    </li>
+                    @*<li class="mui-table-view-cell mui-media mui-col-xs-6">
+                            <a href="Mytask">
+                                <img class="mui-media-object home-nav-image" src="/Content/img/home_task.png">
+                                <p class="home-nav-title">跟进计划</p>
+                            </a>
+                        </li>*@
+                    <li class="mui-table-view-cell mui-media mui-col-xs-6">
+                        <a href="ProcessHistory">
+                            <img class="mui-media-object home-nav-image" src="/Content/img/home_history.png">
+                            <p class="home-nav-title">跟进历史</p>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media mui-col-xs-6">
+                        <a href="ContractManager">
+                            <img class="mui-media-object home-nav-image" src="/Content/img/home_dealManager.png">
+                            <p class="home-nav-title">合同管理</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- 跟进计划-->
+            @*<div class="home-task">
+                    <span class="mui-badge mui-badge-primary mui-badge-inverted home-task-undo">跟进计划</span>
+                </div>*@
+        </div>
+        <!--跟进计划列表-->
+        <div class="taskList top320" id="task">
+            <div class="mui-scroll ">
+                <ul class="mui-table-view" id="taskLists"></ul>
+            </div>
+        </div>
+        <div>
+            <ul class="mui-table-view mui-grid-view listTab">
+                <li class="mui-table-view-cell mui-media mui-col-xs-4">
+                    <p>今日新建</p>
+                    <span id="currentDateNew">0</span>
+                </li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-4">
+                    <p>今日跟进</p>
+                    <span id="currentDateFollow">0</span>
+                </li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-4">
+                    <p>今日新签</p>
+                    <span id="currentDateNewSign">0</span>
+                </li>
+            </ul>
+            <ul class="mui-table-view mui-grid-view listTab">
+                <li class="mui-table-view-cell mui-media mui-col-xs-4">
+                    <p>本周新建</p>
+                    <span id="currentWeekNew">0</span>
+                </li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-4">
+                    <p>本周跟进</p>
+                    <span id="currentWeekFollow">0</span>
+                </li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-4">
+                    <p>本周新签</p>
+                    <span id="currentWeekNewSign">0</span>
+                </li>
+            </ul>
+            <ul class="mui-table-view mui-grid-view listTab">
+                <li class="mui-table-view-cell mui-media mui-col-xs-4">
+                    <p>本月新建</p>
+                    <span id="currentMonthNew">0</span>
+                </li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-4">
+                    <p>本月跟进</p>
+                    <span id="currentMonthFollow">0</span>
+                </li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-4">
+                    <p>本月新签</p>
+                    <span id="currentMonthNewSign">0</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="~/Content/Scripts/jquery-1.11.1.js"></script>
+    <script src="~/Content/Scripts/mui.min.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/mui.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/config.js"></script>
+
+    <script>
+
+        //系统方法
+        mui.init();
+        mui.ready(function () {
+
+            window.onresize = adjust;
+            adjust();
+
+        });
+        $(function () {
+            adjust();
+            LoadData();
+            LoadCrmData();
+        });
+        //自定义方法
+        function adjust() {
+            var taskList = document.getElementById("task");
+            taskList.style.marginTop = $(".home-header").height() + "px";
+        }
+        // 加载待办数据
+        function LoadData() {
+            $.ajax({
+                type: "get",
+                url: "GetPlanData",
+                async: false,
+                dataType: "json",
+                contentType: "application/x-www-form-urlencoded",
+                success: function (data) {
+                    var rows = data.resultdata.rows;
+                    $.each(rows, function (i) {
+                        var row = rows[i];
+                        var li;
+                        li = document.createElement('li');
+                        li.className = 'mui-table-view-cell task-cell';
+                        var temphtml = "";
+                        temphtml += '<div class="cell-left">';
+                        temphtml += '<p class="task-time">' + row.starttime + '</p>';
+                        temphtml += '<p class="task-company"> ' + row.objectname + '</p>';
+                        temphtml += '</div>';
+                        temphtml += '<div class="cell-right">';
+                        temphtml += '<button type="button" data-customerinfo=\'' + JSON.stringify(row) + '\' class="mui-btn mui-btn-primary mui-btn-outlined write-btn">填</button>';
+                        temphtml += '</div>';
+                        li.innerHTML = temphtml;
+                        $("#taskLists").append(li);
+
+                    });
+                },
+                error: function (data) {
+                    mui.toast(data.responseText);
+                }
+            });
+        }
+
+        function LoadCrmData() {
+            $.ajax({
+                type: "get",
+                url: "GetCrmData",
+                async: false,
+                dataType: "json",
+                contentType: "application/x-www-form-urlencoded",
+                success: function (data) {
+                    if (data.errorcode == 0) {
+                        $("#currentDateNew").text(data.resultdata.currentDateNew);
+                        $("#currentDateFollow").text(data.resultdata.currentDateFollow);
+                        $("#currentDateNewSign").text(data.resultdata.currentDateNewSign);
+                        $("#currentWeekNew").text(data.resultdata.currentWeekNew);
+                        $("#currentWeekFollow").text(data.resultdata.currentWeekFollow);
+                        $("#currentWeekNewSign").text(data.resultdata.currentWeekNewSign);
+                        $("#currentMonthNew").text(data.resultdata.currentMonthNew);
+                        $("#currentMonthFollow").text(data.resultdata.currentMonthFollow);
+                        $("#currentMonthNewSign").text(data.resultdata.currentMonthNewSign);
+                    }
+                },
+                error: function (data) {
+                    mui.toast(data.responseText);
+                }
+            });
+        }
+
+        $(function () {
+            $("body").on("tap", ".write-btn", function () {
+                window.location.href = "TaskDetail?backrul=Home";
+                localStorage.setItem("customerinfo", $(this).attr("data-customerinfo"));
+            })
+
+            $("#NewCustomer").on("tap", function () {
+                window.location.href = "CustomerDetail";
+                localStorage.removeItem("customerid");
+            })
+        })
+
+    </script>
+</body>
+
+</html>

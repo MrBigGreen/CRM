@@ -1,0 +1,152 @@
+﻿@model CRM.DAL.SysPerson
+
+@{
+    Layout = "~/Views/Shared/Details.cshtml";
+}
+@using Common
+@section CurentPlace {
+    详细
+}
+
+<fieldset>
+    <legend>
+        <input class="a2 f2" type="button" onclick="window.location.href = 'javascript:history.go(-1)';" value="返回" />
+    </legend>
+    <div class="bigdiv">
+        <div style="float:right; width:379px;height:184px;">
+            <img id="showPic" src="~/Images/noPic.jpg" width="149" height="175" />
+            <div style="float:left">
+                <div id="uploader-demo">
+                    <!--用来存放item-->
+                    <div id="fileList" style="display:none;" class="uploader-list"></div>
+                    <div id="filePicker">上传头像</div>
+                </div>
+            </div>
+        </div>
+        <div class="display-label">
+            @Html.LabelFor(model => model.Name) :
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+        <div class="display-label">
+            @Html.LabelFor(model => model.MyName) :
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.MyName)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Sex) :
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Sex)
+        </div>
+        <div class="display-label">
+            @Html.LabelFor(model => model.SysDepartmentId) :
+        </div>
+        <div class="display-field">
+            @if (Model.SysDepartment != null)
+            {
+                @Model.SysDepartment.Name
+            }
+        </div>
+        <div class="display-label">
+            @Html.LabelFor(model => model.EnglishName)：
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.EnglishName)
+
+        </div>
+        <div class="display-label">
+            @Html.LabelFor(model => model.Position) :
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Position)
+        </div>
+        <div class="display-label">
+            @Html.LabelFor(model => model.CompanyQQ) :
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.CompanyQQ)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.MobilePhoneNumber) :
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.MobilePhoneNumber)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Telephone)：
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Telephone, new { @Style = "width:160px" }) -
+            @Html.DisplayFor(model => model.TelephoneExt, new { @style = "width:60px" })
+            @Html.ValidationMessageFor(model => model.Telephone)
+        </div>
+        @*<div class="display-label">
+                  @Html.LabelFor(model => model.Province) :
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Province)
+            </div>
+            <div class="display-label">
+                  @Html.LabelFor(model => model.City) :
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.City)
+            </div>
+            <div class="display-label">
+                  @Html.LabelFor(model => model.Village) :
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Village)
+            </div>
+            <div class="display-label">
+                  @Html.LabelFor(model => model.Address) :
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Address)
+            </div>*@
+        <div class="display-label">
+            @Html.LabelFor(model => model.EmailAddress) :
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.EmailAddress)
+        </div>
+        <div class="display-label">
+            @Html.LabelFor(model => model.State) :
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.State)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CustomerCeiling)：
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.CustomerCeiling, Models.SysFieldModels.GetSysFieldValueByParentID("1507211652160012567cb8396adce"), new { @disabled = "disabled" })
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FollowType)：
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.FollowType, Models.SysFieldModels.GetSysFieldValueByParentID("15121614201749560775ccfd49ee0"), new { @disabled = "disabled" })
+        </div>
+        <div class="display-label">
+            @Html.LabelFor(model => model.CreateTime) :
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.CreateTime)
+        </div>
+        <br style="clear: both;" />
+        <div class="display-label">
+            @Html.LabelFor(model => model.Remark) :
+        </div>
+        <div class="textarea-box">
+            @Html.TextAreaFor(model => model.Remark, new { @readonly = true })
+        </div>
+     </div>
+</fieldset>
+
+

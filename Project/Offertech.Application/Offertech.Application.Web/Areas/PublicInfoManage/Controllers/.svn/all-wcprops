@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/BridgehrKit/!svn/ver/13839/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/PublicInfoManage/Controllers
+END
+EmailController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/PublicInfoManage/Controllers/EmailController.cs
+END
+ResourceFileController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/PublicInfoManage/Controllers/ResourceFileController.cs
+END
+NewsController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/PublicInfoManage/Controllers/NewsController.cs
+END
+ScheduleController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/svn/BridgehrKit/!svn/ver/13839/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/PublicInfoManage/Controllers/ScheduleController.cs
+END
+NoticeController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/PublicInfoManage/Controllers/NoticeController.cs
+END
+SmsLogController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Web/Areas/PublicInfoManage/Controllers/SmsLogController.cs
+END

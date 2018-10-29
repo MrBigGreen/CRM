@@ -1,0 +1,186 @@
+﻿@using Common
+@using Models
+@model CRM.DAL.TB_CustomerFollow
+
+@{
+    Layout = "~/Views/Shared/CloseDialog.cshtml";
+}
+<style>
+    .editor-field {
+        width: 241px;
+        height: 24px;
+        float: left;
+        display: inline;
+    }
+
+    .editor-label {
+        width: 100px;
+        height: 24px;
+        float: right;
+        text-align: right;
+        line-height: 24px;
+        display: inline;
+    }
+</style>
+
+
+<div class="bigdiv">
+    @Html.HiddenFor(m => m.CustomerIDs)
+    @Html.HiddenFor(model => model.CustomerFollowID)
+    @Html.HiddenFor(model => model.CustomerID)
+    @Html.HiddenFor(model => model.FollowUpDate)
+    @Html.HiddenFor(model => model.ContactState)
+    @Html.HiddenFor(model => model.IsFinish)
+    @Html.HiddenFor(model => model.SysPersonID)
+    @Html.HiddenFor(model => model.VersionNo)
+    @Html.HiddenFor(model => model.IsDelete)
+    @Html.HiddenFor(model => model.CreatedBy)
+    @Html.HiddenFor(model => model.CreatedTime)
+    <table cellpadding="0" cellspacing="0" border="0" align="center" style="width:80%">
+        <tr>
+            <td>
+                <div class="editor-label">
+                    <span class="red">*</span>@Html.LabelFor(model => model.ReservationDate)：
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @*@Html.TextBoxFor(model => model.ReservationDate, new { @class = "easyui-datetimebox", editable = "false" })*@
+                    @Html.TextBoxFor(model => model.ReservationDate, new { @class = "Wdate", style = "width:160px", onfocus = "WdatePicker({minDate:CurentTime(), dateFmt: 'yyyy-MM-dd HH:mm:ss' })" })
+                    @Html.ValidationMessageFor(model => model.ReservationDate)
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    <span class="red">*</span> @Html.LabelFor(model => model.FollowUpMode)：
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.RadioButtonListFor(model => model.FollowUpMode, Models.SysFieldModels.GetSysFieldByParentID("1506251032089851135c18a57f429"), true)
+                    @Html.ValidationMessageFor(model => model.FollowUpMode)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    <span class="red">*</span> @Html.LabelFor(model => model.FollowUpCategory)：
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.FollowUpCategory, Models.SysFieldModels.GetSysFieldByParentID("150625111756737276003a2d6fde5"))
+                    @Html.ValidationMessageFor(model => model.FollowUpCategory)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OtherLevel)：
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.OtherLevel, Models.SysFieldModels.GetSysFieldByParentID("1506121005392690303c5640a411a"), "--请选择--")
+                    @Html.ValidationMessageFor(model => model.OtherLevel)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ProvinceCode)：
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    <select class="easyui-combobox" id="Province" name="Province" style="width:120px;" data-options="required:false"></select>
+                    @Html.HiddenFor(model => model.ProvinceCode)
+                    @Html.HiddenFor(model => model.ProvinceName)
+                    @Html.ValidationMessageFor(model => model.ProvinceCode)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CityCode)：
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    <select class="easyui-combobox" id="City" name="City" style="width:120px;" data-options="required:false"></select>
+                    @Html.HiddenFor(model => model.CityCode)
+                    @Html.HiddenFor(model => model.CityName)
+                    @Html.ValidationMessageFor(model => model.CityCode)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.DistrictCode)：
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    <select class="easyui-combobox" id="District" name="District" style="width:120px;" data-options="required:false"></select>
+                    @Html.HiddenFor(model => model.DistrictCode)
+                    @Html.HiddenFor(model => model.DistrictName)
+                    @Html.ValidationMessageFor(model => model.DistrictCode)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+
+                    @Html.LabelFor(model => model.AddressDetails)：
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.AddressDetails, new { @Style = "width:242px" })
+                    @Html.ValidationMessageFor(model => model.AddressDetails)
+
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    <span class="red">*</span> @Html.LabelFor(model => model.FollowUpPurpose)：
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.FollowUpPurpose, Models.SysFieldModels.GetSysFieldByParentID("15061210014976927076a3fd215ab"), "--请选择--")
+                    @Html.ValidationMessageFor(model => model.FollowUpPurpose)
+
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div data-options="region:'south',border:false" style="text-align: center; padding: 5px 5px 5px 0;">
+                    <input class="a2 f2" type="submit" id="submit" value="创建" style="display:none" />
+                    <a class="easyui-linkbutton" id="ContactSave" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+                       onclick="$('#submit').click();">修改</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+                       onclick="closeWindow();">取消</a>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <br style="clear: both;" />
+
+</div>
+<link href="~/Res/PublicCommon.css" rel="stylesheet" />
+<script type="text/javascript"> $.getScript("/Scripts/CustomerFollow/Edit.js")</script>
+

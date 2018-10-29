@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Busines/AuthorizeManage
+END
+ModuleButtonBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Busines/AuthorizeManage/ModuleButtonBLL.cs
+END
+ModuleColumnBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Busines/AuthorizeManage/ModuleColumnBLL.cs
+END
+FilterTimeBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Busines/AuthorizeManage/FilterTimeBLL.cs
+END
+ModuleBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Busines/AuthorizeManage/ModuleBLL.cs
+END
+PermissionBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Busines/AuthorizeManage/PermissionBLL.cs
+END
+ModuleFormBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Busines/AuthorizeManage/ModuleFormBLL.cs
+END
+AuthorizeBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Busines/AuthorizeManage/AuthorizeBLL.cs
+END
+FilterIPBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/BridgehrKit/!svn/ver/13720/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Busines/AuthorizeManage/FilterIPBLL.cs
+END
+ModuleFormInstanceBLL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/BridgehrKit/!svn/ver/13250/VISS/solution/WebSrc/CRM/Project/Offertech.Application/Offertech.Application.Busines/AuthorizeManage/ModuleFormInstanceBLL.cs
+END

@@ -1,0 +1,108 @@
+﻿@model System.Data.DataTable
+
+@{ Layout = "~/Views/Shared/Index.cshtml"; }
+<style type="text/css">
+    table.gridtable {
+        font-family: verdana,arial,sans-serif;
+        font-size: 11px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #666666;
+        border-collapse: collapse;
+    }
+
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+</style>
+<div class="loadingDiv" style=" display:none">&nbsp;<img src="../images/loading.gif" alt="Loading" />&nbsp;加载中...</div>
+<div>
+    @if (ViewBag.Error != null)
+    {
+        <label>ViewBag.Error</label>
+    }
+    <br />
+    <div class="editor-label">
+        客户导入模板：
+    </div>
+    <div class="editor-field">
+        <a href="/Customer/DownTemplateFile" class="easyui-linkbutton" data-options="iconCls:'icon-add'">模板下载</a>
+    </div>
+    
+    <br style="clear: both;" />
+    @using (Html.BeginForm("FileUpload", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="editor-label">
+            批量导入：
+        </div>
+        <div class="editor-field">
+            <input type="file" name="file" id="FileUpLoad1" accept="application/vnd.ms-excel" style="width:480px;" /> 
+            <input id="ButtonUpload" type="submit" onclick="return checkType();" value="确认导入" class="easyui-linkbutton" style="width:80px;height:40px;" />
+        </div>
+        <br style="clear: both;" />
+    }
+
+    @if (Model != null)
+    {
+        System.Data.DataTable data = Model;
+        if (data.Columns.Count > 0 && data.Rows.Count > 0)
+        {
+            <table class="gridtable">
+                <tr>
+                    @for (int i = 0; i < data.Columns.Count; i++)
+                    {
+                        <th>@data.Columns[i].ColumnName</th>
+                    }
+                </tr>
+                @for (int i = 0; i < data.Rows.Count; i++)
+                {
+                    <tr>
+                        @for (int j = 0; j < data.Columns.Count; j++)
+                        {
+                            <td>@data.Rows[i][j]</td>
+                        }
+                    </tr>
+                }
+            </table>
+        }
+    }
+
+</div>
+
+<script type="text/javascript">
+    function checkType() {
+        console.log(2);
+        $(".loadingDiv").show();
+        $("#ButtonUpload").attr("disabled", "disabled");
+        //得到上传文件的值
+        var fileName = document.getElementById("FileUpLoad1").value;
+        //返回String对象中子字符串最后出现的位置.
+        var seat = fileName.lastIndexOf(".");
+        //返回位于String对象中指定位置的子字符串并转换为小写.
+        var extension = fileName.substring(seat).toLowerCase();
+        //判断允许上传的文件格式
+        //var allowed=[".jpg",".gif",".png",".bmp",".jpeg"];
+        var allowed = [".xls", ".xlsx"];
+        for (var i = 0; i < allowed.length; i++) {
+            if (!(allowed[i] != extension)) {
+                return true;
+            }
+        }
+        alert("不支持" + extension + "格式");
+        $("#ButtonUpload").removeAttr("disabled");
+        $(".loadingDiv").hide();
+        return false;
+    }
+</script>
